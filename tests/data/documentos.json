@@ -1,0 +1,241 @@
+{
+  "_note": "Documentos ficticios en español para medir la detección. Todos los nombres, empresas, direcciones y números son inventados; los DNI, NIE, CIF, IBAN, NSS y tarjetas tienen dígito de control válido pero no corresponden a nadie. Cada entrada de 'pii' marca todas las apariciones de ese texto (las cadenas largas se marcan primero).",
+  "docs": [
+    {
+      "id": "contrato-alquiler",
+      "text": "CONTRATO DE ARRENDAMIENTO DE VIVIENDA\n\nEn Valencia, a 3 de marzo de 2025.\n\nREUNIDOS\n\nDe una parte, D. Javier Molina Ortega, mayor de edad, con DNI 53464097E y domicilio en Calle de Colón 24, 4.º B, 46004 Valencia, en adelante el arrendador.\n\nDe otra parte, Dña. Lucía Herrero Campos, mayor de edad, con DNI 30246633T, en adelante la arrendataria.\n\nEl arrendador cede en arrendamiento la vivienda situada en Avenida del Puerto 118, 2.º 5.ª, 46023 Valencia. La renta mensual es de 850 euros, que la arrendataria abonará mediante transferencia a la cuenta ES21 3943 1486 0866 6169 7230 dentro de los cinco primeros días de cada mes. La fianza asciende a 1.700 euros.\n\nPara cualquier comunicación, las partes señalan los teléfonos 612 345 678 (Javier Molina) y 655 908 112 (Lucía Herrero), y el correo lucia.herrero@correo-ejemplo.es.\n\nFirmado: Javier Molina Ortega    Lucía Herrero Campos",
+      "pii": [
+        ["Javier Molina Ortega", "PERSONA"], ["Javier Molina", "PERSONA"], ["Lucía Herrero Campos", "PERSONA"], ["Lucía Herrero", "PERSONA"],
+        ["53464097E", "DNI"], ["30246633T", "DNI"],
+        ["Calle de Colón 24, 4.º B, 46004 Valencia", "DIRECCION"], ["Avenida del Puerto 118, 2.º 5.ª, 46023 Valencia", "DIRECCION"],
+        ["ES21 3943 1486 0866 6169 7230", "IBAN"], ["612 345 678", "TELEFONO"], ["655 908 112", "TELEFONO"], ["lucia.herrero@correo-ejemplo.es", "EMAIL"]
+      ]
+    },
+    {
+      "id": "correo-rrhh",
+      "text": "Asunto: Alta de nueva incorporación\n\nHola Marta,\n\nTe paso los datos de la nueva técnica de soporte para que la deis de alta en nómina:\n\nNombre: Elena Rojas Villanueva\nNIE: X9513358Y\nNúmero de afiliación a la Seguridad Social: 298513137727\nCuenta para la nómina: ES30 0968 9264 0895 4873 8649\nTeléfono móvil: +34 699 120 334\nCorreo personal: elena.rojas.v@mailbox-ejemplo.com\n\nEmpieza el lunes en la oficina de Sevilla. Cualquier duda, me dices.\n\nUn saludo,\nAndrés Pastor\nResponsable de Personas | Grupo Taliar Servicios S.L.\nTel. 954 220 871",
+      "pii": [
+        ["Elena Rojas Villanueva", "PERSONA"], ["Marta", "PERSONA"], ["Andrés Pastor", "PERSONA"], ["Grupo Taliar Servicios S.L.", "ORGANIZACION"],
+        ["X9513358Y", "NIE"], ["298513137727", "NSS"], ["ES30 0968 9264 0895 4873 8649", "IBAN"], ["+34 699 120 334", "TELEFONO"], ["954 220 871", "TELEFONO"],
+        ["elena.rojas.v@mailbox-ejemplo.com", "EMAIL"]
+      ]
+    },
+    {
+      "id": "informe-medico",
+      "text": "INFORME CLÍNICO DE ALTA\n\nHospital Universitario Santa Brígida — Servicio de Neumología\n\nPaciente: Rafael Domínguez Peña\nDNI: 62992312G\nNHC: 4471920\nFecha de ingreso: 12/01/2025. Fecha de alta: 19/01/2025.\n\nVarón de 67 años que acude por disnea progresiva. Antecedentes: EPOC moderada, exfumador. Se pauta tratamiento con broncodilatadores y corticoides sistémicos con buena evolución.\n\nControl en consultas externas con la Dra. Inés Calvo Serrano en cuatro semanas. Para cambios de cita llame al 913 557 200.\n\nDirección del paciente a efectos de transporte sanitario: Calle Alcalá 302, 1.º izquierda, 28027 Madrid.\nPersona de contacto: Pilar Domínguez (hija), 677 410 925.",
+      "pii": [
+        ["Rafael Domínguez Peña", "PERSONA"], ["Inés Calvo Serrano", "PERSONA"], ["Pilar Domínguez", "PERSONA"], ["Hospital Universitario Santa Brígida", "ORGANIZACION"],
+        ["62992312G", "DNI"], ["913 557 200", "TELEFONO"], ["677 410 925", "TELEFONO"], ["Calle Alcalá 302, 1.º izquierda, 28027 Madrid", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "factura",
+      "text": "FACTURA N.º 2025-0147\n\nEmisor: Reformas Albacete Hermanos S.L. — CIF B14650667\nPolígono Industrial Campollano, Calle E 14, 02007 Albacete\nadministracion@reformas-albacete.example\n\nCliente: Sergio Navarro Gil — DNI 97366946B\nCalle Tinte 9, 3.º A, 02001 Albacete\n\nConcepto: Sustitución de bañera por plato de ducha, incluye fontanería y alicatado.\nBase imponible: 2.340,00 €\nIVA (21 %): 491,40 €\nTotal: 2.831,40 €\n\nForma de pago: transferencia a ES60 9551 1013 2117 0372 9684 antes del 30/04/2025.",
+      "pii": [
+        ["Reformas Albacete Hermanos S.L.", "ORGANIZACION"], ["Sergio Navarro Gil", "PERSONA"], ["B14650667", "CIF"], ["97366946B", "DNI"],
+        ["Polígono Industrial Campollano, Calle E 14, 02007 Albacete", "DIRECCION"], ["Calle Tinte 9, 3.º A, 02001 Albacete", "DIRECCION"],
+        ["administracion@reformas-albacete.example", "EMAIL"], ["ES60 9551 1013 2117 0372 9684", "IBAN"]
+      ]
+    },
+    {
+      "id": "reclamacion-banco",
+      "text": "A la atención del Servicio de Atención al Cliente de Banco Meridional:\n\nMe llamo Carmen Ibáñez Soler, con DNI 16480894Z, titular de la tarjeta 4543 2319 4875 7494. El pasado 14 de febrero se realizaron en mi tarjeta tres cargos que no reconozco por importe total de 612,35 euros desde la dirección IP 185.62.191.44, según me indicaron por teléfono.\n\nSolicito la anulación de los cargos y la devolución del importe en mi cuenta ES65 3622 0763 1248 6694 8781.\n\nPueden contactarme en el 634 772 018 o en carmen.ibanez@buzon-ejemplo.net. Mi domicilio es Plaza de España 7, 5.º C, 50001 Zaragoza.\n\nAtentamente,\nCarmen Ibáñez",
+      "pii": [
+        ["Carmen Ibáñez Soler", "PERSONA"], ["Carmen Ibáñez", "PERSONA"], ["Banco Meridional", "ORGANIZACION"], ["16480894Z", "DNI"], ["4543 2319 4875 7494", "TARJETA"],
+        ["185.62.191.44", "IP"], ["ES65 3622 0763 1248 6694 8781", "IBAN"], ["634 772 018", "TELEFONO"], ["carmen.ibanez@buzon-ejemplo.net", "EMAIL"],
+        ["Plaza de España 7, 5.º C, 50001 Zaragoza", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "whatsapp",
+      "text": "[10:42] Nuria: oye me pasas el número de Dani? que tengo que preguntarle lo del coche\n[10:43] Pablo: claro, es el 622 81 90 47\n[10:43] Pablo: y su correo es dani.fuentes88@correo-ejemplo.es por si no lo pilla\n[10:44] Nuria: genial gracias. el sábado quedamos en casa de Irene? c/ San Vicente 31 2B\n[10:45] Pablo: si, a las 9. Irene dice que lleves hielo jaja\n[10:45] Nuria: ok 👍 Bizum al 611 445 902 para lo de la cena",
+      "pii": [
+        ["Nuria", "PERSONA"], ["Dani", "PERSONA"], ["Pablo", "PERSONA"], ["Irene", "PERSONA"],
+        ["622 81 90 47", "TELEFONO"], ["611 445 902", "TELEFONO"], ["dani.fuentes88@correo-ejemplo.es", "EMAIL"], ["c/ San Vicente 31 2B", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "curriculum",
+      "text": "TOMÁS AGUILAR REYES\nIngeniero de datos\n\nCalle Pintor Sorolla 5, 3.º D, 03001 Alicante · 645 230 118 · tomas.aguilar@cv-ejemplo.dev\n\nEXPERIENCIA\n2021 – actualidad · Ingeniero de datos sénior en Lumora Analytics. Diseño de canalizaciones de datos en tiempo real y modelos de previsión de demanda.\n2017 – 2021 · Analista de datos en Seguros Costablanca S.A. Automatización de informes y cuadros de mando.\n\nFORMACIÓN\nGrado en Ingeniería Informática, Universidad de Alicante (2017).\n\nREFERENCIAS\nBeatriz Lozano, directora técnica de Lumora Analytics, beatriz.lozano@lumora-ejemplo.com.",
+      "pii": [
+        ["TOMÁS AGUILAR REYES", "PERSONA"], ["Beatriz Lozano", "PERSONA"], ["Lumora Analytics", "ORGANIZACION"], ["Seguros Costablanca S.A.", "ORGANIZACION"],
+        ["Calle Pintor Sorolla 5, 3.º D, 03001 Alicante", "DIRECCION"], ["645 230 118", "TELEFONO"], ["tomas.aguilar@cv-ejemplo.dev", "EMAIL"],
+        ["beatriz.lozano@lumora-ejemplo.com", "EMAIL"]
+      ]
+    },
+    {
+      "id": "denuncia",
+      "text": "COMPARECENCIA\n\nEn la Comisaría de Policía de Getafe, siendo las 18:20 horas del día 7 de octubre, comparece Óscar Prieto Lara, nacido en 1985, con NIE Y2171979B, con domicilio en Calle Madrid 61, 2.º A, 28902 Getafe y teléfono 699 031 552, quien manifiesta:\n\nQue sobre las 16:00 horas, mientras se encontraba en el aparcamiento del centro comercial, un varón le sustrajo la mochila que contenía su ordenador portátil y su cartera. Que un testigo, Alberto Sanz Medina, con DNI 19722233D, presenció los hechos y facilitó la matrícula 4821 KLM del vehículo en el que huyó el autor.\n\nLeída la presente, la encuentra conforme y firma.",
+      "pii": [
+        ["Óscar Prieto Lara", "PERSONA"], ["Alberto Sanz Medina", "PERSONA"], ["Y2171979B", "NIE"], ["19722233D", "DNI"],
+        ["Calle Madrid 61, 2.º A, 28902 Getafe", "DIRECCION"], ["699 031 552", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "acta-comunidad",
+      "text": "ACTA DE LA JUNTA ORDINARIA DE LA COMUNIDAD DE PROPIETARIOS DE LA CALLE GOYA 88, MADRID\n\nAsisten: Fernando Ruiz (presidente), Mercedes Ortiz (1.º A), Hugo Benítez (2.º B), Rosa Cabrera (3.º C) y el administrador de fincas, Gestiones Prado y Asociados.\n\n1. Se aprueba por unanimidad la sustitución del ascensor. El presupuesto elegido es el de Elevadores Iberia S.A. por 38.500 euros.\n2. Se informa de que el propietario del 4.º D, Ramón Esteban, mantiene una deuda de 1.240 euros. Se le requerirá el pago por burofax.\n3. Ruegos y preguntas: Rosa Cabrera solicita que se revise la iluminación del garaje.\n\nSin más asuntos, se levanta la sesión.",
+      "pii": [
+        ["Fernando Ruiz", "PERSONA"], ["Mercedes Ortiz", "PERSONA"], ["Hugo Benítez", "PERSONA"], ["Rosa Cabrera", "PERSONA"], ["Ramón Esteban", "PERSONA"],
+        ["Gestiones Prado y Asociados", "ORGANIZACION"], ["Elevadores Iberia S.A.", "ORGANIZACION"], ["CALLE GOYA 88, MADRID", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "nomina",
+      "text": "RECIBO INDIVIDUAL DE SALARIOS\n\nEmpresa: Distribuciones Cantábrico S.L.   CIF: A38748687\nDomicilio: Avenida de los Castros 40, 39005 Santander\n\nTrabajador: Lorena Vidal Cortés\nNIF: 81924865S   N.º afiliación S.S.: 507249849488\nCategoría: Oficial administrativa\nPeriodo de liquidación: 01/05/2025 a 31/05/2025\n\nSalario base: 1.620,00 €   Plus de transporte: 95,00 €\nRetención IRPF (14 %): 240,10 €   Cotización SS: 108,90 €\nLíquido a percibir: 1.366,00 €\n\nIngreso en cuenta ES32 6867 2363 1423 2222 8204.",
+      "pii": [
+        ["Distribuciones Cantábrico S.L.", "ORGANIZACION"], ["A38748687", "CIF"], ["Avenida de los Castros 40, 39005 Santander", "DIRECCION"],
+        ["Lorena Vidal Cortés", "PERSONA"], ["81924865S", "DNI"], ["507249849488", "NSS"], ["ES32 6867 2363 1423 2222 8204", "IBAN"]
+      ]
+    },
+    {
+      "id": "sentencia",
+      "text": "JUZGADO DE PRIMERA INSTANCIA N.º 4 DE MÁLAGA\n\nSENTENCIA N.º 212/2024\n\nEn Málaga, a 18 de junio de 2024.\n\nVistos por la magistrada Dña. Silvia Romero Galán los presentes autos de juicio verbal seguidos con el número 845/2023, a instancia de Construcciones Axarquía S.L., representada por el procurador D. Manuel Fajardo Ríos, contra D. Iván Castillo Moreno, con DNI 22633920B.\n\nANTECEDENTES DE HECHO\n\nPrimero. La parte actora reclamaba la cantidad de 4.380 euros por trabajos de reforma realizados en la vivienda del demandado, sita en Calle Larios 3, 2.º, 29005 Málaga.\n\nFALLO\n\nEstimo íntegramente la demanda y condeno a D. Iván Castillo Moreno a abonar a Construcciones Axarquía S.L. la suma reclamada más los intereses legales.",
+      "pii": [
+        ["Silvia Romero Galán", "PERSONA"], ["Manuel Fajardo Ríos", "PERSONA"], ["Iván Castillo Moreno", "PERSONA"], ["Construcciones Axarquía S.L.", "ORGANIZACION"],
+        ["22633920B", "DNI"], ["Calle Larios 3, 2.º, 29005 Málaga", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "soporte-tecnico",
+      "text": "Ticket #48213 — Error de acceso al panel\n\nCliente: Diego Herrera (diego.herrera@empresa-ejemplo.io)\nEmpresa: Nubaria Software\n\nDescripción: Desde ayer no puedo entrar al panel de administración. Me da error 403. Estoy conectando desde la oficina, IP pública 81.44.203.17, y también lo he probado desde casa con 2a02:9130:84c1:1f00::2c. Mi usuario es dherrera.\n\nRespuesta de Laura Méndez (soporte): Hola Diego, hemos visto que la IP 81.44.203.17 quedó bloqueada tras varios intentos fallidos. Ya está desbloqueada. Si vuelve a pasar, llámanos al 900 123 456.",
+      "pii": [
+        ["Diego Herrera", "PERSONA"], ["Diego", "PERSONA"], ["Laura Méndez", "PERSONA"], ["Nubaria Software", "ORGANIZACION"], ["diego.herrera@empresa-ejemplo.io", "EMAIL"],
+        ["81.44.203.17", "IP"], ["2a02:9130:84c1:1f00::2c", "IP"], ["900 123 456", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "beca",
+      "text": "SOLICITUD DE AYUDA AL ESTUDIO — CURSO 2025/2026\n\nDatos del solicitante\nApellidos y nombre: Gómez Salinas, Andrea\nDNI: 59081935H\nFecha de nacimiento: 22/09/2006\nDomicilio familiar: Calle Real 15, 37001 Salamanca\nTeléfono: 923 118 640   Móvil: 688 552 197\nCorreo: andrea.gomez.s@estudiantes-ejemplo.es\n\nDatos del padre/madre o tutor\nRamiro Gómez Ledesma, DNI 88220482A\n\nCentro de estudios: IES Fray Luis de León, 2.º de Bachillerato.\nCuenta bancaria para el pago: ES47 9353 5054 1129 2917 9284",
+      "pii": [
+        ["Gómez Salinas, Andrea", "PERSONA"], ["Ramiro Gómez Ledesma", "PERSONA"], ["IES Fray Luis de León", "ORGANIZACION"],
+        ["59081935H", "DNI"], ["88220482A", "DNI"], ["Calle Real 15, 37001 Salamanca", "DIRECCION"], ["923 118 640", "TELEFONO"], ["688 552 197", "TELEFONO"],
+        ["andrea.gomez.s@estudiantes-ejemplo.es", "EMAIL"], ["ES47 9353 5054 1129 2917 9284", "IBAN"]
+      ]
+    },
+    {
+      "id": "parte-accidente",
+      "text": "DECLARACIÓN AMISTOSA DE ACCIDENTE\n\nVehículo A: conductor Gonzalo Pardo Esteve, NIE X1629072M, teléfono 655 019 284, asegurado en Mutua Levantina de Seguros, póliza 7731-220-48.\nVehículo B: conductora Sofía Lamas Rial, DNI 62992312G, teléfono 698 207 773, asegurada en Aseguradora Galaica.\n\nLugar: cruce de la Avenida de Barcelona con la Calle Nou, Lleida.\n\nCircunstancias: el vehículo A circulaba por la Avenida de Barcelona y no respetó la señal de ceda el paso, golpeando el lateral derecho del vehículo B. No hubo heridos.",
+      "pii": [
+        ["Gonzalo Pardo Esteve", "PERSONA"], ["Sofía Lamas Rial", "PERSONA"], ["Mutua Levantina de Seguros", "ORGANIZACION"], ["Aseguradora Galaica", "ORGANIZACION"],
+        ["X1629072M", "NIE"], ["62992312G", "DNI"], ["655 019 284", "TELEFONO"], ["698 207 773", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "pedido-online",
+      "text": "Confirmación de pedido #ES-77120\n\nGracias por tu compra, Raquel.\n\nEnviaremos tu pedido a:\nRaquel Fuentes Marín\nCalle Mayor 45, bajo, 31001 Pamplona\nTel. 948 774 120\n\nPago con tarjeta terminada en 1042 (Mastercard). Importe cobrado: 129,90 €.\n\nSi tienes cualquier problema escribe a ayuda@tienda-ejemplo.com indicando tu número de pedido.",
+      "pii": [
+        ["Raquel Fuentes Marín", "PERSONA"], ["Raquel", "PERSONA"], ["Calle Mayor 45, bajo, 31001 Pamplona", "DIRECCION"], ["948 774 120", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "pago-tarjeta",
+      "text": "Hola, soy Víctor Peña. Para completar la reserva del hotel os dejo los datos de la tarjeta: 5155 9797 1147 1042, caducidad 08/27. El titular es mi mujer, Alicia Torres Bravo. Si hace falta, también tengo una American Express 3734 236671 27685. Mi número de contacto es el +34 620 113 885 y el email victor.pena@viajes-ejemplo.org.",
+      "pii": [
+        ["Víctor Peña", "PERSONA"], ["Alicia Torres Bravo", "PERSONA"], ["5155 9797 1147 1042", "TARJETA"], ["3734 236671 27685", "TARJETA"],
+        ["+34 620 113 885", "TELEFONO"], ["victor.pena@viajes-ejemplo.org", "EMAIL"]
+      ]
+    },
+    {
+      "id": "expediente-administrativo",
+      "text": "AYUNTAMIENTO DE CÁCERES\nÁrea de Urbanismo\n\nExpediente: 2025/URB/00318\n\nVista la solicitud de licencia de obra menor presentada por Eva Moreno Sancho, con DNI 30246633T, para la reforma de la cocina de la vivienda situada en Calle Pintores 22, 1.º, 10003 Cáceres, y el informe favorable del arquitecto municipal, D. Emilio Rubio Calderón, se RESUELVE conceder la licencia solicitada.\n\nLa presente resolución se notificará a la interesada en el correo eva.moreno.sancho@notificaciones-ejemplo.es. Contra ella podrá interponerse recurso de reposición en el plazo de un mes.",
+      "pii": [
+        ["Eva Moreno Sancho", "PERSONA"], ["Emilio Rubio Calderón", "PERSONA"], ["30246633T", "DNI"], ["Calle Pintores 22, 1.º, 10003 Cáceres", "DIRECCION"],
+        ["eva.moreno.sancho@notificaciones-ejemplo.es", "EMAIL"]
+      ]
+    },
+    {
+      "id": "proveedores",
+      "text": "Listado de proveedores homologados (actualizado en abril):\n\n- Papelería Técnica del Sur S.L., CIF G13488101, contacto: Jorge Cano, jorge.cano@papeleria-ejemplo.es, 957 300 412.\n- Limpiezas Brillo Norte S.A., CIF A36933372, contacto: Natalia Rey, 986 412 377.\n- Transportes Hermanos Vela, CIF A37078128, contacto: Luis Vela, 923 601 288, Carretera de Zamora km 3, 37008 Salamanca.\n\nLas facturas deben remitirse a cuentas.pagar@empresa-ejemplo.es.",
+      "pii": [
+        ["Papelería Técnica del Sur S.L.", "ORGANIZACION"], ["Limpiezas Brillo Norte S.A.", "ORGANIZACION"], ["Transportes Hermanos Vela", "ORGANIZACION"],
+        ["G13488101", "CIF"], ["A36933372", "CIF"], ["A37078128", "CIF"], ["Jorge Cano", "PERSONA"], ["Natalia Rey", "PERSONA"], ["Luis Vela", "PERSONA"],
+        ["jorge.cano@papeleria-ejemplo.es", "EMAIL"], ["cuentas.pagar@empresa-ejemplo.es", "EMAIL"], ["957 300 412", "TELEFONO"], ["986 412 377", "TELEFONO"], ["923 601 288", "TELEFONO"],
+        ["Carretera de Zamora km 3, 37008 Salamanca", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "carta-personal",
+      "text": "Querida abuela Concha:\n\nTe escribo desde Lyon, donde estoy haciendo el Erasmus. Aquí todo va muy bien, aunque echo de menos tus croquetas. Comparto piso con Clara, una chica de Bilbao muy maja, y con Mathieu, que es de aquí.\n\nMamá me ha dicho que el tío Enrique ya está mejor de la operación. Dale un beso de mi parte.\n\nSi quieres mandarme algo, mi dirección aquí es 14 Rue Victor Hugo, 69002 Lyon. Y ya sabes que puedes llamarme al +33 6 12 34 56 78 cuando quieras.\n\nTe quiero mucho,\nMarina",
+      "pii": [
+        ["Concha", "PERSONA"], ["Clara", "PERSONA"], ["Mathieu", "PERSONA"], ["Enrique", "PERSONA"], ["Marina", "PERSONA"],
+        ["14 Rue Victor Hugo, 69002 Lyon", "DIRECCION"], ["+33 6 12 34 56 78", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "sin-datos-personales",
+      "text": "Nota técnica: rendimiento del clúster en el tercer trimestre\n\nDurante el trimestre el uso medio de CPU fue del 62 % y el pico de memoria alcanzó 412 GB el 14 de agosto. Se procesaron 18.400.211 peticiones con una latencia media de 120 ms. El presupuesto de infraestructura se mantuvo en 23.500 euros mensuales.\n\nLa versión 4.12.3 del planificador reduce los reintentos en un 30 %. El código de error 500 aparece en 0,02 % de las peticiones. El lote 2024-118 se reprocesó el día 3 a las 04:00.\n\nPróximos pasos: migrar los nodos de la zona eu-west-3 y revisar la política de copias.",
+      "pii": []
+    },
+    {
+      "id": "numeros-que-no-son-datos",
+      "text": "Referencia del pedido: 12345678A (no es un documento). Código de producto 4012 8888 8888 1882 en el catálogo antiguo. Importe: 699 120 euros en tres años. El expediente 2024/45/7781 sigue abierto. Teléfono de la línea de pruebas: 000 000 000. La cuenta ES00 1234 5678 9012 3456 7890 es un ejemplo de formato. El NIE X0000000A tampoco es válido.",
+      "pii": []
+    },
+    {
+      "id": "email-comercial",
+      "text": "Buenos días, Sra. Valero:\n\nLe escribo de parte de Ingeniería Sostenible Ebro tras nuestra conversación en la feria de Zaragoza. Como le comenté, nuestro director comercial, Raúl Gimeno Pascual, estará en Huesca la semana que viene y podría visitarles en su sede de la Calle Coso Alto 18, 22003 Huesca, el martes a las 10:00.\n\nLe adjunto el dossier. Puede confirmar la cita respondiendo a este correo o llamando al 976 556 210 (extensión 14).\n\nUn cordial saludo,\nPatricia Lorente\nIngeniería Sostenible Ebro\npatricia.lorente@ise-ejemplo.es",
+      "pii": [
+        ["Valero", "PERSONA"], ["Raúl Gimeno Pascual", "PERSONA"], ["Patricia Lorente", "PERSONA"], ["Ingeniería Sostenible Ebro", "ORGANIZACION"],
+        ["Calle Coso Alto 18, 22003 Huesca", "DIRECCION"], ["976 556 210", "TELEFONO"], ["patricia.lorente@ise-ejemplo.es", "EMAIL"]
+      ]
+    },
+    {
+      "id": "historia-social",
+      "text": "INFORME SOCIAL\n\nUsuaria: Josefa Martín Cuesta, 78 años, viuda, vive sola en Calle Constitución 4, 2.º B, 41001 Sevilla. Número de la Seguridad Social: 297816130180.\n\nLa usuaria presenta dificultades para las actividades básicas de la vida diaria. Su hijo, Miguel Ángel Martín, reside en Barcelona y la visita una vez al mes. La vecina, Dolores Ramírez, le ayuda con la compra.\n\nSe propone la valoración de la situación de dependencia y el alta en el servicio de teleasistencia de Cruz Solidaria Sevilla. Teléfono de contacto del hijo: 663 908 441.",
+      "pii": [
+        ["Josefa Martín Cuesta", "PERSONA"], ["Miguel Ángel Martín", "PERSONA"], ["Dolores Ramírez", "PERSONA"], ["Cruz Solidaria Sevilla", "ORGANIZACION"],
+        ["Calle Constitución 4, 2.º B, 41001 Sevilla", "DIRECCION"], ["297816130180", "NSS"], ["663 908 441", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "extranjeria",
+      "text": "Solicitud de renovación de autorización de residencia y trabajo.\n\nDatos de la persona extranjera: Ahmed Benali, NIE X8275367J, nacionalidad marroquí, domicilio en Calle Ancha 12, 3.º, 11001 Cádiz, teléfono 678 300 512.\n\nEmpleador: Hostelería Bahía Gaditana S.L., CIF A38748687, representada por su gerente Francisco Ruiz Belmonte.\n\nSe aporta contrato de trabajo indefinido, informe de vida laboral y certificado de empadronamiento expedido por el Ayuntamiento de Cádiz.",
+      "pii": [
+        ["Ahmed Benali", "PERSONA"], ["Francisco Ruiz Belmonte", "PERSONA"], ["Hostelería Bahía Gaditana S.L.", "ORGANIZACION"],
+        ["X8275367J", "NIE"], ["A38748687", "CIF"], ["Calle Ancha 12, 3.º, 11001 Cádiz", "DIRECCION"], ["678 300 512", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "correo-ingles-mezcla",
+      "text": "Hi Laura,\n\nAs discussed, please find the details of the new supplier below so you can set them up in the system:\n\nCompany: Verdia Foods S.L. (CIF B14650667)\nContact: Marcos Iglesias, marcos.iglesias@verdia-ejemplo.es, +34 911 482 300\nBank account: ES21 3943 1486 0866 6169 7230\nAddress: Calle de Serrano 120, 28006 Madrid\n\nThanks,\nOliver Grant",
+      "pii": [
+        ["Laura", "PERSONA"], ["Marcos Iglesias", "PERSONA"], ["Oliver Grant", "PERSONA"], ["Verdia Foods S.L.", "ORGANIZACION"],
+        ["B14650667", "CIF"], ["marcos.iglesias@verdia-ejemplo.es", "EMAIL"], ["+34 911 482 300", "TELEFONO"], ["ES21 3943 1486 0866 6169 7230", "IBAN"],
+        ["Calle de Serrano 120, 28006 Madrid", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "informe-largo",
+      "text": "INFORME DE AUDITORÍA INTERNA — PROCESO DE COMPRAS\n\n1. Alcance\n\nEl presente informe recoge la revisión del proceso de compras de Metalúrgica Duero S.A. durante el ejercicio 2024. El equipo auditor, coordinado por Alicia Navas Prieto, revisó una muestra de 120 expedientes de compra seleccionados de forma aleatoria entre los 2.814 tramitados en el periodo. Se mantuvieron entrevistas con el director financiero, Germán Ortega Lafuente, con la responsable de compras, Victoria Sáez Ramos, y con dos técnicos del almacén central.\n\n2. Metodología\n\nPara cada expediente se comprobó la existencia de solicitud de compra aprobada, la comparación de al menos tres ofertas cuando el importe superaba 15.000 euros, la correcta recepción de la mercancía y la conciliación entre pedido, albarán y factura. Además, se cruzaron los datos bancarios de los proveedores con la base de datos de empleados para detectar posibles conflictos de interés.\n\n3. Hallazgos\n\n3.1. En 14 expedientes no constaba la comparación de ofertas exigida. Los importes afectados suman 412.300 euros. La mayor parte corresponden al proveedor Suministros Industriales Pisuerga S.L., con CIF A37078128, cuyo interlocutor habitual es Ricardo Llorente Gil.\n\n3.2. Se detectó que la cuenta bancaria ES65 3622 0763 1248 6694 8781, asociada a un proveedor dado de alta en marzo, coincide con la cuenta de nómina de un empleado del almacén, Daniel Crespo Varela, con DNI 16480894Z. El empleado declaró desconocer el motivo. Se ha trasladado el caso al departamento jurídico.\n\n3.3. Tres facturas de Transportes Ribera del Duero S.L. se pagaron dos veces por un error en la conciliación. El importe duplicado, 8.940 euros, ya ha sido recuperado.\n\n3.4. Las solicitudes de compra de material informático se tramitan por correo electrónico a la dirección compras@metalurgica-duero.example sin dejar constancia en el sistema. Se recomienda centralizar todas las solicitudes en la herramienta corporativa.\n\n4. Recomendaciones\n\nSe recomienda reforzar el control de alta de proveedores con una verificación independiente de la titularidad de la cuenta bancaria, establecer alertas automáticas de pagos duplicados y formar al personal de compras en el procedimiento vigente. La responsable de compras, Victoria Sáez Ramos, ha aceptado las recomendaciones y presentará un plan de acción antes del 30 de septiembre.\n\n5. Contacto\n\nPara cualquier aclaración sobre este informe puede dirigirse a Alicia Navas Prieto, auditora interna, en el teléfono 983 455 210 o en la dirección Calle Santiago 19, 47001 Valladolid.",
+      "pii": [
+        ["Metalúrgica Duero S.A.", "ORGANIZACION"], ["Suministros Industriales Pisuerga S.L.", "ORGANIZACION"], ["Transportes Ribera del Duero S.L.", "ORGANIZACION"],
+        ["Alicia Navas Prieto", "PERSONA"], ["Germán Ortega Lafuente", "PERSONA"], ["Victoria Sáez Ramos", "PERSONA"], ["Ricardo Llorente Gil", "PERSONA"], ["Daniel Crespo Varela", "PERSONA"],
+        ["A37078128", "CIF"], ["ES65 3622 0763 1248 6694 8781", "IBAN"], ["16480894Z", "DNI"], ["compras@metalurgica-duero.example", "EMAIL"], ["983 455 210", "TELEFONO"],
+        ["Calle Santiago 19, 47001 Valladolid", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "cita-medica-sms",
+      "text": "Recordatorio: Sr. Antonio Mora, tiene cita con la Dra. Nieves Ferrer en el Centro de Salud Las Delicias el día 14/11 a las 9:30. Para anular la cita llame al 976 320 455. No responda a este mensaje.",
+      "pii": [
+        ["Antonio Mora", "PERSONA"], ["Nieves Ferrer", "PERSONA"], ["Centro de Salud Las Delicias", "ORGANIZACION"], ["976 320 455", "TELEFONO"]
+      ]
+    },
+    {
+      "id": "datos-sin-formato",
+      "text": "datos del cliente para el alta: alberto garcía ruiz dni 53464097e iban es2139431486086661697230 tlf 612345678 email agarcia@correo-ejemplo.es vive en avda. de la libertad 33 4c 30009 murcia",
+      "pii": [
+        ["alberto garcía ruiz", "PERSONA"], ["53464097e", "DNI"], ["es2139431486086661697230", "IBAN"], ["612345678", "TELEFONO"], ["agarcia@correo-ejemplo.es", "EMAIL"],
+        ["avda. de la libertad 33 4c 30009 murcia", "DIRECCION"]
+      ]
+    },
+    {
+      "id": "laboral-despido",
+      "text": "CARTA DE DESPIDO DISCIPLINARIO\n\nSra. Begoña Arias Quintana\nCalle Uría 47, 5.º D, 33003 Oviedo\n\nOviedo, 2 de junio de 2025\n\nMuy Sra. nuestra:\n\nPor medio de la presente, la dirección de Comercial Astur Norte S.L. le comunica su despido disciplinario con efectos desde el día de hoy, por las faltas de asistencia injustificadas de los días 12, 13, 19 y 20 de mayo, que constituyen una falta muy grave conforme al convenio colectivo aplicable.\n\nPuede pasar a recoger la liquidación y el certificado de empresa en nuestras oficinas. Para cualquier cuestión, puede contactar con el departamento de recursos humanos en rrhh@astur-norte.example o en el 985 210 334.\n\nFdo.: Héctor Suárez Menéndez, director general.\n\nRecibí: Begoña Arias Quintana",
+      "pii": [
+        ["Begoña Arias Quintana", "PERSONA"], ["Héctor Suárez Menéndez", "PERSONA"], ["Comercial Astur Norte S.L.", "ORGANIZACION"],
+        ["Calle Uría 47, 5.º D, 33003 Oviedo", "DIRECCION"], ["rrhh@astur-norte.example", "EMAIL"], ["985 210 334", "TELEFONO"]
+      ]
+    }
+  ]
+}

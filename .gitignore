@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/ort/
+public/pdfjs/
+*.onnx
+__pycache__/
+.env

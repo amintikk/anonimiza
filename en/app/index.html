@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Anonimiza · Anonymise a text in your browser</title>
+    <meta name="description" content="Paste a text or drop a PDF or DOCX file, review the personal data detected and replace it with markers. Everything happens in your browser." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/en/app/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/app/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/app/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/app/" />
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+  </head>
+  <body class="app">
+    <header class="top">
+      <a class="brand" href="/en/" title="Back to the home page">
+        <img src="/icon.svg" width="28" height="28" alt="" />
+        <strong>Anonimiza</strong>
+      </a>
+      <div class="seg" role="tablist" aria-label="Mode">
+        <button role="tab" id="tab-anon" aria-selected="true" aria-controls="view-anon"><i data-icon="eyeOff" data-size="16"></i><span>Anonymise</span></button>
+        <button role="tab" id="tab-restore" aria-selected="false" aria-controls="view-restore"><i data-icon="restore" data-size="16"></i><span>Restore</span></button>
+        <span class="seg-thumb" aria-hidden="true"></span>
+      </div>
+      <div class="top-right">
+        <div class="engine" id="engine">
+          <button class="btn ghost engine-btn" id="engine-btn" type="button" aria-expanded="false" aria-controls="engine-pop">
+            <span class="engine-dot" id="engine-dot"></span><span class="engine-label" id="engine-label">Model</span>
+          </button>
+          <div class="pop engine-pop" id="engine-pop" role="dialog" aria-label="Model and privacy"></div>
+        </div>
+        <a class="lang-switch" href="/app/" hreflang="es" lang="es" title="Usar la app en español">ES</a>
+        <button class="btn ghost icon" id="btn-theme" type="button" title="Change theme" aria-label="Change theme"></button>
+      </div>
+    </header>
+
+    <main class="views">
+      <section class="view" id="view-anon" role="tabpanel" aria-labelledby="tab-anon">
+        <div class="work">
+          <div class="pane main-pane" id="main-pane">
+            <div class="pane-head">
+              <div class="pane-title">
+                <h1 id="main-title">Original text</h1>
+                <span class="file-name" id="file-name" hidden></span>
+              </div>
+              <div class="switch2" id="mode-switch" role="tablist" aria-label="View" hidden>
+                <button role="tab" id="mode-orig" aria-selected="true">Review</button>
+                <button role="tab" id="mode-out" aria-selected="false">Result</button>
+              </div>
+            </div>
+
+            <div class="editor" id="editor">
+              <textarea id="input" spellcheck="false" placeholder="Paste the text you want to anonymise, or drop a PDF, DOCX or TXT file here." aria-label="Original text"></textarea>
+              <div class="drop" id="drop" aria-hidden="true">
+                <i data-icon="upload" data-size="28"></i>
+                <strong>Drop the file here</strong>
+                <span>PDF, DOCX or text. It is read on your device.</span>
+              </div>
+            </div>
+            <div class="review" id="review" hidden tabindex="0" aria-label="Text with the detected data"></div>
+
+            <div class="pane-foot" id="foot-edit">
+              <div class="foot-left">
+                <label class="btn ghost small file-btn"><i data-icon="fileText" data-size="16"></i><span>Open file</span><input type="file" id="file" class="sr-only" /></label>
+                <button class="btn ghost small" id="btn-sample" type="button">Try an example</button>
+              </div>
+              <div class="foot-right">
+                <span class="count" id="count"></span>
+                <button class="btn primary" id="btn-detect" type="button" disabled><i data-icon="scan" data-size="16"></i>Detect data</button>
+              </div>
+            </div>
+            <div class="pane-foot" id="foot-review" hidden>
+              <div class="foot-left">
+                <button class="btn ghost small" id="btn-edit" type="button"><i data-icon="edit" data-size="16"></i><span>Edit text</span></button>
+                <span class="hint" id="select-hint">Select a passage to add it by hand.</span>
+              </div>
+              <div class="foot-right">
+                <button class="btn small" id="btn-download" type="button"><i data-icon="download" data-size="16"></i><span>Download</span></button>
+                <button class="btn primary small" id="btn-copy" type="button"><i data-icon="copy" data-size="16"></i><span>Copy result</span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="pane side-pane" id="side" aria-label="Detected data">
+            <div class="model-card" id="model-card" hidden></div>
+            <div class="side-empty" id="side-empty">
+              <h2>How it works</h2>
+              <ol class="steps">
+                <li><b>Paste or open</b> a document. It does not leave this browser.</li>
+                <li><b>Review</b> what was detected: switch off anything that is not personal data, and select in the text anything that is missing.</li>
+                <li><b>Copy</b> the result with markers such as <code>[PERSON_1]</code> and use it wherever you like.</li>
+                <li><b>Restore</b> the data in the reply the AI sends back, from the “Restore” tab.</li>
+              </ol>
+            </div>
+            <div class="found" id="found" hidden>
+              <div class="found-head">
+                <h2 id="found-title">Detected data</h2>
+                <span class="found-sub" id="found-sub"></span>
+              </div>
+              <div class="groups" id="groups"></div>
+            </div>
+            <div class="caution">
+              <i data-icon="alert" data-size="18"></i>
+              <p><strong>Always review the result.</strong> Automatic detection sometimes fails and does not guarantee complete anonymisation: a job title, a place or a detail of the context can be enough to identify someone.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-restore" role="tabpanel" aria-labelledby="tab-restore" hidden>
+        <div class="work restore-work">
+          <div class="pane">
+            <div class="pane-head">
+              <div class="pane-title"><h2>AI reply</h2></div>
+              <button class="btn ghost small" id="btn-paste" type="button"><i data-icon="copy" data-size="16"></i><span>Paste</span></button>
+            </div>
+            <div class="editor">
+              <textarea id="ai-input" spellcheck="false" placeholder="Paste here the reply that contains markers such as [PERSON_1]." aria-label="AI reply"></textarea>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head">
+              <div class="pane-title"><h2>With the original data</h2></div>
+              <div class="head-actions">
+                <button class="btn small" id="btn-r-download" type="button" disabled><i data-icon="download" data-size="16"></i><span>Download</span></button>
+                <button class="btn primary small" id="btn-r-copy" type="button" disabled><i data-icon="copy" data-size="16"></i><span>Copy</span></button>
+              </div>
+            </div>
+            <div class="review restored" id="restored" tabindex="0" aria-live="polite"></div>
+            <div class="pane-foot">
+              <span class="restore-stats" id="restore-stats"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="pop add-menu" id="add-menu" role="menu" aria-label="Add as"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<div class="figs">
+  <div class="fig-num"><b>99.6 %</b><span>of the annotated personal data were replaced, at least in part (229 of 230)</span></div>
+  <div class="fig-num"><b>99.0 %</b><span>of the sensitive characters were covered</span></div>
+  <div class="fig-num"><b>97.0 %</b><span>of what the tool marked really was personal data (229 of 236)</span></div>
+</div>
+<div class="table-wrap">
+  <table class="plain">
+    <thead><tr><th>Type</th><th class="num">Annotated</th><th class="num">Marked</th><th class="num">Recall</th><th class="num">Exact recall</th><th class="num">Precision</th><th class="num">Exact precision</th></tr></thead>
+    <tbody>
+      <tr><td>People</td><td class="num">84</td><td class="num">85</td><td class="num">100.0 %</td><td class="num">89.3 %</td><td class="num">98.8 %</td><td class="num">88.2 %</td></tr>
+      <tr><td>Organisations</td><td class="num">29</td><td class="num">32</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">90.6 %</td><td class="num">90.6 %</td></tr>
+      <tr><td>Addresses</td><td class="num">24</td><td class="num">25</td><td class="num">95.8 %</td><td class="num">95.8 %</td><td class="num">92.0 %</td><td class="num">92.0 %</td></tr>
+      <tr><td>DNI</td><td class="num">14</td><td class="num">14</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>NIE</td><td class="num">4</td><td class="num">4</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>CIF</td><td class="num">8</td><td class="num">8</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Social security no.</td><td class="num">3</td><td class="num">3</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>IBAN</td><td class="num">9</td><td class="num">9</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Cards</td><td class="num">3</td><td class="num">3</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Phones</td><td class="num">30</td><td class="num">30</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Emails</td><td class="num">18</td><td class="num">19</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">94.7 %</td><td class="num">94.7 %</td></tr>
+      <tr><td>IP addresses</td><td class="num">4</td><td class="num">4</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr class="total"><td>Total (WebAssembly, int8w)</td><td class="num">230</td><td class="num">236</td><td class="num">99.6 %</td><td class="num">95.7 %</td><td class="num">97.0 %</td><td class="num">93.2 %</td></tr>
+      <tr class="total"><td>Total (WebGPU, fp16)</td><td class="num">230</td><td class="num">236</td><td class="num">99.6 %</td><td class="num">95.2 %</td><td class="num">97.0 %</td><td class="num">92.8 %</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">"Recall" and "precision" count a hit when the marked text overlaps an annotated item of the same type; the "exact" columns require the same boundaries. Model threshold 0.3 ("High" sensitivity). 29 documents, 230 items. <strong>These figures are optimistic:</strong> the documents were written by the author, they are clean, and the choices (model labels, threshold, phone formats, searching for short forms of names) were made looking at the errors on this same set. The model alone, without those repetition searches, found 94 % of the names. Expect more misses on real documents.</p>
+<h3 class="sub-h">Model variants</h3>
+<p class="note">Agreement of each ONNX export with the original GLiNER in Python (PyTorch) on the same 28 test inputs: entities with the same boundaries and type, and largest score difference. The int8 file published on Hugging Face quantizes the activations of every matrix multiplication, which the output projection of the feed-forward layers does not survive; so the WebAssembly variant is quantized here on the weights only (8-bit blocks), with fp32 activations.</p>
+<div class="table-wrap">
+  <table class="plain">
+    <thead><tr><th>File</th><th class="num">Size</th><th class="num">Same entities</th><th class="num">Max score diff.</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><code>model.onnx (fp32)</code></td><td class="num">1,157 MB</td><td class="num">127 / 127</td><td class="num">< 0.0001</td><td>—</td></tr>
+      <tr><td><code>model_fp16.onnx</code></td><td class="num">580 MB</td><td class="num">127 / 127</td><td class="num">0.061</td><td>WebGPU</td></tr>
+      <tr><td><code>model_q4f16.onnx</code></td><td class="num">472 MB</td><td class="num">117 / 128</td><td class="num">0.61</td><td>discarded</td></tr>
+      <tr><td><code>model_int8.onnx</code></td><td class="num">349 MB</td><td class="num">12 / 127</td><td class="num">0.68</td><td>discarded</td></tr>
+      <tr><td><code>model_uint8.onnx</code></td><td class="num">349 MB</td><td class="num">23 / 127</td><td class="num">0.70</td><td>discarded</td></tr>
+      <tr><td><code>gliner-pii-int8w.onnx</code></td><td class="num">357 MB</td><td class="num">126 / 127</td><td class="num">0.047</td><td>WebAssembly</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">Speed, as a rough guide: a 187-word document takes about 5–6 s with WebAssembly and 4 threads on the ARM server (4 shared cores) where it was measured; a graphics card should be much faster, but WebGPU speed has not been measured because that server has no GPU.</p>

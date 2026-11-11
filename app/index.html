@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Anonimiza · Anonimizar un texto en tu navegador</title>
+    <meta name="description" content="Pega un texto o suelta un PDF o DOCX, revisa los datos personales detectados y sustitúyelos por marcadores. Todo ocurre en tu navegador." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/app/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/app/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/app/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/app/" />
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+  </head>
+  <body class="app">
+    <header class="top">
+      <a class="brand" href="/" title="Volver a la página principal">
+        <img src="/icon.svg" width="28" height="28" alt="" />
+        <strong>Anonimiza</strong>
+      </a>
+      <div class="seg" role="tablist" aria-label="Modo">
+        <button role="tab" id="tab-anon" aria-selected="true" aria-controls="view-anon"><i data-icon="eyeOff" data-size="16"></i><span>Anonimizar</span></button>
+        <button role="tab" id="tab-restore" aria-selected="false" aria-controls="view-restore"><i data-icon="restore" data-size="16"></i><span>Restaurar</span></button>
+        <span class="seg-thumb" aria-hidden="true"></span>
+      </div>
+      <div class="top-right">
+        <div class="engine" id="engine">
+          <button class="btn ghost engine-btn" id="engine-btn" type="button" aria-expanded="false" aria-controls="engine-pop">
+            <span class="engine-dot" id="engine-dot"></span><span class="engine-label" id="engine-label">Modelo</span>
+          </button>
+          <div class="pop engine-pop" id="engine-pop" role="dialog" aria-label="Modelo y privacidad"></div>
+        </div>
+        <a class="lang-switch" href="/en/app/" hreflang="en" lang="en" title="Use the app in English">EN</a>
+        <button class="btn ghost icon" id="btn-theme" type="button" title="Cambiar tema" aria-label="Cambiar tema"></button>
+      </div>
+    </header>
+
+    <main class="views">
+      <section class="view" id="view-anon" role="tabpanel" aria-labelledby="tab-anon">
+        <div class="work">
+          <div class="pane main-pane" id="main-pane">
+            <div class="pane-head">
+              <div class="pane-title">
+                <h1 id="main-title">Texto original</h1>
+                <span class="file-name" id="file-name" hidden></span>
+              </div>
+              <div class="switch2" id="mode-switch" role="tablist" aria-label="Vista" hidden>
+                <button role="tab" id="mode-orig" aria-selected="true">Revisión</button>
+                <button role="tab" id="mode-out" aria-selected="false">Resultado</button>
+              </div>
+            </div>
+
+            <div class="editor" id="editor">
+              <textarea id="input" spellcheck="false" placeholder="Pega aquí el texto que quieres anonimizar, o suelta un PDF, DOCX o TXT." aria-label="Texto original"></textarea>
+              <div class="drop" id="drop" aria-hidden="true">
+                <i data-icon="upload" data-size="28"></i>
+                <strong>Suelta el archivo aquí</strong>
+                <span>PDF, DOCX o texto. Se lee en tu equipo.</span>
+              </div>
+            </div>
+            <div class="review" id="review" hidden tabindex="0" aria-label="Texto con los datos detectados"></div>
+
+            <div class="pane-foot" id="foot-edit">
+              <div class="foot-left">
+                <label class="btn ghost small file-btn"><i data-icon="fileText" data-size="16"></i><span>Abrir archivo</span><input type="file" id="file" class="sr-only" /></label>
+                <button class="btn ghost small" id="btn-sample" type="button">Probar con un ejemplo</button>
+              </div>
+              <div class="foot-right">
+                <span class="count" id="count"></span>
+                <button class="btn primary" id="btn-detect" type="button" disabled><i data-icon="scan" data-size="16"></i>Detectar datos</button>
+              </div>
+            </div>
+            <div class="pane-foot" id="foot-review" hidden>
+              <div class="foot-left">
+                <button class="btn ghost small" id="btn-edit" type="button"><i data-icon="edit" data-size="16"></i><span>Editar texto</span></button>
+                <span class="hint" id="select-hint">Selecciona un fragmento para añadirlo a mano.</span>
+              </div>
+              <div class="foot-right">
+                <button class="btn small" id="btn-download" type="button"><i data-icon="download" data-size="16"></i><span>Descargar</span></button>
+                <button class="btn primary small" id="btn-copy" type="button"><i data-icon="copy" data-size="16"></i><span>Copiar resultado</span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="pane side-pane" id="side" aria-label="Datos detectados">
+            <div class="model-card" id="model-card" hidden></div>
+            <div class="side-empty" id="side-empty">
+              <h2>Cómo funciona</h2>
+              <ol class="steps">
+                <li><b>Pega o abre</b> un documento. No sale de este navegador.</li>
+                <li><b>Revisa</b> lo detectado: desactiva lo que no sea un dato personal y selecciona en el texto lo que falte.</li>
+                <li><b>Copia</b> el resultado con marcadores como <code>[PERSONA_1]</code> y úsalo donde quieras.</li>
+                <li><b>Restaura</b> los datos en la respuesta que te devuelva la IA, desde la pestaña «Restaurar».</li>
+              </ol>
+            </div>
+            <div class="found" id="found" hidden>
+              <div class="found-head">
+                <h2 id="found-title">Datos detectados</h2>
+                <span class="found-sub" id="found-sub"></span>
+              </div>
+              <div class="groups" id="groups"></div>
+            </div>
+            <div class="caution">
+              <i data-icon="alert" data-size="18"></i>
+              <p><strong>Revisa siempre el resultado.</strong> La detección automática falla a veces y no garantiza una anonimización completa: un cargo, un lugar o un detalle del contexto pueden bastar para identificar a alguien.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-restore" role="tabpanel" aria-labelledby="tab-restore" hidden>
+        <div class="work restore-work">
+          <div class="pane">
+            <div class="pane-head">
+              <div class="pane-title"><h2>Respuesta de la IA</h2></div>
+              <button class="btn ghost small" id="btn-paste" type="button"><i data-icon="copy" data-size="16"></i><span>Pegar</span></button>
+            </div>
+            <div class="editor">
+              <textarea id="ai-input" spellcheck="false" placeholder="Pega aquí la respuesta que contiene marcadores como [PERSONA_1]." aria-label="Respuesta de la IA"></textarea>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head">
+              <div class="pane-title"><h2>Con los datos originales</h2></div>
+              <div class="head-actions">
+                <button class="btn small" id="btn-r-download" type="button" disabled><i data-icon="download" data-size="16"></i><span>Descargar</span></button>
+                <button class="btn primary small" id="btn-r-copy" type="button" disabled><i data-icon="copy" data-size="16"></i><span>Copiar</span></button>
+              </div>
+            </div>
+            <div class="review restored" id="restored" tabindex="0" aria-live="polite"></div>
+            <div class="pane-foot">
+              <span class="restore-stats" id="restore-stats"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="pop add-menu" id="add-menu" role="menu" aria-label="Añadir como"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anonimiza · Quita los datos personales de un texto antes de usar una IA</title>
+    <meta name="description" content="Anonimizador de documentos que funciona entero en tu navegador: detecta nombres, DNI, IBAN, teléfonos y direcciones, los sustituye por marcadores y después los restaura. Gratis y de código abierto." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anonimiza · Anonimizar textos en tu navegador" />
+    <meta property="og:description" content="Detecta datos personales, los sustituye por marcadores y los restaura en la respuesta de la IA. El texto no sale de tu equipo." />
+    <meta property="og:url" content="https://anonimiza.aminox.dev/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Anonimiza",
+        "url": "https://anonimiza.aminox.dev/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Navegador web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/amintikk/anonimiza",
+        "author": { "@type": "Person", "name": "Amin Tahtah Toumi" }
+      }
+    </script>
+  </head>
+  <body class="site">
+    <!--#header-->
+
+    <main>
+      <section class="landing-hero">
+        <div class="wrap hero-grid">
+          <div>
+            <h1>Quita los datos personales de un texto antes de pasárselo a una IA</h1>
+            <p class="lead">
+              Pega un texto o suelta un PDF o un DOCX. Anonimiza detecta nombres, DNI, IBAN, teléfonos o direcciones y los cambia por marcadores como <code>[PERSONA_1]</code>. Cuando la IA te responda,
+              pegas su respuesta y vuelve a poner cada dato en su sitio. Todo ocurre en tu navegador: el texto no se envía a ningún servidor.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary big" href="/app/">Abrir la app</a>
+              <a class="text-link" href="#limites">Qué no hace<i data-icon="arrowRight" data-size="15"></i></a>
+            </div>
+          </div>
+          <figure class="demo" id="demo" aria-label="Ejemplo: un texto con datos personales y su versión con marcadores">
+            <div class="demo-head">
+              <span class="demo-dot"></span><span class="demo-dot"></span><span class="demo-dot"></span>
+              <span class="demo-tab" id="demo-tab">Original</span>
+            </div>
+            <p class="demo-text">
+              Hola, soy <span class="d k-person" data-m="[PERSONA_1]">Lucía Herrero</span>, de <span class="d k-org" data-m="[ORGANIZACION_1]">Talleres Norte</span>. Mi DNI es
+              <span class="d k-id" data-m="[DNI_1]">30246633T</span> y la devolución va a <span class="d k-money" data-m="[IBAN_1]">ES21 3943 1486 0866 6169 7230</span>. Llamadme al
+              <span class="d k-contact" data-m="[TELEFONO_1]">655 908 112</span> o pasad por <span class="d k-address" data-m="[DIRECCION_1]">Calle de Colón 24, Valencia</span>.
+            </p>
+          </figure>
+        </div>
+      </section>
+
+      <section class="block" id="como-funciona">
+        <div class="wrap">
+          <h2>Cómo funciona</h2>
+          <p class="intro">Tres pasos, sin cuenta y sin instalar nada. La primera vez se descarga un modelo de IA que queda guardado en el navegador.</p>
+          <ol class="numbered">
+            <li>
+              <h3>Detecta</h3>
+              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social) se buscan con reglas y se comprueba su dígito de control. Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
+            </li>
+            <li>
+              <h3>Revisa y sustituye</h3>
+              <p>Ves el texto con cada dato resaltado. Puedes desactivar lo que no sea un dato personal y seleccionar lo que falte. Cada valor recibe un marcador estable: si «Lucía Herrero» aparece cinco veces, las cinco son <code>[PERSONA_1]</code>.</p>
+            </li>
+            <li>
+              <h3>Restaura</h3>
+              <p>Copias o descargas el texto anonimizado y lo usas en la IA que prefieras. Al pegar su respuesta en «Restaurar», los marcadores vuelven a ser los datos originales. La tabla de sustituciones solo existe en la memoria de la pestaña.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="block" id="que-detecta">
+        <div class="wrap">
+          <h2>Qué detecta y cómo</h2>
+          <p class="intro">Las reglas son deterministas y descartan números cuyo dígito de control no cuadra. El modelo es probabilístico: acierta mucho, pero no siempre.</p>
+          <div class="table-wrap">
+            <table class="plain">
+              <thead><tr><th>Dato</th><th>Método</th><th>Marcador</th></tr></thead>
+              <tbody>
+                <tr><td>Nombres de personas</td><td>Modelo GLiNER, más sus repeticiones y formas cortas («Sr. Molina»)</td><td><code>[PERSONA_n]</code></td></tr>
+                <tr><td>Empresas y organizaciones</td><td>Modelo GLiNER</td><td><code>[ORGANIZACION_n]</code></td></tr>
+                <tr><td>Direcciones postales</td><td>Modelo GLiNER</td><td><code>[DIRECCION_n]</code></td></tr>
+                <tr><td>DNI y NIE</td><td>Regla + letra de control</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
+                <tr><td>CIF</td><td>Regla + dígito de control</td><td><code>[CIF_n]</code></td></tr>
+                <tr><td>N.º de la Seguridad Social</td><td>Regla + control módulo 97</td><td><code>[NSS_n]</code></td></tr>
+                <tr><td>IBAN (España y resto de SEPA)</td><td>Regla + longitud del país + control módulo 97</td><td><code>[IBAN_n]</code></td></tr>
+                <tr><td>Tarjetas</td><td>Regla + algoritmo de Luhn</td><td><code>[TARJETA_n]</code></td></tr>
+                <tr><td>Teléfonos</td><td>Regla (españoles en sus agrupaciones habituales; extranjeros con prefijo +)</td><td><code>[TELEFONO_n]</code></td></tr>
+                <tr><td>Correos y direcciones IP</td><td>Regla (IPv4 e IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
+                <tr><td>Cualquier otro fragmento</td><td>Lo seleccionas tú</td><td><code>[DATO_n]</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="cifras">
+        <div class="wrap">
+          <h2>Cifras medidas</h2>
+          <p class="intro">
+            Medidas con el mismo código que usa la web sobre 29 documentos de prueba en español escritos para este proyecto (contratos, nóminas, informes médicos, correos, chats, sentencias…),
+            con 230 datos personales anotados a mano. Se publican tal cual salen; el conjunto y el script están en el repositorio.
+          </p>
+          <!--#cifras-->
+        </div>
+      </section>
+
+      <section class="block" id="limites">
+        <div class="wrap">
+          <h2>Límites</h2>
+          <p class="intro">Anonimiza reduce el riesgo, no lo elimina. <strong>No garantiza una anonimización completa y tienes que revisar el resultado</strong> antes de compartirlo.</p>
+          <ul class="limits">
+            <li><b>El modelo se equivoca.</b> En las pruebas, el modelo por sí solo dejaba escapar uno de cada veinte nombres (sobre todo nombres sueltos o repetidos de forma abreviada) y a veces marca cosas que no son datos personales, como un juzgado o un ayuntamiento. En documentos reales fallará más que en las pruebas.</li>
+            <li><b>El contexto también identifica.</b> Un cargo («la directora del colegio de Teruel»), una fecha, una enfermedad rara o un detalle de la historia pueden bastar para saber de quién se habla. Esos datos no se buscan.</li>
+            <li><b>Solo texto.</b> Del PDF y del DOCX se extrae el texto: se pierden el formato, las tablas y las imágenes. Los PDF escaneados no tienen texto y no se hace OCR.</li>
+            <li><b>Pensado para español.</b> El modelo es multilingüe y las reglas sirven para otros países de la zona SEPA, pero las cifras solo se han medido en español. DNI, NIE, CIF y NSS son identificadores españoles.</li>
+            <li><b>La tabla vive en la pestaña.</b> Si recargas o cierras la página, ya no se pueden restaurar los marcadores. No se guarda en ningún sitio, a propósito.</li>
+            <li><b>Equipo modesto, más espera.</b> La primera vez hay que descargar el modelo (unos 370 MB con WebAssembly o 600 MB con WebGPU) y analizar un documento largo puede tardar en equipos sin tarjeta gráfica.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" id="privacidad">
+        <div class="wrap">
+          <h2>Privacidad que se puede comprobar</h2>
+          <div class="defs">
+            <div>
+              <h3>El texto no sale de tu equipo</h3>
+              <p>La lectura de archivos, las reglas, el modelo y la restauración se ejecutan en tu navegador. No hay servidor que reciba tus documentos.</p>
+            </div>
+            <div>
+              <h3>Lo impone el navegador</h3>
+              <p>La página se sirve con una política de seguridad (CSP) cuyo <code>connect-src</code> solo permite conectar con este sitio y con el dominio de los modelos. Aunque el código quisiera enviar algo a otro sitio, el navegador lo bloquearía.</p>
+            </div>
+            <div>
+              <h3>Sin analítica ni cookies</h3>
+              <p>No hay Google Analytics ni nada parecido. En el navegador solo se guardan tus preferencias y el modelo descargado, y puedes borrarlos desde la app.</p>
+            </div>
+            <div>
+              <h3>Código abierto</h3>
+              <p>Todo el código está en GitHub con licencia MIT. Puedes revisar las peticiones en la pestaña «Red» de las herramientas de desarrollo mientras usas la app.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="preguntas">
+        <div class="wrap narrow-left">
+          <h2>Preguntas</h2>
+          <div class="faq">
+            <details>
+              <summary>¿Por qué marcadores y no datos inventados?</summary>
+              <p>Un marcador como <code>[PERSONA_1]</code> deja claro qué se ha quitado, la IA lo respeta casi siempre y se puede deshacer sin ambigüedad. Un nombre falso podría confundirse con uno real o colarse en la respuesta sin que te des cuenta.</p>
+            </details>
+            <details>
+              <summary>¿Qué pasa si la IA cambia un marcador?</summary>
+              <p>La restauración admite los cambios habituales: mayúsculas o minúsculas, un espacio en vez del guion bajo o los corchetes perdidos. Si aparece un marcador que no existe en la tabla, la app lo señala y lo deja tal cual.</p>
+            </details>
+            <details>
+              <summary>¿Necesito tarjeta gráfica?</summary>
+              <p>No. Si el navegador ofrece WebGPU con soporte de fp16 se usa la tarjeta gráfica; si no, el modelo se ejecuta en el procesador con WebAssembly y varios hilos. Es más lento, pero da prácticamente el mismo resultado.</p>
+            </details>
+            <details>
+              <summary>¿Funciona en el móvil?</summary>
+              <p>Sí, aunque el modelo pide bastante memoria (más de 1 GB al ejecutarse). En móviles modestos puede ir lento o el navegador puede cerrar la pestaña. Las reglas funcionan siempre, incluso sin descargar el modelo.</p>
+            </details>
+            <details>
+              <summary>¿Puedo usarlo para cumplir el RGPD?</summary>
+              <p>Puede ayudarte a minimizar los datos que compartes, pero no es una herramienta de anonimización certificada ni sustituye a una revisión humana o legal. Un texto con marcadores sigue siendo, en general, un dato seudonimizado.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="wrap">
+          <h2>Pruébalo con un texto de ejemplo</h2>
+          <p>La app trae un documento ficticio para ver cómo funciona antes de usar uno tuyo.</p>
+          <a class="btn primary big" href="/app/">Abrir la app</a>
+        </div>
+      </section>
+    </main>
+
+    <!--#footer-->
+    <script type="module" src="/src/site/site.ts"></script>
+  </body>
+</html>

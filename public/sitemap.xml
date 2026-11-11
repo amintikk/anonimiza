@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://anonimiza.aminox.dev/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/en/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/aviso-legal/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/aviso-legal/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/legal-notice/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/legal-notice/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/en/legal-notice/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/aviso-legal/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/legal-notice/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/legal-notice/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/privacidad/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/privacy/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/en/privacy/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/privacy/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/terminos/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/terminos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/terms/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/en/terms/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/terminos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/terms/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/licencias/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/licencias/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/licenses/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/licenses/" />
+  </url>
+  <url>
+    <loc>https://anonimiza.aminox.dev/en/licenses/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/licencias/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/licenses/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/licenses/" />
+  </url>
+</urlset>

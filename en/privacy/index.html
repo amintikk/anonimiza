@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy · Anonimiza</title>
+    <meta name="description" content="What data Anonimiza processes: none of your texts. No cookies or analytics." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/en/privacy/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/privacidad/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/privacy/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/privacy/" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+  </head>
+  <body class="site">
+    <!--#header-en-->
+
+    <main class="doc">
+      <div class="wrap narrow">
+        <h1>Privacy</h1>
+        <p class="updated">Last updated: 11 November 2026</p>
+
+        <p>Summary: <strong>your texts and files do not reach any server.</strong> They are processed in your browser. There are no accounts, forms, cookies or analytics. The only personal data that reaches our systems is the technical data that comes with any visit to a website, such as your IP address.</p>
+        <h2>Data controller</h2>
+        <div class="card">
+          <p><strong>Owner:</strong> Amin Tahtah Toumi</p>
+          <p><strong>Email:</strong> <a href="mailto:amintahtahtoumi@gmail.com">amintahtahtoumi@gmail.com</a></p>
+          <p><strong>Website:</strong> anonimiza.aminox.dev</p>
+        </div>
+        <h2>What does not reach our systems</h2>
+        <ul>
+          <li><strong>The texts you paste and the files you open.</strong> They are read, analysed and transformed in your browser. They are not uploaded to any site.</li>
+          <li><strong>The replacement table.</strong> It lives only in the memory of the tab and disappears when you reload or close it. It is not saved, not even in your browser.</li>
+          <li><strong>Analytics.</strong> We do not use Google Analytics or similar tools. The typeface is served from this same domain.</li>
+        </ul>
+        <p>This is enforced by the browser itself: the page is served with a content security policy (CSP) that only allows connections to this site and to anonimiza-models.aminox.dev, from which the model is downloaded.</p>
+        <h2>Data we do process</h2>
+        <div class="card table-card">
+          <table>
+            <thead><tr><th>Data</th><th>Purpose</th><th>Legal basis</th><th>Retention</th></tr></thead>
+            <tbody>
+              <tr><td>IP address, date, page requested and browser (proxy logs)</td><td>Serving the website, security and troubleshooting</td><td>Legitimate interest (Art. 6.1(f) GDPR)</td><td>Up to about 5 weeks; deleted by automatic rotation</td></tr>
+              <tr><td>Email you send us</td><td>Replying to your enquiry</td><td>Your consent when you write to us</td><td>As long as needed to deal with it</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>No profiles are built, no automated decisions are made about you, and no data is passed to third parties except where required by law.</p>
+        <h2>Providers involved</h2>
+        <ul>
+          <li><strong>Oracle Cloud</strong> (server in Madrid, EU): hosts the website files.</li>
+          <li><strong>Cloudflare R2</strong> (storage in Europe): serves the model from anonimiza-models.aminox.dev when you download it, and therefore receives your IP address. It does not receive your texts.</li>
+          <li><strong>Cloudflare</strong> (delivery and security network): receives your IP address when you visit the website. It may process it outside the European Economic Area, with the safeguards of the EU-U.S. Data Privacy Framework and the standard contractual clauses. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare privacy policy</a>.</li>
+        </ul>
+        <h2>If you use the result in another service</h2>
+        <p>When you copy the anonymised text and paste it into an AI assistant or another service, that service processes it under its own terms. Anonimiza is not involved in that communication. Check that the text contains no personal data before doing so.</p>
+        <h2>Storage in your browser</h2>
+        <p>This site <strong>does not install cookies</strong>. It does store the following in your browser, without sending them to any server:</p>
+        <ul>
+          <li><strong>Preferences</strong> (localStorage): theme and sensitivity.</li>
+          <li><strong>Downloaded model</strong> (Cache Storage), so that you do not have to download it every time.</li>
+        </ul>
+        <p>This storage is necessary to provide the service you ask for, so it does not require consent (Art. 22.2 LSSI, the Spanish Information Society Services Act). You can delete the model from the app (“Model” → “Delete downloaded model”), or delete everything from your browser settings.</p>
+        <h2>Your rights</h2>
+        <p>You can ask for access to, rectification, erasure, objection to, restriction of and portability of your data by writing to the email address above. If you believe your rights have not been respected, you can lodge a complaint with the <a href="https://www.aepd.es/en" target="_blank" rel="noopener">Spanish Data Protection Agency (AEPD)</a>. As there are no accounts, we will normally not be able to link an IP address in the logs to a person.</p>
+        <h2>Changes</h2>
+        <p>If this policy changes, the new version will be published here with its new date. If analytics or non-essential cookies were ever added, your consent would be requested first.</p>
+      </div>
+    </main>
+
+    <!--#footer-en-->
+    <script type="module" src="/src/site/site.ts"></script>
+  </body>
+</html>

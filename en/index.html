@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anonimiza · Remove personal data from a text before you share it with an AI</title>
+    <meta name="description" content="Document anonymiser that runs entirely in your browser: it detects names, DNI, IBAN, phone numbers and addresses, replaces them with markers and then restores them. Free and open source." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/en/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anonimiza · Anonymise texts in your browser" />
+    <meta property="og:description" content="Detects personal data, replaces it with markers and restores it in the AI’s reply. The text never leaves your device." />
+    <meta property="og:url" content="https://anonimiza.aminox.dev/en/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Anonimiza",
+        "url": "https://anonimiza.aminox.dev/en/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/amintikk/anonimiza",
+        "author": { "@type": "Person", "name": "Amin Tahtah Toumi" }
+      }
+    </script>
+  </head>
+  <body class="site">
+    <!--#header-en-->
+
+    <main>
+      <section class="landing-hero">
+        <div class="wrap hero-grid">
+          <div>
+            <h1>Remove personal data from a text before you pass it to an AI</h1>
+            <p class="lead">
+              Paste a text or drop a PDF or DOCX file. Anonimiza detects names, DNI, IBAN, phone numbers or addresses and replaces them with markers such as <code>[PERSON_1]</code>. When the AI replies,
+              you paste its answer and each piece of data goes back into its place. Everything happens in your browser: the text is not sent to any server.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary big" href="/en/app/">Open the app</a>
+              <a class="text-link" href="#limits">What it does not do<i data-icon="arrowRight" data-size="15"></i></a>
+            </div>
+          </div>
+          <figure class="demo" id="demo" aria-label="Example: a text with personal data and its version with markers">
+            <div class="demo-head">
+              <span class="demo-dot"></span><span class="demo-dot"></span><span class="demo-dot"></span>
+              <span class="demo-tab" id="demo-tab">Original</span>
+            </div>
+            <p class="demo-text">
+              Hi, I’m <span class="d k-person" data-m="[PERSON_1]">Lucía Herrero</span>, from <span class="d k-org" data-m="[ORGANIZATION_1]">Talleres Norte</span>. My DNI is
+              <span class="d k-id" data-m="[DNI_1]">30246633T</span> and the refund goes to <span class="d k-money" data-m="[IBAN_1]">ES21 3943 1486 0866 6169 7230</span>. Call me on
+              <span class="d k-contact" data-m="[PHONE_1]">655 908 112</span> or drop by <span class="d k-address" data-m="[ADDRESS_1]">Calle de Colón 24, Valencia</span>.
+            </p>
+          </figure>
+        </div>
+      </section>
+
+      <section class="block" id="how-it-works">
+        <div class="wrap">
+          <h2>How it works</h2>
+          <p class="intro">Three steps, with no account and nothing to install. The first time, an AI model is downloaded and kept in the browser.</p>
+          <ol class="numbered">
+            <li>
+              <h3>Detect</h3>
+              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers) is found with rules, and its check digit is verified. Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
+            </li>
+            <li>
+              <h3>Review and replace</h3>
+              <p>You see the text with each item highlighted. You can switch off anything that is not personal data and select anything that is missing. Each value gets a stable marker: if “Lucía Herrero” appears five times, all five are <code>[PERSON_1]</code>.</p>
+            </li>
+            <li>
+              <h3>Restore</h3>
+              <p>You copy or download the anonymised text and use it with the AI of your choice. When you paste its reply into “Restore”, the markers become the original data again. The replacement table exists only in the tab’s memory.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="block" id="what-it-detects">
+        <div class="wrap">
+          <h2>What it detects and how</h2>
+          <p class="intro">The rules are deterministic and discard numbers whose check digit does not match. The model is probabilistic: it is often right, but not always.</p>
+          <div class="table-wrap">
+            <table class="plain">
+              <thead><tr><th>Data</th><th>Method</th><th>Marker</th></tr></thead>
+              <tbody>
+                <tr><td>Names of people</td><td>GLiNER model, plus repeated mentions and short forms (“Mr Molina”)</td><td><code>[PERSON_n]</code></td></tr>
+                <tr><td>Companies and organisations</td><td>GLiNER model</td><td><code>[ORGANIZATION_n]</code></td></tr>
+                <tr><td>Postal addresses</td><td>GLiNER model</td><td><code>[ADDRESS_n]</code></td></tr>
+                <tr><td>DNI and NIE</td><td>Rule + check letter</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
+                <tr><td>CIF</td><td>Rule + check digit</td><td><code>[CIF_n]</code></td></tr>
+                <tr><td>Social security number</td><td>Rule + mod 97 check</td><td><code>[SSN_n]</code></td></tr>
+                <tr><td>IBAN (Spain and the rest of SEPA)</td><td>Rule + length for the country + mod 97 check</td><td><code>[IBAN_n]</code></td></tr>
+                <tr><td>Cards</td><td>Rule + Luhn algorithm</td><td><code>[CARD_n]</code></td></tr>
+                <tr><td>Phone numbers</td><td>Rule (Spanish numbers in their usual groupings; foreign numbers with a + prefix)</td><td><code>[PHONE_n]</code></td></tr>
+                <tr><td>Emails and IP addresses</td><td>Rule (IPv4 and IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
+                <tr><td>Any other fragment</td><td>You select it</td><td><code>[OTHER_n]</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="figures">
+        <div class="wrap">
+          <h2>Measured figures</h2>
+          <p class="intro">
+            Measured with the same code the site uses, on 29 test documents written in Spanish for this project (contracts, payslips, medical reports, emails, chats, court rulings…),
+            with 230 items of personal data annotated by hand. They are published as they came out; the dataset and the script are in the repository.
+          </p>
+          <!--#cifras-en-->
+        </div>
+      </section>
+
+      <section class="block" id="limits">
+        <div class="wrap">
+          <h2>Limits</h2>
+          <p class="intro">Anonimiza reduces the risk, it does not remove it. <strong>It does not guarantee complete anonymisation, and you must review the result</strong> before sharing it.</p>
+          <ul class="limits">
+            <li><b>The model makes mistakes.</b> In the tests, the model on its own let one name in twenty slip through (mostly single or shortened repeated names), and sometimes it marked things that are not personal data, such as a court or a town council. On real documents it will fail more often than in the tests.</li>
+            <li><b>Context can also identify someone.</b> A job title (“the head teacher of a school in Teruel”), a date, a rare illness or a detail of the story can be enough to know who is being talked about. Those details are not searched for.</li>
+            <li><b>Text only.</b> From PDF and DOCX files only the text is extracted: formatting, tables and images are lost. Scanned PDFs have no text and are not OCR’d.</li>
+            <li><b>Designed for Spanish.</b> The model is multilingual and the rules work for other SEPA countries, but the figures have only been measured in Spanish. DNI, NIE, CIF and social security numbers are Spanish identifiers.</li>
+            <li><b>The table lives in the tab.</b> If you reload or close the page, the markers can no longer be restored. Nothing is saved anywhere, on purpose.</li>
+            <li><b>Modest devices, more waiting.</b> The first time, the model has to be downloaded (about 370 MB with WebAssembly or 600 MB with WebGPU), and analysing a long document can take a while on devices without a graphics card.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" id="privacy">
+        <div class="wrap">
+          <h2>Privacy you can check</h2>
+          <div class="defs">
+            <div>
+              <h3>The text does not leave your device</h3>
+              <p>Reading files, the rules, the model and the restoring all run in your browser. There is no server that receives your documents.</p>
+            </div>
+            <div>
+              <h3>Enforced by the browser</h3>
+              <p>The page is served with a content security policy (CSP) whose <code>connect-src</code> only allows connections to this site and to the models domain. Even if the code tried to send something elsewhere, the browser would block it.</p>
+            </div>
+            <div>
+              <h3>No analytics or cookies</h3>
+              <p>There is no Google Analytics or anything similar. The browser only stores your preferences and the downloaded model, and you can delete them from the app.</p>
+            </div>
+            <div>
+              <h3>Open source</h3>
+              <p>All the code is on GitHub under the MIT licence. You can check the requests in the “Network” tab of your developer tools while you use the app.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="faq">
+        <div class="wrap narrow-left">
+          <h2>Questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Why markers and not invented data?</summary>
+              <p>A marker such as <code>[PERSON_1]</code> makes clear what has been removed, the AI almost always respects it, and it can be undone without any ambiguity. A made-up name could be mistaken for a real one, or slip into the reply without you noticing.</p>
+            </details>
+            <details>
+              <summary>What happens if the AI changes a marker?</summary>
+              <p>Restoring accepts the usual changes: upper or lower case, a space instead of the underscore, or missing square brackets. If a marker appears that is not in the table, the app flags it and leaves it as it is.</p>
+            </details>
+            <details>
+              <summary>Do I need a graphics card?</summary>
+              <p>No. If the browser offers WebGPU with fp16 support, the graphics card is used; if not, the model runs on the processor with WebAssembly and several threads. It is slower, but gives practically the same result.</p>
+            </details>
+            <details>
+              <summary>Does it work on a phone?</summary>
+              <p>Yes, although the model needs quite a lot of memory (over 1 GB while running). On modest phones it can be slow, or the browser may close the tab. The rules always work, even without downloading the model.</p>
+            </details>
+            <details>
+              <summary>Can I use it to comply with the GDPR?</summary>
+              <p>It can help you minimise the data you share, but it is not a certified anonymisation tool and it does not replace a human or legal review. A text with markers is generally still pseudonymised data.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="wrap">
+          <h2>Try it with an example text</h2>
+          <p>The app includes a fictitious document so you can see how it works before using one of your own.</p>
+          <a class="btn primary big" href="/en/app/">Open the app</a>
+        </div>
+      </section>
+    </main>
+
+    <!--#footer-en-->
+    <script type="module" src="/src/site/site.ts"></script>
+  </body>
+</html>

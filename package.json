@@ -1,0 +1,35 @@
+{
+  "name": "anonimiza",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/copy-assets.mjs && vite",
+    "build": "node scripts/copy-assets.mjs && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.ts",
+    "eval": "node tools/evaluate.ts"
+  },
+  "description": "Anonimizador de documentos que funciona entero en el navegador: detecta datos personales con GLiNER y reglas, los sustituye por marcadores y permite restaurarlos.",
+  "license": "MIT",
+  "author": "Amin Tahtah Toumi <amintahtahtoumi@gmail.com>",
+  "homepage": "https://anonimiza.aminox.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amintikk/anonimiza.git"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@huggingface/tokenizers": "^0.2.0",
+    "fflate": "^0.8.3",
+    "onnxruntime-web": "^1.31.1",
+    "pdfjs-dist": "^6.5.438"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@webgpu/types": "^0.1.74",
+    "onnxruntime-node": "^1.31.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}

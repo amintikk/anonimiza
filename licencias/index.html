@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Licencias · Anonimiza</title>
+    <meta name="description" content="Licencias del código de Anonimiza y de los modelos, bibliotecas y tipografías que usa." />
+    <link rel="canonical" href="https://anonimiza.aminox.dev/licencias/" />
+    <link rel="alternate" hreflang="es" href="https://anonimiza.aminox.dev/licencias/" />
+    <link rel="alternate" hreflang="en" href="https://anonimiza.aminox.dev/en/licenses/" />
+    <link rel="alternate" hreflang="x-default" href="https://anonimiza.aminox.dev/en/licenses/" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <script src="/boot.js"></script>
+  </head>
+  <body class="site">
+    <!--#header-->
+
+    <main class="doc">
+      <div class="wrap narrow">
+        <h1>Licencias</h1>
+        <p class="updated">Última actualización: 11 de noviembre de 2026</p>
+
+        <h2>Anonimiza</h2>
+        <p>El código de esta web se publica con licencia <strong>MIT</strong> en <a href="https://github.com/amintikk/anonimiza" target="_blank" rel="noopener">github.com/amintikk/anonimiza</a>. © 2026 Amin Tahtah Toumi.</p>
+        <h2>Modelos</h2>
+        <div class="card table-card">
+          <table>
+            <thead><tr><th>Componente</th><th>Autor</th><th>Licencia</th></tr></thead>
+            <tbody>
+              <tr><td><a href="https://huggingface.co/urchade/gliner_multi_pii-v1" target="_blank" rel="noopener">GLiNER multi PII v1</a></td><td>Urchade Zaratiana y colaboradores</td><td>Apache-2.0</td></tr>
+              <tr><td><a href="https://huggingface.co/onnx-community/gliner_multi_pii-v1" target="_blank" rel="noopener">Exportación ONNX</a> (de la que salen las variantes fp16 y int8w que sirve esta web; la int8w está cuantizada en este proyecto)</td><td>ONNX Community</td><td>Apache-2.0</td></tr>
+              <tr><td><a href="https://huggingface.co/microsoft/mdeberta-v3-base" target="_blank" rel="noopener">mDeBERTa-v3 base</a> (codificador y tokenizador)</td><td>Microsoft</td><td>MIT</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>GLiNER se describe en Zaratiana et al., «GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer», NAACL 2024.</p>
+        <h2>Bibliotecas</h2>
+        <div class="card table-card">
+          <table>
+            <thead><tr><th>Componente</th><th>Uso</th><th>Licencia</th></tr></thead>
+            <tbody>
+              <tr><td><a href="https://github.com/microsoft/onnxruntime" target="_blank" rel="noopener">ONNX Runtime Web</a></td><td>Ejecutar el modelo con WebGPU o WebAssembly</td><td>MIT</td></tr>
+              <tr><td><a href="https://github.com/huggingface/tokenizers.js" target="_blank" rel="noopener">Tokenizers.js</a></td><td>Tokenizador del modelo</td><td>Apache-2.0</td></tr>
+              <tr><td><a href="https://github.com/mozilla/pdf.js" target="_blank" rel="noopener">PDF.js</a></td><td>Extraer el texto de los PDF</td><td>Apache-2.0</td></tr>
+              <tr><td><a href="https://github.com/101arrowz/fflate" target="_blank" rel="noopener">fflate</a></td><td>Abrir los DOCX</td><td>MIT</td></tr>
+              <tr><td><a href="https://rsms.me/inter/" target="_blank" rel="noopener">Inter</a> (vía Fontsource)</td><td>Tipografía</td><td>SIL Open Font License 1.1</td></tr>
+              <tr><td><a href="https://lucide.dev" target="_blank" rel="noopener">Lucide</a></td><td>Geometría de los iconos</td><td>ISC</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Los textos completos de las licencias están en los repositorios enlazados y en el código fuente de este proyecto.</p>
+      </div>
+    </main>
+
+    <!--#footer-->
+    <script type="module" src="/src/site/site.ts"></script>
+  </body>
+</html>

@@ -13,9 +13,9 @@ Anonimizador de documentos que funciona entero en el navegador. Pegas un texto o
 | Paso | Dónde | Detalle |
 |---|---|---|
 | Leer el archivo | `src/docs/extract.ts` | PDF con pdf.js, DOCX descomprimiendo `word/document.xml` (fflate + DOMParser). Solo texto: sin OCR, sin formato. |
-| Datos estructurados | `src/engine/rules.ts` | Expresiones regulares con dígito de control: DNI/NIE (letra), CIF, NSS (módulo 97), IBAN (longitud por país + módulo 97), tarjetas (Luhn), teléfonos españoles en sus agrupaciones habituales y extranjeros con prefijo, correos, IPv4/IPv6. |
+| Datos estructurados | `src/engine/rules.ts` | Expresiones regulares con dígito de control: DNI/NIE (letra), CIF, NSS (módulo 97), IBAN (longitud por país + módulo 97), tarjetas (Luhn), teléfonos españoles en sus agrupaciones habituales y extranjeros con prefijo, correos, IPv4/IPv6, matrículas españolas, y fechas de nacimiento (una fecha justo después de «nacido/a», «fecha de nacimiento», «F. nac.»…). Un DNI/NIE con la letra mal, un IBAN con el control mal o una tarjeta en cuatro grupos que no pasa Luhn se marcan igualmente, como **dudosos**. |
 | Nombres, organizaciones, direcciones | `src/engine/gliner.ts` + `worker.ts` | [GLiNER multi PII v1](https://huggingface.co/urchade/gliner_multi_pii-v1) (Apache-2.0) con ONNX Runtime Web en un worker: WebGPU si el navegador ofrece `shader-f16`, si no WebAssembly multihilo (la página está aislada con COOP/COEP). Pre y posproceso de GLiNER portados a TypeScript; textos largos en ventanas de 256 palabras con 48 de solape. |
-| Marcadores | `src/engine/anonymize.ts` | Cada valor recibe un marcador estable; se buscan también sus repeticiones y las formas cortas de los nombres («Javier Molina Ortega» → «Javier Molina», «Sr. Molina»). |
+| Marcadores | `src/engine/anonymize.ts` | Cada valor recibe un marcador estable; se buscan también sus repeticiones y las formas cortas de los nombres, sin distinguir mayúsculas («Javier Molina Ortega» → «Javier Molina», «Sr. Molina», «javier»). Las partes que son palabras comunes (Rosa, Pilar, Dolores…) solo se buscan con su mayúscula. |
 | Restaurar | `restore()` | Tolera los cambios típicos de un asistente: mayúsculas, espacio en vez de guion bajo, corchetes perdidos. Señala marcadores desconocidos. |
 
 Etiquetas del modelo: `person`, `organization`, `address`; umbral 0,3 por defecto (sensibilidad «Alta»; 0,45 «Media», 0,6 «Baja»).
@@ -39,40 +39,33 @@ Velocidad orientativa: un documento de 187 palabras tarda unos 5–6 s con WebAs
 
 ## Cifras medidas
 
-`tests/data/documentos.json`: 29 documentos ficticios en español (contratos, nóminas, informes médicos, correos, chats, sentencias, facturas…) con 230 datos personales anotados a mano, incluidos dos documentos sin datos personales y uno con números que lo parecen. `tools/evaluate.ts` ejecuta el mismo código que la web (reglas + modelo + repeticiones) con onnxruntime-node:
+Con el mismo código que la web (modelo int8w, umbral 0,3), sobre conjuntos que no se usaron para ajustarla. «Cobertura» cuenta como acierto que lo marcado se solape con el dato; las cifras sin «otros identificadores» se refieren a lo que la herramienta busca.
+
+| Conjunto | Datos | Cobertura | Cobertura exacta | Precisión | Caracteres sensibles tapados |
+|---|---:|---:|---:|---:|---:|
+| `tests/data/documentos-nuevo.json`: 47 documentos sucios, congelados antes de medir | 491 (+65 otros identificadores) | **93,3 %** (82,4 % con otros identificadores) | 83,7 % | **68,2 %** | 88,1 % |
+| MEDDOCAN (público, historias clínicas; 100 primeras del test) | 763 (+316 otros identificadores) | **94,6 %** (66,9 % con otros identificadores) | 76,0 % | **67,5 %** | 77,1 % |
+| `tests/data/documentos.json`: 29 documentos limpios con los que se desarrolló | 230 | 99,6 % | 95,7 % | 94,2 % | 99,0 % |
+
+Las cifras del conjunto antiguo son optimistas: las decisiones (etiquetas, umbral, formatos de teléfono, formas cortas de los nombres) se tomaron viendo sus fallos. Los «otros identificadores» (números de expediente, de historia clínica, de póliza, usuarios) no se buscan y quedan a la vista. Tablas por tipo en la web y en `docs/evaluacion/`; cada error, uno por uno, en `docs/comparacion/errores-*.txt`.
+
+Comparación con GLiNER2-PII (`fastino/gliner2-privacy-filter-PII-multi`), con método, intervalos de confianza y viabilidad en el navegador: [docs/comparacion-gliner2.md](docs/comparacion-gliner2.md). Resumen: con las reglas no mejora en el conjunto nuevo y cubre 10 puntos menos en MEDDOCAN.
+
+Para repetir las medidas:
 
 ```
-node tools/evaluate.ts <carpeta-modelos> gliner-pii-int8w.onnx 0.3 --json docs/evaluacion-int8w.json
+python tools/compare/gold.py new tests/data/documentos-nuevo.json nuevo.json
+node tools/compare/predict_prod.ts <carpeta-modelos> gliner-pii-int8w.onnx nuevo.json pred.json
+node tools/compare/score.ts nuevo.json pred.json --mode rules --th 0.3 --errors --json docs/evaluacion/nuevo.json
+node tools/make_figures.ts
 ```
-
-Resultado con la variante WebAssembly (`docs/evaluacion-int8w.json`); «con solape» cuenta como acierto que lo marcado se solape con un dato del mismo tipo, «exacta» exige los mismos límites:
-
-| Tipo | Anotados | Marcados | Cobertura con solape | Cobertura exacta | Precisión con solape | Precisión exacta |
-|---|---:|---:|---:|---:|---:|---:|
-| Personas | 84 | 85 | 100,0 % | 89,3 % | 98,8 % | 88,2 % |
-| Organizaciones | 29 | 32 | 100,0 % | 100,0 % | 90,6 % | 90,6 % |
-| Direcciones | 24 | 25 | 95,8 % | 95,8 % | 92,0 % | 92,0 % |
-| DNI | 14 | 14 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| NIE | 4 | 4 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| CIF | 8 | 8 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| NSS | 3 | 3 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| IBAN | 9 | 9 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| Tarjetas | 3 | 3 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| Teléfonos | 30 | 30 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| Correos | 18 | 19 | 100,0 % | 100,0 % | 94,7 % | 94,7 % |
-| IP | 4 | 4 | 100,0 % | 100,0 % | 100,0 % | 100,0 % |
-| **Total (WebAssembly, int8w)** | 230 | 236 | **99,6 %** | 95,7 % | **97,0 %** | 93,2 % |
-| **Total (WebGPU, fp16)** | 230 | 236 | 99,6 % | 95,2 % | 97,0 % | 92,8 % |
-
-Caracteres sensibles tapados: 99,0 %; de los caracteres tapados, 96,1 % eran sensibles.
-
-**Estas cifras son optimistas.** Los documentos los escribió el autor y son limpios, y varias decisiones (etiquetas, umbral, agrupaciones de teléfono, búsqueda de formas cortas de los nombres) se tomaron viendo los fallos en este mismo conjunto. El modelo solo, sin las búsquedas de repeticiones, encontraba el 94 % de los nombres. En documentos reales habrá más fallos.
 
 ## Tests
 
 ```
 npm test                                   # reglas, marcadores, restauración, ventanas, i18n
-ANONIMIZA_MODELS=<carpeta> npm test        # además: tokens y entidades frente a GLiNER en Python
+ANONIMIZA_MODELS=<carpeta> npm test        # además: tokens y entidades frente a GLiNER en Python, y el caso
+                                           # tests/data/caso-revision.txt de principio a fin con el modelo int8w
 ```
 
 `tests/gliner.test.ts` compara con `tests/fixtures/reference.json`, generado por `tools/reference.py` con el GLiNER original. Con `model.onnx` (fp32) coinciden la división en palabras, los ids de tokens, la máscara de palabras y las 127 entidades con diferencia de puntuación < 0,001. Para otra variante: `ANONIMIZA_MODEL=gliner-pii-int8w.onnx ANONIMIZA_TOLERANCE=0.05 ANONIMIZA_MIN_AGREE=0.95`.
@@ -97,7 +90,7 @@ ANONIMIZA_MODELS=<carpeta con los .onnx y tokenizer*.json> npm run dev   # sirve
 npm run build
 ```
 
-Herramientas: `tools/reference.py` (referencia Python), `tools/quantize.py` (variante int8w), `tools/make_manifest.py` (tamaños y SHA-256 → `src/engine/models.json`), `tools/upload_r2.py` (subida al bucket), `tools/evaluate.ts` y `tools/make_figures.ts` (cifras de la web). Publicación en el servidor: `deploy.sh`.
+Herramientas: `tools/reference.py` (referencia Python), `tools/quantize.py` (variante int8w), `tools/make_manifest.py` (tamaños y SHA-256 → `src/engine/models.json`), `tools/upload_r2.py` (subida al bucket), `tools/compare/` (medidas y comparación de modelos) y `tools/make_figures.ts` (cifras de la web). Publicación en el servidor: `deploy.sh`.
 
 ## Licencia
 

@@ -47,12 +47,17 @@ function score(th: number, collect = false) {
   const row = (k: K) => rows.get(k) ?? (rows.set(k, { gold: 0, pred: 0, tpR: 0, tpRx: 0, tpP: 0, tpPx: 0 }), rows.get(k)!);
   let goldChars = 0, covered = 0, anyCovered = 0, predChars = 0, predOk = 0;
   const errors: { doc: string; type: 'missed' | 'extra'; kind: K; text: string; as?: K }[] = [];
+  // Per document, without OTRO_ID: for confidence intervals by resampling documents (bootstrap.py).
+  const perDoc: { id: string; gold: number; tpR: number; pred: number; tpP: number }[] = [];
   for (const d of gold.docs) {
+    const pd = { id: d.id, gold: 0, tpR: 0, pred: 0, tpP: 0 };
+    perDoc.push(pd);
     const dets = detections(d.text, predBy.get(d.id) ?? [], th);
     const req = d.gold.filter((g) => g.required);
     for (const g of req) {
       const r = row(g.kind);
       r.gold++;
+      if (g.kind !== 'otherid') { pd.gold++; if (dets.some((p) => compatible(p.kind, g.kind) && ov(p, g))) pd.tpR++; }
       if (dets.some((p) => compatible(p.kind, g.kind) && p.start === g.start && p.end === g.end)) r.tpRx++;
       if (dets.some((p) => compatible(p.kind, g.kind) && ov(p, g))) r.tpR++;
       else if (collect) errors.push({ doc: d.id, type: 'missed', kind: g.kind, text: d.text.slice(g.start, g.end), as: dets.find((p) => ov(p, g))?.kind });
@@ -62,6 +67,7 @@ function score(th: number, collect = false) {
       if (!hit && d.gold.some((g) => !g.required && ov(p, g))) continue; // optional span: neither right nor wrong
       const r = row(p.kind);
       r.pred++;
+      if (p.kind !== 'otherid') { pd.pred++; if (hit) pd.tpP++; }
       if (hit) r.tpP++;
       else if (collect) errors.push({ doc: d.id, type: 'extra', kind: p.kind, text: d.text.slice(p.start, p.end) });
       if (req.some((g) => compatible(p.kind, g.kind) && p.start === g.start && p.end === g.end)) r.tpPx++;
@@ -79,7 +85,7 @@ function score(th: number, collect = false) {
     }
   }
   const t = [...rows.values()].reduce((a, r) => ({ gold: a.gold + r.gold, pred: a.pred + r.pred, tpR: a.tpR + r.tpR, tpRx: a.tpRx + r.tpRx, tpP: a.tpP + r.tpP, tpPx: a.tpPx + r.tpPx }), { gold: 0, pred: 0, tpR: 0, tpRx: 0, tpP: 0, tpPx: 0 });
-  return { th, rows, total: t, chars: { gold: goldChars, covered, anyCovered, pred: predChars, predOk }, errors };
+  return { th, rows, total: t, chars: { gold: goldChars, covered, anyCovered, pred: predChars, predOk }, errors, perDoc };
 }
 
 const pct = (a: number, b: number) => (b ? (100 * a) / b : NaN);
@@ -113,5 +119,5 @@ if (args.includes('--sweep')) {
   console.log(`caracteres sensibles tapados (cualquier tipo): ${f(pct(s.chars.anyCovered, s.chars.gold))} % · con su tipo: ${f(pct(s.chars.covered, s.chars.gold))} % · tapados que eran sensibles: ${f(pct(s.chars.predOk, s.chars.pred))} %`);
   if (args.includes('--errors')) for (const e of s.errors) console.log(`  ${e.type === 'missed' ? 'SE ESCAPA' : 'DE MÁS   '} ${e.kind.padEnd(9)}${e.as ? `(marcado como ${e.as}) ` : ''}${e.doc}: ${JSON.stringify(e.text)}`);
   const out = opt('--json');
-  if (out) writeFileSync(out, JSON.stringify({ name, gold: goldPath, th, rows: Object.fromEntries(s.rows), total: s.total, chars: s.chars, errors: s.errors, seconds: pred.seconds, words: pred.words }, null, 1));
+  if (out) writeFileSync(out, JSON.stringify({ name, gold: goldPath, th, rows: Object.fromEntries(s.rows), total: s.total, chars: s.chars, errors: s.errors, perDoc: s.perDoc, seconds: pred.seconds, words: pred.words }, null, 1));
 }

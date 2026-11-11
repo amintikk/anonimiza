@@ -1,30 +1,49 @@
 <div class="figs">
-  <div class="fig-num"><b>99.6 %</b><span>of the annotated personal data were replaced, at least in part (229 of 230)</span></div>
-  <div class="fig-num"><b>99.0 %</b><span>of the sensitive characters were covered</span></div>
-  <div class="fig-num"><b>97.0 %</b><span>of what the tool marked really was personal data (229 of 236)</span></div>
+  <div class="fig-num"><b>93.3 %</b><span>of the data the tool looks for were replaced, at least in part (458 of 491)</span></div>
+  <div class="fig-num"><b>88.1 %</b><span>of the sensitive characters were covered, also counting case numbers, usernames and other identifiers it does not look for</span></div>
+  <div class="fig-num"><b>68.2 %</b><span>of what it marked really was personal data; the rest are mostly words like “LANDLORD”, names of public bodies and user aliases (458 of 672)</span></div>
 </div>
+<h3 class="sub-h">Frozen test set</h3>
+<p class="note">47 fictitious and deliberately messy documents: informal chats and emails in lower case and with typos, text pasted from PDFs with broken lines, transcribed voice messages, Basque, Catalan, Galician, Arabic and Latin American names, names that are common words (Rosa, Pilar, Dolores) and 7 texts with no personal data. They were written and annotated by an agent that had not seen the detector's code, and frozen before anything was run on them; nothing has been tuned by looking at their errors.</p>
 <div class="table-wrap">
   <table class="plain">
     <thead><tr><th>Type</th><th class="num">Annotated</th><th class="num">Marked</th><th class="num">Recall</th><th class="num">Exact recall</th><th class="num">Precision</th><th class="num">Exact precision</th></tr></thead>
     <tbody>
-      <tr><td>People</td><td class="num">84</td><td class="num">85</td><td class="num">100.0 %</td><td class="num">89.3 %</td><td class="num">98.8 %</td><td class="num">88.2 %</td></tr>
-      <tr><td>Organisations</td><td class="num">29</td><td class="num">32</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">90.6 %</td><td class="num">90.6 %</td></tr>
-      <tr><td>Addresses</td><td class="num">24</td><td class="num">25</td><td class="num">95.8 %</td><td class="num">95.8 %</td><td class="num">92.0 %</td><td class="num">92.0 %</td></tr>
-      <tr><td>DNI</td><td class="num">14</td><td class="num">14</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>NIE</td><td class="num">4</td><td class="num">4</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>CIF</td><td class="num">8</td><td class="num">8</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>Social security no.</td><td class="num">3</td><td class="num">3</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>IBAN</td><td class="num">9</td><td class="num">9</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>Cards</td><td class="num">3</td><td class="num">3</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>Phones</td><td class="num">30</td><td class="num">30</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr><td>Emails</td><td class="num">18</td><td class="num">19</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">94.7 %</td><td class="num">94.7 %</td></tr>
-      <tr><td>IP addresses</td><td class="num">4</td><td class="num">4</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
-      <tr class="total"><td>Total (WebAssembly, int8w)</td><td class="num">230</td><td class="num">236</td><td class="num">99.6 %</td><td class="num">95.7 %</td><td class="num">97.0 %</td><td class="num">93.2 %</td></tr>
-      <tr class="total"><td>Total (WebGPU, fp16)</td><td class="num">230</td><td class="num">236</td><td class="num">99.6 %</td><td class="num">95.2 %</td><td class="num">97.0 %</td><td class="num">92.8 %</td></tr>
+      <tr><td>People</td><td class="num">262</td><td class="num">377</td><td class="num">94.7 %</td><td class="num">78.2 %</td><td class="num">65.8 %</td><td class="num">54.4 %</td></tr>
+      <tr><td>Organisations</td><td class="num">30</td><td class="num">97</td><td class="num">96.7 %</td><td class="num">90.0 %</td><td class="num">29.9 %</td><td class="num">27.8 %</td></tr>
+      <tr><td>Addresses</td><td class="num">23</td><td class="num">29</td><td class="num">73.9 %</td><td class="num">65.2 %</td><td class="num">58.6 %</td><td class="num">51.7 %</td></tr>
+      <tr><td>DNI, NIE, CIF, SSN</td><td class="num">55</td><td class="num">53</td><td class="num">96.4 %</td><td class="num">96.4 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>IBAN</td><td class="num">11</td><td class="num">10</td><td class="num">90.9 %</td><td class="num">90.9 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Cards</td><td class="num">2</td><td class="num">2</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Phones</td><td class="num">48</td><td class="num">44</td><td class="num">87.5 %</td><td class="num">87.5 %</td><td class="num">95.5 %</td><td class="num">95.5 %</td></tr>
+      <tr><td>Emails</td><td class="num">18</td><td class="num">18</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>IP addresses</td><td class="num">7</td><td class="num">10</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">70.0 %</td><td class="num">70.0 %</td></tr>
+      <tr><td>Dates of birth</td><td class="num">23</td><td class="num">20</td><td class="num">87.0 %</td><td class="num">87.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Number plates</td><td class="num">12</td><td class="num">12</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
+      <tr><td>Other identifiers (not searched for)</td><td class="num">65</td><td class="num">0</td><td class="num">0.0 %</td><td class="num">0.0 %</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="total"><td>Total of what is searched for</td><td class="num">491</td><td class="num">672</td><td class="num">93.3 %</td><td class="num">83.7 %</td><td class="num">68.2 %</td><td class="num">61.2 %</td></tr>
+      <tr class="total"><td>Total with other identifiers</td><td class="num">556</td><td class="num">672</td><td class="num">82.4 %</td><td class="num">73.9 %</td><td class="num">68.2 %</td><td class="num">61.2 %</td></tr>
     </tbody>
   </table>
 </div>
-<p class="note">"Recall" and "precision" count a hit when the marked text overlaps an annotated item of the same type; the "exact" columns require the same boundaries. Model threshold 0.3 ("High" sensitivity). 29 documents, 230 items. <strong>These figures are optimistic:</strong> the documents were written by the author, they are clean, and the choices (model labels, threshold, phone formats, searching for short forms of names) were made looking at the errors on this same set. The model alone, without those repetition searches, found 94 % of the names. Expect more misses on real documents.</p>
+<h3 class="sub-h">MEDDOCAN (public)</h3>
+<p class="note">Public corpus of Spanish clinical case reports annotated for anonymisation (Marimon et al., 2019), written by others. The first 100 reports of its test split are used. Its types are grouped into this tool's; ages, sex, professions and dates other than birth dates are not counted. Total of what is searched for: recall 94.6 %, precision 67.5 %. The 316 medical record, licence and insurance numbers are not searched for and stay visible: counting them, recall drops to 66.9 %.</p>
+<div class="table-wrap">
+  <table class="plain">
+    <thead><tr><th>Type</th><th class="num">Annotated</th><th class="num">Marked</th><th class="num">Recall</th><th class="num">Exact recall</th><th class="num">Precision</th><th class="num">Exact precision</th></tr></thead>
+    <tbody>
+      <tr><td>People</td><td class="num">402</td><td class="num">624</td><td class="num">100.0 %</td><td class="num">80.6 %</td><td class="num">65.5 %</td><td class="num">51.9 %</td></tr>
+      <tr><td>Organisations</td><td class="num">69</td><td class="num">186</td><td class="num">88.4 %</td><td class="num">68.1 %</td><td class="num">31.7 %</td><td class="num">25.3 %</td></tr>
+      <tr><td>Addresses</td><td class="num">173</td><td class="num">147</td><td class="num">82.7 %</td><td class="num">53.8 %</td><td class="num">97.3 %</td><td class="num">63.3 %</td></tr>
+      <tr><td>Phones</td><td class="num">16</td><td class="num">18</td><td class="num">93.8 %</td><td class="num">93.8 %</td><td class="num">83.3 %</td><td class="num">83.3 %</td></tr>
+      <tr><td>Emails</td><td class="num">103</td><td class="num">102</td><td class="num">98.1 %</td><td class="num">98.1 %</td><td class="num">99.0 %</td><td class="num">99.0 %</td></tr>
+      <tr><td>Other identifiers (not searched for)</td><td class="num">316</td><td class="num">0</td><td class="num">0.0 %</td><td class="num">0.0 %</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="total"><td>Total of what is searched for</td><td class="num">763</td><td class="num">1077</td><td class="num">94.6 %</td><td class="num">76.0 %</td><td class="num">67.5 %</td><td class="num">53.9 %</td></tr>
+      <tr class="total"><td>Total with other identifiers</td><td class="num">1079</td><td class="num">1077</td><td class="num">66.9 %</td><td class="num">53.8 %</td><td class="num">67.5 %</td><td class="num">53.9 %</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">"Recall" and "precision" count a hit when the marked text overlaps an annotated item of the same type; the "exact" columns require the same boundaries. Same code as the web app, int8w model, threshold 0.3 ("High" sensitivity). On the set the tool was developed with (29 clean documents written by the author, 230 items) it reached 99.6 % recall and 94.2 % precision: those figures were optimistic, because the choices were made looking at its errors.</p>
 <h3 class="sub-h">Model variants</h3>
 <p class="note">Agreement of each ONNX export with the original GLiNER in Python (PyTorch) on the same 28 test inputs: entities with the same boundaries and type, and largest score difference. The int8 file published on Hugging Face quantizes the activations of every matrix multiplication, which the output projection of the feed-forward layers does not survive; so the WebAssembly variant is quantized here on the weights only (8-bit blocks), with fp32 activations.</p>
 <div class="table-wrap">
@@ -40,4 +59,4 @@
     </tbody>
   </table>
 </div>
-<p class="note">Speed, as a rough guide: a 187-word document takes about 5–6 s with WebAssembly and 4 threads on the ARM server (4 shared cores) where it was measured; a graphics card should be much faster, but WebGPU speed has not been measured because that server has no GPU.</p>
+<p class="note">Speed, as a rough guide: 250 words take about 10 s with WebAssembly and 4 threads on the ARM server (4 shared, busy cores) where it was measured; a graphics card should be much faster, but WebGPU speed has not been measured because that server has no GPU.</p>

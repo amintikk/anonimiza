@@ -1,0 +1,410 @@
+{
+ "name": "web:gliner-pii-int8w.onnx/base · rules",
+ "gold": "tests/data/documentos.json",
+ "th": 0.3,
+ "rows": {
+  "person": {
+   "gold": 84,
+   "pred": 85,
+   "tpR": 84,
+   "tpRx": 75,
+   "tpP": 84,
+   "tpPx": 75
+  },
+  "id": {
+   "gold": 29,
+   "pred": 31,
+   "tpR": 29,
+   "tpRx": 29,
+   "tpP": 29,
+   "tpPx": 29
+  },
+  "address": {
+   "gold": 24,
+   "pred": 25,
+   "tpR": 23,
+   "tpRx": 23,
+   "tpP": 23,
+   "tpPx": 23
+  },
+  "iban": {
+   "gold": 9,
+   "pred": 10,
+   "tpR": 9,
+   "tpRx": 9,
+   "tpP": 9,
+   "tpPx": 9
+  },
+  "phone": {
+   "gold": 30,
+   "pred": 30,
+   "tpR": 30,
+   "tpRx": 30,
+   "tpP": 30,
+   "tpPx": 30
+  },
+  "email": {
+   "gold": 18,
+   "pred": 19,
+   "tpR": 18,
+   "tpRx": 18,
+   "tpP": 18,
+   "tpPx": 18
+  },
+  "org": {
+   "gold": 29,
+   "pred": 32,
+   "tpR": 29,
+   "tpRx": 29,
+   "tpP": 29,
+   "tpPx": 29
+  },
+  "card": {
+   "gold": 3,
+   "pred": 4,
+   "tpR": 3,
+   "tpRx": 3,
+   "tpP": 3,
+   "tpPx": 3
+  },
+  "ip": {
+   "gold": 4,
+   "pred": 4,
+   "tpR": 4,
+   "tpRx": 4,
+   "tpP": 4,
+   "tpPx": 4
+  },
+  "birthdate": {
+   "gold": 0,
+   "pred": 2,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 0,
+   "tpPx": 0
+  },
+  "plate": {
+   "gold": 0,
+   "pred": 1,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 0,
+   "tpPx": 0
+  }
+ },
+ "total": {
+  "gold": 230,
+  "pred": 243,
+  "tpR": 229,
+  "tpRx": 220,
+  "tpP": 229,
+  "tpPx": 220
+ },
+ "chars": {
+  "gold": 3969,
+  "covered": 3929,
+  "anyCovered": 3929,
+  "pred": 4168,
+  "predOk": 3929
+ },
+ "errors": [
+  {
+   "doc": "contrato-alquiler",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avenida del Puerto 118, 2.º 5.ª, 46023 Valencia"
+  },
+  {
+   "doc": "denuncia",
+   "type": "extra",
+   "kind": "org",
+   "text": "Comisaría de Policía de Getafe"
+  },
+  {
+   "doc": "denuncia",
+   "type": "extra",
+   "kind": "birthdate",
+   "text": "1985"
+  },
+  {
+   "doc": "denuncia",
+   "type": "extra",
+   "kind": "plate",
+   "text": "4821 KLM"
+  },
+  {
+   "doc": "sentencia",
+   "type": "extra",
+   "kind": "org",
+   "text": "JUZGADO DE PRIMERA INSTANCIA N.º 4 DE MÁLAGA"
+  },
+  {
+   "doc": "soporte-tecnico",
+   "type": "extra",
+   "kind": "address",
+   "text": "casa"
+  },
+  {
+   "doc": "beca",
+   "type": "extra",
+   "kind": "birthdate",
+   "text": "22/09/2006"
+  },
+  {
+   "doc": "parte-accidente",
+   "type": "extra",
+   "kind": "address",
+   "text": "Calle Nou, Lleida"
+  },
+  {
+   "doc": "pedido-online",
+   "type": "extra",
+   "kind": "email",
+   "text": "ayuda@tienda-ejemplo.com"
+  },
+  {
+   "doc": "expediente-administrativo",
+   "type": "extra",
+   "kind": "org",
+   "text": "AYUNTAMIENTO DE CÁCERES"
+  },
+  {
+   "doc": "carta-personal",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mamá"
+  },
+  {
+   "doc": "numeros-que-no-son-datos",
+   "type": "extra",
+   "kind": "id",
+   "text": "12345678A"
+  },
+  {
+   "doc": "numeros-que-no-son-datos",
+   "type": "extra",
+   "kind": "card",
+   "text": "4012 8888 8888 1882"
+  },
+  {
+   "doc": "numeros-que-no-son-datos",
+   "type": "extra",
+   "kind": "iban",
+   "text": "ES00 1234 5678 9012 3456 7890"
+  },
+  {
+   "doc": "numeros-que-no-son-datos",
+   "type": "extra",
+   "kind": "id",
+   "text": "X0000000A"
+  }
+ ],
+ "perDoc": [
+  {
+   "id": "contrato-alquiler",
+   "gold": 14,
+   "tpR": 13,
+   "pred": 13,
+   "tpP": 13
+  },
+  {
+   "id": "correo-rrhh",
+   "gold": 10,
+   "tpR": 10,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "informe-medico",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "factura",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "reclamacion-banco",
+   "gold": 10,
+   "tpR": 10,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "whatsapp",
+   "gold": 13,
+   "tpR": 13,
+   "pred": 13,
+   "tpP": 13
+  },
+  {
+   "id": "curriculum",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "denuncia",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 9,
+   "tpP": 6
+  },
+  {
+   "id": "acta-comunidad",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "nomina",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "sentencia",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "soporte-tecnico",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "beca",
+   "gold": 10,
+   "tpR": 10,
+   "pred": 11,
+   "tpP": 10
+  },
+  {
+   "id": "parte-accidente",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "pedido-online",
+   "gold": 4,
+   "tpR": 4,
+   "pred": 5,
+   "tpP": 4
+  },
+  {
+   "id": "pago-tarjeta",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "expediente-administrativo",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 6,
+   "tpP": 5
+  },
+  {
+   "id": "proveedores",
+   "gold": 15,
+   "tpR": 15,
+   "pred": 15,
+   "tpP": 15
+  },
+  {
+   "id": "carta-personal",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "sin-datos-personales",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 0,
+   "tpP": 0
+  },
+  {
+   "id": "numeros-que-no-son-datos",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 4,
+   "tpP": 0
+  },
+  {
+   "id": "email-comercial",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "historia-social",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "extranjeria",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "correo-ingles-mezcla",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "informe-largo",
+   "gold": 16,
+   "tpR": 16,
+   "pred": 16,
+   "tpP": 16
+  },
+  {
+   "id": "cita-medica-sms",
+   "gold": 4,
+   "tpR": 4,
+   "pred": 4,
+   "tpP": 4
+  },
+  {
+   "id": "datos-sin-formato",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "laboral-despido",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  }
+ ],
+ "seconds": 121,
+ "words": 3980,
+ "docs": 29
+}

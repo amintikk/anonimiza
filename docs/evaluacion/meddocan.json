@@ -1,0 +1,5029 @@
+{
+ "name": "web:gliner-pii-int8w.onnx/base · rules",
+ "gold": "MEDDOCAN test, 100 primeras historias",
+ "th": 0.3,
+ "rows": {
+  "person": {
+   "gold": 402,
+   "pred": 624,
+   "tpR": 402,
+   "tpRx": 324,
+   "tpP": 409,
+   "tpPx": 324
+  },
+  "otherid": {
+   "gold": 316,
+   "pred": 0,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 0,
+   "tpPx": 0
+  },
+  "address": {
+   "gold": 173,
+   "pred": 147,
+   "tpR": 143,
+   "tpRx": 93,
+   "tpP": 143,
+   "tpPx": 93
+  },
+  "org": {
+   "gold": 69,
+   "pred": 186,
+   "tpR": 61,
+   "tpRx": 47,
+   "tpP": 59,
+   "tpPx": 47
+  },
+  "email": {
+   "gold": 103,
+   "pred": 102,
+   "tpR": 101,
+   "tpRx": 101,
+   "tpP": 101,
+   "tpPx": 101
+  },
+  "phone": {
+   "gold": 16,
+   "pred": 18,
+   "tpR": 15,
+   "tpRx": 15,
+   "tpP": 15,
+   "tpPx": 15
+  }
+ },
+ "total": {
+  "gold": 1079,
+  "pred": 1077,
+  "tpR": 722,
+  "tpRx": 580,
+  "tpP": 727,
+  "tpPx": 580
+ },
+ "chars": {
+  "gold": 16449,
+  "covered": 12540,
+  "anyCovered": 12689,
+  "pred": 17307,
+  "predOk": 12689
+ },
+ "errors": [
+  {
+   "doc": "S0004-06142006000500002-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5467980"
+  },
+  {
+   "doc": "S0004-06142006000500002-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 28 52938"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "987654"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "14 9096265001 02"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "987654"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "02-08-17593"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro de referencia"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Enfermo"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "enfermo"
+  },
+  {
+   "doc": "S0004-06142006000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Oncología Médica"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "19453"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "33 4568642 23"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "19453"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "35 35 16446"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Calle Manuel Gomez 35. 1F"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "urología"
+  },
+  {
+   "doc": "S0004-06142006000600014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "963852"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "95-16275568-30"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "963852"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "12-89-96589"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142006000700013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "6326226"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 19865453 56"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "6326226"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 45612"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Hospital Universitario de La Princesa"
+  },
+  {
+   "doc": "S0004-06142006000900006-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Diego de León, 62"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "178945"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89-89532-56"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "178945"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "21536"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "AV. Eduardo Torres 579 2° Frente esquerdo",
+   "as": "person"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de urgencia"
+  },
+  {
+   "doc": "S0004-06142006000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Torres"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "231213"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "29 23892036 09"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "231213"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "45 45 31075"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Ctra. de Toledo Km 12,500"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "el paciente"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Oncología"
+  },
+  {
+   "doc": "S0004-06142006000900015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4375280"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "25 85940385 75"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "06 06 98234"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142007000100015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0004-06142007000500014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5379864"
+  },
+  {
+   "doc": "S0004-06142007000500014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "29 29 83404"
+  },
+  {
+   "doc": "S0004-06142007000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2456498"
+  },
+  {
+   "doc": "S0004-06142007000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "21 21 34754"
+  },
+  {
+   "doc": "S0004-06142007000600014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "consulta de urología"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "643185"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "16 6834562 26"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "643185"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "31 28 54753"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "missed",
+   "kind": "address",
+   "text": "Diego de León",
+   "as": "org"
+  },
+  {
+   "doc": "S0004-06142007000600016-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "consulta de urología"
+  },
+  {
+   "doc": "S0004-06142007000700015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2609857"
+  },
+  {
+   "doc": "S0004-06142007000700015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "30 30 56390"
+  },
+  {
+   "doc": "S0004-06142007000700015-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Ctra. Madrid-Cartagena s/n"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "21413043"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "73 4563215 45"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "21413043"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "29 06 1995"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Calle Strachan, 4 -2º piso"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900010-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3485964"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Pablo Laloux 13, 6º A-Sur"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos"
+  },
+  {
+   "doc": "S0004-06142007000900011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "16256424"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "16256424"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "01 13 28065"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "urgencias"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "el paciente"
+  },
+  {
+   "doc": "S0004-06142007000900013-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "El paciente"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4568983"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 734568"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mujer"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de digestivo"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Oncología"
+  },
+  {
+   "doc": "S0004-06142007000900014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142008000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "9834752"
+  },
+  {
+   "doc": "S0004-06142008000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "74 83067120 58"
+  },
+  {
+   "doc": "S0004-06142008000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "20 20 57830"
+  },
+  {
+   "doc": "S0004-06142008000400011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32182565"
+  },
+  {
+   "doc": "S0004-06142008000400011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "13 06423578 65"
+  },
+  {
+   "doc": "S0004-06142008000400011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32182565"
+  },
+  {
+   "doc": "S0004-06142008000400011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "22 22 26452"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "79324542"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "61 65132546 22"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "79324542"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "04 04 74125"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Complejo Hospitalario Torrecárdenas"
+  },
+  {
+   "doc": "S0004-06142008000500015-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Paraje Torrecárdenas s/n"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "346798"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "74 3141698 12"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "346798"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "06 03 21395"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Plaza Juan Carlos I, Nº 7",
+   "as": "person"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "nuestro servicio"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro emisor"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "nuestro centro"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro emisor"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "nuestro centro"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de neurocirugía"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "nuestro servicio"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de oncología médica"
+  },
+  {
+   "doc": "S0004-06142008000600011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Juan"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "76844523"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "71 75648232 33"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "76844523"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "06 02 76485"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000600014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4568978"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "65 29079703 30"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "30 08 59710"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Pz. de Pontevedra,2 Ed. ICA, Esc.2º,5ºC"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Consulta Externa de Ginecología"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "clínica miccional e ITU"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Urología"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142008000700003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142009000100010-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7845454"
+  },
+  {
+   "doc": "S0004-06142009000100010-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "23 14657845 23"
+  },
+  {
+   "doc": "S0004-06142009000100010-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7845454"
+  },
+  {
+   "doc": "S0004-06142009000100010-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "50 50 33654"
+  },
+  {
+   "doc": "S0004-06142009000100010-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "AINES"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4026560"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "24 76078256 01"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5267937"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "49 28 46237"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Av. de los Reyes Católicos, 5 bajo izda"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Ginecologia"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Ginecología"
+  },
+  {
+   "doc": "S0004-06142009000200013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Urología"
+  },
+  {
+   "doc": "S0004-06142009000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "9764523"
+  },
+  {
+   "doc": "S0004-06142009000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "02 465497132 12"
+  },
+  {
+   "doc": "S0004-06142009000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "9764523"
+  },
+  {
+   "doc": "S0004-06142009000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "02 02 78942"
+  },
+  {
+   "doc": "S0004-06142009000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "97431658"
+  },
+  {
+   "doc": "S0004-06142009000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32 56413641 11"
+  },
+  {
+   "doc": "S0004-06142009000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "97431658"
+  },
+  {
+   "doc": "S0004-06142009000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 15 32145"
+  },
+  {
+   "doc": "S0004-06142009000500011-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Xubias de Arriba s/n"
+  },
+  {
+   "doc": "S0004-06142009000900011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0265788"
+  },
+  {
+   "doc": "S0004-06142009000900011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 92785623 45"
+  },
+  {
+   "doc": "S0004-06142009000900011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28"
+  },
+  {
+   "doc": "S0004-06142009000900011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "consulta de urología por masa testicular izquierda"
+  },
+  {
+   "doc": "S0004-06142010000100015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 11 87 0945 1"
+  },
+  {
+   "doc": "S0004-06142010000100015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "73164"
+  },
+  {
+   "doc": "S0004-06142010000100015-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Fundación para el Avance de la Anatomía Patológica, Citología y Clínica Molecular FAPCIM"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7048598"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "84 76679546 68"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 15 98304"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urologia"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intesivos"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos"
+  },
+  {
+   "doc": "S0004-06142010000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2046598"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "07 24675873 03"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "45 45 87952"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Ziehl Neelsen"
+  },
+  {
+   "doc": "S0004-06142010000500014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0210-48062003001000009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "12397565 54"
+  },
+  {
+   "doc": "S0210-48062003001000009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "794612"
+  },
+  {
+   "doc": "S0210-48062003001000009-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062003001000009-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3740648"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "74 35637063 21"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57800"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Digestología"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "equipo de guardia de Cirugía General"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0210-48062004000300007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7345893"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "48 35676035 31"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57893"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000400008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Oncología"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0325640"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 94312567 55"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0325640"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "02 02 79461"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Hospital"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Hematología"
+  },
+  {
+   "doc": "S0210-48062004000500008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2545164"
+  },
+  {
+   "doc": "S0210-48062004000500010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2545164"
+  },
+  {
+   "doc": "S0210-48062004000500010-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "24 24 45612"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7843562"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 43567304 36"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 94550"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Nefrología"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Nefrología"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Hematología"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000500011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3456723"
+  },
+  {
+   "doc": "S0210-48062004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89 56756794 75"
+  },
+  {
+   "doc": "S0210-48062004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 64891"
+  },
+  {
+   "doc": "S0210-48062004000800009-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "c/ José Echegaray 4"
+  },
+  {
+   "doc": "S0210-48062005000800014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4756758"
+  },
+  {
+   "doc": "S0210-48062005000800014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "74 35670165 14"
+  },
+  {
+   "doc": "S0210-48062005000800014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "41 41 87441"
+  },
+  {
+   "doc": "S0210-48062005001000013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8973552"
+  },
+  {
+   "doc": "S0210-48062005001000013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89 56785477 01"
+  },
+  {
+   "doc": "S0210-48062005001000013-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57992"
+  },
+  {
+   "doc": "S0210-48062005001000013-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "PAAF"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7635956"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "12 17845723 56"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "11 11 50124"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Cecilio Pujazón nº 26 1º 1",
+   "as": "person"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cecilio Pujazón"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7246572"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 27845613 05"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 46 57812"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "comité de tumores de nuestro centro"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000300014-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "23547842 16"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7896541"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Médico"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "médico"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "médico internista"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062006000400012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062007000100004-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8943568"
+  },
+  {
+   "doc": "S0210-48062007000100004-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "84 37583784 05"
+  },
+  {
+   "doc": "S0210-48062007000100004-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 62003"
+  },
+  {
+   "doc": "S0210-48062007000100012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 50201565 22"
+  },
+  {
+   "doc": "S0210-48062007000100012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "76194955"
+  },
+  {
+   "doc": "S0210-48062007000100012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "11 11 26484"
+  },
+  {
+   "doc": "S0210-48062007000100012-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Ctra. Nacional IV, Km 665"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7845633"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "27 65456795 38"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062007000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7438498"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "83 45978369 13"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08 08 22845"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de urgencias"
+  },
+  {
+   "doc": "S0210-48062007000700014-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 98743156 21"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "97133043"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36 36 79464"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro de especialidades"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "org",
+   "text": "Anatomía Patológica"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "person",
+   "text": "Seminoma clásico"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "person",
+   "text": "Seminoma clásico"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "org",
+   "text": "Anatomía Patológica"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "person",
+   "text": "Seminoma de tipo clásico"
+  },
+  {
+   "doc": "S0210-48062007001000004-4",
+   "type": "extra",
+   "kind": "person",
+   "text": "seminoma clásico"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8597254"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "43 75620756 31"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8349623"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 46 58941"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de Oncología Médica"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "enfermo"
+  },
+  {
+   "doc": "S0210-48062009000200017-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3780659"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "73 46082647 20"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 64710"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "industria textil"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Bosniak"
+  },
+  {
+   "doc": "S0210-48062009000200018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Urologia"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7649551"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "12 97642583 56"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7649551"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36 36 46541"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0210-48062009000200019-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0210-48062009000600016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7456922"
+  },
+  {
+   "doc": "S0210-48062009000600016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 45619507 36"
+  },
+  {
+   "doc": "S0210-48062009000600016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36 36 58794"
+  },
+  {
+   "doc": "S0210-48062009000600016-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Salamanca, 5"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8793542"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89 34789675 36"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08 08 52105"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de cirugía"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009000600018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urología"
+  },
+  {
+   "doc": "S0210-48062009000900015-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5221413"
+  },
+  {
+   "doc": "S0210-48062009000900015-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "otra institución"
+  },
+  {
+   "doc": "S0210-48062009001000016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "79431562"
+  },
+  {
+   "doc": "S0210-48062009001000016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32 65474612 65"
+  },
+  {
+   "doc": "S0210-48062009001000016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "79431562"
+  },
+  {
+   "doc": "S0210-48062009001000016-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "20 20 34913"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 23456856 74"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4561356"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "20 20 81556"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "urología"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de cirugía vascular"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062009001000019-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-48062010000100019-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8945154"
+  },
+  {
+   "doc": "S0210-48062010000100019-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8945154"
+  },
+  {
+   "doc": "S0210-48062010000100019-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 64132"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "214130"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 13465656 52"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "214130"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 46158"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "extra",
+   "kind": "org",
+   "text": "Traumatología"
+  },
+  {
+   "doc": "S0210-48062010000100019-4",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos"
+  },
+  {
+   "doc": "S0210-56912006000300007-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15-85622454"
+  },
+  {
+   "doc": "S0210-56912006000300007-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "1583097461454"
+  },
+  {
+   "doc": "S0210-56912006000300007-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Terapia Intensiva"
+  },
+  {
+   "doc": "S0210-56912006000300007-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Terapia Intensiva"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "72030434"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 13467598 21"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "632632225",
+   "as": "phone"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "29 29 03549"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "phone",
+   "text": "632632225"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912006000600007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "94646874"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "25 38594235 54"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "1520368541"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "29 29 78451"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avda. Andalucía, 146. Urbanización Pinos de Alhaurín"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de digestivo"
+  },
+  {
+   "doc": "S0210-56912006000800008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos (UCI"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78943621"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15648894641"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "35 35 79465"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Francisco Gourié, 28, 5.º E"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "Medicina Intensiva"
+  },
+  {
+   "doc": "S0210-56912007000200007-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Medicina Intensiva (UMI"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "19547865"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "26 23457896 12"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "746589123",
+   "as": "phone"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "02 13 16485"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "extra",
+   "kind": "phone",
+   "text": "746589123"
+  },
+  {
+   "doc": "S0210-56912008000100008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "hospital"
+  },
+  {
+   "doc": "S0210-56912008000200007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7456457"
+  },
+  {
+   "doc": "S0210-56912008000200007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "23 23 23605"
+  },
+  {
+   "doc": "S0210-56912008000200007-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Manuel Caballero Venzala, 12, 2.º-A"
+  },
+  {
+   "doc": "S0210-56912008000200007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "hospital de origen"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3784635"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08 94375685 61"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08 08 54882"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912009000900008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0210-56912011000500009-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7843955"
+  },
+  {
+   "doc": "S0210-56912011000500009-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "47 89637596 31"
+  },
+  {
+   "doc": "S0210-56912011000500009-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57410"
+  },
+  {
+   "doc": "S0210-56912011000500009-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de urgencias hospitalario"
+  },
+  {
+   "doc": "S0210-56912011000500009-3",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mallory Weiss"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8456231"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "75 63745637 54"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57910"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "soltero"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "missed",
+   "kind": "email",
+   "text": "andergaldio@gmailcom"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Centro de Salud Mental"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Cuidados Intensivos"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "planta de Medicina Interna"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Psiquiatría"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Psiquiatría"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "madre"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Centro de Salud Mental"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "el paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Medicina Interna"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Neurología"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Neurología"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Neurología"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Neurología"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-57352015000100011-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Rehabilitación"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3661587"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "99 78136524 77"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7436985"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "19 19 98741"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "missed",
+   "kind": "org",
+   "text": "Universidad de Alcalá"
+  },
+  {
+   "doc": "S0211-69952011000500011-3",
+   "type": "extra",
+   "kind": "org",
+   "text": "centro de salud"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5689502"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "30 60474056 36"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4387684"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "30 30 58801"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Nefrología"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Nefrología"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Reumatología"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Este paciente"
+  },
+  {
+   "doc": "S0211-69952012000500016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Nefrología"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "63728"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 96435798 60"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "6736754"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "40 40 53220"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Hospital"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Pseudomona aeruginosa"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Streptococcus beta no A no B"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicios de Nefrología y de Neurología"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000200018-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "73 62476454 66"
+  },
+  {
+   "doc": "S0211-69952013000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 23767405 61"
+  },
+  {
+   "doc": "S0211-69952013000200019-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 46 52381"
+  },
+  {
+   "doc": "S0211-69952013000200025-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "996543"
+  },
+  {
+   "doc": "S0211-69952013000200025-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "raza negra"
+  },
+  {
+   "doc": "S0211-69952013000200025-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Transversal 39 a número 71-57, apto. 501, edificio Cantabria Real"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "9784844"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 43657846 54"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57880"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952013000500035-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3956384"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89 34657896 35"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "20 20 56890"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mujer"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Gastroenterología"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Nefrología"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Hematología"
+  },
+  {
+   "doc": "S0211-69952014000200016-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Nefrología"
+  },
+  {
+   "doc": "S0211-69952014000400020-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7361802"
+  },
+  {
+   "doc": "S0211-69952014000400020-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "78 78364507 12"
+  },
+  {
+   "doc": "S0211-69952014000400020-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "04 04 45112"
+  },
+  {
+   "doc": "S0211-69952014000400020-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Carretera de Almerimar, S/N"
+  },
+  {
+   "doc": "S0211-69952014000600016-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "879475839/710"
+  },
+  {
+   "doc": "S0211-69952014000600016-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Dr. Julio C. Perrando"
+  },
+  {
+   "doc": "S0211-69952014000600016-1",
+   "type": "extra",
+   "kind": "email",
+   "text": "msp.histocompat@ecomchaco.com.ar"
+  },
+  {
+   "doc": "S0211-69952015000600014-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8473653"
+  },
+  {
+   "doc": "S0211-69952015000600014-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 57402"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3695454"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "56 87126855 66"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "37 28 03464"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Genetic Analyzer"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "NEF"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "El paciente"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "El paciente"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "esposa"
+  },
+  {
+   "doc": "S0211-69952016000300015-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "El paciente"
+  },
+  {
+   "doc": "S0211-69952017000200225-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "665326454",
+   "as": "phone"
+  },
+  {
+   "doc": "S0211-69952017000200225-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "48 95413624 09"
+  },
+  {
+   "doc": "S0211-69952017000200225-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "103985641"
+  },
+  {
+   "doc": "S0211-69952017000200225-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 13166"
+  },
+  {
+   "doc": "S0211-69952017000200225-1",
+   "type": "extra",
+   "kind": "phone",
+   "text": "665326454"
+  },
+  {
+   "doc": "S0212-16112009000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8946887"
+  },
+  {
+   "doc": "S0212-16112009000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "94 68716451 52"
+  },
+  {
+   "doc": "S0212-16112009000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5843556"
+  },
+  {
+   "doc": "S0212-16112009000300015-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 94138"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7345673"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "37 45672036 13"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32 32 57480"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Agudos de Psiquiatría"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Neurología"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Nutrición"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Neurología"
+  },
+  {
+   "doc": "S0212-16112012000300028-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8928210"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "49 01482264 19"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "5948114"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36 36 57810"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "address",
+   "text": "Domicilio"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Nutrición Parenteral Total (NPT"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Farmacia"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "address",
+   "text": "domicilio"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Unidad de Hospitalización a Domicilio (HADO"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Sección de Nutrición Parenteral"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Farmacia"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Farmacia"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "address",
+   "text": "domicilio"
+  },
+  {
+   "doc": "S0212-16112012000500042-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0212-71992005000400009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4135413"
+  },
+  {
+   "doc": "S0212-71992005000400009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32 64135645 18"
+  },
+  {
+   "doc": "S0212-71992005000400009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "85136412"
+  },
+  {
+   "doc": "S0212-71992005000400009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "41 41 03264"
+  },
+  {
+   "doc": "S0212-71992005000400009-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avda. de la Cruz del Campo, 36, Bl. 1, 2º A"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "164253"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "32 64125896 32"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "16 16 03844"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urgencias"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "el paciente"
+  },
+  {
+   "doc": "S0212-71992005001200008-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "4392216"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "27 96666017 83"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "1421349"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "41 41 78970"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Oncología"
+  },
+  {
+   "doc": "S0212-71992006000100005-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "21412043"
+  },
+  {
+   "doc": "S0212-71992006000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36 97845126 38"
+  },
+  {
+   "doc": "S0212-71992006000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08 28 54781"
+  },
+  {
+   "doc": "S0212-71992006000600008-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Berlín, 63-65, 2º 3ª esc B"
+  },
+  {
+   "doc": "S0212-71992006000600008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "hospital"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "36985"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "89 84823485 45"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Paseo Calanda"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "50 50 48912"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Cirugia Vascular"
+  },
+  {
+   "doc": "S0212-71992006000700009-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Cirugía Vascular"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3785649"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "43 97856395 65"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "missed",
+   "kind": "email",
+   "text": "Avenida de las Américas, 5, 3 D",
+   "as": "address"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 28 54789"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avda. Alcalde Electro Carballo, 20B, 4C"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "address",
+   "text": "Avenida de las Américas, 5, 3 D"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Dermatología"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Dermatología"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Digestivo"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992006000900007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "TC de control"
+  },
+  {
+   "doc": "S0212-71992007000200007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "9654845"
+  },
+  {
+   "doc": "S0212-71992007000200007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992007000200007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0212-71992007000400005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "65463543"
+  },
+  {
+   "doc": "S0212-71992007000400005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "54 86165464 44"
+  },
+  {
+   "doc": "S0212-71992007000400005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "123464"
+  },
+  {
+   "doc": "S0212-71992007000400005-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "46 46 81856"
+  },
+  {
+   "doc": "S0212-71992007000400005-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "consultas externas de Reumatología"
+  },
+  {
+   "doc": "S0212-71992007000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7890346"
+  },
+  {
+   "doc": "S0212-71992007000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "74 35619335 67"
+  },
+  {
+   "doc": "S0212-71992007000600008-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "45 45 32610"
+  },
+  {
+   "doc": "S0212-71992007000600008-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Gregorio Corrochano, 1"
+  },
+  {
+   "doc": "S0212-71992007000600008-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Servicio de Medicina Interna"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "874554"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "69 53654065 04"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "25 28 47586"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Medicina Interna"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Bence-Jones"
+  },
+  {
+   "doc": "S0212-71992007001000007-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "Medicina Interna"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "986565"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "20 985674 55"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 54971"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "casado"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852005000400003-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7845693"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "67 55478621 30"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 74510"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "pareja de adicto"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "soltera"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "estomatólogo"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "org",
+   "text": "equipo oncológico"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "La paciente"
+  },
+  {
+   "doc": "S0213-12852006000600002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0213-12852016000500002-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "raza negra"
+  },
+  {
+   "doc": "S0213-12852016000500002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "S0213-12852016000500002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852016000500002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0213-12852016000500002-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0365-66912004000600009-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "8439754"
+  },
+  {
+   "doc": "S0365-66912004000600009-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "38 47563379 20"
+  },
+  {
+   "doc": "S0365-66912004000600009-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 94675"
+  },
+  {
+   "doc": "S0365-66912004000600009-2",
+   "type": "missed",
+   "kind": "address",
+   "text": "Paseo de los Parques nº 26, ch.2"
+  },
+  {
+   "doc": "S0365-66912004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "546534"
+  },
+  {
+   "doc": "S0365-66912004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "25 87045626 23"
+  },
+  {
+   "doc": "S0365-66912004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "368556"
+  },
+  {
+   "doc": "S0365-66912004000800009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "24 24 67845"
+  },
+  {
+   "doc": "S0365-66912004000800009-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/. Altos de Nava, s/n"
+  },
+  {
+   "doc": "S0365-66912004000900009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "3478056"
+  },
+  {
+   "doc": "S0365-66912004000900009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "85 62602657 31"
+  },
+  {
+   "doc": "S0365-66912004000900009-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "31 31 44789"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7356284"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15 15 23910"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Prof. Novoa Santos",
+   "as": "person"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Estrada San Pedro de Leixa-Catabois, s/n"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "missed",
+   "kind": "phone",
+   "text": "138-137"
+  },
+  {
+   "doc": "S0365-66912004001100012-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Prof. Novoa Santos"
+  },
+  {
+   "doc": "S0365-66912004001200010-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7456745"
+  },
+  {
+   "doc": "S0365-66912004001200010-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "83 46578345 65"
+  },
+  {
+   "doc": "S0365-66912004001200010-2",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "47 47 58996"
+  },
+  {
+   "doc": "S0365-66912004001200010-2",
+   "type": "extra",
+   "kind": "org",
+   "text": "servicio de urgencias"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "754695"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "54 65745645 37"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "28 28 52513"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Alcon Cusi"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Allergan",
+   "as": "address"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  },
+  {
+   "doc": "S0365-66912005001000011-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "la paciente"
+  }
+ ],
+ "perDoc": [
+  {
+   "id": "S0004-06142006000500002-2",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0004-06142006000500011-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 11,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142006000600014-1",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 7,
+   "tpP": 5
+  },
+  {
+   "id": "S0004-06142006000700013-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 12,
+   "tpP": 8
+  },
+  {
+   "id": "S0004-06142006000900006-1",
+   "gold": 8,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142006000900014-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142006000900015-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 12,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142007000100015-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 14,
+   "tpP": 8
+  },
+  {
+   "id": "S0004-06142007000500014-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142007000600014-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "S0004-06142007000600016-2",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142007000700015-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142007000900010-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 12,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142007000900011-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 14,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142007000900013-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 13,
+   "tpP": 9
+  },
+  {
+   "id": "S0004-06142007000900014-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 13,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142008000300015-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142008000400011-2",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142008000500015-1",
+   "gold": 8,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142008000600011-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 21,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142008000600014-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142008000700003-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 14,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142009000100010-3",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142009000200013-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 9,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142009000300014-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0004-06142009000500011-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0004-06142009000900011-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142010000100015-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0004-06142010000500011-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 20,
+   "tpP": 9
+  },
+  {
+   "id": "S0004-06142010000500014-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 11,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062003001000009-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-48062004000300007-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 17,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-48062004000400008-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 11,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-48062004000500008-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 15,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062004000500010-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062004000500011-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 14,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-48062004000800009-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-48062005000800014-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062005001000013-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-48062006000200017-1",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 11,
+   "tpP": 5
+  },
+  {
+   "id": "S0210-48062006000300014-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 18,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062006000400012-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 16,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062007000100004-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062007000100012-1",
+   "gold": 9,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062007000500016-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 12,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062007000700014-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 12,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062007001000004-4",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 16,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062009000200017-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 15,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062009000200018-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 9,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-48062009000200019-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 12,
+   "tpP": 10
+  },
+  {
+   "id": "S0210-48062009000600016-1",
+   "gold": 9,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062009000600018-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 17,
+   "tpP": 9
+  },
+  {
+   "id": "S0210-48062009000900015-3",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-48062009001000016-2",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-48062009001000019-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 11,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-48062010000100019-3",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-48062010000100019-4",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-56912006000300007-2",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-56912006000600007-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 13,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-56912006000800008-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-56912007000200007-3",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "S0210-56912008000100008-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 10,
+   "tpP": 8
+  },
+  {
+   "id": "S0210-56912008000200007-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-56912009000900008-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 12,
+   "tpP": 6
+  },
+  {
+   "id": "S0210-56912011000500009-3",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "S0211-57352015000100011-2",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 25,
+   "tpP": 5
+  },
+  {
+   "id": "S0211-69952011000500011-3",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "S0211-69952012000500016-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 15,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952013000200018-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 15,
+   "tpP": 7
+  },
+  {
+   "id": "S0211-69952013000200019-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952013000200025-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0211-69952013000500035-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 11,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952014000200016-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 13,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952014000400020-1",
+   "gold": 9,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952014000600016-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 8
+  },
+  {
+   "id": "S0211-69952015000600014-2",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "S0211-69952016000300015-1",
+   "gold": 10,
+   "tpR": 9,
+   "pred": 17,
+   "tpP": 9
+  },
+  {
+   "id": "S0211-69952017000200225-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "S0212-16112009000300015-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-16112012000300028-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 17,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-16112012000500042-1",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 25,
+   "tpP": 8
+  },
+  {
+   "id": "S0212-71992005000400009-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0212-71992005001200008-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 13,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-71992006000100005-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 11,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-71992006000600008-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0212-71992006000700009-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-71992006000900007-1",
+   "gold": 8,
+   "tpR": 6,
+   "pred": 15,
+   "tpP": 6
+  },
+  {
+   "id": "S0212-71992007000200007-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "S0212-71992007000400005-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "S0212-71992007000600008-1",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0212-71992007001000007-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 11,
+   "tpP": 8
+  },
+  {
+   "id": "S0213-12852005000400003-1",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 14,
+   "tpP": 7
+  },
+  {
+   "id": "S0213-12852006000600002-1",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 18,
+   "tpP": 6
+  },
+  {
+   "id": "S0213-12852016000500002-1",
+   "gold": 10,
+   "tpR": 10,
+   "pred": 14,
+   "tpP": 10
+  },
+  {
+   "id": "S0365-66912004000600009-2",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "S0365-66912004000800009-1",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "S0365-66912004000900009-1",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 8
+  },
+  {
+   "id": "S0365-66912004001100012-1",
+   "gold": 12,
+   "tpR": 9,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "S0365-66912004001200010-2",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "S0365-66912005001000011-1",
+   "gold": 9,
+   "tpR": 7,
+   "pred": 11,
+   "tpP": 7
+  }
+ ],
+ "seconds": 833.3,
+ "words": 66641,
+ "docs": 100
+}

@@ -1,30 +1,49 @@
 <div class="figs">
-  <div class="fig-num"><b>99,6 %</b><span>de los datos personales anotados quedaron sustituidos, al menos en parte (229 de 230)</span></div>
-  <div class="fig-num"><b>99,0 %</b><span>de los caracteres sensibles quedaron tapados</span></div>
-  <div class="fig-num"><b>97,0 %</b><span>de lo que marcó la herramienta era de verdad un dato personal (229 de 236)</span></div>
+  <div class="fig-num"><b>93,3 %</b><span>de los datos que la herramienta busca quedaron sustituidos, al menos en parte (458 de 491)</span></div>
+  <div class="fig-num"><b>88,1 %</b><span>de los caracteres sensibles quedaron tapados, contando también números de expediente, usuarios y otros identificadores que no busca</span></div>
+  <div class="fig-num"><b>68,2 %</b><span>de lo que marcó era de verdad un dato personal; el resto son sobre todo palabras como «ARRENDADOR», nombres de organismos y alias de usuario (458 de 672)</span></div>
 </div>
+<h3 class="sub-h">Conjunto de prueba congelado</h3>
+<p class="note">47 documentos ficticios y deliberadamente sucios: chats y correos informales en minúscula y con erratas, texto pegado de PDF con líneas partidas, voz transcrita, nombres vascos, catalanes, gallegos, árabes y latinoamericanos, nombres que son palabras comunes (Rosa, Pilar, Dolores) y 7 textos sin datos personales. Los escribió y anotó un agente que no vio el código del detector, y se congelaron antes de ejecutar nada sobre ellos; nada se ha ajustado mirando sus fallos.</p>
 <div class="table-wrap">
   <table class="plain">
     <thead><tr><th>Tipo</th><th class="num">Anotados</th><th class="num">Marcados</th><th class="num">Cobertura</th><th class="num">Cobertura exacta</th><th class="num">Precisión</th><th class="num">Precisión exacta</th></tr></thead>
     <tbody>
-      <tr><td>Personas</td><td class="num">84</td><td class="num">85</td><td class="num">100,0 %</td><td class="num">89,3 %</td><td class="num">98,8 %</td><td class="num">88,2 %</td></tr>
-      <tr><td>Organizaciones</td><td class="num">29</td><td class="num">32</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">90,6 %</td><td class="num">90,6 %</td></tr>
-      <tr><td>Direcciones</td><td class="num">24</td><td class="num">25</td><td class="num">95,8 %</td><td class="num">95,8 %</td><td class="num">92,0 %</td><td class="num">92,0 %</td></tr>
-      <tr><td>DNI</td><td class="num">14</td><td class="num">14</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>NIE</td><td class="num">4</td><td class="num">4</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>CIF</td><td class="num">8</td><td class="num">8</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>N.º Seguridad Social</td><td class="num">3</td><td class="num">3</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>IBAN</td><td class="num">9</td><td class="num">9</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>Tarjetas</td><td class="num">3</td><td class="num">3</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>Teléfonos</td><td class="num">30</td><td class="num">30</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr><td>Correos</td><td class="num">18</td><td class="num">19</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">94,7 %</td><td class="num">94,7 %</td></tr>
-      <tr><td>Direcciones IP</td><td class="num">4</td><td class="num">4</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
-      <tr class="total"><td>Total (WebAssembly, int8w)</td><td class="num">230</td><td class="num">236</td><td class="num">99,6 %</td><td class="num">95,7 %</td><td class="num">97,0 %</td><td class="num">93,2 %</td></tr>
-      <tr class="total"><td>Total (WebGPU, fp16)</td><td class="num">230</td><td class="num">236</td><td class="num">99,6 %</td><td class="num">95,2 %</td><td class="num">97,0 %</td><td class="num">92,8 %</td></tr>
+      <tr><td>Personas</td><td class="num">262</td><td class="num">377</td><td class="num">94,7 %</td><td class="num">78,2 %</td><td class="num">65,8 %</td><td class="num">54,4 %</td></tr>
+      <tr><td>Organizaciones</td><td class="num">30</td><td class="num">97</td><td class="num">96,7 %</td><td class="num">90,0 %</td><td class="num">29,9 %</td><td class="num">27,8 %</td></tr>
+      <tr><td>Direcciones</td><td class="num">23</td><td class="num">29</td><td class="num">73,9 %</td><td class="num">65,2 %</td><td class="num">58,6 %</td><td class="num">51,7 %</td></tr>
+      <tr><td>DNI, NIE, CIF, NSS</td><td class="num">55</td><td class="num">53</td><td class="num">96,4 %</td><td class="num">96,4 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>IBAN</td><td class="num">11</td><td class="num">10</td><td class="num">90,9 %</td><td class="num">90,9 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>Tarjetas</td><td class="num">2</td><td class="num">2</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>Teléfonos</td><td class="num">48</td><td class="num">44</td><td class="num">87,5 %</td><td class="num">87,5 %</td><td class="num">95,5 %</td><td class="num">95,5 %</td></tr>
+      <tr><td>Correos</td><td class="num">18</td><td class="num">18</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>Direcciones IP</td><td class="num">7</td><td class="num">10</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">70,0 %</td><td class="num">70,0 %</td></tr>
+      <tr><td>Fechas de nacimiento</td><td class="num">23</td><td class="num">20</td><td class="num">87,0 %</td><td class="num">87,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>Matrículas</td><td class="num">12</td><td class="num">12</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
+      <tr><td>Otros identificadores (no se buscan)</td><td class="num">65</td><td class="num">0</td><td class="num">0,0 %</td><td class="num">0,0 %</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="total"><td>Total de lo que se busca</td><td class="num">491</td><td class="num">672</td><td class="num">93,3 %</td><td class="num">83,7 %</td><td class="num">68,2 %</td><td class="num">61,2 %</td></tr>
+      <tr class="total"><td>Total con otros identificadores</td><td class="num">556</td><td class="num">672</td><td class="num">82,4 %</td><td class="num">73,9 %</td><td class="num">68,2 %</td><td class="num">61,2 %</td></tr>
     </tbody>
   </table>
 </div>
-<p class="note">«Cobertura» y «precisión» cuentan como acierto que el marcado se solape con el dato del mismo tipo; las columnas «exacta» exigen los mismos límites. Umbral del modelo 0,3 (sensibilidad «Alta»). 29 documentos, 230 datos. <strong>Las cifras son optimistas:</strong> los documentos los escribió el autor, son limpios y las decisiones (etiquetas del modelo, umbral, formatos de teléfono, búsqueda de formas cortas de los nombres) se tomaron viendo los fallos en este mismo conjunto. Con el modelo solo, sin esas búsquedas de repeticiones, la cobertura de nombres era del 94 %. En documentos reales, espera más fallos.</p>
+<h3 class="sub-h">MEDDOCAN (público)</h3>
+<p class="note">Corpus público de historias clínicas en español anotadas para anonimización (Marimon et al., 2019), escrito por otros. Se usan las 100 primeras historias de su partición de prueba. Sus tipos se agrupan en los de esta herramienta; las edades, el sexo, las profesiones y las fechas que no son de nacimiento no se cuentan. Total de lo que se busca: cobertura 94,6 %, precisión 67,5 %. Los 316 números de historia, de colegiado y de aseguramiento no se buscan y quedan a la vista: con ellos, la cobertura baja al 66,9 %.</p>
+<div class="table-wrap">
+  <table class="plain">
+    <thead><tr><th>Tipo</th><th class="num">Anotados</th><th class="num">Marcados</th><th class="num">Cobertura</th><th class="num">Cobertura exacta</th><th class="num">Precisión</th><th class="num">Precisión exacta</th></tr></thead>
+    <tbody>
+      <tr><td>Personas</td><td class="num">402</td><td class="num">624</td><td class="num">100,0 %</td><td class="num">80,6 %</td><td class="num">65,5 %</td><td class="num">51,9 %</td></tr>
+      <tr><td>Organizaciones</td><td class="num">69</td><td class="num">186</td><td class="num">88,4 %</td><td class="num">68,1 %</td><td class="num">31,7 %</td><td class="num">25,3 %</td></tr>
+      <tr><td>Direcciones</td><td class="num">173</td><td class="num">147</td><td class="num">82,7 %</td><td class="num">53,8 %</td><td class="num">97,3 %</td><td class="num">63,3 %</td></tr>
+      <tr><td>Teléfonos</td><td class="num">16</td><td class="num">18</td><td class="num">93,8 %</td><td class="num">93,8 %</td><td class="num">83,3 %</td><td class="num">83,3 %</td></tr>
+      <tr><td>Correos</td><td class="num">103</td><td class="num">102</td><td class="num">98,1 %</td><td class="num">98,1 %</td><td class="num">99,0 %</td><td class="num">99,0 %</td></tr>
+      <tr><td>Otros identificadores (no se buscan)</td><td class="num">316</td><td class="num">0</td><td class="num">0,0 %</td><td class="num">0,0 %</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="total"><td>Total de lo que se busca</td><td class="num">763</td><td class="num">1077</td><td class="num">94,6 %</td><td class="num">76,0 %</td><td class="num">67,5 %</td><td class="num">53,9 %</td></tr>
+      <tr class="total"><td>Total con otros identificadores</td><td class="num">1079</td><td class="num">1077</td><td class="num">66,9 %</td><td class="num">53,8 %</td><td class="num">67,5 %</td><td class="num">53,9 %</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">«Cobertura» y «precisión» cuentan como acierto que lo marcado se solape con el dato del mismo tipo; las columnas «exacta» exigen los mismos límites. Mismo código que la web, modelo int8w, umbral 0,3 (sensibilidad «Alta»). En el conjunto con el que se desarrolló la herramienta (29 documentos limpios escritos por el autor, 230 datos) salía un 99,6 % de cobertura y un 94,2 % de precisión: esas cifras eran optimistas, porque las decisiones se tomaron viendo sus fallos.</p>
 <h3 class="sub-h">Variantes del modelo</h3>
 <p class="note">Coincidencia de cada exportación ONNX con GLiNER original en Python (PyTorch) sobre las mismas 28 entradas de prueba: entidades con los mismos límites y tipo, y mayor diferencia de puntuación. El int8 publicado en Hugging Face cuantiza las activaciones de todas las multiplicaciones y la proyección de salida de las capas feed-forward no lo soporta; por eso la variante para WebAssembly se cuantiza aquí solo en los pesos (8 bits por bloques), con activaciones en fp32.</p>
 <div class="table-wrap">
@@ -40,4 +59,4 @@
     </tbody>
   </table>
 </div>
-<p class="note">Velocidad, solo orientativa: un documento de 187 palabras tarda unos 5–6 s con WebAssembly y 4 hilos en el servidor ARM (4 núcleos compartidos) donde se midió; una tarjeta gráfica debería ser bastante más rápida, pero la velocidad con WebGPU no se ha medido porque ese servidor no tiene GPU.</p>
+<p class="note">Velocidad, solo orientativa: 250 palabras tardan unos 10 s con WebAssembly y 4 hilos en el servidor ARM (4 núcleos compartidos y ocupados) donde se midió; una tarjeta gráfica debería ser bastante más rápida, pero la velocidad con WebGPU no se ha medido porque ese servidor no tiene GPU.</p>

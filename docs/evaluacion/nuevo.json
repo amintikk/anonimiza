@@ -1,0 +1,2371 @@
+{
+ "name": "web:gliner-pii-int8w.onnx/base · rules",
+ "gold": "tests/data/documentos-nuevo.json",
+ "th": 0.3,
+ "rows": {
+  "person": {
+   "gold": 262,
+   "pred": 377,
+   "tpR": 248,
+   "tpRx": 205,
+   "tpP": 248,
+   "tpPx": 205
+  },
+  "address": {
+   "gold": 23,
+   "pred": 29,
+   "tpR": 17,
+   "tpRx": 15,
+   "tpP": 17,
+   "tpPx": 15
+  },
+  "phone": {
+   "gold": 48,
+   "pred": 44,
+   "tpR": 42,
+   "tpRx": 42,
+   "tpP": 42,
+   "tpPx": 42
+  },
+  "org": {
+   "gold": 30,
+   "pred": 97,
+   "tpR": 29,
+   "tpRx": 27,
+   "tpP": 29,
+   "tpPx": 27
+  },
+  "iban": {
+   "gold": 11,
+   "pred": 10,
+   "tpR": 10,
+   "tpRx": 10,
+   "tpP": 10,
+   "tpPx": 10
+  },
+  "id": {
+   "gold": 55,
+   "pred": 53,
+   "tpR": 53,
+   "tpRx": 53,
+   "tpP": 53,
+   "tpPx": 53
+  },
+  "birthdate": {
+   "gold": 23,
+   "pred": 20,
+   "tpR": 20,
+   "tpRx": 20,
+   "tpP": 20,
+   "tpPx": 20
+  },
+  "email": {
+   "gold": 18,
+   "pred": 18,
+   "tpR": 18,
+   "tpRx": 18,
+   "tpP": 18,
+   "tpPx": 18
+  },
+  "otherid": {
+   "gold": 65,
+   "pred": 0,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 0,
+   "tpPx": 0
+  },
+  "plate": {
+   "gold": 12,
+   "pred": 12,
+   "tpR": 12,
+   "tpRx": 12,
+   "tpP": 12,
+   "tpPx": 12
+  },
+  "ip": {
+   "gold": 7,
+   "pred": 10,
+   "tpR": 7,
+   "tpRx": 7,
+   "tpP": 7,
+   "tpPx": 7
+  },
+  "card": {
+   "gold": 2,
+   "pred": 2,
+   "tpR": 2,
+   "tpRx": 2,
+   "tpP": 2,
+   "tpPx": 2
+  }
+ },
+ "total": {
+  "gold": 556,
+  "pred": 672,
+  "tpR": 458,
+  "tpRx": 411,
+  "tpP": 458,
+  "tpPx": 411
+ },
+ "chars": {
+  "gold": 7399,
+  "covered": 6011,
+  "anyCovered": 6519,
+  "pred": 8620,
+  "predOk": 6519
+ },
+ "errors": [
+  {
+   "doc": "whatsapp-cumple-sorpresa",
+   "type": "extra",
+   "kind": "org",
+   "text": "iglesia de san pedro"
+  },
+  {
+   "doc": "whatsapp-cumple-sorpresa",
+   "type": "extra",
+   "kind": "org",
+   "text": "grupo de la ofi"
+  },
+  {
+   "doc": "correo-alta-trabajadora",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avda. de la Constitución 45, 1º izq., 46009 València"
+  },
+  {
+   "doc": "pdf-nomina-columnas",
+   "type": "missed",
+   "kind": "person",
+   "text": "AMRANI, MOHA-\nMED"
+  },
+  {
+   "doc": "pdf-nomina-columnas",
+   "type": "extra",
+   "kind": "org",
+   "text": "AFIL. S.S."
+  },
+  {
+   "doc": "informe-urgencias-cefalea",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0048213"
+  },
+  {
+   "doc": "informe-urgencias-cefalea",
+   "type": "extra",
+   "kind": "person",
+   "text": "León"
+  },
+  {
+   "doc": "informe-urgencias-cefalea",
+   "type": "extra",
+   "kind": "person",
+   "text": "Dolores"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "9 de agosto de 1990"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "missed",
+   "kind": "address",
+   "text": "Avenida de la Sierra 23, portal 2, 3º A, 28400 Collado Villalba (Madrid)",
+   "as": "person"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "edad"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "edad"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "Sierra"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "Sierra"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "hijo menor de edad"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "Comunidad de Madrid"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "Instituto Nacional de Estadística"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "León"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "ARRENDADOR"
+  },
+  {
+   "doc": "contrato-arrendamiento-vivienda",
+   "type": "extra",
+   "kind": "person",
+   "text": "ARRENDATARIA"
+  },
+  {
+   "doc": "formulario-matricula-escuela",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "11/02/2021"
+  },
+  {
+   "doc": "formulario-matricula-escuela",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "GACS 21011400 9"
+  },
+  {
+   "doc": "formulario-matricula-escuela",
+   "type": "missed",
+   "kind": "person",
+   "text": "Antía"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "dieselero_77",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "RosaMotor",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "person",
+   "text": "Ramírez"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "dieselero_77",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "rosamotor",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "RosaMotor",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "dieselero_77"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "mi suegro"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "org",
+   "text": "Mercedes-Benz"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "RosaMotor"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "dieselero_77"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "rosamotor"
+  },
+  {
+   "doc": "foro-coches-itv",
+   "type": "extra",
+   "kind": "person",
+   "text": "RosaMotor"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jl.moreno",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jl.moreno",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jl.moreno",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jl.moreno",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "a.goikoetxea",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jl.moreno",
+   "as": "person"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "org",
+   "text": "soporte-n2"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "user=jl.moreno"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "user=jl.moreno"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "user=jl.moreno"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "user=jl.moreno"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "goikoetxea"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "person",
+   "text": "user=jl.moreno"
+  },
+  {
+   "doc": "log-soporte-accesos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Movistar"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ce ele cuatro siete dos dos uno"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "CL47221"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "missed",
+   "kind": "phone",
+   "text": "seis cuatro nueve doce treinta y cuatro cincuenta y seis"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "missed",
+   "kind": "phone",
+   "text": "6 1 7 0 8 9 2 4 3"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "extra",
+   "kind": "org",
+   "text": "clínica"
+  },
+  {
+   "doc": "buzon-voz-transcrito",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle mayor"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "org",
+   "text": "EUROPA PRESS"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "org",
+   "text": "Agencia Estatal de Meteorología"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "org",
+   "text": "Guardia Civil"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "org",
+   "text": "Diputación"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "address",
+   "text": "El Ejido"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "address",
+   "text": "Rosales"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "org",
+   "text": "Banco de España"
+  },
+  {
+   "doc": "noticia-temporal-leon",
+   "type": "extra",
+   "kind": "person",
+   "text": "Virgen de la Esperanza"
+  },
+  {
+   "doc": "receta-tarta-rosas",
+   "type": "extra",
+   "kind": "person",
+   "text": "abuela"
+  },
+  {
+   "doc": "receta-tarta-rosas",
+   "type": "extra",
+   "kind": "org",
+   "text": "La Pilarica"
+  },
+  {
+   "doc": "receta-tarta-rosas",
+   "type": "extra",
+   "kind": "address",
+   "text": "barrio del Pilar"
+  },
+  {
+   "doc": "instrucciones-router-sin-datos",
+   "type": "extra",
+   "kind": "ip",
+   "text": "192.168.1.1"
+  },
+  {
+   "doc": "instrucciones-router-sin-datos",
+   "type": "extra",
+   "kind": "person",
+   "text": "admin"
+  },
+  {
+   "doc": "instrucciones-router-sin-datos",
+   "type": "extra",
+   "kind": "ip",
+   "text": "192.168.1.33"
+  },
+  {
+   "doc": "instrucciones-router-sin-datos",
+   "type": "extra",
+   "kind": "ip",
+   "text": "192.168.1.199"
+  },
+  {
+   "doc": "correo-inmobiliaria-visita",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Delicias, 3 dormitorios"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "org",
+   "text": "Grupo: Padres 3ºB"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "person",
+   "text": "luz"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "person",
+   "text": "esperanza"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "org",
+   "text": "familia"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "person",
+   "text": "paz"
+  },
+  {
+   "doc": "whatsapp-padres-3b",
+   "type": "extra",
+   "kind": "org",
+   "text": "grupo"
+  },
+  {
+   "doc": "correo-farmacia-receta",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2026-11-0457"
+  },
+  {
+   "doc": "correo-farmacia-receta",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "CT PUFE 0710 5839 02"
+  },
+  {
+   "doc": "correo-farmacia-receta",
+   "type": "missed",
+   "kind": "person",
+   "text": "Rosa Pujol"
+  },
+  {
+   "doc": "correo-farmacia-receta",
+   "type": "missed",
+   "kind": "org",
+   "text": "Farmàcia Pujol"
+  },
+  {
+   "doc": "notificacion-multa-trafico",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "280459872311"
+  },
+  {
+   "doc": "notificacion-multa-trafico",
+   "type": "extra",
+   "kind": "org",
+   "text": "DIRECCIÓN GENERAL DE TRÁFICO - NOTIFICACIÓN DE DENUNCIA"
+  },
+  {
+   "doc": "correo-poliza-seguro-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0071-AU-5583120"
+  },
+  {
+   "doc": "correo-poliza-seguro-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0071-AU-5583120"
+  },
+  {
+   "doc": "correo-poliza-seguro-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "bcastro87"
+  },
+  {
+   "doc": "correo-poliza-seguro-coche",
+   "type": "extra",
+   "kind": "phone",
+   "text": "900 10 20 30"
+  },
+  {
+   "doc": "pdf-tabla-plantilla",
+   "type": "missed",
+   "kind": "phone",
+   "text": "631 77 8 90 21"
+  },
+  {
+   "doc": "pdf-tabla-plantilla",
+   "type": "missed",
+   "kind": "phone",
+   "text": "9 5 4 1 2 3 7 8 9"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "andrei_ro",
+   "as": "person"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "andrei_ro",
+   "as": "person"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "andrei_ro",
+   "as": "person"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "andrei_ro",
+   "as": "person"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "andrei_ro",
+   "as": "person"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "person",
+   "text": "andrei_ro"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "person",
+   "text": "andrei_ro"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "org",
+   "text": "carrefour"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "person",
+   "text": "andrei_ro"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "person",
+   "text": "andrei_ro"
+  },
+  {
+   "doc": "telegram-venta-coche",
+   "type": "extra",
+   "kind": "person",
+   "text": "andrei_ro"
+  },
+  {
+   "doc": "correo-colombia-homologacion",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "AV419027"
+  },
+  {
+   "doc": "correo-colombia-homologacion",
+   "type": "extra",
+   "kind": "org",
+   "text": "gestoria"
+  },
+  {
+   "doc": "correo-colombia-homologacion",
+   "type": "extra",
+   "kind": "org",
+   "text": "ministerio"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "lolaB_1979",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "MariLuz_cantabria",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "lolaB_1979",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "lolaB_1979",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "person",
+   "text": "lola"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "Moderador_Ángel",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "Pili_Leon",
+   "as": "person"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "lolaB_1979"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "dolores"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "MariLuz_cantabria"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "@lolaB_1979"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "lolaB_1979"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "Moderador_Ángel"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "person",
+   "text": "Pili_Leon"
+  },
+  {
+   "doc": "foro-salud-migranas",
+   "type": "extra",
+   "kind": "address",
+   "text": "León capital"
+  },
+  {
+   "doc": "nota-enfermeria-residencia",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "RES-0932"
+  },
+  {
+   "doc": "nota-enfermeria-residencia",
+   "type": "missed",
+   "kind": "person",
+   "text": "Amparo"
+  },
+  {
+   "doc": "carta-banco-tarjeta",
+   "type": "extra",
+   "kind": "org",
+   "text": "ELECTRO-ONLINE-SHOP"
+  },
+  {
+   "doc": "pedido-tienda-online",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "405-8812734-1190"
+  },
+  {
+   "doc": "pedido-tienda-online",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "0019823344",
+   "as": "phone"
+  },
+  {
+   "doc": "pedido-tienda-online",
+   "type": "extra",
+   "kind": "phone",
+   "text": "0019823344"
+  },
+  {
+   "doc": "pedido-tienda-online",
+   "type": "extra",
+   "kind": "address",
+   "text": "C/ Sant Antoni 4"
+  },
+  {
+   "doc": "pdf-curriculum-partido",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "48-1287702"
+  },
+  {
+   "doc": "pdf-curriculum-partido",
+   "type": "missed",
+   "kind": "phone",
+   "text": "6 4 4 - 0 1 9 - 2 3 7"
+  },
+  {
+   "doc": "whatsapp-taller-ramirez",
+   "type": "missed",
+   "kind": "person",
+   "text": "Ramírez"
+  },
+  {
+   "doc": "whatsapp-taller-ramirez",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "whatsapp-taller-ramirez",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "whatsapp-taller-ramirez",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "whatsapp-taller-ramirez",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "formulario-padron-familia",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Ronda de Toledo 9, esc. dcha., 1º 3, 28005 Madrid"
+  },
+  {
+   "doc": "formulario-padron-familia",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "EJ8823140"
+  },
+  {
+   "doc": "formulario-padron-familia",
+   "type": "missed",
+   "kind": "phone",
+   "text": "631 778 9021"
+  },
+  {
+   "doc": "formulario-padron-familia",
+   "type": "extra",
+   "kind": "org",
+   "text": "AYUNTAMIENTO"
+  },
+  {
+   "doc": "formulario-padron-familia",
+   "type": "extra",
+   "kind": "org",
+   "text": "CEIP Pío Baroja"
+  },
+  {
+   "doc": "denuncia-sustraccion-vehiculo",
+   "type": "missed",
+   "kind": "address",
+   "text": "Rúa do Hórreo 54, 2º esq., 15702 Santiago de Compostela"
+  },
+  {
+   "doc": "denuncia-sustraccion-vehiculo",
+   "type": "extra",
+   "kind": "org",
+   "text": "COMISARÍA DE SANTIAGO DE COMPOSTELA"
+  },
+  {
+   "doc": "denuncia-sustraccion-vehiculo",
+   "type": "extra",
+   "kind": "person",
+   "text": "instructor"
+  },
+  {
+   "doc": "denuncia-sustraccion-vehiculo",
+   "type": "extra",
+   "kind": "person",
+   "text": "instructor"
+  },
+  {
+   "doc": "acta-asociacion-vecinal",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "117"
+  },
+  {
+   "doc": "acta-asociacion-vecinal",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mercedes"
+  },
+  {
+   "doc": "boletin-notas-escola",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7531904426"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "missed",
+   "kind": "person",
+   "text": "AMPARO S.",
+   "as": "org"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "missed",
+   "kind": "person",
+   "text": "rosa"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "CORREOS"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "correos"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "BIZUM"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "AMPARO S. Concepto"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "Farmacia"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "person",
+   "text": "mama"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "person",
+   "text": "mama"
+  },
+  {
+   "doc": "sms-notificaciones-varias",
+   "type": "extra",
+   "kind": "org",
+   "text": "ENDESA"
+  },
+  {
+   "doc": "requerimiento-hacienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "AGENCIA TRIBUTARIA\nDelegación Especial de Andalucía"
+  },
+  {
+   "doc": "requerimiento-hacienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "Dependencia Regional de Gestión Tributaria"
+  },
+  {
+   "doc": "correo-alquiler-vacacional",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "054772913"
+  },
+  {
+   "doc": "correo-alquiler-vacacional",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "2 de febrero de 1988"
+  },
+  {
+   "doc": "correo-alquiler-vacacional",
+   "type": "missed",
+   "kind": "person",
+   "text": "rosa"
+  },
+  {
+   "doc": "correo-alquiler-vacacional",
+   "type": "extra",
+   "kind": "org",
+   "text": "apartamento de la playa"
+  },
+  {
+   "doc": "correo-alquiler-vacacional",
+   "type": "extra",
+   "kind": "org",
+   "text": "ayuntamiento"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "missed",
+   "kind": "id",
+   "text": "cuarenta y ocho, cinco nueve cuatro, cero cero siete, ka"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7700-218-554"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "org",
+   "text": "Teleoperadora Fibra Norte"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Cliente"
+  },
+  {
+   "doc": "transcripcion-llamada-soporte",
+   "type": "extra",
+   "kind": "person",
+   "text": "Agente"
+  },
+  {
+   "doc": "ficha-veterinaria",
+   "type": "missed",
+   "kind": "address",
+   "text": "C/ Mercedes Formica 8, 4ºA, 11402 Jerez de la Frontera"
+  },
+  {
+   "doc": "ficha-veterinaria",
+   "type": "missed",
+   "kind": "person",
+   "text": "Blanca"
+  },
+  {
+   "doc": "formulario-beca-comedor",
+   "type": "missed",
+   "kind": "iban",
+   "text": "ES73 2100 4417 7902\n                                            0013 9876"
+  },
+  {
+   "doc": "formulario-beca-comedor",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "BC-26-00731"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "org",
+   "text": "COMUNIDAD DE PROPIETARIOS"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "person",
+   "text": "presidente de la comunidad"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "person",
+   "text": "administrador de fincas colegiado"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "address",
+   "text": "plaza 14"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "person",
+   "text": "arquitecto"
+  },
+  {
+   "doc": "acta-junta-sin-nombres",
+   "type": "extra",
+   "kind": "person",
+   "text": "comunidad"
+  },
+  {
+   "doc": "texto-legal-generico",
+   "type": "extra",
+   "kind": "org",
+   "text": "Estado"
+  },
+  {
+   "doc": "texto-legal-generico",
+   "type": "extra",
+   "kind": "person",
+   "text": "médico"
+  },
+  {
+   "doc": "texto-legal-generico",
+   "type": "extra",
+   "kind": "org",
+   "text": "Boletín Oficial del Estado"
+  },
+  {
+   "doc": "ficha-producto-bicicleta",
+   "type": "extra",
+   "kind": "org",
+   "text": "MERCEDES-ROSA"
+  },
+  {
+   "doc": "ficha-producto-bicicleta",
+   "type": "extra",
+   "kind": "org",
+   "text": "rosa"
+  },
+  {
+   "doc": "ficha-producto-bicicleta",
+   "type": "extra",
+   "kind": "address",
+   "text": "barrio del Pilar"
+  },
+  {
+   "doc": "ficha-producto-bicicleta",
+   "type": "extra",
+   "kind": "org",
+   "text": "Mercedes"
+  },
+  {
+   "doc": "ficha-producto-bicicleta",
+   "type": "extra",
+   "kind": "org",
+   "text": "Rosa"
+  },
+  {
+   "doc": "newsletter-ayuntamiento-sin-datos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Luz de Gas"
+  },
+  {
+   "doc": "newsletter-ayuntamiento-sin-datos",
+   "type": "extra",
+   "kind": "org",
+   "text": "cofradía"
+  },
+  {
+   "doc": "newsletter-ayuntamiento-sin-datos",
+   "type": "extra",
+   "kind": "address",
+   "text": "avenida de Pilar Miró entre los números 2 y 40"
+  },
+  {
+   "doc": "newsletter-ayuntamiento-sin-datos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Oficina de Desarrollo Local"
+  },
+  {
+   "doc": "pdf-escritura-compraventa",
+   "type": "missed",
+   "kind": "address",
+   "text": "calle de Llovera nú-\nmero 19, 3º 1ª, 43201 Reus"
+  },
+  {
+   "doc": "pdf-escritura-compraventa",
+   "type": "missed",
+   "kind": "id",
+   "text": "39.871.402-\nM"
+  },
+  {
+   "doc": "pdf-escritura-compraventa",
+   "type": "extra",
+   "kind": "org",
+   "text": "Ilustre Colegio de Cataluña"
+  },
+  {
+   "doc": "pdf-escritura-compraventa",
+   "type": "extra",
+   "kind": "org",
+   "text": "URBANA"
+  },
+  {
+   "doc": "pdf-escritura-compraventa",
+   "type": "extra",
+   "kind": "org",
+   "text": "Urbana"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "burgalesa_de_toda_la_vida",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "PaqueteMan",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "burgalesa_de_toda_la_vida",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "leon_del_arlanzon",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "PaqueteMan",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "leon_del_arlanzon",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "nahia_burgos",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "burgalesa_de_toda_la_vida",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "PaqueteMan",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "RosaDeLosVientos",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "leon_del_arlanzon",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "person",
+   "text": "Consuelo"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "burgalesa_de_toda_la_vida",
+   "as": "person"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "Foro Vecinos de Gamonal"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "burgalesa_de_toda_la_vida"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "mi madre"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "chico"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "comunidad"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mi madre"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "Policía Nacional"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "PaqueteMan"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Madre"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Pablo Ricardo García"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "eléctrica"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "burgalesa_de_toda_la_vida"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Moderación_Gamonal"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "policía"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "leon_del_arlanzon"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mi mujer"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mercedes"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "PaqueteMan"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "policía"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "leon_del_arlanzon"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Ávila"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "nahia_burgos"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "comunidad"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "distribuidora"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "burgalesa_de_toda_la_vida"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "mi madre"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mi madre"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "chico"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "PaqueteMan"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "RosaDeLosVientos"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "comunidad"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Moderación_Gamonal"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "vecino"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "comunidad"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "distribuidora"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "leon_del_arlanzon"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "policía"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "chico"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mi mujer"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "burgalesa_de_toda_la_vida"
+  },
+  {
+   "doc": "foro-vecinos-estafa-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mi madre"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "2091174"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "26-H-0039814"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "151505872"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "Cardiología"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "paciente"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Dra"
+  },
+  {
+   "doc": "informe-clinico-neurologia-largo",
+   "type": "extra",
+   "kind": "org",
+   "text": "Cardiología"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "yesenia.q",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "dolores.ib",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jordi.p",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "person",
+   "text": "soledad",
+   "as": "org"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "dolores.ib",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "yesenia.q",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jordi.p",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "dolores.ib",
+   "as": "person"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "yesenia."
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "médico"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "dolores"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "rrhh"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "jordi"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "org",
+   "text": "soledad de sistemas"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "dolores"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "yesenia"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "jordi"
+  },
+  {
+   "doc": "slack-equipo-vacaciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "dolores"
+  },
+  {
+   "doc": "correo-tutoria-instituto",
+   "type": "missed",
+   "kind": "person",
+   "text": "amparo"
+  },
+  {
+   "doc": "correo-tutoria-instituto",
+   "type": "extra",
+   "kind": "org",
+   "text": "AMPA"
+  }
+ ],
+ "perDoc": [
+  {
+   "id": "whatsapp-cumple-sorpresa",
+   "gold": 21,
+   "tpR": 21,
+   "pred": 23,
+   "tpP": 21
+  },
+  {
+   "id": "telegram-fianza-piso",
+   "gold": 21,
+   "tpR": 21,
+   "pred": 21,
+   "tpP": 21
+  },
+  {
+   "id": "correo-alta-trabajadora",
+   "gold": 16,
+   "tpR": 15,
+   "pred": 15,
+   "tpP": 15
+  },
+  {
+   "id": "pdf-nomina-columnas",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "informe-urgencias-cefalea",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "contrato-arrendamiento-vivienda",
+   "gold": 21,
+   "tpR": 19,
+   "pred": 49,
+   "tpP": 19
+  },
+  {
+   "id": "formulario-matricula-escuela",
+   "gold": 15,
+   "tpR": 13,
+   "pred": 13,
+   "tpP": 13
+  },
+  {
+   "id": "foro-coches-itv",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 12,
+   "tpP": 5
+  },
+  {
+   "id": "log-soporte-accesos",
+   "gold": 13,
+   "tpR": 13,
+   "pred": 21,
+   "tpP": 13
+  },
+  {
+   "id": "buzon-voz-transcrito",
+   "gold": 7,
+   "tpR": 5,
+   "pred": 7,
+   "tpP": 5
+  },
+  {
+   "id": "noticia-temporal-leon",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 8,
+   "tpP": 0
+  },
+  {
+   "id": "receta-tarta-rosas",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 3,
+   "tpP": 0
+  },
+  {
+   "id": "instrucciones-router-sin-datos",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 4,
+   "tpP": 0
+  },
+  {
+   "id": "correo-inmobiliaria-visita",
+   "gold": 13,
+   "tpR": 13,
+   "pred": 14,
+   "tpP": 13
+  },
+  {
+   "id": "carta-despido-disciplinario",
+   "gold": 11,
+   "tpR": 11,
+   "pred": 11,
+   "tpP": 11
+  },
+  {
+   "id": "whatsapp-padres-3b",
+   "gold": 25,
+   "tpR": 25,
+   "pred": 31,
+   "tpP": 25
+  },
+  {
+   "id": "correo-farmacia-receta",
+   "gold": 7,
+   "tpR": 5,
+   "pred": 5,
+   "tpP": 5
+  },
+  {
+   "id": "notificacion-multa-trafico",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "correo-poliza-seguro-coche",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "pdf-tabla-plantilla",
+   "gold": 25,
+   "tpR": 23,
+   "pred": 23,
+   "tpP": 23
+  },
+  {
+   "id": "telegram-venta-coche",
+   "gold": 14,
+   "tpR": 14,
+   "pred": 20,
+   "tpP": 14
+  },
+  {
+   "id": "correo-colombia-homologacion",
+   "gold": 14,
+   "tpR": 14,
+   "pred": 16,
+   "tpP": 14
+  },
+  {
+   "id": "foro-salud-migranas",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 14,
+   "tpP": 6
+  },
+  {
+   "id": "nota-enfermeria-residencia",
+   "gold": 11,
+   "tpR": 10,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "carta-banco-tarjeta",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 6,
+   "tpP": 5
+  },
+  {
+   "id": "pedido-tienda-online",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 7,
+   "tpP": 5
+  },
+  {
+   "id": "pdf-curriculum-partido",
+   "gold": 10,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "whatsapp-taller-ramirez",
+   "gold": 15,
+   "tpR": 14,
+   "pred": 18,
+   "tpP": 14
+  },
+  {
+   "id": "formulario-padron-familia",
+   "gold": 13,
+   "tpR": 11,
+   "pred": 13,
+   "tpP": 11
+  },
+  {
+   "id": "denuncia-sustraccion-vehiculo",
+   "gold": 11,
+   "tpR": 10,
+   "pred": 13,
+   "tpP": 10
+  },
+  {
+   "id": "acta-asociacion-vecinal",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "boletin-notas-escola",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "sms-notificaciones-varias",
+   "gold": 8,
+   "tpR": 6,
+   "pred": 14,
+   "tpP": 6
+  },
+  {
+   "id": "requerimiento-hacienda",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 8
+  },
+  {
+   "id": "correo-alquiler-vacacional",
+   "gold": 15,
+   "tpR": 13,
+   "pred": 15,
+   "tpP": 13
+  },
+  {
+   "id": "transcripcion-llamada-soporte",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 21,
+   "tpP": 7
+  },
+  {
+   "id": "ficha-veterinaria",
+   "gold": 6,
+   "tpR": 4,
+   "pred": 4,
+   "tpP": 4
+  },
+  {
+   "id": "formulario-beca-comedor",
+   "gold": 10,
+   "tpR": 9,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "acta-junta-sin-nombres",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 6,
+   "tpP": 0
+  },
+  {
+   "id": "texto-legal-generico",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 3,
+   "tpP": 0
+  },
+  {
+   "id": "ficha-producto-bicicleta",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 5,
+   "tpP": 0
+  },
+  {
+   "id": "newsletter-ayuntamiento-sin-datos",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 4,
+   "tpP": 0
+  },
+  {
+   "id": "pdf-escritura-compraventa",
+   "gold": 28,
+   "tpR": 26,
+   "pred": 29,
+   "tpP": 26
+  },
+  {
+   "id": "foro-vecinos-estafa-largo",
+   "gold": 19,
+   "tpR": 18,
+   "pred": 59,
+   "tpP": 18
+  },
+  {
+   "id": "informe-clinico-neurologia-largo",
+   "gold": 16,
+   "tpR": 16,
+   "pred": 26,
+   "tpP": 16
+  },
+  {
+   "id": "slack-equipo-vacaciones",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 17,
+   "tpP": 7
+  },
+  {
+   "id": "correo-tutoria-instituto",
+   "gold": 12,
+   "tpR": 11,
+   "pred": 12,
+   "tpP": 11
+  }
+ ],
+ "seconds": 361.8,
+ "words": 15813,
+ "docs": 47
+}

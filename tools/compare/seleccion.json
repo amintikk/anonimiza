@@ -1,0 +1,13 @@
+{
+  "_note": "Configuración elegida en el conjunto antiguo (tests/data/documentos.json) antes de ejecutar los modelos sobre el conjunto nuevo y MEDDOCAN. Criterio: máximo F2 con solape (la cobertura pesa el doble que la precisión); con empate, el umbral más bajo. Barrido de umbrales 0,1–0,9 y juegos de etiquetas de tools/compare/predict.py.",
+  "modelo_con_reglas": {
+    "gliner_multi_pii-v1": { "labelset": "full", "threshold": 0.6, "mode": "rules", "F2_antiguo": 98.7 },
+    "gliner2-privacy-filter-PII-multi": { "labelset": "native", "threshold": 0.6, "mode": "rules", "F2_antiguo": 96.9 }
+  },
+  "modelo_solo": {
+    "gliner_multi_pii-v1": { "labelset": "full", "threshold": 0.1, "mode": "model", "F2_antiguo": 87.0 },
+    "gliner2-privacy-filter-PII-multi": { "labelset": "full", "threshold": 0.2, "mode": "model", "F2_antiguo": 91.2 }
+  },
+  "produccion_actual": { "gliner_multi_pii-v1": { "labelset": "base", "threshold": 0.3, "mode": "rules", "F2_antiguo": 98.5 } },
+  "meddocan": "las 100 primeras historias del test por orden de nombre de archivo (para limitar el tiempo de CPU)"
+}

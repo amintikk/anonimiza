@@ -3,7 +3,7 @@ import '../styles/tokens.css';
 import './app.css';
 import { ACCEPT, extractText } from '../docs/extract.ts';
 import { CancelError, Engine } from '../engine/client.ts';
-import { applyMarkers, assignMarkers, buildDetections, KINDS, restore, type Assignment, type Detection, type Kind } from '../engine/anonymize.ts';
+import { applyMarkers, assignMarkers, buildDetections, dotEndsSentence, KINDS, restore, type Assignment, type Detection, type Kind } from '../engine/anonymize.ts';
 import type { EntitySpan } from '../engine/gliner.ts';
 import { downloadSize, modelFor } from '../engine/models.ts';
 import type { Backend } from '../engine/protocol.ts';
@@ -23,11 +23,11 @@ import { SAMPLE } from './sample.ts';
 type Family = 'person' | 'org' | 'address' | 'id' | 'money' | 'contact' | 'other';
 const FAMILY: Record<Kind, Family> = {
   person: 'person', org: 'org', address: 'address', dni: 'id', nie: 'id', cif: 'id', nss: 'id',
-  iban: 'money', card: 'money', phone: 'contact', email: 'contact', ip: 'contact', other: 'other',
+  iban: 'money', card: 'money', phone: 'contact', email: 'contact', ip: 'contact', birthdate: 'id', plate: 'id', other: 'other',
 };
 const KIND_ICON: Record<Kind, IconName> = {
   person: 'user', org: 'building', address: 'mapPin', dni: 'idCard', nie: 'idCard', cif: 'idCard', nss: 'idCard',
-  iban: 'bank', card: 'card', phone: 'phone', email: 'mail', ip: 'network', other: 'tag',
+  iban: 'bank', card: 'card', phone: 'phone', email: 'mail', ip: 'network', birthdate: 'calendar', plate: 'car', other: 'tag',
 };
 const kindLabel = (k: Kind, plural = false): string =>
   ({
@@ -43,10 +43,15 @@ const kindLabel = (k: Kind, plural = false): string =>
     phone: plural ? t('Teléfonos') : t('Teléfono'),
     email: plural ? t('Correos') : t('Correo'),
     ip: plural ? t('Direcciones IP') : t('Dirección IP'),
+    birthdate: plural ? t('Fechas de nacimiento') : t('Fecha de nacimiento'),
+    plate: plural ? t('Matrículas') : t('Matrícula'),
     other: plural ? t('Otros datos') : t('Otro dato'),
   })[k];
 /** Kinds offered when adding by hand. */
-const MANUAL_KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'phone', 'email', 'iban', 'other'];
+const MANUAL_KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'phone', 'email', 'iban', 'birthdate', 'plate', 'other'];
+
+/** Why a detection is doubtful (right format, wrong check digit). */
+const doubtNote = (k: Kind): string => (k === 'iban' ? t('Dígitos de control incorrectos: puede estar mal copiado. Compruébalo.') : k === 'card' ? t('No pasa la comprobación de tarjeta: puede estar mal copiada. Compruébalo.') : t('Letra de control incorrecta: puede estar mal copiado. Compruébalo.'));
 
 const THRESHOLD: Record<NonNullable<Settings['sensitivity']>, number> = { high: 0.3, medium: 0.45, low: 0.6 };
 
@@ -484,7 +489,7 @@ function setMode(mode: 'edit' | 'review'): void {
   $('foot-edit').hidden = reviewing;
   $('foot-review').hidden = !reviewing;
   $('mode-switch').hidden = !reviewing;
-  $('main-title').textContent = reviewing ? t('Revisión') : t('Texto original');
+  $('main-title').textContent = !reviewing ? t('Texto original') : st.view === 'out' ? t('Resultado') : t('Revisión');
   $('side-empty').hidden = reviewing;
   $('found').hidden = !reviewing;
   if (!reviewing) {
@@ -504,7 +509,10 @@ function setView(v: 'orig' | 'out'): void {
   $('mode-out').setAttribute('aria-selected', String(v === 'out'));
   $('select-hint').hidden = v !== 'orig';
   review.classList.toggle('out', v === 'out');
-  if (st.mode === 'review') renderReview();
+  if (st.mode === 'review') {
+    $('main-title').textContent = v === 'out' ? t('Resultado') : t('Revisión');
+    renderReview();
+  }
 }
 $('mode-orig').addEventListener('click', () => setView('orig'));
 $('mode-out').addEventListener('click', () => setView('out'));
@@ -525,12 +533,13 @@ function renderReview(): void {
     const fam = FAMILY[d.kind];
     if (st.view === 'out') {
       frag.append(d.on ? h('span', { class: `mk k-${fam}`, 'data-id': d.id }, marker) : text.slice(d.start, d.end));
+      if (d.on && dotEndsSentence(text, d)) frag.append('.');
     } else {
       frag.append(
         h('mark', {
-          class: `m k-${fam}${d.on ? '' : ' off'}`,
+          class: `m k-${fam}${d.on ? '' : ' off'}${d.doubtful ? ' doubtful' : ''}`,
           'data-id': d.id,
-          title: `${kindLabel(d.kind)} · ${marker} · ${d.on ? t('clic para no sustituir') : t('clic para sustituir')}`,
+          title: `${kindLabel(d.kind)} · ${marker} · ${d.on ? t('clic para no sustituir') : t('clic para sustituir')}${d.doubtful ? `\n${doubtNote(d.kind)}` : ''}`,
         }, text.slice(d.start, d.end)),
       );
     }
@@ -601,7 +610,9 @@ function renderGroups(): void {
       }, h('span', { class: 'sw-knob' }));
       const row = h('div', { class: `row${anyOn ? '' : ' is-off'}`, role: 'button', tabindex: 0, title: t('Ver en el texto') },
         sw,
-        h('span', { class: 'row-val' }, value),
+        ds.some((d) => d.doubtful)
+          ? h('span', { class: 'row-val', title: doubtNote(kind) }, h('span', { class: 'doubt-ico', 'aria-label': t('Dudoso') }, icon('alert', 14)), value)
+          : h('span', { class: 'row-val' }, value),
         h('code', { class: `chip k-${FAMILY[kind]}` }, marker),
         ds.length > 1 ? h('span', { class: 'row-n' }, `×${ds.length}`) : null,
       );

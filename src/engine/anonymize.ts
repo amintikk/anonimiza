@@ -7,15 +7,15 @@ export type Kind = 'person' | 'org' | 'address' | RuleKind | 'other';
 export type Source = 'rule' | 'model' | 'repeat' | 'manual';
 
 /** Display and marker order. */
-export const KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'email', 'ip', 'other'];
+export const KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'email', 'ip', 'birthdate', 'plate', 'other'];
 
 export const MARKER_NAMES: Record<'es' | 'en', Record<Kind, string>> = {
-  es: { person: 'PERSONA', org: 'ORGANIZACION', address: 'DIRECCION', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'NSS', iban: 'IBAN', card: 'TARJETA', phone: 'TELEFONO', email: 'EMAIL', ip: 'IP', other: 'DATO' },
-  en: { person: 'PERSON', org: 'ORGANIZATION', address: 'ADDRESS', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'SSN', iban: 'IBAN', card: 'CARD', phone: 'PHONE', email: 'EMAIL', ip: 'IP', other: 'OTHER' },
+  es: { person: 'PERSONA', org: 'ORGANIZACION', address: 'DIRECCION', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'NSS', iban: 'IBAN', card: 'TARJETA', phone: 'TELEFONO', email: 'EMAIL', ip: 'IP', birthdate: 'FECHA_NACIMIENTO', plate: 'MATRICULA', other: 'DATO' },
+  en: { person: 'PERSON', org: 'ORGANIZATION', address: 'ADDRESS', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'SSN', iban: 'IBAN', card: 'CARD', phone: 'PHONE', email: 'EMAIL', ip: 'IP', birthdate: 'BIRTH_DATE', plate: 'PLATE', other: 'OTHER' },
 };
 
 const FROM_MODEL: Record<ModelLabel, Kind> = { person: 'person', organization: 'org', address: 'address' };
-const STRUCTURED = new Set<Kind>(['dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'ip']);
+const STRUCTURED = new Set<Kind>(['dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'ip', 'birthdate', 'plate']);
 
 export interface Detection {
   id: number;
@@ -24,6 +24,8 @@ export interface Detection {
   kind: Kind;
   source: Source;
   score?: number;
+  /** Right format but wrong check digit (a mistyped DNI, for instance): shown as doubtful in the review. */
+  doubtful?: boolean;
   on: boolean;
 }
 
@@ -45,11 +47,44 @@ function occurrences(text: string, value: string, flags = 'i'): { start: number;
   return [...text.matchAll(re)].map((m) => ({ start: m.index, end: m.index + m[0].length }));
 }
 
-const PARTICLES = new Set(['de', 'del', 'la', 'las', 'los', 'y', 'i', 'e', 'da', 'do', 'dos', 'van', 'von', 'di', 'le']);
+const PARTICLES = new Set(['de', 'del', 'la', 'las', 'los', 'y', 'i', 'e', 'da', 'do', 'dos', 'das', 'van', 'von', 'di', 'le', 'el', 'al', 'ben', 'bin', 'abu']);
+
+/**
+ * Names and surnames that are also ordinary words. A part of a name in this list is searched only with
+ * the capital it had ("Rosa", "Pilar"), so "rosa" the colour or "dolores de cabeza" stay as they are;
+ * any other part is searched regardless of case ("etxeberria", "youssef").
+ */
+const COMMON_WORDS = new Set(`
+  rosa ángel angel pilar dolores luz rocío rocio amparo consuelo mercedes esperanza blanca soledad paz león leon
+  leal moreno rey prieto cordero sierra campo campos iglesias iglesia sol mar cruz flores flor castillo santos
+  pastor guerra vega rico bueno nieto serrano romero gallego cano marín marin domingo lozano garrido caballero
+  mora montes peña pena cabello duro bravo toro ramos fuentes fuente medina calvo delgado blanco rubio
+  herrero molina vidal soler sanz salvador manzano olivo olivares parra lobo cuesta navarro aguilar gil moral
+  pardo rojo rojas castaño palomo palomares conde duque obispo abad marqués marques príncipe principe infante
+  piña nuevo viejo alegre benito bello bonito hermoso grande pequeño pequeno largo corto valiente franco
+  justo clemente inocencio prudencio victoria gloria aurora alba estrella paloma azucena violeta margarita
+  azul celeste milagros asunción asuncion concepción concepcion encarnación encarnacion purificación remedios
+  socorro angustias trinidad rosario reyes nieves montserrat fe caridad jesús jesus
+  salud ventura fortuna feliz dulce inmaculada candela lucero cielo río rio rivera ribera rivas riba arroyo
+  lago laguna ríos mata matas monte montaña pinto pinos pino roble robles nogales olmo olmos fresno espino
+  zarza rama ramas hoja viña vinas huerta huertas prado prados llano vallejo valle valles torre torres
+  muro muros puerta puertas casas casa palacio palacios villa villar ciudad puente puentes calle plaza
+  mayor menor rueda ruedas cuerda cuerdas barco barca nave naves molinos molino cabrera vaquero pastora
+  herrera hierro plata oro cobre piedra piedras arenas arena tierra tierras campillo campos llamas fuego
+  hoyos hoyo cueva cuevas lomas loma cerro cerros cabeza pinilla caña cañas vara varas sevilla toledo
+  granada valencia león burgos soria murcia alicante cuenca segovia zamora ávila avila lugo navarra
+  aragón aragon castilla galicia asturias cantabria andalucía andalucia mallorca menorca ibiza canarias
+  madrid barcelona bilbao vitoria oviedo girona lleida tarragona tortosa
+  amor gracia gracias cortés cortes leyva lirio jardín jardin martes lunes viernes sábado sabado enero
+  mayo junio julio agosto abril marzo
+  verde negro moreno pardo gordo calvo rubio delgado rizo tejero zapatero carpintero pintor cantero
+  sastre ferrero ferrer herrador molinero panadero vaquero cabrero ovejero porquero guardia soldado
+  cid cano rey reina conde príncipe papa
+`.trim().split(/\s+/));
 
 /**
  * Shorter forms of a full name that still point to the person: first name + first surname, and each
- * capitalised word on its own (matched case-sensitively, so "Rosa" the name is not "rosa" the colour).
+ * word on its own (common words only with their capital, so "Rosa" the name is not "rosa" the colour).
  */
 export function nameParts(name: string): string[] {
   const words = name.trim().split(/\s+/);
@@ -58,23 +93,28 @@ export function nameParts(name: string): string[] {
   if (words.length >= 3 && !PARTICLES.has(words[1]!.toLowerCase())) out.add(`${words[0]} ${words[1]}`);
   for (const w of words) {
     const clean = w.replace(/[.,;:]+$/, '');
-    if (clean.length >= 3 && /^\p{Lu}\p{Ll}/u.test(clean) && !PARTICLES.has(clean.toLowerCase())) out.add(clean);
+    if (clean.length < 3 || !/^\p{L}[\p{L}'’-]*$/u.test(clean) || PARTICLES.has(clean.toLowerCase())) continue;
+    // A common word written in lower case inside the name gives nothing safe to search for.
+    if (isCommonWord(clean) && !/^\p{Lu}/u.test(clean)) continue;
+    out.add(clean);
   }
   return [...out];
 }
+
+export const isCommonWord = (w: string) => COMMON_WORDS.has(w.toLocaleLowerCase('es'));
 
 /** Merge rule matches and model entities, then extend every value to all its occurrences. */
 export function buildDetections(text: string, rules: RuleMatch[], entities: EntitySpan[], manual: { start: number; end: number; kind: Kind }[] = []): Detection[] {
   let id = 0;
   const dets: Detection[] = [];
-  const add = (start: number, end: number, kind: Kind, source: Source, score?: number) => {
+  const add = (start: number, end: number, kind: Kind, source: Source, score?: number, doubtful?: boolean) => {
     if (end <= start || dets.some((d) => overlaps(d, { start, end }))) return false;
-    dets.push({ id: ++id, start, end, kind, source, score, on: true });
+    dets.push({ id: ++id, start, end, kind, source, score, on: true, ...(doubtful ? { doubtful } : {}) });
     return true;
   };
   // Manual choices first: the user's word beats any automatic guess.
   for (const m of manual) add(m.start, m.end, m.kind, 'manual');
-  for (const r of rules) add(r.start, r.end, r.kind, 'rule');
+  for (const r of rules) add(r.start, r.end, r.kind, 'rule', undefined, r.doubtful);
   for (const e of entities) {
     // Trim punctuation the model sometimes keeps at the edges.
     let { start, end } = e;
@@ -88,11 +128,13 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     if (value.trim().length < 2) continue;
     for (const o of occurrences(text, value)) add(o.start, o.end, d.kind, 'repeat');
   }
-  // People are often mentioned again by part of their name: "Javier Molina Ortega" → "Javier Molina", "Sr. Molina", "Javier".
+  // People are often mentioned again by part of their name, even in lower case: "Javier Molina Ortega" →
+  // "Javier Molina", "Sr. Molina", "javier". Parts that are ordinary words keep their capital.
   for (const d of [...dets]) {
     if (d.kind !== 'person' || d.source === 'repeat') continue;
     for (const v of nameParts(text.slice(d.start, d.end))) {
-      for (const o of occurrences(text, v, v.includes(' ') ? 'i' : '')) add(o.start, o.end, 'person', 'repeat');
+      const exact = !v.includes(' ') && isCommonWord(v);
+      for (const o of occurrences(text, v, exact ? '' : 'i')) add(o.start, o.end, 'person', 'repeat');
     }
   }
   return dets.sort((a, b) => a.start - b.start);
@@ -155,12 +197,22 @@ function containsRun(hay: string[], needle: string[]): boolean {
   return false;
 }
 
+/**
+ * True when a value ending in a dot ("S.L.", "Sra.") also closes the sentence: end of text, end of line,
+ * or a capital after the space. The marker then keeps that full stop after it.
+ */
+export function dotEndsSentence(text: string, d: { end: number }): boolean {
+  if (text[d.end - 1] !== '.' || text[d.end - 2] === '.') return false;
+  const after = text.slice(d.end, d.end + 3);
+  return after === '' || /^\s*(?:\n|$)|^ +["«(]?\p{Lu}/u.test(after);
+}
+
 /** Replace every active detection by its marker. */
 export function applyMarkers(text: string, dets: Detection[], byId: Map<number, string>): string {
   let out = '';
   let pos = 0;
   for (const d of [...dets].filter((x) => x.on).sort((a, b) => a.start - b.start)) {
-    out += text.slice(pos, d.start) + byId.get(d.id)!;
+    out += text.slice(pos, d.start) + byId.get(d.id)! + (dotEndsSentence(text, d) ? '.' : '');
     pos = d.end;
   }
   return out + text.slice(pos);
@@ -185,18 +237,28 @@ export function restore(text: string, table: Map<string, string>): Restored {
   const used = new Set<string>();
   const unknown = new Set<string>();
   let replaced = 0;
-  const re = /\[\s*([\p{L}]+)[ _-]?(\d+)\s*\]|(?<![\p{L}\p{N}_])([\p{L}]+)_(\d+)(?![\p{L}\p{N}_])/gu;
-  const out = text.replace(re, (all, a?: string, an?: string, b?: string, bn?: string) => {
-    const name = `${(a ?? b)!.toUpperCase()}_${an ?? bn}`;
+  // Marker names may contain underscores themselves (FECHA_NACIMIENTO_1).
+  const re = /\[\s*(\p{L}+(?:[ _]\p{L}+)*)[ _-]?(\d+)\s*\]|(?<![\p{L}\p{N}_])(\p{L}+(?:_\p{L}+)*)_(\d+)(?![\p{L}\p{N}_])/gu;
+  let out = '';
+  let pos = 0;
+  for (const m of text.matchAll(re)) {
+    const [all, a, an, b, bn] = m;
+    const name = `${(a ?? b)!.toUpperCase().replace(/ /g, '_')}_${an ?? bn}`;
     const v = byName.get(name);
+    out += text.slice(pos, m.index);
+    pos = m.index + all.length;
     if (v === undefined) {
       if (a) unknown.add(all);
-      return all;
+      out += all;
+      continue;
     }
     used.add(name);
     replaced++;
-    return v;
-  });
+    out += v;
+    // "S.L." restored before the full stop the marker kept: one dot is enough.
+    if (v.endsWith('.') && text[pos] === '.' && text[pos + 1] !== '.') pos++;
+  }
+  out += text.slice(pos);
   const unused = [...table.keys()].filter((m) => !used.has(m.slice(1, -1).toUpperCase()));
   return { text: out, replaced, unknown: [...unknown], unused };
 }

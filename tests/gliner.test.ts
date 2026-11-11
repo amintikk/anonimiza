@@ -82,3 +82,20 @@ test('entities match Python GLiNER', { skip: !(haveModels && existsSync(join(dir
   }
   assert.ok(same / total >= minAgree, `${same}/${total} entities agree within ${tolerance}`);
 });
+
+test('review case end to end: nothing it should hide is left', { skip: !(haveModels && existsSync(join(dir!, 'gliner-pii-int8w.onnx'))) && 'set ANONIMIZA_MODELS (with gliner-pii-int8w.onnx) to run', timeout: 300_000 }, async () => {
+  const ort = await import('onnxruntime-node');
+  const { Tokenizer } = await import('@huggingface/tokenizers');
+  const { findRules } = await import('../src/engine/rules.ts');
+  const { buildDetections, assignMarkers, applyMarkers } = await import('../src/engine/anonymize.ts');
+  const tk = new Tokenizer(JSON.parse(readFileSync(join(dir!, 'tokenizer.json'), 'utf8')), JSON.parse(readFileSync(join(dir!, 'tokenizer_config.json'), 'utf8')));
+  const tokenize = (w: string) => tk.encode(w, { add_special_tokens: false }).ids;
+  const session = (await ort.InferenceSession.create(join(dir!, 'gliner-pii-int8w.onnx'))) as unknown as OrtSession;
+  const text = readFileSync(new URL('./data/caso-revision.txt', import.meta.url), 'utf8');
+  const ents = await detect(ort as unknown as OrtLike, session, tokenize, text, { threshold: 0.3 });
+  const dets = buildDetections(text, findRules(text), ents);
+  const out = applyMarkers(text, dets, assignMarkers(text, dets, 'es').byId);
+  const leaks = ['Montse', 'Nahia', 'Etxeberria', 'etxeberria', 'Uriarte', '14/03/1987', '48213907L', 'Major', '43500', 'Youssef', 'youssef', 'Idrissi',
+    'X1234567L', '71530264K', 'Puig', 'Ferrer', 'ES91', 'Ebre', 'nahia.etxe87', '612 34 56 78', '977 44 12 03', '4821 KLM', 'Jordi'].filter((s) => out.includes(s));
+  assert.deepEqual(leaks, [], out);
+});

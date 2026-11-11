@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { applyMarkers, assignMarkers, buildDetections, nameParts, restore } from '../src/engine/anonymize.ts';
 import { findRules } from '../src/engine/rules.ts';
@@ -56,5 +57,41 @@ test('round trip: anonymise then restore gives the original back', () => {
 test('name parts', () => {
   assert.deepEqual(nameParts('Javier Molina Ortega'), ['Javier Molina', 'Javier', 'Molina', 'Ortega']);
   assert.deepEqual(nameParts('María de la Fuente'), ['María', 'Fuente']);
+  assert.deepEqual(nameParts('youssef el idrissi'), ['youssef', 'idrissi']);
+  assert.deepEqual(nameParts('rosa ortega'), ['ortega']);
   assert.deepEqual(nameParts('Ana'), []);
+});
+
+test('review case: lower-case repetitions, doubtful DNI, birth date, plate, full stop after S.L.', () => {
+  const text = readFileSync(new URL('./data/caso-revision.txt', import.meta.url), 'utf8');
+  // What the model found in production (names, organisations, address); the rest must come from the rules and repetitions.
+  const ents = [
+    ent(text, 'Montse', 'person'), ent(text, 'Nahia Etxeberria Uriarte', 'person'), ent(text, 'Youssef El Idrissi', 'person'),
+    ent(text, 'Puig i Ferrer', 'person'), ent(text, 'Jordi', 'person'), ent(text, 'Hospital Verge de la Cinta', 'organization'),
+    ent(text, 'Construcciones Ebre Sud, S.L.', 'organization'), ent(text, 'calle Major, 12, 2n 1a, 43500 Tortosa', 'address'),
+  ];
+  const dets = buildDetections(text, findRules(text), ents);
+  const a = assignMarkers(text, dets, 'es');
+  const out = applyMarkers(text, dets, a.byId);
+  for (const leak of ['etxeberria', 'youssef', '71530264K', '14/03/1987', '4821 KLM', 'Tortosa', 'nahia', 'X1234567L', '977 44 12 03']) {
+    assert.ok(!out.toLowerCase().includes(leak.toLowerCase()), `${leak} leaked`);
+  }
+  assert.match(out, /la sra\. \[PERSONA_2\] no le gusta/);
+  assert.match(out, /hablad con \[PERSONA_3\]\./);
+  assert.match(out, /de \[ORGANIZACION_2\]\.\n\nContacto/);
+  assert.match(out, /nacida el \[FECHA_NACIMIENTO_1\]/);
+  assert.match(out, /el \[MATRICULA_1\] y el expediente es el 2024\/00871/); // the case number is not covered
+  assert.ok(dets.find((d) => text.slice(d.start, d.end) === '71530264K')?.doubtful);
+  // Short forms share the marker of the full name, so they come back as the full name.
+  const back = restore(out, a.table);
+  assert.deepEqual(back.unknown, []);
+  assert.match(back.text, /de Construcciones Ebre Sud, S\.L\.\n\nContacto/);
+  assert.match(back.text, /hablad con Youssef El Idrissi\./);
+});
+
+test('name parts that are ordinary words keep their capital', () => {
+  const text = 'Rosa Pilar Ortega tiene dolores; rosa y pilar no son ella, pero Rosa sí, y ortega también.';
+  const dets = buildDetections(text, [], [ent(text, 'Rosa Pilar Ortega', 'person')]);
+  const marked = dets.map((d) => text.slice(d.start, d.end));
+  assert.deepEqual(marked, ['Rosa Pilar Ortega', 'Rosa', 'ortega']);
 });

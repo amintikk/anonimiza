@@ -71,7 +71,7 @@
           <ol class="numbered">
             <li>
               <h3>Detecta</h3>
-              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social) se buscan con reglas y se comprueba su dígito de control. Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
+              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social, matrículas) se buscan con reglas y se comprueba su dígito de control; las fechas de nacimiento, por las palabras que las anuncian («nacida el», «F. nac.»). Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
             </li>
             <li>
               <h3>Revisa y sustituye</h3>
@@ -88,21 +88,23 @@
       <section class="block" id="que-detecta">
         <div class="wrap">
           <h2>Qué detecta y cómo</h2>
-          <p class="intro">Las reglas son deterministas y descartan números cuyo dígito de control no cuadra. El modelo es probabilístico: acierta mucho, pero no siempre.</p>
+          <p class="intro">Las reglas son deterministas. Un DNI, NIE o IBAN con el formato correcto pero el control mal se marca igualmente como dudoso, por si está mal copiado; otros números que no cuadran se descartan. El modelo es probabilístico: acierta mucho, pero no siempre.</p>
           <div class="table-wrap">
             <table class="plain">
               <thead><tr><th>Dato</th><th>Método</th><th>Marcador</th></tr></thead>
               <tbody>
-                <tr><td>Nombres de personas</td><td>Modelo GLiNER, más sus repeticiones y formas cortas («Sr. Molina»)</td><td><code>[PERSONA_n]</code></td></tr>
+                <tr><td>Nombres de personas</td><td>Modelo GLiNER, más sus repeticiones y formas cortas, también en minúscula («Sr. Molina», «javier»)</td><td><code>[PERSONA_n]</code></td></tr>
                 <tr><td>Empresas y organizaciones</td><td>Modelo GLiNER</td><td><code>[ORGANIZACION_n]</code></td></tr>
                 <tr><td>Direcciones postales</td><td>Modelo GLiNER</td><td><code>[DIRECCION_n]</code></td></tr>
-                <tr><td>DNI y NIE</td><td>Regla + letra de control</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
+                <tr><td>DNI y NIE</td><td>Regla + letra de control (con la letra mal, se marca como dudoso)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
                 <tr><td>CIF</td><td>Regla + dígito de control</td><td><code>[CIF_n]</code></td></tr>
                 <tr><td>N.º de la Seguridad Social</td><td>Regla + control módulo 97</td><td><code>[NSS_n]</code></td></tr>
                 <tr><td>IBAN (España y resto de SEPA)</td><td>Regla + longitud del país + control módulo 97</td><td><code>[IBAN_n]</code></td></tr>
                 <tr><td>Tarjetas</td><td>Regla + algoritmo de Luhn</td><td><code>[TARJETA_n]</code></td></tr>
                 <tr><td>Teléfonos</td><td>Regla (españoles en sus agrupaciones habituales; extranjeros con prefijo +)</td><td><code>[TELEFONO_n]</code></td></tr>
                 <tr><td>Correos y direcciones IP</td><td>Regla (IPv4 e IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
+                <tr><td>Fechas de nacimiento</td><td>Regla: una fecha justo después de «nacido/a», «fecha de nacimiento», «F. nac.»… Otras fechas no se tocan.</td><td><code>[FECHA_NACIMIENTO_n]</code></td></tr>
+                <tr><td>Matrículas españolas</td><td>Regla (actuales «4821 KLM» y antiguas «M-1234-AB»)</td><td><code>[MATRICULA_n]</code></td></tr>
                 <tr><td>Cualquier otro fragmento</td><td>Lo seleccionas tú</td><td><code>[DATO_n]</code></td></tr>
               </tbody>
             </table>

@@ -71,7 +71,7 @@
           <ol class="numbered">
             <li>
               <h3>Detect</h3>
-              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers) is found with rules, and its check digit is verified. Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
+              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers, number plates) is found with rules, and its check digit is verified; dates of birth, by the words that introduce them (“born on”, “fecha de nacimiento”). Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
             </li>
             <li>
               <h3>Review and replace</h3>
@@ -88,21 +88,23 @@
       <section class="block" id="what-it-detects">
         <div class="wrap">
           <h2>What it detects and how</h2>
-          <p class="intro">The rules are deterministic and discard numbers whose check digit does not match. The model is probabilistic: it is often right, but not always.</p>
+          <p class="intro">The rules are deterministic. A DNI, NIE or IBAN with the right format but a wrong check is still marked, as doubtful, in case it was copied wrongly; other numbers that do not match are discarded. The model is probabilistic: it is often right, but not always.</p>
           <div class="table-wrap">
             <table class="plain">
               <thead><tr><th>Data</th><th>Method</th><th>Marker</th></tr></thead>
               <tbody>
-                <tr><td>Names of people</td><td>GLiNER model, plus repeated mentions and short forms (“Mr Molina”)</td><td><code>[PERSON_n]</code></td></tr>
+                <tr><td>Names of people</td><td>GLiNER model, plus repeated mentions and short forms, also in lower case (“Mr Molina”, “javier”)</td><td><code>[PERSON_n]</code></td></tr>
                 <tr><td>Companies and organisations</td><td>GLiNER model</td><td><code>[ORGANIZATION_n]</code></td></tr>
                 <tr><td>Postal addresses</td><td>GLiNER model</td><td><code>[ADDRESS_n]</code></td></tr>
-                <tr><td>DNI and NIE</td><td>Rule + check letter</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
+                <tr><td>DNI and NIE</td><td>Rule + check letter (with a wrong letter, marked as doubtful)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
                 <tr><td>CIF</td><td>Rule + check digit</td><td><code>[CIF_n]</code></td></tr>
                 <tr><td>Social security number</td><td>Rule + mod 97 check</td><td><code>[SSN_n]</code></td></tr>
                 <tr><td>IBAN (Spain and the rest of SEPA)</td><td>Rule + length for the country + mod 97 check</td><td><code>[IBAN_n]</code></td></tr>
                 <tr><td>Cards</td><td>Rule + Luhn algorithm</td><td><code>[CARD_n]</code></td></tr>
                 <tr><td>Phone numbers</td><td>Rule (Spanish numbers in their usual groupings; foreign numbers with a + prefix)</td><td><code>[PHONE_n]</code></td></tr>
                 <tr><td>Emails and IP addresses</td><td>Rule (IPv4 and IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
+                <tr><td>Dates of birth</td><td>Rule: a date right after “born”, “date of birth”, “nacido/a”, “F. nac.”… Other dates are left alone.</td><td><code>[BIRTH_DATE_n]</code></td></tr>
+                <tr><td>Spanish number plates</td><td>Rule (current “4821 KLM” and old “M-1234-AB”)</td><td><code>[PLATE_n]</code></td></tr>
                 <tr><td>Any other fragment</td><td>You select it</td><td><code>[OTHER_n]</code></td></tr>
               </tbody>
             </table>

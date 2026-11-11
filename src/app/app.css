@@ -625,6 +625,17 @@ body.app {
   white-space: nowrap;
   font-size: 14px;
 }
+.row-val .doubt-ico {
+  display: inline-flex;
+  vertical-align: -2px;
+  margin-right: 6px;
+  color: var(--warn-ink);
+}
+.m.doubtful {
+  text-decoration: underline wavy var(--warn-ink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
 .row.is-off .row-val {
   color: var(--muted);
   text-decoration: line-through;

@@ -38,8 +38,8 @@ test('phone groupings and foreign numbers', () => {
 });
 
 test('numbers that only look like data are left alone', () => {
-  const s = 'Pedido 12345678A, producto 4012 8888 8888 1882, importe 699 120 euros, expediente 2024/45/7781, ' +
-    'línea 000 000 000, cuenta ES00 1234 5678 9012 3456 7890, NIE X0000000A, póliza 7731-220-48, versión 4.12.3, hora 10:42:00.';
+  const s = 'Pedido 12345678 a domicilio, producto 4012888888881882, importe 699 120 euros, expediente 2024/45/7781, ' +
+    'línea 000 000 000, póliza 7731-220-48, versión 4.12.3, hora 10:42:00, CPU a 2400 MHz, 1080p, en 2025 BBC.';
   assert.deepEqual(kinds(s), []);
 });
 
@@ -50,5 +50,28 @@ test('numbers wrapped onto a new line, as text from PDFs often is', () => {
 test('lowercase and unspaced forms', () => {
   assert.deepEqual(kinds('dni 53464097e iban es2139431486086661697230 tlf 612345678'), [
     ['dni', '53464097e'], ['iban', 'es2139431486086661697230'], ['phone', '612345678'],
+  ]);
+});
+
+test('right format with a wrong check digit is reported as doubtful', () => {
+  const s = 'DNI 71530264K, dni 12345678-a, NIE X0000000A, cuenta ES00 1234 5678 9012 3456 7890, tarjeta 4012 8888 8888 1882. Válido: 48213907L.';
+  assert.deepEqual(findRules(s).map((m) => [m.kind, s.slice(m.start, m.end), !!m.doubtful]), [
+    ['dni', '71530264K', true], ['dni', '12345678-a', true], ['nie', 'X0000000A', true],
+    ['iban', 'ES00 1234 5678 9012 3456 7890', true], ['card', '4012 8888 8888 1882', true], ['dni', '48213907L', false],
+  ]);
+});
+
+test('number plates', () => {
+  assert.deepEqual(kinds('Su coche es el 4821 KLM, la moto 1234-BCD, el otro 9876klm y uno antiguo M-1234-AB o GR 4567 B.'), [
+    ['plate', '4821 KLM'], ['plate', '1234-BCD'], ['plate', '9876klm'], ['plate', 'M-1234-AB'], ['plate', 'GR 4567 B'],
+  ]);
+  assert.deepEqual(kinds('Pantalla 2400 MHZ, 1000 GBP, año 2024 con 4 ruedas, ref 12345 KLM.'), []);
+});
+
+test('dates of birth only, not other dates', () => {
+  const s = 'Paciente nacida el 14/03/1987. F. nac.: 3-5-92. Fecha de nacimiento\n12 de enero de 1979. Nació en 1990. ' +
+    'DOB: March 4, 1985. Cita el 20/05/2025; contrato de 1 de marzo de 2024.';
+  assert.deepEqual(kinds(s), [
+    ['birthdate', '14/03/1987'], ['birthdate', '3-5-92'], ['birthdate', '12 de enero de 1979'], ['birthdate', '1990'], ['birthdate', 'March 4, 1985'],
   ]);
 });

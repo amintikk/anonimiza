@@ -139,13 +139,6 @@ export async function redactPdf(src: PdfSource, covers: Cover[], onPage?: (n: nu
       else segs.push((cur = { cover: ci, item: it, from: off, to: off + 1 }));
     }
   });
-  // The marker goes on the longest piece of each detection; the others are plain boxes.
-  const labelled = new Map<number, Seg>();
-  for (const s of segs) {
-    const best = labelled.get(s.cover);
-    if (!best || s.to - s.from > best.to - best.from) labelled.set(s.cover, s);
-  }
-
   const { doc, destroy, pdfjs } = await open(src.bytes);
   const pages: PageImage[] = [];
   try {
@@ -161,11 +154,11 @@ export async function redactPdf(src: PdfSource, covers: Cover[], onPage?: (n: nu
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       await page.render({ canvas, canvasContext: ctx, viewport: vp }).promise;
-      for (const s of segs) {
-        const item = layout.items[s.item]!;
-        if (item.page !== p) continue;
-        drawCover(ctx, pdfjs.Util.transform(vp.transform, item.transform) as number[], item, s, labelled.get(s.cover) === s ? covers[s.cover]!.label : '');
-      }
+      const boxes = mergeLines(segs.filter((x) => layout.items[x.item]!.page === p).map((x) => segBox(pdfjs.Util.transform(vp.transform, layout.items[x.item]!.transform) as number[], layout.items[x.item]!, x)));
+      // One box per line of each detection; the marker goes on its widest box.
+      const widest = new Map<number, Box>();
+      for (const bx of boxes) if ((widest.get(bx.cover)?.x1 ?? 0) - (widest.get(bx.cover)?.x0 ?? 0) < bx.x1 - bx.x0) widest.set(bx.cover, bx);
+      for (const bx of boxes) drawBox(ctx, bx, widest.get(bx.cover) === bx ? covers[bx.cover]!.label : '');
       const jpeg = new Uint8Array(await (await new Promise<Blob>((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('toBlob'))), 'image/jpeg', JPEG_QUALITY))).arrayBuffer());
       pages.push({ jpeg, px: [canvas.width, canvas.height], pt: [base.width, base.height] });
       canvas.width = canvas.height = 0;
@@ -192,11 +185,23 @@ function widthRatio(item: Item, n: number): number {
   return full > 0 ? m.measureText(item.str.slice(0, n)).width / full : n / item.str.length;
 }
 
-function drawCover(ctx: CanvasRenderingContext2D, tx: number[], item: Item, s: Seg, label: string): void {
+/** A box over part of a line, in its own frame: origin (ox, oy) rotated by `angle`; horizontal text uses the page frame. */
+interface Box {
+  cover: number;
+  ox: number;
+  oy: number;
+  angle: number;
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+}
+
+function segBox(tx: number[], item: Item, s: Seg): Box {
   const fh = Math.hypot(tx[2]!, tx[3]!);
   const angle = Math.atan2(tx[1]!, tx[0]!);
   const w = item.width * SCALE;
-  const pad = Math.max(1, fh * 0.08);
+  const pad = fh * 0.06;
   let x0: number, x1: number, y0: number, y1: number;
   if (item.vertical) {
     // Vertical text: cover the whole item.
@@ -204,26 +209,60 @@ function drawCover(ctx: CanvasRenderingContext2D, tx: number[], item: Item, s: S
   } else {
     x0 = w * widthRatio(item, s.from) - pad;
     x1 = w * widthRatio(item, s.to) + pad;
-    y0 = -fh * Math.max(item.ascent, 0.75) - pad;
-    y1 = -fh * Math.min(item.descent, -0.18) + pad;
+    y0 = -fh * Math.min(Math.max(item.ascent, 0.72), 0.92) - pad;
+    y1 = fh * 0.22 + pad;
+  }
+  // Horizontal, upright text is moved to the page frame, so that pieces of the same line can be joined.
+  if (!item.vertical && Math.abs(angle) < 0.01) return { cover: s.cover, ox: 0, oy: 0, angle: 0, x0: x0 + tx[4]!, x1: x1 + tx[4]!, y0: y0 + tx[5]!, y1: y1 + tx[5]! };
+  return { cover: s.cover, ox: tx[4]!, oy: tx[5]!, angle, x0, x1, y0, y1 };
+}
+
+/** Pieces of the same detection on the same line become one box (justified lines come in one piece per word). */
+function mergeLines(boxes: Box[]): Box[] {
+  const out: Box[] = [];
+  for (const b of boxes) {
+    const same = b.angle === 0 && out.find((o) => o.cover === b.cover && o.angle === 0 && Math.min(o.y1, b.y1) - Math.max(o.y0, b.y0) > 0.5 * Math.min(o.y1 - o.y0, b.y1 - b.y0));
+    if (same) {
+      same.x0 = Math.min(same.x0, b.x0);
+      same.x1 = Math.max(same.x1, b.x1);
+      same.y0 = Math.min(same.y0, b.y0);
+      same.y1 = Math.max(same.y1, b.y1);
+    } else out.push({ ...b });
+  }
+  return out;
+}
+
+const LABEL_FONT = (px: number) => `600 ${px}px Arial, Helvetica, "Liberation Sans", "DejaVu Sans", sans-serif`;
+
+function drawBox(ctx: CanvasRenderingContext2D, b: Box, label: string): void {
+  const h = b.y1 - b.y0;
+  const { x0, x1 } = b;
+  let size = h * 0.66, sx = 1, tw = 0;
+  if (label) {
+    // The box never grows: covering the text around it (a full stop, the end of a word) would change the document.
+    // A long marker in a short box gets smaller letters first, then narrower ones.
+    const room = () => x1 - x0 - h * 0.16;
+    ctx.font = LABEL_FONT(size);
+    tw = ctx.measureText(label).width;
+    if (tw > room()) {
+      size = Math.max(size * (room() / tw), h * 0.5);
+      ctx.font = LABEL_FONT(size);
+      tw = ctx.measureText(label).width;
+    }
+    if (tw * sx > room()) sx = room() / tw;
   }
   ctx.save();
-  ctx.translate(tx[4]!, tx[5]!);
-  ctx.rotate(angle);
-  ctx.fillStyle = '#dcdcdc';
-  ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
-  ctx.strokeStyle = '#9a9a9a';
-  ctx.lineWidth = Math.max(1, fh * 0.04);
-  ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+  ctx.translate(b.ox, b.oy);
+  ctx.rotate(b.angle);
+  ctx.fillStyle = '#e3e3e3';
+  ctx.beginPath();
+  ctx.roundRect(x0, b.y0, x1 - x0, h, Math.min(h * 0.14, 6));
+  ctx.fill();
   if (label) {
-    const size = (y1 - y0) * 0.62;
-    ctx.font = `600 ${size}px "DejaVu Sans", Arial, Helvetica, sans-serif`;
-    ctx.fillStyle = '#111';
+    ctx.font = LABEL_FONT(size);
+    ctx.fillStyle = '#3c3c3c';
     ctx.textBaseline = 'middle';
-    const tw = ctx.measureText(label).width;
-    const room = x1 - x0 - 2 * pad;
-    const sx = tw > room ? Math.max(room / tw, 0.3) : 1;
-    ctx.translate(x0 + pad + (sx === 1 ? (room - tw) / 2 : 0), (y0 + y1) / 2);
+    ctx.translate((x0 + x1) / 2 - (tw * sx) / 2, (b.y0 + b.y1) / 2 + h * 0.03);
     ctx.scale(sx, 1);
     ctx.fillText(label, 0, 0);
   }

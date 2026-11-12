@@ -632,11 +632,44 @@ function toggleOccurrence(d: Detection): void {
   if (d.on) st.off.add(k);
   else st.off.delete(k);
   if (d.source === 'manual' && d.on) {
-    // Switching off something added by hand removes it.
+    // Switching off something added by hand removes it: the list changes shape.
     st.manual = st.manual.filter((m) => posKey(m) !== k);
     st.off.delete(k);
+    rebuild();
+    return;
   }
-  rebuild();
+  setOn();
+}
+
+/**
+ * Switching a value on or off changes only its state: the text, the counters and the switches are updated in place.
+ * Rebuilding the list would recreate every row, and the page would flash.
+ */
+function setOn(): void {
+  for (const d of st.dets) d.on = !st.off.has(posKey(d));
+  renderReview();
+  renderFoundHead();
+  syncSwitches();
+}
+
+function renderFoundHead(): void {
+  const values = new Set(st.dets.map((d) => st.assign.byId.get(d.id))).size;
+  const on = st.dets.filter((d) => d.on).length;
+  $('found-title').textContent = values ? t('Datos detectados') : t('No se ha detectado nada');
+  $('found-sub').textContent = values ? t('{v} valores · {o} de {n} apariciones se sustituirán', { v: values, o: on, n: st.dets.length }) : st.entities === null ? t('Aún falta el análisis con el modelo.') : t('Selecciona en el texto lo que quieras sustituir.');
+}
+
+function syncSwitches(): void {
+  const on = new Map<string, boolean>();
+  for (const d of st.dets) {
+    const m = st.assign.byId.get(d.id)!;
+    on.set(m, (on.get(m) ?? false) || d.on);
+  }
+  for (const row of groupsEl.querySelectorAll<HTMLElement>('.row[data-marker]')) {
+    const v = on.get(row.dataset.marker!) ?? false;
+    row.classList.toggle('is-off', !v);
+    row.querySelector('.sw')!.setAttribute('aria-checked', String(v));
+  }
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -649,10 +682,7 @@ function renderGroups(): void {
     const g = byKind.get(d.kind) ?? byKind.set(d.kind, new Map()).get(d.kind)!;
     (g.get(m) ?? g.set(m, []).get(m)!).push(d);
   }
-  const values = [...byKind.values()].reduce((n, g) => n + g.size, 0);
-  const on = st.dets.filter((d) => d.on).length;
-  $('found-title').textContent = values ? t('Datos detectados') : t('No se ha detectado nada');
-  $('found-sub').textContent = values ? t('{v} valores · {o} de {n} apariciones se sustituirán', { v: values, o: on, n: st.dets.length }) : st.entities === null ? t('Aún falta el análisis con el modelo.') : t('Selecciona en el texto lo que quieras sustituir.');
+  renderFoundHead();
   const out: HTMLElement[] = [];
   for (const kind of KINDS) {
     const g = byKind.get(kind);
@@ -665,15 +695,21 @@ function renderGroups(): void {
         'aria-label': t('Sustituir «{v}»', { v: value }),
         onclick: (e: Event) => {
           e.stopPropagation();
+          // Read the state now: the row may have been switched since it was drawn.
+          const on = ds.some((d) => d.on);
+          const hadManual = on && ds.some((d) => d.source === 'manual');
           for (const d of ds) {
-            if (anyOn) st.off.add(posKey(d));
+            if (on) st.off.add(posKey(d));
             else st.off.delete(posKey(d));
           }
-          if (anyOn) st.manual = st.manual.filter((m) => !ds.some((d) => d.source === 'manual' && posKey(d) === posKey(m)));
-          rebuild();
+          if (hadManual) {
+            // Switching off something added by hand removes it: the list changes shape.
+            st.manual = st.manual.filter((m) => !ds.some((d) => d.source === 'manual' && posKey(d) === posKey(m)));
+            rebuild();
+          } else setOn();
         },
       }, h('span', { class: 'sw-knob' }));
-      const row = h('div', { class: `row${anyOn ? '' : ' is-off'}`, role: 'button', tabindex: 0, title: t('Ver en el texto') },
+      const row = h('div', { class: `row${anyOn ? '' : ' is-off'}`, role: 'button', tabindex: 0, title: t('Ver en el texto'), 'data-marker': marker },
         sw,
         ds.some((d) => d.doubtful)
           ? h('span', { class: 'row-val', title: doubtNote(kind) }, h('span', { class: 'doubt-ico', 'aria-label': t('Dudoso') }, icon('alert', 14)), value)

@@ -381,7 +381,7 @@ input.addEventListener('keydown', (e) => {
 });
 
 $('btn-sample').addEventListener('click', () => {
-  ocrNote.hidden = true;
+  closeOcr();
   input.value = SAMPLE[lang];
   st.fileName = '';
   st.source = null;
@@ -396,29 +396,37 @@ function setFileName(): void {
   el.textContent = st.fileName;
 }
 
-const ocrNote = $('ocr-note');
+const ocrDialog = $<HTMLDialogElement>('ocr-dialog');
 const ocrStatus = $('ocr-status');
+const ocrBar = $('ocr-bar');
+function closeOcr(): void {
+  if (ocrDialog.open) ocrDialog.close();
+}
 const OCR_BYTES = MODEL_FILES.ocrDet.bytes + MODEL_FILES.ocrRec.bytes + MODEL_FILES.ocrDict.bytes;
-$('ocr-ok').addEventListener('click', () => (ocrNote.hidden = true));
+$('ocr-ok').addEventListener('click', closeOcr);
 
 /** The OCR note only shows for a PDF that has no text to copy; it says what is happening while the pages are read. */
 function ocrProgress(e: OcrEvent): void {
-  ocrNote.hidden = false;
-  ocrStatus.textContent =
-    e.stage === 'page'
-      ? t('Leyendo la página {n} de {total}…', { n: String(e.page), total: String(e.pages) })
-      : e.cached
-        ? t('Preparando el OCR…')
-        : t('Descargando el OCR ({size}, solo la primera vez)…', { size: fmtBytes(OCR_BYTES) });
+  if (!ocrDialog.open) ocrDialog.showModal();
+  if (e.stage === 'page') {
+    ocrStatus.textContent = t('Leyendo la página {n} de {total}…', { n: String(e.page), total: String(e.pages) });
+    ocrBar.style.transform = `scaleX(${(e.page - 1) / e.pages})`;
+  } else {
+    ocrStatus.textContent = e.cached ? t('Preparando el OCR…') : t('Descargando el OCR ({size}, solo la primera vez)…', { size: fmtBytes(OCR_BYTES) });
+    ocrBar.style.transform = 'scaleX(0)';
+  }
 }
 
 async function openFile(file: File): Promise<void> {
-  ocrNote.hidden = true;
+  closeOcr();
   try {
     const got = await extractFile(file, ocrProgress);
     if (got.ocr) {
-      ocrNote.hidden = false;
-      ocrStatus.textContent = t('Listo: {n} líneas leídas.', { n: String(got.text.split('\n').filter((l) => l.trim()).length) });
+      const lines = String(got.text.split('\n').filter((l) => l.trim()).length);
+      if (!ocrDialog.open) ocrDialog.showModal();
+      ocrBar.style.transform = 'scaleX(1)';
+      ocrStatus.textContent = t('Listo: {n} líneas leídas.', { n: lines });
+      toast(t('Listo: {n} líneas leídas.', { n: lines }));
     }
     input.value = got.text;
     st.source = got.pdf ? { kind: 'pdf', src: got.pdf } : got.docx ? { kind: 'docx', src: got.docx } : null;
@@ -429,6 +437,7 @@ async function openFile(file: File): Promise<void> {
     if (!input.value.trim()) throw new Error(t('El archivo no contiene texto.'));
     void detectAll();
   } catch (e) {
+    closeOcr();
     toast(e instanceof Error ? e.message : String(e), 'error');
   }
 }

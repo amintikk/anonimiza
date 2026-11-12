@@ -91,13 +91,6 @@
 
           <aside class="pane side-pane" id="side" aria-label="Datos detectados">
             <div class="model-card" id="model-card" hidden></div>
-            <div class="ocr-note" id="ocr-note" role="status" hidden>
-              <div class="ocr-head"><i data-icon="scan" data-size="18"></i><strong>Usando OCR: sí</strong></div>
-              <p>Este PDF no tiene texto que se pueda copiar: es una imagen de la página. Para leerlo usamos OCR, un programa que reconoce las letras de la imagen. Se ejecuta en tu equipo y no se envía nada.</p>
-              <p><strong>Puede equivocarse:</strong> confundir letras o números, o no ver algún dato. Antes de compartir el resultado, compáralo con el PDF original.</p>
-              <p class="ocr-status" id="ocr-status"></p>
-              <button class="btn ghost small" id="ocr-ok" type="button">Entendido</button>
-            </div>
             <div class="side-empty" id="side-empty">
               <h2>Cómo funciona</h2>
               <ol class="steps">
@@ -154,5 +147,13 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script type="module" src="/src/app/main.ts"></script>
-  </body>
+    <dialog class="ocr-dialog" id="ocr-dialog" aria-labelledby="ocr-title">
+    <div class="ocr-head"><i data-icon="scan" data-size="20"></i><strong id="ocr-title">Usando OCR: sí</strong></div>
+    <p>Este PDF no tiene texto que se pueda copiar: es una imagen de la página. Para leerlo usamos OCR, un programa que reconoce las letras de la imagen. Se ejecuta en tu equipo y no se envía nada.</p>
+    <p><strong>Puede equivocarse:</strong> confundir letras o números, o no ver algún dato. Antes de compartir el resultado, compáralo con el PDF original.</p>
+    <div class="bar ocr-bar"><div class="bar-fill" id="ocr-bar"></div></div>
+    <p class="ocr-status" id="ocr-status" aria-live="polite"></p>
+    <div class="ocr-actions"><button class="btn primary small" id="ocr-ok" type="button">Entendido</button></div>
+  </dialog>
+</body>
 </html>

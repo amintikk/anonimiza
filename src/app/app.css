@@ -938,55 +938,53 @@ body.app {
   }
 }
 
-/* OCR note: shown only for a PDF without text that can be copied. */
-.ocr-note {
-  margin: 0 0 12px;
-  padding: 14px 16px;
-  border-radius: var(--r-md);
-  background: var(--warn-bg);
-  border: 1px solid var(--warn-border);
-  font-size: 13.5px;
-  line-height: 1.5;
+/* OCR dialog: opens over the page when a PDF without copyable text is read; shows what is happening. */
+.ocr-dialog {
+  width: min(480px, calc(100vw - 32px));
+  max-width: none;
+  padding: 22px 22px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg, 16px);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.ocr-dialog::backdrop {
+  background: rgba(8, 9, 12, 0.5);
+  backdrop-filter: blur(2px);
+}
+.ocr-dialog[open] {
+  animation: ocr-in 0.25s var(--ease);
+}
+@keyframes ocr-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
 }
 .ocr-head {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 10px;
   color: var(--warn-ink);
+  font-size: 16px;
 }
-.ocr-note p {
-  margin: 8px 0 0;
+.ocr-dialog p {
+  margin: 0 0 10px;
+}
+.ocr-bar {
+  margin: 16px 0 8px;
 }
 .ocr-status {
+  margin: 0 0 14px;
   color: var(--text-2);
-  font-size: 12.5px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
-.ocr-note .btn {
-  margin-top: 10px;
-}
-
-/* Phones: the engine panel spans the screen under the header instead of hanging off the button. */
-@media (max-width: 560px) {
-  .engine-pop {
-    position: fixed;
-    top: 64px;
-    left: 12px;
-    right: 12px;
-    width: auto;
-    max-width: none;
-  }
-}
-
-/* Phones: the footer of the pane wraps, so the download and copy buttons are never pushed off the screen. */
-@media (max-width: 560px) {
-  .pane-foot {
-    flex-wrap: wrap;
-    row-gap: 8px;
-    padding: 10px 12px;
-  }
-  .foot-right {
-    width: 100%;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
+.ocr-actions {
+  display: flex;
+  justify-content: flex-end;
 }

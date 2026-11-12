@@ -42,8 +42,7 @@
           <div>
             <h1>Quita los datos personales de un texto antes de pasárselo a una IA</h1>
             <p class="lead">
-              Pega un texto o suelta un PDF o un DOCX. Anonimiza detecta nombres, DNI, IBAN, teléfonos o direcciones y los cambia por marcadores como <code>[PERSONA_1]</code>. Cuando la IA te responda,
-              pegas su respuesta y vuelve a poner cada dato en su sitio. Todo ocurre en tu navegador: el texto no se envía a ningún servidor.
+              Pega un texto o abre un PDF o un DOCX. Anonimiza cambia nombres, DNI, IBAN, teléfonos o direcciones por marcadores como <code>[PERSONA_1]</code>, y cuando la IA te responde vuelve a poner cada dato en su sitio. Todo ocurre en tu navegador: el texto no se envía a ningún sitio.
             </p>
             <div class="hero-actions">
               <a class="btn primary big" href="/app/">Abrir la app</a>
@@ -67,19 +66,18 @@
       <section class="block" id="como-funciona">
         <div class="wrap">
           <h2>Cómo funciona</h2>
-          <p class="intro">Tres pasos, sin cuenta y sin instalar nada. La primera vez se descarga un modelo de IA que queda guardado en el navegador.</p>
           <ol class="numbered">
             <li>
               <h3>Detecta</h3>
-              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social, matrículas) se buscan con reglas y se comprueba su dígito de control; las fechas de nacimiento y otros identificadores (n.º de historia, expediente, póliza, usuario), por las palabras que los anuncian («nacida el», «NHC:», «Nº expediente»). Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
+              <p>Busca los datos personales del texto y los resalta. Sin cuenta y sin instalar nada.</p>
             </li>
             <li>
-              <h3>Revisa y sustituye</h3>
-              <p>Ves el texto con cada dato resaltado. Puedes desactivar lo que no sea un dato personal y seleccionar lo que falte. Cada valor recibe un marcador estable: si «Lucía Herrero» aparece cinco veces, las cinco son <code>[PERSONA_1]</code>.</p>
+              <h3>Revisa</h3>
+              <p>Quita lo que no sea un dato personal y selecciona lo que falte. El mismo dato recibe siempre el mismo marcador.</p>
             </li>
             <li>
-              <h3>Restaura</h3>
-              <p>Copias o descargas el texto anonimizado y lo usas en la IA que prefieras. Al pegar su respuesta en «Restaurar», los marcadores vuelven a ser los datos originales. La tabla de sustituciones solo existe en la memoria de la pestaña.</p>
+              <h3>Usa y restaura</h3>
+              <p>Copia el texto, o descarga el PDF o DOCX con el mismo formato, y úsalo en la IA que quieras. Pega su respuesta en «Restaurar» y recuperas los datos.</p>
             </li>
           </ol>
         </div>
@@ -87,39 +85,8 @@
 
       <section class="block" id="que-detecta">
         <div class="wrap">
-          <h2>Qué detecta y cómo</h2>
-          <p class="intro">Las reglas son deterministas. Un DNI, NIE o IBAN con el formato correcto pero el control mal se marca igualmente como dudoso, por si está mal copiado; otros números que no cuadran se descartan. El modelo es probabilístico: acierta mucho, pero no siempre.</p>
-          <div class="table-wrap">
-            <table class="plain">
-              <thead><tr><th>Dato</th><th>Método</th><th>Marcador</th></tr></thead>
-              <tbody>
-                <tr><td>Nombres de personas</td><td>Modelo GLiNER, más sus repeticiones y formas cortas, también en minúscula («Sr. Molina», «javier»)</td><td><code>[PERSONA_n]</code></td></tr>
-                <tr><td>Empresas y organizaciones</td><td>Modelo GLiNER</td><td><code>[ORGANIZACION_n]</code></td></tr>
-                <tr><td>Direcciones postales</td><td>Modelo GLiNER, y regla para las completas con código postal</td><td><code>[DIRECCION_n]</code></td></tr>
-                <tr><td>DNI y NIE</td><td>Regla + letra de control (con la letra mal, se marca como dudoso)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
-                <tr><td>CIF</td><td>Regla + dígito de control (con el control mal tras la palabra «CIF», se marca como dudoso)</td><td><code>[CIF_n]</code></td></tr>
-                <tr><td>N.º de la Seguridad Social</td><td>Regla + control módulo 97</td><td><code>[NSS_n]</code></td></tr>
-                <tr><td>IBAN (España y resto de SEPA)</td><td>Regla + longitud del país + control módulo 97</td><td><code>[IBAN_n]</code></td></tr>
-                <tr><td>Tarjetas</td><td>Regla + algoritmo de Luhn</td><td><code>[TARJETA_n]</code></td></tr>
-                <tr><td>Teléfonos</td><td>Regla (españoles en sus agrupaciones habituales; extranjeros con prefijo +)</td><td><code>[TELEFONO_n]</code></td></tr>
-                <tr><td>Correos y direcciones IP</td><td>Regla (IPv4 e IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
-                <tr><td>Fechas de nacimiento</td><td>Regla: una fecha justo después de «nacido/a», «fecha de nacimiento», «F. nac.»… Otras fechas no se tocan.</td><td><code>[FECHA_NACIMIENTO_n]</code></td></tr>
-                <tr><td>Matrículas españolas</td><td>Regla (actuales «4821 KLM» y antiguas «M-1234-AB»)</td><td><code>[MATRICULA_n]</code></td></tr>
-                <tr><td>Otros identificadores (n.º de historia, expediente, póliza, colegiado, pasaporte, usuario…)</td><td>Regla: un código con cifras justo después de la palabra que lo anuncia («NHC:», «Nº expediente», «póliza nº», «user=»), alias con @ y nombres de usuario al principio de línea en chats y foros</td><td><code>[IDENTIFICADOR_n]</code></td></tr>
-                <tr><td>Cualquier otro fragmento</td><td>Lo seleccionas tú</td><td><code>[DATO_n]</code></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section class="block" id="cifras">
-        <div class="wrap">
-          <h2>Cifras medidas</h2>
-          <p class="intro">
-            Medidas con el mismo código que usa la web: la cifra principal sale de un conjunto propio, sucio, congelado antes de medir y que no se usó para ajustarla; la segunda, de historias clínicas públicas (MEDDOCAN).
-            Se publican tal cual salen; los conjuntos, los errores uno a uno y los scripts están en el repositorio.
-          </p>
+          <h2>Qué detecta</h2>
+          <p class="intro">Nombres, empresas, direcciones, DNI, NIE, CIF, n.º de la Seguridad Social, IBAN, tarjetas, teléfonos, correos, IP, fechas de nacimiento, matrículas y números de expediente, historia clínica, póliza o usuario. Lo que se le escape lo puedes marcar tú.</p>
           <!--#cifras-->
         </div>
       </section>
@@ -127,41 +94,22 @@
       <section class="block" id="limites">
         <div class="wrap">
           <h2>Límites</h2>
-          <p class="intro">Anonimiza reduce el riesgo, no lo elimina. <strong>No garantiza una anonimización completa y tienes que revisar el resultado</strong> antes de compartirlo.</p>
+          <p class="intro"><strong>No garantiza una anonimización completa: revisa siempre el resultado</strong> antes de compartirlo.</p>
           <ul class="limits">
-            <li><b>El modelo se equivoca.</b> En las pruebas, el modelo por sí solo dejaba escapar uno de cada veinte nombres (sobre todo nombres sueltos o repetidos de forma abreviada) y a veces marca cosas que no son datos personales, como un juzgado o un ayuntamiento. En documentos reales fallará más que en las pruebas.</li>
-            <li><b>El contexto también identifica.</b> Un cargo («la directora del colegio de Teruel»), una fecha, una enfermedad rara o un detalle de la historia pueden bastar para saber de quién se habla. Esos datos no se buscan.</li>
-            <li><b>Identificadores sin etiqueta.</b> Los números de expediente, historia o póliza y los nombres de usuario se reconocen por la palabra que los anuncia («NHC:», «póliza nº», «user=»). Sin ella, y en alias de foro o chat, se escapan a menudo: en la prueba se encontró algo más de la mitad.</li>
-            <li><b>PDF de vuelta como imágenes.</b> Un PDF se puede descargar anonimizado con el mismo aspecto: cada dato queda tapado por su marcador. Sus páginas pasan a ser imágenes, para que el texto original no quede debajo; por eso ese PDF ya no permite seleccionar texto. Las imágenes que contenga (firmas, fotos, sellos) no se revisan. Los PDF escaneados no tienen texto y no se hace OCR.</li>
-            <li><b>DOCX de vuelta como DOCX.</b> Un DOCX se puede descargar anonimizado con su formato, tablas e imágenes, y sigue siendo editable: los datos se cambian por sus marcadores dentro del propio documento, también en cabeceras, pies, notas y comentarios. Además se borran el autor del archivo y de los comentarios y cambios, el texto eliminado que guarda el control de cambios y la miniatura de la primera página. Las imágenes que contenga no se revisan.</li>
-            <li><b>Pensado para español.</b> El modelo es multilingüe y las reglas sirven para otros países de la zona SEPA, pero las cifras solo se han medido en español. DNI, NIE, CIF y NSS son identificadores españoles.</li>
-            <li><b>La tabla vive en la pestaña.</b> Si recargas o cierras la página, ya no se pueden restaurar los marcadores. No se guarda en ningún sitio, a propósito.</li>
-            <li><b>Equipo modesto, más espera.</b> La primera vez hay que descargar el modelo (unos 370 MB con WebAssembly o 600 MB con WebGPU) y analizar un documento largo puede tardar en equipos sin tarjeta gráfica.</li>
+            <li><b>Se equivoca a veces.</b> Sobre todo con nombres en minúscula, alias de chat y códigos sin una palabra delante que diga qué son.</li>
+            <li><b>El contexto también identifica.</b> Un cargo, un lugar o una enfermedad rara pueden bastar para saber de quién se habla, y eso no se busca.</li>
+            <li><b>Las imágenes no se revisan.</b> Firmas, fotos o sellos de un PDF o DOCX. Los PDF escaneados no tienen texto y no se leen.</li>
+            <li><b>El PDF anonimizado es una imagen por página.</b> Así el texto original no queda escondido debajo, pero no se puede seleccionar texto en él.</li>
+            <li><b>La primera vez descarga 370 MB.</b> Es el modelo, y queda guardado en el navegador. En equipos o móviles modestos, un documento largo puede tardar minutos.</li>
+            <li><b>Restaurar solo funciona en la misma pestaña.</b> Si la cierras, los datos para restaurar se pierden.</li>
           </ul>
         </div>
       </section>
 
       <section class="block" id="privacidad">
         <div class="wrap">
-          <h2>Privacidad que se puede comprobar</h2>
-          <div class="defs">
-            <div>
-              <h3>El texto no sale de tu equipo</h3>
-              <p>La lectura de archivos, las reglas, el modelo y la restauración se ejecutan en tu navegador. No hay servidor que reciba tus documentos.</p>
-            </div>
-            <div>
-              <h3>Lo impone el navegador</h3>
-              <p>La página se sirve con una política de seguridad (CSP) cuyo <code>connect-src</code> solo permite conectar con este sitio y con el dominio de los modelos. Aunque el código quisiera enviar algo a otro sitio, el navegador lo bloquearía.</p>
-            </div>
-            <div>
-              <h3>Sin analítica ni cookies</h3>
-              <p>No hay Google Analytics ni nada parecido. En el navegador solo se guardan tus preferencias y el modelo descargado, y puedes borrarlos desde la app.</p>
-            </div>
-            <div>
-              <h3>Código abierto</h3>
-              <p>Todo el código está en GitHub con licencia MIT. Puedes revisar las peticiones en la pestaña «Red» de las herramientas de desarrollo mientras usas la app.</p>
-            </div>
-          </div>
+          <h2>Privacidad</h2>
+          <p class="intro">Tus textos y archivos no salen de tu equipo: todo se procesa en el navegador. Sin cuentas, sin cookies y sin analítica. El código es abierto y está en <a href="https://github.com/amintikk/anonimiza" target="_blank" rel="noopener">GitHub</a>. Detalles en la <a href="/privacidad/">política de privacidad</a>.</p>
         </div>
       </section>
 
@@ -171,23 +119,15 @@
           <div class="faq">
             <details>
               <summary>¿Por qué marcadores y no datos inventados?</summary>
-              <p>Un marcador como <code>[PERSONA_1]</code> deja claro qué se ha quitado, la IA lo respeta casi siempre y se puede deshacer sin ambigüedad. Un nombre falso podría confundirse con uno real o colarse en la respuesta sin que te des cuenta.</p>
+              <p>Un marcador como <code>[PERSONA_1]</code> deja claro qué se ha quitado, la IA lo respeta y se deshace sin ambigüedad. Un nombre falso podría colarse en la respuesta sin que te des cuenta.</p>
             </details>
             <details>
-              <summary>¿Qué pasa si la IA cambia un marcador?</summary>
-              <p>La restauración admite los cambios habituales: mayúsculas o minúsculas, un espacio en vez del guion bajo o los corchetes perdidos. Si aparece un marcador que no existe en la tabla, la app lo señala y lo deja tal cual.</p>
+              <summary>¿Y si la IA cambia un marcador?</summary>
+              <p>La restauración tolera los cambios habituales (mayúsculas, espacios, corchetes perdidos) y te avisa de los que no reconoce.</p>
             </details>
             <details>
-              <summary>¿Necesito tarjeta gráfica?</summary>
-              <p>No. Si el navegador ofrece WebGPU con soporte de fp16 se usa la tarjeta gráfica; si no, el modelo se ejecuta en el procesador con WebAssembly y varios hilos. Es más lento, pero da prácticamente el mismo resultado.</p>
-            </details>
-            <details>
-              <summary>¿Funciona en el móvil?</summary>
-              <p>Sí, aunque el modelo pide bastante memoria (más de 1 GB al ejecutarse). En móviles modestos puede ir lento o el navegador puede cerrar la pestaña. Las reglas funcionan siempre, incluso sin descargar el modelo.</p>
-            </details>
-            <details>
-              <summary>¿Puedo usarlo para cumplir el RGPD?</summary>
-              <p>Puede ayudarte a minimizar los datos que compartes, pero no es una herramienta de anonimización certificada ni sustituye a una revisión humana o legal. Un texto con marcadores sigue siendo, en general, un dato seudonimizado.</p>
+              <summary>¿Sirve para cumplir el RGPD?</summary>
+              <p>Ayuda a compartir menos datos, pero no es una herramienta certificada ni sustituye a una revisión. Un texto con marcadores sigue siendo, en general, un dato seudonimizado.</p>
             </details>
           </div>
         </div>

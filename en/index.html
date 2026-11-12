@@ -42,8 +42,7 @@
           <div>
             <h1>Remove personal data from a text before you pass it to an AI</h1>
             <p class="lead">
-              Paste a text or drop a PDF or DOCX file. Anonimiza detects names, DNI, IBAN, phone numbers or addresses and replaces them with markers such as <code>[PERSON_1]</code>. When the AI replies,
-              you paste its answer and each piece of data goes back into its place. Everything happens in your browser: the text is not sent to any server.
+              Paste a text or open a PDF or DOCX. Anonimiza replaces names, ID numbers, IBANs, phone numbers or addresses with markers such as <code>[PERSON_1]</code>, and when the AI replies it puts each item back. Everything happens in your browser: the text is not sent anywhere.
             </p>
             <div class="hero-actions">
               <a class="btn primary big" href="/en/app/">Open the app</a>
@@ -67,19 +66,18 @@
       <section class="block" id="how-it-works">
         <div class="wrap">
           <h2>How it works</h2>
-          <p class="intro">Three steps, with no account and nothing to install. The first time, an AI model is downloaded and kept in the browser.</p>
           <ol class="numbered">
             <li>
               <h3>Detect</h3>
-              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers, number plates) is found with rules, and its check digit is verified; dates of birth and other identifiers (medical record, case file, policy, user name), by the words that introduce them (“born on”, “NHC:”, “Nº expediente”). Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
+              <p>It finds the personal data in the text and highlights it. No account, nothing to install.</p>
             </li>
             <li>
-              <h3>Review and replace</h3>
-              <p>You see the text with each item highlighted. You can switch off anything that is not personal data and select anything that is missing. Each value gets a stable marker: if “Lucía Herrero” appears five times, all five are <code>[PERSON_1]</code>.</p>
+              <h3>Review</h3>
+              <p>Remove anything that is not personal data and select anything missing. The same item always gets the same marker.</p>
             </li>
             <li>
-              <h3>Restore</h3>
-              <p>You copy or download the anonymised text and use it with the AI of your choice. When you paste its reply into “Restore”, the markers become the original data again. The replacement table exists only in the tab’s memory.</p>
+              <h3>Use and restore</h3>
+              <p>Copy the text, or download the PDF or DOCX with the same layout, and use it with any AI. Paste its reply into “Restore” to get the data back.</p>
             </li>
           </ol>
         </div>
@@ -87,39 +85,8 @@
 
       <section class="block" id="what-it-detects">
         <div class="wrap">
-          <h2>What it detects and how</h2>
-          <p class="intro">The rules are deterministic. A DNI, NIE or IBAN with the right format but a wrong check is still marked, as doubtful, in case it was copied wrongly; other numbers that do not match are discarded. The model is probabilistic: it is often right, but not always.</p>
-          <div class="table-wrap">
-            <table class="plain">
-              <thead><tr><th>Data</th><th>Method</th><th>Marker</th></tr></thead>
-              <tbody>
-                <tr><td>Names of people</td><td>GLiNER model, plus repeated mentions and short forms, also in lower case (“Mr Molina”, “javier”)</td><td><code>[PERSON_n]</code></td></tr>
-                <tr><td>Companies and organisations</td><td>GLiNER model</td><td><code>[ORGANIZATION_n]</code></td></tr>
-                <tr><td>Postal addresses</td><td>GLiNER model, plus a rule for full ones with a postal code</td><td><code>[ADDRESS_n]</code></td></tr>
-                <tr><td>DNI and NIE</td><td>Rule + check letter (with a wrong letter, marked as doubtful)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
-                <tr><td>CIF</td><td>Rule + check digit (with a wrong one after the word “CIF”, marked as doubtful)</td><td><code>[CIF_n]</code></td></tr>
-                <tr><td>Social security number</td><td>Rule + mod 97 check</td><td><code>[SSN_n]</code></td></tr>
-                <tr><td>IBAN (Spain and the rest of SEPA)</td><td>Rule + length for the country + mod 97 check</td><td><code>[IBAN_n]</code></td></tr>
-                <tr><td>Cards</td><td>Rule + Luhn algorithm</td><td><code>[CARD_n]</code></td></tr>
-                <tr><td>Phone numbers</td><td>Rule (Spanish numbers in their usual groupings; foreign numbers with a + prefix)</td><td><code>[PHONE_n]</code></td></tr>
-                <tr><td>Emails and IP addresses</td><td>Rule (IPv4 and IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
-                <tr><td>Dates of birth</td><td>Rule: a date right after “born”, “date of birth”, “nacido/a”, “F. nac.”… Other dates are left alone.</td><td><code>[BIRTH_DATE_n]</code></td></tr>
-                <tr><td>Spanish number plates</td><td>Rule (current “4821 KLM” and old “M-1234-AB”)</td><td><code>[PLATE_n]</code></td></tr>
-                <tr><td>Other identifiers (medical record, case file, policy, licence, passport, user name…)</td><td>Rule: a code with digits right after the word that introduces it (“NHC:”, “Nº expediente”, “policy no.”, “user=”), @handles and user names at the start of a line in chats and forums</td><td><code>[IDENTIFIER_n]</code></td></tr>
-                <tr><td>Any other fragment</td><td>You select it</td><td><code>[OTHER_n]</code></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section class="block" id="figures">
-        <div class="wrap">
-          <h2>Measured figures</h2>
-          <p class="intro">
-            Measured with the same code the site uses: the main figure comes from our own messy set, frozen before measuring and not used to tune it; the second, from public Spanish clinical reports (MEDDOCAN).
-            They are published as they came out; the datasets, every single error and the scripts are in the repository.
-          </p>
+          <h2>What it detects</h2>
+          <p class="intro">Names, organisations, addresses, Spanish DNI, NIE, CIF and social security numbers, IBANs, cards, phone numbers, emails, IP addresses, dates of birth, number plates and case, medical record, policy or user numbers. Anything it misses you can mark yourself.</p>
           <!--#cifras-en-->
         </div>
       </section>
@@ -127,41 +94,22 @@
       <section class="block" id="limits">
         <div class="wrap">
           <h2>Limits</h2>
-          <p class="intro">Anonimiza reduces the risk, it does not remove it. <strong>It does not guarantee complete anonymisation, and you must review the result</strong> before sharing it.</p>
+          <p class="intro"><strong>It does not guarantee complete anonymisation: always check the result</strong> before sharing it.</p>
           <ul class="limits">
-            <li><b>The model makes mistakes.</b> In the tests, the model on its own let one name in twenty slip through (mostly single or shortened repeated names), and sometimes it marked things that are not personal data, such as a court or a town council. On real documents it will fail more often than in the tests.</li>
-            <li><b>Context can also identify someone.</b> A job title (“the head teacher of a school in Teruel”), a date, a rare illness or a detail of the story can be enough to know who is being talked about. Those details are not searched for.</li>
-            <li><b>Unlabelled identifiers.</b> Case, record or policy numbers and user names are recognised by the word that introduces them (“NHC:”, “policy no.”, “user=”). Without it, and for forum or chat aliases, they often slip through: in the test, a little over half were found.</li>
-            <li><b>PDF back as images.</b> A PDF can be downloaded anonymised with the same look: each item is covered by its marker. Its pages become images so that the original text does not stay underneath; that PDF no longer has selectable text. Images in it (signatures, photos, stamps) are not checked. Scanned PDFs have no text and are not OCR’d.</li>
-            <li><b>DOCX back as DOCX.</b> A DOCX can be downloaded anonymised with its formatting, tables and images, and stays editable: the data is replaced by its markers inside the document itself, also in headers, footers, notes and comments. The author of the file and of comments and changes, deleted text kept by track changes, and the first-page thumbnail are removed too. Images in it are not checked.</li>
-            <li><b>Designed for Spanish.</b> The model is multilingual and the rules work for other SEPA countries, but the figures have only been measured in Spanish. DNI, NIE, CIF and social security numbers are Spanish identifiers.</li>
-            <li><b>The table lives in the tab.</b> If you reload or close the page, the markers can no longer be restored. Nothing is saved anywhere, on purpose.</li>
-            <li><b>Modest devices, more waiting.</b> The first time, the model has to be downloaded (about 370 MB with WebAssembly or 600 MB with WebGPU), and analysing a long document can take a while on devices without a graphics card.</li>
+            <li><b>It sometimes gets it wrong.</b> Mostly with lower-case names, chat aliases and codes without a word in front saying what they are.</li>
+            <li><b>Context identifies too.</b> A job title, a place or a rare illness may be enough to know who is meant, and those are not looked for.</li>
+            <li><b>Images are not checked.</b> Signatures, photos or stamps in a PDF or DOCX. Scanned PDFs have no text and cannot be read.</li>
+            <li><b>The anonymised PDF is one image per page.</b> That way the original text is not left hidden underneath, but its text cannot be selected.</li>
+            <li><b>A 370 MB download the first time.</b> The model then stays in the browser. On modest computers or phones a long document can take minutes.</li>
+            <li><b>Restoring only works in the same tab.</b> Close it and the data to restore is gone.</li>
           </ul>
         </div>
       </section>
 
       <section class="block" id="privacy">
         <div class="wrap">
-          <h2>Privacy you can check</h2>
-          <div class="defs">
-            <div>
-              <h3>The text does not leave your device</h3>
-              <p>Reading files, the rules, the model and the restoring all run in your browser. There is no server that receives your documents.</p>
-            </div>
-            <div>
-              <h3>Enforced by the browser</h3>
-              <p>The page is served with a content security policy (CSP) whose <code>connect-src</code> only allows connections to this site and to the models domain. Even if the code tried to send something elsewhere, the browser would block it.</p>
-            </div>
-            <div>
-              <h3>No analytics or cookies</h3>
-              <p>There is no Google Analytics or anything similar. The browser only stores your preferences and the downloaded model, and you can delete them from the app.</p>
-            </div>
-            <div>
-              <h3>Open source</h3>
-              <p>All the code is on GitHub under the MIT licence. You can check the requests in the “Network” tab of your developer tools while you use the app.</p>
-            </div>
-          </div>
+          <h2>Privacy</h2>
+          <p class="intro">Your texts and files do not leave your device: everything is processed in the browser. No accounts, no cookies, no analytics. The code is open source on <a href="https://github.com/amintikk/anonimiza" target="_blank" rel="noopener">GitHub</a>. Details in the <a href="/en/privacy/">privacy policy</a>.</p>
         </div>
       </section>
 
@@ -170,24 +118,16 @@
           <h2>Questions</h2>
           <div class="faq">
             <details>
-              <summary>Why markers and not invented data?</summary>
-              <p>A marker such as <code>[PERSON_1]</code> makes clear what has been removed, the AI almost always respects it, and it can be undone without any ambiguity. A made-up name could be mistaken for a real one, or slip into the reply without you noticing.</p>
+              <summary>Why markers and not made-up data?</summary>
+              <p>A marker such as <code>[PERSON_1]</code> makes clear what was removed, the AI keeps it, and it can be undone without ambiguity. A fake name could slip into the reply without you noticing.</p>
             </details>
             <details>
-              <summary>What happens if the AI changes a marker?</summary>
-              <p>Restoring accepts the usual changes: upper or lower case, a space instead of the underscore, or missing square brackets. If a marker appears that is not in the table, the app flags it and leaves it as it is.</p>
+              <summary>What if the AI changes a marker?</summary>
+              <p>Restoring tolerates the usual changes (case, spaces, lost brackets) and flags the ones it does not recognise.</p>
             </details>
             <details>
-              <summary>Do I need a graphics card?</summary>
-              <p>No. If the browser offers WebGPU with fp16 support, the graphics card is used; if not, the model runs on the processor with WebAssembly and several threads. It is slower, but gives practically the same result.</p>
-            </details>
-            <details>
-              <summary>Does it work on a phone?</summary>
-              <p>Yes, although the model needs quite a lot of memory (over 1 GB while running). On modest phones it can be slow, or the browser may close the tab. The rules always work, even without downloading the model.</p>
-            </details>
-            <details>
-              <summary>Can I use it to comply with the GDPR?</summary>
-              <p>It can help you minimise the data you share, but it is not a certified anonymisation tool and it does not replace a human or legal review. A text with markers is generally still pseudonymised data.</p>
+              <summary>Does it make me GDPR compliant?</summary>
+              <p>It helps you share less data, but it is not a certified tool and does not replace a review. A text with markers is still, in general, pseudonymised data.</p>
             </details>
           </div>
         </div>

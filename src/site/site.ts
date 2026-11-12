@@ -80,8 +80,42 @@ function wireReveal(): void {
   for (const el of items) io.observe(el);
 }
 
+/** Figures count up from 0 the first time they come into view. Without JS or with reduced motion they just show. */
+function wireCounters(): void {
+  const els = [...document.querySelectorAll<HTMLElement>('[data-count]')];
+  if (!els.length || matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const show = (el: HTMLElement, v: number) => (el.textContent = `${v} %`);
+  const run = (el: HTMLElement) => {
+    const to = Number(el.dataset.count);
+    const t0 = performance.now();
+    const ms = 1400;
+    const step = (now: number) => {
+      const k = Math.min((now - t0) / ms, 1);
+      show(el, Math.round(to * (1 - Math.pow(1 - k, 3)))); // ease-out
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        run(e.target as HTMLElement);
+      }
+    },
+    { threshold: 0.6 },
+  );
+  for (const el of els) {
+    el.style.fontVariantNumeric = 'tabular-nums';
+    show(el, 0);
+    io.observe(el);
+  }
+}
+
 hydrateIcons();
 wireTheme();
 wireNav();
 wireReveal();
+wireCounters();
 wireDemo();

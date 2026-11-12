@@ -876,10 +876,6 @@ body.app {
   transform: translate(-50%, 0);
 }
 
-.theme-anim,
-.theme-anim * {
-  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease) !important;
-}
 
 /* ---------------------------------------------------------------- narrow screens */
 @media (max-width: 960px) {
@@ -967,4 +963,30 @@ body.app {
 }
 .ocr-note .btn {
   margin-top: 10px;
+}
+
+/* Phones: the engine panel spans the screen under the header instead of hanging off the button. */
+@media (max-width: 560px) {
+  .engine-pop {
+    position: fixed;
+    top: 64px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Phones: the footer of the pane wraps, so the download and copy buttons are never pushed off the screen. */
+@media (max-width: 560px) {
+  .pane-foot {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding: 10px 12px;
+  }
+  .foot-right {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
 }

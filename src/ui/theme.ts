@@ -40,9 +40,15 @@ export function wireTheme(): void {
   btn?.addEventListener('click', () => {
     theme = isDark(theme) ? 'light' : 'dark';
     saveSettings({ theme: theme as Settings['theme'] });
-    document.documentElement.classList.add('theme-anim');
-    apply();
-    setTimeout(() => document.documentElement.classList.remove('theme-anim'), 400);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // The whole page changes in one smooth cross-fade where the browser supports view transitions (see tokens.css).
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    if (doc.startViewTransition && !reduce) doc.startViewTransition(apply);
+    else {
+      document.documentElement.classList.add('theme-anim');
+      apply();
+      setTimeout(() => document.documentElement.classList.remove('theme-anim'), 400);
+    }
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', apply);
 }

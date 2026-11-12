@@ -285,3 +285,21 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Theme change: the page cross-fades from the old theme to the new one (View Transitions), and browsers without
+   them get a short colour transition on every element (.theme-anim, set by ui/theme.ts). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.theme-anim,
+.theme-anim * {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

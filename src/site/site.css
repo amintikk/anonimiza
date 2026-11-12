@@ -692,3 +692,21 @@ table.plain tr.total td {
     padding: 11px 12px;
   }
 }
+
+/* Phones: tables fit the screen; long words break inside their cells instead of scrolling sideways. */
+@media (max-width: 600px) {
+  .table-card table,
+  .table-wrap table {
+    width: 100%;
+    table-layout: auto;
+    font-size: 13px;
+  }
+  .table-card th,
+  .table-card td,
+  .table-wrap th,
+  .table-wrap td {
+    padding: 9px 8px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+}

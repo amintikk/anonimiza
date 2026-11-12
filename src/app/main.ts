@@ -3,6 +3,7 @@ import '../styles/tokens.css';
 import './app.css';
 import { ACCEPT, extractFile } from '../docs/extract.ts';
 import { redactPdf, type PdfSource } from '../docs/pdf.ts';
+import { writeDocx, type DocxSource } from '../docs/docx.ts';
 import { CancelError, Engine } from '../engine/client.ts';
 import { applyMarkers, assignMarkers, buildDetections, dotEndsSentence, KINDS, restore, type Assignment, type Detection, type Kind } from '../engine/anonymize.ts';
 import type { EntitySpan } from '../engine/gliner.ts';
@@ -67,7 +68,8 @@ const engine = new Engine();
 const st = {
   text: '',
   fileName: '',
-  pdf: null as PdfSource | null, // the PDF the text came from, to write it back anonymised
+  // The PDF or DOCX the text came from, to write it back anonymised.
+  source: null as null | { kind: 'pdf'; src: PdfSource } | { kind: 'docx'; src: DocxSource },
   rules: [] as RuleMatch[],
   entities: null as EntitySpan[] | null,
   manual: [] as { start: number; end: number; kind: Kind }[],
@@ -337,7 +339,7 @@ input.addEventListener('keydown', (e) => {
 $('btn-sample').addEventListener('click', () => {
   input.value = SAMPLE[lang];
   st.fileName = '';
-  st.pdf = null;
+  st.source = null;
   setFileName();
   updateCount();
   void detectAll();
@@ -353,7 +355,7 @@ async function openFile(file: File): Promise<void> {
   try {
     const got = await extractFile(file);
     input.value = got.text;
-    st.pdf = got.pdf ?? null;
+    st.source = got.pdf ? { kind: 'pdf', src: got.pdf } : got.docx ? { kind: 'docx', src: got.docx } : null;
     st.fileName = file.name;
     setFileName();
     updateCount();
@@ -555,8 +557,10 @@ function renderReview(): void {
   review.replaceChildren(frag);
   const active = st.dets.some((d) => d.on);
   ($('btn-copy') as HTMLButtonElement).disabled = !st.text;
-  // The same PDF back, only while the text is still exactly the one read from it.
-  $('btn-pdf').hidden = !(st.pdf && st.pdf.text === st.text);
+  // The same PDF or DOCX back, only while the text is still exactly the one read from it.
+  const doc = $('btn-doc');
+  doc.hidden = !(st.source && st.source.src.text === st.text);
+  if (st.source) doc.querySelector('span')!.textContent = st.source.kind === 'pdf' ? t('Descargar PDF') : t('Descargar DOCX');
   $('btn-copy').classList.toggle('primary', active);
 }
 
@@ -763,23 +767,29 @@ $('btn-copy').addEventListener('click', async () => {
 });
 $('btn-download').addEventListener('click', () => download(outName(t('anonimizado')), anonymised()));
 
-let pdfBusy = false;
-$('btn-pdf').addEventListener('click', async () => {
-  const src = st.pdf;
-  if (!src || src.text !== st.text || pdfBusy) return;
-  pdfBusy = true;
-  const btn = $('btn-pdf') as HTMLButtonElement;
+let docBusy = false;
+$('btn-doc').addEventListener('click', async () => {
+  const source = st.source;
+  if (!source || source.src.text !== st.text || docBusy) return;
+  docBusy = true;
+  const btn = $('btn-doc') as HTMLButtonElement;
   btn.disabled = true;
   try {
     const covers = st.dets.filter((d) => d.on).map((d) => ({ start: d.start, end: d.end, label: st.assign.byId.get(d.id) ?? '' }));
-    const bytes = await redactPdf(src, covers, (n, total) => toast(t('Generando el PDF: página {n} de {total}…', { n: String(n), total: String(total) })));
-    const name = `${st.fileName.replace(/\.[^.]+$/, '') || t('documento')}-${t('anonimizado')}.pdf`;
-    download(name, bytes, 'application/pdf');
-    toast(t('PDF descargado. Revísalo antes de compartirlo: las imágenes que contenga (firmas, fotos, sellos) no se tapan.'));
+    const base = `${st.fileName.replace(/\.[^.]+$/, '') || t('documento')}-${t('anonimizado')}`;
+    if (source.kind === 'pdf') {
+      const bytes = await redactPdf(source.src, covers, (n, total) => toast(t('Generando el PDF: página {n} de {total}…', { n: String(n), total: String(total) })));
+      download(`${base}.pdf`, bytes, 'application/pdf');
+      toast(t('PDF descargado. Revísalo antes de compartirlo: las imágenes que contenga (firmas, fotos, sellos) no se tapan.'));
+    } else {
+      const bytes = await writeDocx(source.src, covers);
+      download(`${base}.docx`, bytes, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      toast(t('DOCX descargado. Revísalo antes de compartirlo: las imágenes que contenga (firmas, fotos, sellos) no se tapan.'));
+    }
   } catch (e) {
-    toast(`${t('No se pudo generar el PDF.')} ${e instanceof Error ? e.message : ''}`, 'error');
+    toast(`${t('No se pudo generar el archivo.')} ${e instanceof Error ? e.message : ''}`, 'error');
   } finally {
-    pdfBusy = false;
+    docBusy = false;
     btn.disabled = false;
   }
 });

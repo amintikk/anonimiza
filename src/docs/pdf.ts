@@ -3,6 +3,7 @@
 // The pages become images on purpose: a box drawn over text in the original file would leave the text under it,
 // still selectable and searchable. Images inside the PDF (signatures, photos, stamps) are not looked at.
 import type { PDFDocumentProxy, TextItem, TextStyle } from 'pdfjs-dist/types/src/display/api';
+import { tidyIndices } from './tidy.ts';
 
 interface Item {
   page: number; // 1-based
@@ -100,23 +101,9 @@ export async function readPdf(bytes: Uint8Array): Promise<PdfSource> {
   } finally {
     await destroy();
   }
-  // Same tidying as for other files: no spaces before a line break, at most two blank lines, no blank ends.
-  const keep = new Uint8Array(chars.length).fill(1);
-  for (let i = 0; i < chars.length; i++) {
-    if (chars[i] !== '\n') continue;
-    for (let j = i - 1; j >= 0 && /[ \t ]/.test(chars[j]!); j--) keep[j] = 0;
-  }
-  let run = 0;
-  for (let i = 0; i < chars.length; i++) {
-    if (!keep[i]) continue;
-    run = chars[i] === '\n' ? run + 1 : 0;
-    if (run > 3) keep[i] = 0;
-  }
-  let a = 0, b = chars.length;
-  while (a < b && /\s/.test(chars[a]!)) a++;
-  while (b > a && /\s/.test(chars[b - 1]!)) b--;
-  const outC: string[] = [], outI: number[] = [], outO: number[] = [];
-  for (let i = a; i < b; i++) if (keep[i]) (outC.push(chars[i]!), outI.push(itemOf[i]!), outO.push(offOf[i]!));
+  // Same tidying as for other files.
+  const kept = tidyIndices(chars);
+  const outC = kept.map((i) => chars[i]!), outI = kept.map((i) => itemOf[i]!), outO = kept.map((i) => offOf[i]!);
   return { bytes, text: outC.join(''), layout: { items, item: Int32Array.from(outI), offset: Int32Array.from(outO) } };
 }
 

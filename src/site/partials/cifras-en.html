@@ -31,18 +31,18 @@
   <table class="plain">
     <thead><tr><th>Type</th><th class="num">Annotated</th><th class="num">Marked</th><th class="num">Recall</th><th class="num">Exact recall</th><th class="num">Precision</th><th class="num">Exact precision</th></tr></thead>
     <tbody>
-      <tr><td>People</td><td class="num">601</td><td class="num">643</td><td class="num">100.0 %</td><td class="num">83.0 %</td><td class="num">94.2 %</td><td class="num">77.6 %</td></tr>
-      <tr><td>Organisations</td><td class="num">134</td><td class="num">208</td><td class="num">86.6 %</td><td class="num">71.6 %</td><td class="num">54.8 %</td><td class="num">46.2 %</td></tr>
-      <tr><td>Addresses</td><td class="num">240</td><td class="num">220</td><td class="num">89.6 %</td><td class="num">59.2 %</td><td class="num">97.3 %</td><td class="num">64.5 %</td></tr>
+      <tr><td>People</td><td class="num">601</td><td class="num">641</td><td class="num">100.0 %</td><td class="num">83.0 %</td><td class="num">94.5 %</td><td class="num">77.8 %</td></tr>
+      <tr><td>Organisations</td><td class="num">134</td><td class="num">204</td><td class="num">84.3 %</td><td class="num">69.4 %</td><td class="num">54.4 %</td><td class="num">45.6 %</td></tr>
+      <tr><td>Addresses</td><td class="num">240</td><td class="num">225</td><td class="num">91.7 %</td><td class="num">58.3 %</td><td class="num">97.3 %</td><td class="num">62.2 %</td></tr>
       <tr><td>DNI, NIE, CIF, SSN</td><td class="num">0</td><td class="num">1</td><td class="num">—</td><td class="num">—</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
       <tr><td>Phones</td><td class="num">17</td><td class="num">15</td><td class="num">88.2 %</td><td class="num">88.2 %</td><td class="num">100.0 %</td><td class="num">100.0 %</td></tr>
       <tr><td>Emails</td><td class="num">146</td><td class="num">147</td><td class="num">100.0 %</td><td class="num">100.0 %</td><td class="num">99.3 %</td><td class="num">99.3 %</td></tr>
       <tr><td>Other identifiers</td><td class="num">438</td><td class="num">432</td><td class="num">97.9 %</td><td class="num">97.9 %</td><td class="num">99.1 %</td><td class="num">99.1 %</td></tr>
-      <tr class="total"><td>Total</td><td class="num">1576</td><td class="num">1666</td><td class="num">96.6 %</td><td class="num">84.2 %</td><td class="num">91.5 %</td><td class="num">79.7 %</td></tr>
+      <tr class="total"><td>Total</td><td class="num">1576</td><td class="num">1665</td><td class="num">96.7 %</td><td class="num">83.9 %</td><td class="num">91.7 %</td><td class="num">79.4 %</td></tr>
     </tbody>
   </table>
 </div>
-<p class="note">"Recall" and "precision" count a hit when the marked text overlaps an annotated item of the same type; the "exact" columns require the same boundaries. Same code as the web app, int8w model, threshold 0.3 ("High" sensitivity). Two other sets were used to tune the tool and so give optimistic figures: 47 messy documents (recall 91.4 %, precision 81.7 %) and 29 clean documents written by the author (99.6 % and 92.7 %).</p>
+<p class="note">"Recall" and "precision" count a hit when the marked text overlaps an annotated item of the same type; the "exact" columns require the same boundaries. Same code as the web app, int8w model, threshold 0.3 ("High" sensitivity). Two other sets were used to tune the tool and so give optimistic figures: 47 messy documents (recall 92.3 %, precision 81.9 %) and 29 clean documents written by the author (100.0 % and 92.7 %).</p>
 <h3 class="sub-h">Model variants</h3>
 <p class="note">Agreement of each ONNX export with the original GLiNER in Python (PyTorch) on the same 28 test inputs: entities with the same boundaries and type, and largest score difference. The int8 file published on Hugging Face quantizes the activations of every matrix multiplication, which the output projection of the feed-forward layers does not survive; so the WebAssembly variant is quantized here on the weights only (8-bit blocks), with fp32 activations.</p>
 <div class="table-wrap">

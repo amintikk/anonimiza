@@ -3,7 +3,7 @@
 // out. The exceptions are formats specific enough to be a mistyped identifier rather than something else
 // (a DNI or NIE with the wrong letter, an IBAN of the right length): those are reported as doubtful.
 
-export type RuleKind = 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate' | 'ref';
+export type RuleKind = 'address' | 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate' | 'ref';
 
 export interface RuleMatch {
   start: number;
@@ -117,7 +117,7 @@ interface Rule {
   re: RegExp;
   valid?(text: string): boolean;
   /** When valid() fails: report the match anyway, flagged as doubtful, if this returns true. */
-  doubtful?(text: string): boolean;
+  doubtful?(match: string, text: string, start: number): boolean;
   /** Reject a match whose surroundings say it is something else. */
   reject?(text: string, start: number, end: number): boolean;
 }
@@ -196,6 +196,13 @@ const handleLike = (sep: string, v: string) => /[\d._]/.test(v) || /\p{Ll}\p{Lu}
 
 const PHONE_CUE = /(?:tel[eé]?f?|tlf|tfno|m[oó]vil|fijo|llam|n[uú]mero|whatsapp|phone|cel)[^\n\d]{0,14}$/i;
 
+// Postal addresses written in full: a street type, a name, a number and, on the same line, a five-digit postal
+// code with its town ("Calle de Alcalá, 120, 4.ª planta, 28009 Madrid"). Without the postal code they are left
+// to the model.
+const STREET = String.raw`(?:calle|c\/|avda\.|avenida|av\.|plaza|pza\.|pl\.|paseo|p[ºo°]\.?|ronda|r[uú]a|carrer|carretera|ctra\.|camino|traves[ií]a|glorieta|urbanizaci[oó]n|urb\.|pasaje|v[ií]a|pol[ií]gono|cuesta|bulevar|rambla|passeig|avinguda|pla[cç]a|kalea|etorbidea)`;
+const TOWN = String.raw`\p{Lu}[\p{L}'’\-]+(?:[^\S\n]+(?:(?:de|del|la|las|los|el|d'|i|y|e)[^\S\n]+)?\p{Lu}[\p{L}'’\-]+)*(?:[^\S\n]*\([\p{L} ]+\))?`;
+const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])[^\n]{0,60}?(?<!\d)\d{5}[^\S\n]+${TOWN}`, 'gu');
+
 // Order matters: earlier rules win when two matches overlap (an IBAN contains digits that look like a phone).
 const RULES: Rule[] = [
   { kind: 'email', re: re(String.raw`${B}[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}\-]+(?:\.[\p{L}\p{N}\-]+)*\.\p{L}{2,}${E}`) },
@@ -205,7 +212,8 @@ const RULES: Rule[] = [
   { kind: 'card', re: re(String.raw`${NB}(?:\d[ \-\n]?){12,18}\d${NE}`), valid: (s) => cardPrefix(s) && luhn(s), doubtful: (s) => cardPrefix(s) && /^\d{4}([ \-])\d{4}\1\d{4}\1\d{4}$/.test(s) },
   { kind: 'nie', re: re(String.raw`${B}[XYZ][ \-]?\d{7}[ \-]?[A-Z]${E}`), valid: validNie, doubtful: idTypo },
   { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}[ \-]?[A-Z]${E}`), valid: validDni, doubtful: idTypo },
-  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW][ \-]?\d{7}[ \-]?[0-9A-J]${E}`), valid: validCif },
+  // A CIF with a wrong control character is still reported, as doubtful, when the word "CIF" or "NIF" announces it.
+  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW][ \-]?\d{7}[ \-]?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => /\b(?:C\.?I\.?F|N\.?I\.?F)\.?(?:\s*(?:n\.?\s?º|núm\.?))?[\s:.\-]*$/i.test(t.slice(Math.max(0, st - 16), st)) },
   { kind: 'nss', re: re(String.raw`${NB}\d{2}[ /\-]?\d{8}[ /\-]?\d{2}${NE}`), valid: validNss },
   { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:[ \-]?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
   { kind: 'plate', re: re(String.raw`${B}(?:${PROVINCES})[ \-]?\d{4}[ \-]?[A-Z]{1,2}${E}`, 'gu'), reject: (t, s) => /\d[ .\-\/]?$/.test(t.slice(Math.max(0, s - 2), s)) },
@@ -268,7 +276,7 @@ export function findRules(text: string): RuleMatch[] {
       const s = text.slice(start, end);
       let doubtful = false;
       if (rule.valid && !rule.valid(s)) {
-        if (!rule.doubtful?.(s)) continue;
+        if (!rule.doubtful?.(s, text, start)) continue;
         doubtful = true;
       }
       if (rule.reject?.(text, start, end)) continue;
@@ -277,11 +285,12 @@ export function findRules(text: string): RuleMatch[] {
       out.push(doubtful ? { start, end, kind: rule.kind, doubtful } : { start, end, kind: rule.kind });
     }
   }
-  const take = (start: number, end: number) => {
+  const take = (start: number, end: number, kind: RuleKind = 'ref') => {
     if (end <= start || taken.subarray(start, end).some((x) => x)) return;
     taken.fill(1, start, end);
-    out.push({ start, end, kind: 'ref' });
+    out.push({ start, end, kind });
   };
+  for (const m of text.matchAll(ADDRESS_RE)) take(m.index, m.index + m[0].length, 'address');
   for (const m of text.matchAll(REF_RE)) if (refValue(m[0].slice(0, m.indices![1]![0] - m.index), m[1]!, m[2]!)) take(...m.indices![2]!);
   for (const m of text.matchAll(USER_RE)) {
     const sep = text.slice(m.index, m.indices![1]![0]);

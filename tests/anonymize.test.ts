@@ -97,7 +97,8 @@ test('name parts that are ordinary words keep their capital', () => {
 });
 
 test('roles and hospital departments proposed by the model are dropped; named ones stay', () => {
-  for (const v of ['paciente', 'la paciente', 'ARRENDATARIA', 'Mi madre', 'hijo menor de edad']) assert.ok(isGeneric('person', v), v);
+  for (const v of ['paciente', 'la paciente', 'ARRENDATARIA', 'Mi madre', 'hijo menor de edad', 'Ambas partes', 'las partes', 'EL PROVEEDOR']) assert.ok(isGeneric('person', v), v);
+  assert.ok(isGeneric('org', 'EL PROVEEDOR'));
   for (const v of ['Urología', 'Servicio de Oncología', 'Unidad de Cuidados Intensivos', 'Medicina Interna', 'nuestro centro']) assert.ok(isGeneric('org', v), v);
   for (const v of ['Rosa', 'Paciente Ana López', 'Madre Teresa', 'Doctor Pérez']) assert.ok(!isGeneric('person', v), v);
   for (const v of ['Servicio de Urología del Hospital Clínic', 'Hospital La Paz', 'Farmacia Pujol', 'Comunidad de Madrid']) assert.ok(!isGeneric('org', v), v);

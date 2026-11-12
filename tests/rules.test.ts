@@ -98,3 +98,13 @@ test('dates of birth only, not other dates', () => {
 test('a person after "Usuaria:" is not a user name', () => {
   assert.deepEqual(kinds('Usuaria: Josefa Martín Cuesta, 78 años. usuario: jmartinez'), [['ref', 'jmartinez']]);
 });
+
+test('a CIF announced as such is reported even with a wrong control character, as doubtful', () => {
+  assert.deepEqual(findRules('con CIF B-87654321, y el código B-87654321').map((m) => [m.kind, m.doubtful ?? false]), [['cif', true]]);
+});
+
+test('full postal addresses with a postal code', () => {
+  assert.deepEqual(kinds('domicilio social en Calle de Alcalá, 120, 4.ª planta, 28009 Madrid, representada'), [['address', 'Calle de Alcalá, 120, 4.ª planta, 28009 Madrid']]);
+  assert.deepEqual(kinds('Avda. de la Constitución 45, 1º izq., 46009 València\nMóvil'), [['address', 'Avda. de la Constitución 45, 1º izq., 46009 València']]);
+  assert.deepEqual(kinds('vive en la calle Mayor, cerca de la plaza'), []);
+});

@@ -95,9 +95,9 @@
               <tbody>
                 <tr><td>Nombres de personas</td><td>Modelo GLiNER, más sus repeticiones y formas cortas, también en minúscula («Sr. Molina», «javier»)</td><td><code>[PERSONA_n]</code></td></tr>
                 <tr><td>Empresas y organizaciones</td><td>Modelo GLiNER</td><td><code>[ORGANIZACION_n]</code></td></tr>
-                <tr><td>Direcciones postales</td><td>Modelo GLiNER</td><td><code>[DIRECCION_n]</code></td></tr>
+                <tr><td>Direcciones postales</td><td>Modelo GLiNER, y regla para las completas con código postal</td><td><code>[DIRECCION_n]</code></td></tr>
                 <tr><td>DNI y NIE</td><td>Regla + letra de control (con la letra mal, se marca como dudoso)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
-                <tr><td>CIF</td><td>Regla + dígito de control</td><td><code>[CIF_n]</code></td></tr>
+                <tr><td>CIF</td><td>Regla + dígito de control (con el control mal tras la palabra «CIF», se marca como dudoso)</td><td><code>[CIF_n]</code></td></tr>
                 <tr><td>N.º de la Seguridad Social</td><td>Regla + control módulo 97</td><td><code>[NSS_n]</code></td></tr>
                 <tr><td>IBAN (España y resto de SEPA)</td><td>Regla + longitud del país + control módulo 97</td><td><code>[IBAN_n]</code></td></tr>
                 <tr><td>Tarjetas</td><td>Regla + algoritmo de Luhn</td><td><code>[TARJETA_n]</code></td></tr>

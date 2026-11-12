@@ -52,7 +52,7 @@ const kindLabel = (k: Kind, plural = false): string =>
 const MANUAL_KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'phone', 'email', 'iban', 'birthdate', 'plate', 'ref', 'other'];
 
 /** Why a detection is doubtful (right format, wrong check digit). */
-const doubtNote = (k: Kind): string => (k === 'iban' ? t('Dígitos de control incorrectos: puede estar mal copiado. Compruébalo.') : k === 'card' ? t('No pasa la comprobación de tarjeta: puede estar mal copiada. Compruébalo.') : t('Letra de control incorrecta: puede estar mal copiado. Compruébalo.'));
+const doubtNote = (k: Kind): string => (k === 'iban' || k === 'cif' ? t('Dígitos de control incorrectos: puede estar mal copiado. Compruébalo.') : k === 'card' ? t('No pasa la comprobación de tarjeta: puede estar mal copiada. Compruébalo.') : t('Letra de control incorrecta: puede estar mal copiado. Compruébalo.'));
 
 const THRESHOLD: Record<NonNullable<Settings['sensitivity']>, number> = { high: 0.3, medium: 0.45, low: 0.6 };
 

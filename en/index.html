@@ -95,9 +95,9 @@
               <tbody>
                 <tr><td>Names of people</td><td>GLiNER model, plus repeated mentions and short forms, also in lower case (“Mr Molina”, “javier”)</td><td><code>[PERSON_n]</code></td></tr>
                 <tr><td>Companies and organisations</td><td>GLiNER model</td><td><code>[ORGANIZATION_n]</code></td></tr>
-                <tr><td>Postal addresses</td><td>GLiNER model</td><td><code>[ADDRESS_n]</code></td></tr>
+                <tr><td>Postal addresses</td><td>GLiNER model, plus a rule for full ones with a postal code</td><td><code>[ADDRESS_n]</code></td></tr>
                 <tr><td>DNI and NIE</td><td>Rule + check letter (with a wrong letter, marked as doubtful)</td><td><code>[DNI_n]</code> <code>[NIE_n]</code></td></tr>
-                <tr><td>CIF</td><td>Rule + check digit</td><td><code>[CIF_n]</code></td></tr>
+                <tr><td>CIF</td><td>Rule + check digit (with a wrong one after the word “CIF”, marked as doubtful)</td><td><code>[CIF_n]</code></td></tr>
                 <tr><td>Social security number</td><td>Rule + mod 97 check</td><td><code>[SSN_n]</code></td></tr>
                 <tr><td>IBAN (Spain and the rest of SEPA)</td><td>Rule + length for the country + mod 97 check</td><td><code>[IBAN_n]</code></td></tr>
                 <tr><td>Cards</td><td>Rule + Luhn algorithm</td><td><code>[CARD_n]</code></td></tr>

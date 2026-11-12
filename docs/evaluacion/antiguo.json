@@ -21,10 +21,10 @@
   },
   "address": {
    "gold": 24,
-   "pred": 25,
-   "tpR": 23,
+   "pred": 26,
+   "tpR": 24,
    "tpRx": 23,
-   "tpP": 23,
+   "tpP": 24,
    "tpPx": 23
   },
   "iban": {
@@ -102,26 +102,20 @@
  },
  "total": {
   "gold": 230,
-  "pred": 247,
-  "tpR": 229,
+  "pred": 248,
+  "tpR": 230,
   "tpRx": 220,
-  "tpP": 229,
+  "tpP": 230,
   "tpPx": 220
  },
  "chars": {
   "gold": 3969,
-  "covered": 3929,
-  "anyCovered": 3929,
-  "pred": 4216,
-  "predOk": 3929
+  "covered": 3940,
+  "anyCovered": 3940,
+  "pred": 4227,
+  "predOk": 3940
  },
  "errors": [
-  {
-   "doc": "contrato-alquiler",
-   "type": "missed",
-   "kind": "address",
-   "text": "Avenida del Puerto 118, 2.º 5.ª, 46023 Valencia"
-  },
   {
    "doc": "informe-medico",
    "type": "extra",
@@ -235,9 +229,9 @@
   {
    "id": "contrato-alquiler",
    "gold": 14,
-   "tpR": 13,
-   "pred": 13,
-   "tpP": 13
+   "tpR": 14,
+   "pred": 14,
+   "tpP": 14
   },
   {
    "id": "correo-rrhh",

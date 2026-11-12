@@ -99,3 +99,21 @@ test('review case end to end: nothing it should hide is left', { skip: !(haveMod
     'X1234567L', '71530264K', 'Puig', 'Ferrer', 'ES91', 'Ebre', 'nahia.etxe87', '612 34 56 78', '977 44 12 03', '4821 KLM', 'Jordi'].filter((s) => out.includes(s));
   assert.deepEqual(leaks, [], out);
 });
+
+test('contract case: parties and roles stay, CIF with a wrong control and a full address are replaced', { skip: !(haveModels && existsSync(join(dir!, 'gliner-pii-int8w.onnx'))) && 'set ANONIMIZA_MODELS (with gliner-pii-int8w.onnx) to run', timeout: 300_000 }, async () => {
+  const ort = await import('onnxruntime-node');
+  const { buildDetections, assignMarkers, applyMarkers } = await import('../src/engine/anonymize.ts');
+  const { findRules } = await import('../src/engine/rules.ts');
+  const { Tokenizer } = await import('@huggingface/tokenizers');
+  const tk = new Tokenizer(JSON.parse(readFileSync(join(dir!, 'tokenizer.json'), 'utf8')), JSON.parse(readFileSync(join(dir!, 'tokenizer_config.json'), 'utf8')));
+  const tokenize = (w: string) => tk.encode(w, { add_special_tokens: false }).ids;
+  const session = (await ort.InferenceSession.create(join(dir!, 'gliner-pii-int8w.onnx'))) as unknown as OrtSession;
+  const text = readFileSync(new URL('./data/caso-contrato.txt', import.meta.url), 'utf8');
+  const ents = await detect(ort as unknown as OrtLike, session, tokenize, text, { threshold: 0.3 });
+  const dets = buildDetections(text, findRules(text), ents);
+  const out = applyMarkers(text, dets, assignMarkers(text, dets, 'es').byId);
+  const leaks = ['Estrategia', 'Mediterráneo', 'Echevarría', 'Ferrer', 'B-87654321', 'B-12345678', 'Alcalá', 'Blasco', '50827391J', '20463815W', 'ES91'].filter((s) => out.includes(s));
+  assert.deepEqual(leaks, [], out);
+  for (const kept of ['Ambas partes', 'Cualquiera de las partes', 'EL PROVEEDOR se compromete', 'POR EL PROVEEDOR']) assert.ok(out.includes(kept), kept);
+});
+

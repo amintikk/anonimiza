@@ -31,18 +31,18 @@
   <table class="plain">
     <thead><tr><th>Tipo</th><th class="num">Anotados</th><th class="num">Marcados</th><th class="num">Cobertura</th><th class="num">Cobertura exacta</th><th class="num">Precisión</th><th class="num">Precisión exacta</th></tr></thead>
     <tbody>
-      <tr><td>Personas</td><td class="num">601</td><td class="num">643</td><td class="num">100,0 %</td><td class="num">83,0 %</td><td class="num">94,2 %</td><td class="num">77,6 %</td></tr>
-      <tr><td>Organizaciones</td><td class="num">134</td><td class="num">208</td><td class="num">86,6 %</td><td class="num">71,6 %</td><td class="num">54,8 %</td><td class="num">46,2 %</td></tr>
-      <tr><td>Direcciones</td><td class="num">240</td><td class="num">220</td><td class="num">89,6 %</td><td class="num">59,2 %</td><td class="num">97,3 %</td><td class="num">64,5 %</td></tr>
+      <tr><td>Personas</td><td class="num">601</td><td class="num">641</td><td class="num">100,0 %</td><td class="num">83,0 %</td><td class="num">94,5 %</td><td class="num">77,8 %</td></tr>
+      <tr><td>Organizaciones</td><td class="num">134</td><td class="num">204</td><td class="num">84,3 %</td><td class="num">69,4 %</td><td class="num">54,4 %</td><td class="num">45,6 %</td></tr>
+      <tr><td>Direcciones</td><td class="num">240</td><td class="num">225</td><td class="num">91,7 %</td><td class="num">58,3 %</td><td class="num">97,3 %</td><td class="num">62,2 %</td></tr>
       <tr><td>DNI, NIE, CIF, NSS</td><td class="num">0</td><td class="num">1</td><td class="num">—</td><td class="num">—</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
       <tr><td>Teléfonos</td><td class="num">17</td><td class="num">15</td><td class="num">88,2 %</td><td class="num">88,2 %</td><td class="num">100,0 %</td><td class="num">100,0 %</td></tr>
       <tr><td>Correos</td><td class="num">146</td><td class="num">147</td><td class="num">100,0 %</td><td class="num">100,0 %</td><td class="num">99,3 %</td><td class="num">99,3 %</td></tr>
       <tr><td>Otros identificadores</td><td class="num">438</td><td class="num">432</td><td class="num">97,9 %</td><td class="num">97,9 %</td><td class="num">99,1 %</td><td class="num">99,1 %</td></tr>
-      <tr class="total"><td>Total</td><td class="num">1576</td><td class="num">1666</td><td class="num">96,6 %</td><td class="num">84,2 %</td><td class="num">91,5 %</td><td class="num">79,7 %</td></tr>
+      <tr class="total"><td>Total</td><td class="num">1576</td><td class="num">1665</td><td class="num">96,7 %</td><td class="num">83,9 %</td><td class="num">91,7 %</td><td class="num">79,4 %</td></tr>
     </tbody>
   </table>
 </div>
-<p class="note">«Cobertura» y «precisión» cuentan como acierto que lo marcado se solape con el dato del mismo tipo; las columnas «exacta» exigen los mismos límites. Mismo código que la web, modelo int8w, umbral 0,3 (sensibilidad «Alta»). Otros dos conjuntos se usaron para ajustar la herramienta y por eso dan cifras optimistas: 47 documentos sucios (cobertura 91,4 %, precisión 81,7 %) y 29 documentos limpios escritos por el autor (99,6 % y 92,7 %).</p>
+<p class="note">«Cobertura» y «precisión» cuentan como acierto que lo marcado se solape con el dato del mismo tipo; las columnas «exacta» exigen los mismos límites. Mismo código que la web, modelo int8w, umbral 0,3 (sensibilidad «Alta»). Otros dos conjuntos se usaron para ajustar la herramienta y por eso dan cifras optimistas: 47 documentos sucios (cobertura 92,3 %, precisión 81,9 %) y 29 documentos limpios escritos por el autor (100,0 % y 92,7 %).</p>
 <h3 class="sub-h">Variantes del modelo</h3>
 <p class="note">Coincidencia de cada exportación ONNX con GLiNER original en Python (PyTorch) sobre las mismas 28 entradas de prueba: entidades con los mismos límites y tipo, y mayor diferencia de puntuación. El int8 publicado en Hugging Face cuantiza las activaciones de todas las multiplicaciones y la proyección de salida de las capas feed-forward no lo soporta; por eso la variante para WebAssembly se cuantiza aquí solo en los pesos (8 bits por bloques), con activaciones en fp32.</p>
 <div class="table-wrap">

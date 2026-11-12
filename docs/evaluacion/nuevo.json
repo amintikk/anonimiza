@@ -5,7 +5,7 @@
  "rows": {
   "person": {
    "gold": 262,
-   "pred": 289,
+   "pred": 288,
    "tpR": 248,
    "tpRx": 205,
    "tpP": 248,
@@ -13,11 +13,11 @@
   },
   "address": {
    "gold": 23,
-   "pred": 29,
-   "tpR": 17,
-   "tpRx": 15,
-   "tpP": 17,
-   "tpPx": 15
+   "pred": 34,
+   "tpR": 22,
+   "tpRx": 18,
+   "tpP": 22,
+   "tpPx": 18
   },
   "phone": {
    "gold": 48,
@@ -110,18 +110,18 @@
  },
  "total": {
   "gold": 556,
-  "pred": 622,
-  "tpR": 508,
-  "tpRx": 460,
-  "tpP": 508,
-  "tpPx": 460
+  "pred": 626,
+  "tpR": 513,
+  "tpRx": 463,
+  "tpP": 513,
+  "tpPx": 463
  },
  "chars": {
   "gold": 7399,
-  "covered": 6530,
-  "anyCovered": 6811,
-  "pred": 8271,
-  "predOk": 6811
+  "covered": 6756,
+  "anyCovered": 7031,
+  "pred": 8517,
+  "predOk": 7031
  },
  "errors": [
   {
@@ -135,12 +135,6 @@
    "type": "extra",
    "kind": "org",
    "text": "grupo de la ofi"
-  },
-  {
-   "doc": "correo-alta-trabajadora",
-   "type": "missed",
-   "kind": "address",
-   "text": "Avda. de la Constitución 45, 1º izq., 46009 València"
   },
   {
    "doc": "pdf-nomina-columnas",
@@ -165,19 +159,6 @@
    "type": "extra",
    "kind": "person",
    "text": "Dolores"
-  },
-  {
-   "doc": "contrato-arrendamiento-vivienda",
-   "type": "missed",
-   "kind": "address",
-   "text": "Avenida de la Sierra 23, portal 2, 3º A, 28400 Collado Villalba (Madrid)",
-   "as": "person"
-  },
-  {
-   "doc": "contrato-arrendamiento-vivienda",
-   "type": "extra",
-   "kind": "person",
-   "text": "Sierra"
   },
   {
    "doc": "contrato-arrendamiento-vivienda",
@@ -565,12 +546,6 @@
   {
    "doc": "formulario-padron-familia",
    "type": "missed",
-   "kind": "address",
-   "text": "C/ Ronda de Toledo 9, esc. dcha., 1º 3, 28005 Madrid"
-  },
-  {
-   "doc": "formulario-padron-familia",
-   "type": "missed",
    "kind": "phone",
    "text": "631 778 9021"
   },
@@ -585,12 +560,6 @@
    "type": "extra",
    "kind": "org",
    "text": "CEIP Pío Baroja"
-  },
-  {
-   "doc": "denuncia-sustraccion-vehiculo",
-   "type": "missed",
-   "kind": "address",
-   "text": "Rúa do Hórreo 54, 2º esq., 15702 Santiago de Compostela"
   },
   {
    "doc": "denuncia-sustraccion-vehiculo",
@@ -706,12 +675,6 @@
    "type": "extra",
    "kind": "org",
    "text": "Teleoperadora Fibra Norte"
-  },
-  {
-   "doc": "ficha-veterinaria",
-   "type": "missed",
-   "kind": "address",
-   "text": "C/ Mercedes Formica 8, 4ºA, 11402 Jerez de la Frontera"
   },
   {
    "doc": "ficha-veterinaria",
@@ -1135,9 +1098,9 @@
   {
    "id": "correo-alta-trabajadora",
    "gold": 16,
-   "tpR": 15,
-   "pred": 15,
-   "tpP": 15
+   "tpR": 16,
+   "pred": 16,
+   "tpP": 16
   },
   {
    "id": "pdf-nomina-columnas",
@@ -1156,9 +1119,9 @@
   {
    "id": "contrato-arrendamiento-vivienda",
    "gold": 21,
-   "tpR": 20,
+   "tpR": 21,
    "pred": 25,
-   "tpP": 20
+   "tpP": 21
   },
   {
    "id": "formulario-matricula-escuela",
@@ -1317,16 +1280,16 @@
   {
    "id": "formulario-padron-familia",
    "gold": 13,
-   "tpR": 11,
-   "pred": 14,
-   "tpP": 12
+   "tpR": 12,
+   "pred": 15,
+   "tpP": 13
   },
   {
    "id": "denuncia-sustraccion-vehiculo",
    "gold": 11,
-   "tpR": 10,
-   "pred": 13,
-   "tpP": 10
+   "tpR": 11,
+   "pred": 14,
+   "tpP": 11
   },
   {
    "id": "acta-asociacion-vecinal",
@@ -1373,9 +1336,9 @@
   {
    "id": "ficha-veterinaria",
    "gold": 6,
-   "tpR": 4,
-   "pred": 4,
-   "tpP": 4
+   "tpR": 5,
+   "pred": 5,
+   "tpP": 5
   },
   {
    "id": "formulario-beca-comedor",

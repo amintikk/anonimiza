@@ -5,7 +5,7 @@
  "rows": {
   "person": {
    "gold": 601,
-   "pred": 643,
+   "pred": 641,
    "tpR": 601,
    "tpRx": 499,
    "tpP": 606,
@@ -21,19 +21,19 @@
   },
   "address": {
    "gold": 240,
-   "pred": 220,
-   "tpR": 215,
-   "tpRx": 142,
-   "tpP": 214,
-   "tpPx": 142
+   "pred": 225,
+   "tpR": 220,
+   "tpRx": 140,
+   "tpP": 219,
+   "tpPx": 140
   },
   "org": {
    "gold": 134,
-   "pred": 208,
-   "tpR": 116,
-   "tpRx": 96,
-   "tpP": 114,
-   "tpPx": 96
+   "pred": 204,
+   "tpR": 113,
+   "tpRx": 93,
+   "tpP": 111,
+   "tpPx": 93
   },
   "email": {
    "gold": 146,
@@ -70,18 +70,18 @@
  },
  "total": {
   "gold": 1576,
-  "pred": 1666,
-  "tpR": 1522,
-  "tpRx": 1327,
-  "tpP": 1524,
-  "tpPx": 1327
+  "pred": 1665,
+  "tpR": 1524,
+  "tpRx": 1322,
+  "tpP": 1526,
+  "tpPx": 1322
  },
  "chars": {
   "gold": 24121,
-  "covered": 23019,
-  "anyCovered": 23122,
-  "pred": 25917,
-  "predOk": 23122
+  "covered": 23094,
+  "anyCovered": 23219,
+  "pred": 26071,
+  "predOk": 23219
  },
  "errors": [
   {
@@ -181,12 +181,6 @@
    "text": "PXE"
   },
   {
-   "doc": "S0376-78922009000100005-1",
-   "type": "missed",
-   "kind": "address",
-   "text": "C/ Mariano Estrada Lorca nº 15, Portal 2, Piso 1ºD"
-  },
-  {
    "doc": "S0376-78922009000100011-1",
    "type": "missed",
    "kind": "otherid",
@@ -233,12 +227,6 @@
    "type": "extra",
    "kind": "person",
    "text": "cirujano urólogo"
-  },
-  {
-   "doc": "S0376-78922009000400010-1",
-   "type": "missed",
-   "kind": "address",
-   "text": "C/ Pedro Rico, 19 - 10o D"
   },
   {
    "doc": "S0376-78922012000300005-1",
@@ -323,12 +311,6 @@
    "type": "extra",
    "kind": "org",
    "text": "OMS"
-  },
-  {
-   "doc": "S0378-48352006000300005-1",
-   "type": "extra",
-   "kind": "org",
-   "text": "Unidad de Hematología C/ S. Martín de Porres"
   },
   {
    "doc": "S0465-546X2014000400012-1",
@@ -668,6 +650,13 @@
   },
   {
    "doc": "S1134-80462008000200008-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Hospital Universitario Central de Asturias",
+   "as": "address"
+  },
+  {
+   "doc": "S1134-80462008000200008-1",
    "type": "extra",
    "kind": "org",
    "text": "servicio de cirugía vascular por clínica de claudicación corta"
@@ -725,6 +714,13 @@
    "type": "extra",
    "kind": "org",
    "text": "servicio de emergencias médicas"
+  },
+  {
+   "doc": "S1137-66272006000300009-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Hospital Virgen del Camino",
+   "as": "address"
   },
   {
    "doc": "S1137-66272007000500016-1",
@@ -824,25 +820,6 @@
    "text": "Eastern Cooperative Oncology Group"
   },
   {
-   "doc": "S1139-76322009000700014-2",
-   "type": "missed",
-   "kind": "address",
-   "text": "Passeig de Sant Joan de Déu, 2",
-   "as": "person"
-  },
-  {
-   "doc": "S1139-76322009000700014-2",
-   "type": "extra",
-   "kind": "person",
-   "text": "Joan"
-  },
-  {
-   "doc": "S1139-76322010000100009-1",
-   "type": "missed",
-   "kind": "address",
-   "text": "Passeig de Sant Joan de Déu, 2"
-  },
-  {
    "doc": "S1139-76322010000300008-1",
    "type": "extra",
    "kind": "org",
@@ -880,13 +857,6 @@
   },
   {
    "doc": "S1139-76322016000300012-1",
-   "type": "missed",
-   "kind": "address",
-   "text": "C/ Jacinta García Hernández 7, Portal 2 5ºE",
-   "as": "person"
-  },
-  {
-   "doc": "S1139-76322016000300012-1",
    "type": "extra",
    "kind": "org",
    "text": "Primaria"
@@ -902,12 +872,6 @@
    "type": "extra",
    "kind": "org",
    "text": "centro de salud"
-  },
-  {
-   "doc": "S1139-76322016000300012-1",
-   "type": "extra",
-   "kind": "person",
-   "text": "García"
   },
   {
    "doc": "S1139-76322016000400012-1",
@@ -1004,6 +968,13 @@
    "type": "extra",
    "kind": "org",
    "text": "consultorio dental"
+  },
+  {
+   "doc": "S1698-69462006000100017-1",
+   "type": "missed",
+   "kind": "org",
+   "text": "Hospital Virgen del Camino",
+   "as": "address"
   },
   {
    "doc": "S1698-69462006000100017-1",
@@ -1409,9 +1380,9 @@
   {
    "id": "S0376-78922009000100005-1",
    "gold": 7,
-   "tpR": 6,
-   "pred": 9,
-   "tpP": 9
+   "tpR": 7,
+   "pred": 10,
+   "tpP": 10
   },
   {
    "id": "S0376-78922009000100011-1",
@@ -1437,9 +1408,9 @@
   {
    "id": "S0376-78922009000400010-1",
    "gold": 7,
-   "tpR": 6,
-   "pred": 8,
-   "tpP": 8
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 9
   },
   {
    "id": "S0376-78922011000500012-1",
@@ -1501,7 +1472,7 @@
    "id": "S0378-48352006000300005-1",
    "gold": 7,
    "tpR": 7,
-   "pred": 14,
+   "pred": 13,
    "tpP": 10
   },
   {
@@ -1927,9 +1898,9 @@
   {
    "id": "S1134-80462008000200008-1",
    "gold": 8,
-   "tpR": 8,
-   "pred": 13,
-   "tpP": 11
+   "tpR": 7,
+   "pred": 12,
+   "tpP": 10
   },
   {
    "id": "S1134-80462008000800003-1",
@@ -1990,9 +1961,9 @@
   {
    "id": "S1137-66272006000300009-1",
    "gold": 9,
-   "tpR": 9,
-   "pred": 12,
-   "tpP": 12
+   "tpR": 8,
+   "pred": 11,
+   "tpP": 11
   },
   {
    "id": "S1137-66272007000500016-1",
@@ -2088,16 +2059,16 @@
   {
    "id": "S1139-76322009000700014-2",
    "gold": 8,
-   "tpR": 7,
+   "tpR": 8,
    "pred": 10,
-   "tpP": 9
+   "tpP": 10
   },
   {
    "id": "S1139-76322010000100009-1",
    "gold": 8,
-   "tpR": 7,
-   "pred": 9,
-   "tpP": 9
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 10
   },
   {
    "id": "S1139-76322010000300008-1",
@@ -2151,9 +2122,9 @@
   {
    "id": "S1139-76322016000300012-1",
    "gold": 6,
-   "tpR": 5,
+   "tpR": 6,
    "pred": 11,
-   "tpP": 7
+   "tpP": 8
   },
   {
    "id": "S1139-76322016000400012-1",
@@ -2200,9 +2171,9 @@
   {
    "id": "S1698-69462006000100017-1",
    "gold": 11,
-   "tpR": 10,
-   "pred": 16,
-   "tpP": 14
+   "tpR": 9,
+   "pred": 15,
+   "tpP": 13
   },
   {
    "id": "S1698-69462006000400002-1",

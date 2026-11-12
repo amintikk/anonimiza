@@ -1,0 +1,28 @@
+En Madrid, a 12 de noviembre de 2026.
+
+REUNIDOS
+
+• De una parte (EL CLIENTE): Estrategia Norte Consultores, S.L., con CIF B-87654321, domicilio social en Calle de Alcalá, 120, 4.ª planta, 28009 Madrid, representada en este acto por D.ª Marta Echevarría Robles, mayor de edad, con DNI 50827391J, en calidad de Administradora Única.
+• De otra parte (EL PROVEEDOR): Desarrollos Web Mediterráneo, S.L., con CIF B-12345678, domicilio social en Avenida de Blasco Ibáñez, 45, 46021 Valencia, representada en este acto por D. Andrés Ferrer Climent, mayor de edad, con DNI 20463815W, en calidad de Director General.
+Ambas partes se reconocen mutuamente la capacidad legal necesaria para contratar y obligarse, y a tal efecto
+
+EXPONEN
+
+• I. Actividad del Cliente. Que EL CLIENTE es una empresa dedicada a la consultoría estratégica y transformación digital que requiere soporte externo especializado.
+• II. Especialización del Proveedor. Que EL PROVEEDOR cuenta con los medios técnicos, humanos y la experiencia necesaria para prestar servicios de desarrollo y mantenimiento de software.
+• III. Voluntad de contratar. Que ambas partes acuerdan suscribir el presente Contrato de Prestación de Servicios, con arreglo a las siguientes
+
+CLÁUSULAS
+
+1. Objeto del contrato. EL PROVEEDOR se compromete a realizar el diseño, desarrollo e implementación de una plataforma web corporativa para EL CLIENTE, según las especificaciones técnicas detalladas en el Anexo I.
+2. Duración. El presente contrato entrará en vigor el día 15 de noviembre de 2026 y tendrá una duración inicial de seis (6) meses, finalizando el 15 de mayo de 2027. Podrá prorrogarse por acuerdo expreso y escrito de ambas partes.
+3. Precio y forma de pago. El importe total de los servicios asciende a 6.000,00 € (seis mil euros), más el IVA correspondiente (21 %). El pago se realizará mediante transferencia bancaria a la cuenta ES91 2100 0418 4502 0005 1332 en tres plazos mensuales de 2.000,00 € más IVA, dentro de los primeros cinco días de cada mes.
+4. Confidencialidad. Ambas partes se obligan a mantener absoluta reserva sobre toda la información técnica, comercial o financiera a la que tengan acceso durante la ejecución de este acuerdo, obligación que subsistirá durante dos (2) años tras su finalización.
+5. Protección de datos. De conformidad con el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), los datos personales incluidos en este documento serán tratados únicamente para gestionar la relación contractual.
+6. Resolución anticipada. Cualquiera de las partes podrá resolver el contrato en caso de incumplimiento grave de las obligaciones de la otra parte, previo requerimiento fehaciente con un plazo de subsanación de diez (10) días hábiles.
+7. Legislación y fuero. Este contrato se regirá por la legislación española. Para cualquier controversia derivada de su interpretación o cumplimiento, las partes se someten a los Juzgados y Tribunales de Madrid.
+Y en prueba de conformidad, firman el presente documento por duplicado y a un solo efecto, en el lugar y fecha indicados en el encabezamiento.
+
+POR EL CLIENTE	POR EL PROVEEDOR
+Fdo.: Marta Echevarría Robles	Fdo.: Andrés Ferrer Climent
+Estrategia Norte Consultores, S.L.	Desarrollos Web Mediterráneo, S.L.

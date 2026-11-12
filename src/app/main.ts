@@ -433,13 +433,16 @@ async function openFile(file: File): Promise<void> {
   }
 }
 
-const fileInput = $<HTMLInputElement>('file');
-fileInput.accept = ACCEPT;
-fileInput.addEventListener('change', () => {
-  const f = fileInput.files?.[0];
-  if (f) void openFile(f);
-  fileInput.value = '';
-});
+// "Open file" is in the editor footer and, after detection, in the review footer: both attach a file.
+for (const id of ['file', 'file-review']) {
+  const fileInput = $<HTMLInputElement>(id);
+  fileInput.accept = ACCEPT;
+  fileInput.addEventListener('change', () => {
+    const f = fileInput.files?.[0];
+    if (f) void openFile(f);
+    fileInput.value = '';
+  });
+}
 
 // Drag and drop anywhere on the anonymise view.
 let dragDepth = 0;

@@ -929,13 +929,13 @@ body.app {
   .hint {
     display: none;
   }
-  .foot-left .btn span,
-  #foot-review .foot-left .btn span {
+  /* Phones: the attach button keeps its text, the other buttons of the footer show only their icons. */
+  .foot-left .btn:not(.file-btn) span,
+  #foot-review .foot-left .btn:not(.file-btn) span {
     display: none;
   }
   .file-btn {
-    width: 32px;
-    padding: 0;
+    padding: 0 12px;
   }
   .count {
     display: none;

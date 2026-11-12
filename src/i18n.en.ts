@@ -160,4 +160,9 @@ export const EN: Record<string, string> = {
   'Descargar el texto anonimizado (.txt)': 'Download the anonymised text (.txt)',
   'Copiar texto': 'Copy text',
   'Copiar resultado': 'Copy result',
+  'Leyendo la página {n} de {total}…': 'Reading page {n} of {total}…',
+  'Preparando el OCR…': 'Preparing the OCR…',
+  'Descargando el OCR ({size}, solo la primera vez)…': 'Downloading the OCR ({size}, first time only)…',
+  'Listo: {n} líneas leídas.': 'Done: {n} lines read.',
+  'El OCR no encontró texto en este PDF.': 'The OCR found no text in this PDF.',
 };

@@ -1,7 +1,8 @@
 // Text out of the files people drop: PDF (pdf.js), DOCX (unzip + XML) and plain text.
 // Everything runs locally. A PDF or DOCX also keeps where each character is (pdf.ts, docx.ts), to write it back anonymised.
 import { t } from '../i18n.ts';
-import { readPdf, type PdfSource } from './pdf.ts';
+import { ocrPdf, readPdf, type OcrEvent, type PdfSource } from './pdf.ts';
+import { OcrClient } from '../ocr/client.ts';
 import { DocxError, readDocx, type DocxSource } from './docx.ts';
 export { wordXmlText } from './docx.ts';
 
@@ -13,15 +14,23 @@ export interface Extracted {
   /** For a PDF or DOCX: the file and where each character is, so the same file can be written back anonymised. */
   pdf?: PdfSource;
   docx?: DocxSource;
+  /** The text was read with OCR, because the PDF has no text that can be copied. */
+  ocr?: boolean;
 }
 
-export async function extractFile(file: File): Promise<Extracted> {
+const ocr = new OcrClient();
+
+export async function extractFile(file: File, onOcr?: (e: OcrEvent) => void): Promise<Extracted> {
   if (file.size > MAX_BYTES) throw new Error(t('El archivo pesa más de 50 MB.'));
   const name = file.name.toLowerCase();
   if (name.endsWith('.pdf') || file.type === 'application/pdf') {
-    const pdf = await readPdf(new Uint8Array(await file.arrayBuffer()));
-    if (!pdf.text.replace(/\s/g, '')) throw new Error(t('El PDF no contiene texto seleccionable (puede ser una imagen escaneada). Esta herramienta no hace OCR.'));
-    return { text: pdf.text, pdf };
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const pdf = await readPdf(bytes);
+    if (pdf.text.replace(/\s/g, '')) return { text: pdf.text, pdf };
+    // Scanned or re-printed as images: nothing can be copied, so the pages are read with OCR.
+    const read = await ocrPdf(bytes, ocr, onOcr);
+    if (!read.text.replace(/\s/g, '')) throw new Error(t('El OCR no encontró texto en este PDF.'));
+    return { text: read.text, pdf: read, ocr: true };
   }
   if (name.endsWith('.docx')) {
     try {

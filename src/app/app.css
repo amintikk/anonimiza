@@ -941,3 +941,30 @@ body.app {
     display: none;
   }
 }
+
+/* OCR note: shown only for a PDF without text that can be copied. */
+.ocr-note {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.ocr-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--warn-ink);
+}
+.ocr-note p {
+  margin: 8px 0 0;
+}
+.ocr-status {
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+.ocr-note .btn {
+  margin-top: 10px;
+}

@@ -2,12 +2,12 @@ import '@fontsource-variable/inter';
 import '../styles/tokens.css';
 import './app.css';
 import { ACCEPT, extractFile } from '../docs/extract.ts';
-import { redactPdf, type PdfSource } from '../docs/pdf.ts';
+import { redactPdf, type OcrEvent, type PdfSource } from '../docs/pdf.ts';
 import { writeDocx, type DocxSource } from '../docs/docx.ts';
 import { CancelError, Engine } from '../engine/client.ts';
 import { applyMarkers, assignMarkers, buildDetections, dotEndsSentence, KINDS, restore, type Assignment, type Detection, type Kind } from '../engine/anonymize.ts';
 import type { EntitySpan } from '../engine/gliner.ts';
-import { downloadSize, modelFor } from '../engine/models.ts';
+import { downloadSize, MODEL_FILES, modelFor } from '../engine/models.ts';
 import type { Backend } from '../engine/protocol.ts';
 import { findRules, type RuleMatch } from '../engine/rules.ts';
 import { isCached, clearCache, pruneCache } from '../engine/store.ts';
@@ -381,6 +381,7 @@ input.addEventListener('keydown', (e) => {
 });
 
 $('btn-sample').addEventListener('click', () => {
+  ocrNote.hidden = true;
   input.value = SAMPLE[lang];
   st.fileName = '';
   st.source = null;
@@ -395,9 +396,30 @@ function setFileName(): void {
   el.textContent = st.fileName;
 }
 
+const ocrNote = $('ocr-note');
+const ocrStatus = $('ocr-status');
+const OCR_BYTES = MODEL_FILES.ocrDet.bytes + MODEL_FILES.ocrRec.bytes + MODEL_FILES.ocrDict.bytes;
+$('ocr-ok').addEventListener('click', () => (ocrNote.hidden = true));
+
+/** The OCR note only shows for a PDF that has no text to copy; it says what is happening while the pages are read. */
+function ocrProgress(e: OcrEvent): void {
+  ocrNote.hidden = false;
+  ocrStatus.textContent =
+    e.stage === 'page'
+      ? t('Leyendo la página {n} de {total}…', { n: String(e.page), total: String(e.pages) })
+      : e.cached
+        ? t('Preparando el OCR…')
+        : t('Descargando el OCR ({size}, solo la primera vez)…', { size: fmtBytes(OCR_BYTES) });
+}
+
 async function openFile(file: File): Promise<void> {
+  ocrNote.hidden = true;
   try {
-    const got = await extractFile(file);
+    const got = await extractFile(file, ocrProgress);
+    if (got.ocr) {
+      ocrNote.hidden = false;
+      ocrStatus.textContent = t('Listo: {n} líneas leídas.', { n: String(got.text.split('\n').filter((l) => l.trim()).length) });
+    }
     input.value = got.text;
     st.source = got.pdf ? { kind: 'pdf', src: got.pdf } : got.docx ? { kind: 'docx', src: got.docx } : null;
     st.fileName = file.name;

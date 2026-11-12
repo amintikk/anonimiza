@@ -321,3 +321,70 @@ export function imagesToPdf(pages: PageImage[]): Uint8Array<ArrayBuffer> {
   for (const p of parts) (out.set(p, o), (o += p.length));
   return out;
 }
+
+/** What the OCR reader needs from the client, so this file does not depend on the worker. */
+export interface OcrReader {
+  read(page: { width: number; height: number; rgba: Uint8ClampedArray<ArrayBuffer> }, onBytes?: (file: string, loaded: number, total: number, cached: boolean) => void): Promise<{ text: string; score: number; box: { x: number; y: number }[]; line: number }[]>;
+}
+
+export type OcrEvent = { stage: 'download'; file: string; loaded: number; total: number; cached: boolean } | { stage: 'page'; page: number; pages: number };
+
+/**
+ * A PDF without selectable text, read with OCR: each page is drawn, its lines are read, and every line becomes an
+ * item at its place on the page. The result has the same shape as readPdf(), so the same PDF can be written back
+ * with the detections covered.
+ */
+export async function ocrPdf(bytes: Uint8Array, ocr: OcrReader, onEvent?: (e: OcrEvent) => void): Promise<PdfSource> {
+  const { doc, destroy } = await open(bytes);
+  const items: Item[] = [];
+  const chars: string[] = [], itemOf: number[] = [], offOf: number[] = [];
+  const push = (c: string, it: number, off: number) => {
+    chars.push(c);
+    itemOf.push(it);
+    offOf.push(off);
+  };
+  try {
+    for (let p = 1; p <= doc.numPages; p++) {
+      onEvent?.({ stage: 'page', page: p, pages: doc.numPages });
+      const page = await doc.getPage(p);
+      const base = page.getViewport({ scale: 1 });
+      const vp = page.getViewport({ scale: SCALE });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.ceil(vp.width);
+      canvas.height = Math.ceil(vp.height);
+      const ctx = canvas.getContext('2d', { alpha: false })!;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvas, canvasContext: ctx, viewport: vp }).promise;
+      const rgba = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const lines = await ocr.read({ width: canvas.width, height: canvas.height, rgba }, (file, loaded, total, cached) => onEvent?.({ stage: 'download', file, loaded, total, cached }));
+      canvas.width = canvas.height = 0;
+      page.cleanup();
+      if (p > 1) (push('\n', -1, -1), push('\n', -1, -1));
+      let prevLine = -1;
+      for (const line of lines) {
+        // Boxes of one visual line are joined with a space; a new line starts a new line of text.
+        if (prevLine !== -1) (line.line === prevLine ? push(' ', -1, -1) : push('\n', -1, -1));
+        prevLine = line.line;
+        // Corners in image pixels at SCALE per point, with y pointing down; PDF space has y pointing up.
+        const [tl, tr, , bl] = line.box as [{ x: number; y: number }, { x: number; y: number }, unknown, { x: number; y: number }];
+        const fh = Math.max(1, Math.hypot(bl.x - tl.x, bl.y - tl.y) / SCALE);
+        const width = Math.hypot(tr.x - tl.x, tr.y - tl.y) / SCALE;
+        const str = line.text.normalize('NFC');
+        const idx = items.length;
+        items.push({ page: p, str, transform: [fh, 0, 0, fh, bl.x / SCALE, base.height - bl.y / SCALE], width, ascent: 0.8, descent: -0.2, family: 'sans-serif', vertical: false });
+        for (let i = 0; i < str.length; i++) push(str[i]!, idx, i);
+      }
+    }
+  } finally {
+    await destroy();
+  }
+  const keep = tidyIndices(chars);
+  const text = keep.map((i) => chars[i]!).join('');
+  return {
+    bytes,
+    text,
+    layout: { items, item: Int32Array.from(keep, (i) => itemOf[i]!), offset: Int32Array.from(keep, (i) => offOf[i]!) },
+  };
+}
+

@@ -8,7 +8,7 @@ export interface FileMeta {
 }
 
 /** Files on the models domain; regenerate with tools/make_manifest.py after exporting new ones. */
-export const MODEL_FILES: Record<'webgpu' | 'wasm' | 'tokenizer' | 'tokenizerConfig', FileMeta> = manifest;
+export const MODEL_FILES: Record<'webgpu' | 'wasm' | 'tokenizer' | 'tokenizerConfig' | 'ocrDet' | 'ocrRec' | 'ocrDict', FileMeta> = manifest;
 
 /**
  * One variant per engine, chosen by measurement (README, "Variantes del modelo"):

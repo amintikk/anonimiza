@@ -18,5 +18,20 @@
     "file": "tokenizer_config.json",
     "bytes": 1806,
     "sha256": "78f866883daf7ee2bc400200a155cdbe9116ed0a6ed597ff573ea2c9862a89a6"
+  },
+  "ocrDet": {
+    "file": "ocr-det.onnx",
+    "bytes": 9929594,
+    "sha256": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f"
+  },
+  "ocrRec": {
+    "file": "ocr-rec.onnx",
+    "bytes": 21234383,
+    "sha256": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+  },
+  "ocrDict": {
+    "file": "ocr-rec-dict.json",
+    "bytes": 131073,
+    "sha256": "46f800890c516f8a4e9e9d690f1ef9dc8d36782333463363d80307d572acb8be"
   }
 }

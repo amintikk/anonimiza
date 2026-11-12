@@ -1,0 +1,2558 @@
+{
+  "_note": "Conjunto de evaluación tercero, nuevo e independiente (noviembre 2026), escrito sin consultar el código ni los conjuntos anteriores salvo su formato. Todo es ficticio: nombres, direcciones, teléfonos, correos e identificadores se inventaron; DNI, NIE, CIF, IBAN, NSS y tarjetas se generaron con dígito de control válido, salvo 4 mal copiados a propósito (anotados igualmente): DNI 41447052-H con letra incorrecta (poder-notarial-pleitos; la correcta sería V), NIE Y2952918B con letra incorrecta (soporte-app-reparto; la correcta sería P), IBAN ES75 2100 1887 7984 3184 6927 con los dos últimos dígitos permutados (correo-rrhh-permiso-nacimiento), y NSS 29 75419306 18 con los dígitos de control permutados (pdf-nomina-hosteleria; el correcto termina en 81). Además hay un DNI (dos veces), tres teléfonos, una fecha de nacimiento y dos direcciones dictados con palabras en transcripciones de voz, anotados con su tipo aunque no se puedan verificar; las tarjetas parciales (últimos dígitos o enmascaradas) van a optional. Anotación manual: cada entrada de pii marca todas las apariciones de la cadena como palabra completa y distinguiendo mayúsculas; las cadenas largas se asignan primero y el tercer elemento, si existe, indica qué apariciones libres (desde 0) son dato personal. Las formas partidas por salto de línea o guion de corte se anotan tal como aparecen, salto incluido; cuando las columnas de un PDF pegado intercalan un nombre o una dirección, cada trozo se anota por separado. Criterios: nombres de usuario, alias de foro/chat, perfiles, números de historia clínica, tarjeta sanitaria, colegiado, expediente, póliza, pasaporte, bastidor y documentos extranjeros son OTRO_ID, pero un nombre de pila usado como nombre visible es PERSONA; apellidos sueltos tras Sr./Sra. son PERSONA; direcciones de empresas, teléfonos de centralitas, hospitales y clínicas, poblaciones sueltas, referencias catastrales, localizadores, años de nacimiento sueltos e IP privadas van a optional; nombres de calles con nombre de persona o santo, festividades, cargos y marcas (Mercadona, Endesa, Tesla, San Lorenzo, Virgen del Rosario) no se anotan. 7 documentos no contienen ningún dato personal y llevan palabras-trampa.",
+  "docs": [
+    {
+      "id": "correo-reclamacion-factura-luz",
+      "style": "correo",
+      "text": "Asunto: Reclamación factura octubre - cobro duplicado\n\nBuenas tardes,\n\nMe llamo Begoña Arrizabalaga Uriarte y soy titular del contrato de suministro eléctrico de la vivienda en Calle Txurdinaga 34, 5º izda, 48004 Bilbao. Este mes me han cargado dos veces la factura (89,47 € el día 3 y otra vez el día 5) en mi cuenta ES34 2100 7848 3128 5909 8825.\n\nMis datos: DNI 56892879X, CUPS ES0021000017734452KX, nº de contrato 5100483921.\n\nOs adjunto el extracto. Os pido que me devolváis el importe duplicado lo antes posible porque estoy justa este mes. Si necesitáis algo me podéis llamar al 688 41 90 27 por las tardes o escribirme aquí (b.arrizabalaga@gmail.com).\n\nUn saludo,\nBegoña Arrizabalaga\n\n--\nEnviado desde mi móvil",
+      "pii": [
+        [
+          "Begoña Arrizabalaga Uriarte",
+          "PERSONA"
+        ],
+        [
+          "Begoña Arrizabalaga",
+          "PERSONA"
+        ],
+        [
+          "Calle Txurdinaga 34, 5º izda, 48004 Bilbao",
+          "DIRECCION"
+        ],
+        [
+          "ES34 2100 7848 3128 5909 8825",
+          "IBAN"
+        ],
+        [
+          "56892879X",
+          "DNI"
+        ],
+        [
+          "5100483921",
+          "OTRO_ID"
+        ],
+        [
+          "688 41 90 27",
+          "TELEFONO"
+        ],
+        [
+          "b.arrizabalaga@gmail.com",
+          "EMAIL"
+        ]
+      ],
+      "optional": [
+        [
+          "ES0021000017734452KX",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "whatsapp-futbol-alevin",
+      "style": "chat",
+      "text": "[9/11/26, 19:42] Montse Puigdomènech: Bona tarda famílies! dissabte el partit és a les 10 al camp de Can Rull, cal ser-hi a 2/4 de 10\n[9/11/26, 19:44] Jordi Vilaró: ok! el Pol porta la samarreta vermella o la blava?\n[9/11/26, 19:45] Montse Puigdomènech: la blava, juguem de visitants\n[9/11/26, 19:51] +34 622 18 40 93: hola soy la mama de Adrià, este finde no podremos llevarle que estamos en Andorra 😕 alguien le puede recoger?\n[9/11/26, 19:53] Jordi Vilaró: jo mateix, el passo a buscar a les 9 i quart. on viviu?\n[9/11/26, 19:55] +34 622 18 40 93: av. Barberà 112, 4t 2a, al lado del Mercadona. Gracias Jordi!!!\n[9/11/26, 20:02] Laia: montse t'he passat el bizum de la quota, 35€\n[9/11/26, 20:03] Montse Puigdomènech: rebut laia, gràcies!\n[9/11/26, 20:10] Xavi Roca: perdó que no vaig llegir, l'Arnau té febre, no vindrà",
+      "pii": [
+        [
+          "Montse Puigdomènech",
+          "PERSONA"
+        ],
+        [
+          "Jordi Vilaró",
+          "PERSONA"
+        ],
+        [
+          "Jordi",
+          "PERSONA"
+        ],
+        [
+          "Pol",
+          "PERSONA"
+        ],
+        [
+          "+34 622 18 40 93",
+          "TELEFONO"
+        ],
+        [
+          "Adrià",
+          "PERSONA"
+        ],
+        [
+          "av. Barberà 112, 4t 2a",
+          "DIRECCION"
+        ],
+        [
+          "Laia",
+          "PERSONA"
+        ],
+        [
+          "laia",
+          "PERSONA"
+        ],
+        [
+          "montse",
+          "PERSONA"
+        ],
+        [
+          "Xavi Roca",
+          "PERSONA"
+        ],
+        [
+          "Arnau",
+          "PERSONA"
+        ]
+      ]
+    },
+    {
+      "id": "telegram-venta-moto",
+      "style": "chat",
+      "text": "Ruben Sx, [03.11.26 22:14]\nHola, sigue disponible la Yamaha MT-07? la del anuncio de wallapop\n\nIulian Popescu, [03.11.26 22:20]\nDa, sigue. Tiene 23.000 km, ITV pasada en septiembre. Matrícula 4417 KXB, te mando fotos del permiso si quieres\n\nRuben Sx, [03.11.26 22:21]\nvale porfa. Precio final?\n\nIulian Popescu, [03.11.26 22:25]\n5.200 ultimo precio. Puedes venir a verla a Alcalá de Henares, calle Torrelaguna 15, sábado por la mañana\n\nIulian Popescu, [03.11.26 22:25]\nmi numero 631-207-448 por si no veo telegram\n\nRuben Sx, [03.11.26 22:40]\nperfecto, soy Rubén Castaño, iré con mi cuñado. si cerramos trato hacemos la transferencia en la DGT el lunes, te viene bien?\n\nIulian Popescu, [03.11.26 22:41]\nOk. Yo tengo NIE X5439165X, el tuyo me lo pasas para rellenar el contrato",
+      "pii": [
+        [
+          "Ruben Sx",
+          "PERSONA"
+        ],
+        [
+          "Iulian Popescu",
+          "PERSONA"
+        ],
+        [
+          "4417 KXB",
+          "MATRICULA"
+        ],
+        [
+          "calle Torrelaguna 15",
+          "DIRECCION"
+        ],
+        [
+          "631-207-448",
+          "TELEFONO"
+        ],
+        [
+          "Rubén Castaño",
+          "PERSONA"
+        ],
+        [
+          "X5439165X",
+          "NIE"
+        ]
+      ],
+      "optional": [
+        [
+          "Alcalá de Henares",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "slack-incidencia-login",
+      "style": "chat",
+      "text": "#incidencias-prod\n**ana.ferreiro** 10:02\n@xabi.lz el login de clientes está devolviendo 500 desde las 9:47, ¿has tocado algo?\n**xabi.lz** 10:04\nnada en prod. Mira, en el log aparece muchísimo tráfico desde 185.214.77.92, parece un credential stuffing\n**ana.ferreiro** 10:05\nbloqueado en el WAF. Hay alguna cuenta comprometida?\n**xabi.lz** 10:09\nal menos una: la de cliente 00418832, usuario mcarmen.villalba58, entró desde 185.214.77.92 y cambió el email a recuperacion.cuenta2026@proton.me 😬\n**ana.ferreiro** 10:11\nmadre mía. Llamo a la clienta. Teléfono en ficha: 954 61 22 08 (fijo de Sevilla)\n**Rocío (soporte)** 10:15\nYa he hablado con ella, se llama María del Carmen Villalba Ortiz, confirma que no fue ella. Le reseteo la contraseña y restauro su email original mcvillalba@telefonica.net\n**xabi.lz** 10:17\n👍 dejo el parte en JIRA SEC-2291. La IP interna del balanceador es 10.20.3.15 por si alguien la busca",
+      "pii": [
+        [
+          "ana.ferreiro",
+          "OTRO_ID"
+        ],
+        [
+          "xabi.lz",
+          "OTRO_ID"
+        ],
+        [
+          "185.214.77.92",
+          "IP"
+        ],
+        [
+          "00418832",
+          "OTRO_ID"
+        ],
+        [
+          "mcarmen.villalba58",
+          "OTRO_ID"
+        ],
+        [
+          "recuperacion.cuenta2026@proton.me",
+          "EMAIL"
+        ],
+        [
+          "954 61 22 08",
+          "TELEFONO"
+        ],
+        [
+          "Rocío",
+          "PERSONA"
+        ],
+        [
+          "María del Carmen Villalba Ortiz",
+          "PERSONA"
+        ],
+        [
+          "mcvillalba@telefonica.net",
+          "EMAIL"
+        ]
+      ],
+      "optional": [
+        [
+          "10.20.3.15",
+          "IP"
+        ]
+      ]
+    },
+    {
+      "id": "transcripcion-llamada-banco",
+      "style": "voz",
+      "text": "[Transcripción automática – llamada entrante 14:32]\nAGENTE: Banca telefónica, le atiende Sergio, ¿en qué puedo ayudarle?\nCLIENTE: Hola buenas, mira, que me han bloqueado la tarjeta y no sé por qué\nAGENTE: Vale, no se preocupe. Para identificarle necesito su nombre completo y su DNI.\nCLIENTE: Sí, Encarnación Muñoz Jiménez, el DNI es el cero tres cero tres cuatro tres tres tres ene\nAGENTE: Cero tres cero tres cuatro tres tres tres ene, perfecto. ¿Me confirma su fecha de nacimiento?\nCLIENTE: El catorce de febrero del sesenta y uno\nAGENTE: Gracias doña Encarnación. Veo que se ha bloqueado por tres intentos de PIN erróneos en un cajero de la calle Larios esta mañana\nCLIENTE: ¡Pero si yo estoy en casa en Torremolinos! eso no he sido yo\nAGENTE: Entiendo. Entonces vamos a anular la tarjeta acabada en ocho uno ocho dos y le mandamos una nueva a su domicilio, avenida Carlota Alessandri cuarenta y dos, ¿correcto?\nCLIENTE: sí, el cuarenta y dos, segundo be\nAGENTE: Perfecto. Le llegará en cinco días hábiles. ¿Algún teléfono de contacto por si hay incidencias?\nCLIENTE: el seis cero nueve, treinta y uno, cuarenta y cuatro, diecisiete",
+      "pii": [
+        [
+          "Sergio",
+          "PERSONA"
+        ],
+        [
+          "Encarnación Muñoz Jiménez",
+          "PERSONA"
+        ],
+        [
+          "Encarnación",
+          "PERSONA"
+        ],
+        [
+          "cero tres cero tres cuatro tres tres tres ene",
+          "DNI"
+        ],
+        [
+          "Cero tres cero tres cuatro tres tres tres ene",
+          "DNI"
+        ],
+        [
+          "catorce de febrero del sesenta y uno",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "avenida Carlota Alessandri cuarenta y dos",
+          "DIRECCION"
+        ],
+        [
+          "seis cero nueve, treinta y uno, cuarenta y cuatro, diecisiete",
+          "TELEFONO"
+        ]
+      ],
+      "optional": [
+        [
+          "ocho uno ocho dos",
+          "TARJETA"
+        ],
+        [
+          "Torremolinos",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "nota-voz-vecina",
+      "style": "voz",
+      "text": "Audio transcrito (1:12): \"eh hola Fátima soy Khadija la vecina del tercero, oye que te llamo porque ha venido un señor de la compañía del gas preguntando por tu marido por Rachid, dice que tiene que revisar la caldera y que si no le dejamos pasar nos cortan, yo no le he abierto eh porque me ha parecido raro, ha dejado un papel con un número seiscientos cincuenta y dos ochenta y ocho diecinueve cero cuatro y un nombre que pone Óscar Lafuente, no sé, tú mira a ver, que luego la gente se aprovecha de los mayores. Ah y que el sábado es el cumple de mi hijo Ayoub, que si queréis venir con los niños a casa a las cinco, ya sabes, Ronda de Outeiro doscientos diez, el portal de al lado. Venga un beso guapa\"",
+      "pii": [
+        [
+          "Fátima",
+          "PERSONA"
+        ],
+        [
+          "Khadija",
+          "PERSONA"
+        ],
+        [
+          "Rachid",
+          "PERSONA"
+        ],
+        [
+          "seiscientos cincuenta y dos ochenta y ocho diecinueve cero cuatro",
+          "TELEFONO"
+        ],
+        [
+          "Óscar Lafuente",
+          "PERSONA"
+        ],
+        [
+          "Ayoub",
+          "PERSONA"
+        ],
+        [
+          "Ronda de Outeiro doscientos diez",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "pdf-certificado-retenciones",
+      "style": "pdf",
+      "text": "CERTIFICADO DE RETENCIONES E INGRESOS A CUENTA DEL IRPF          Ejercicio 2025\nRendimientos del trabajo (art. 101 LIRPF)\n\nDATOS DEL PAGADOR                        DATOS DEL PERCEPTOR\nRazón social: TALLERES MECÁNICOS         Apellidos y nombre: LOUREIRO\nARTEIXO SL                               CASTIÑEIRAS, ANXO\nNIF: B15539786                           NIF: 74189427Y\nDomicilio: Polígono de Sabón,            Domicilio: Rúa Fonteculler 9, 1º\nparcela 112, 15142 Arteixo               15174 Culleredo (A Coruña)\n\nRetribuciones dinerarias íntegras ................ 24.318,60 €\nRetenciones practicadas ........................... 2.894,11 €\nGastos deducibles (cotizaciones SS) ............... 1.578,29 €\nRentas exentas ........................................ 0,00 €\n\nY para que conste a los efectos oportunos, se expide el presente en Arteixo,\na 28 de febrero de 2026.\n\nFdo.: Pilar Seoane Varela\nAdministración",
+      "pii": [
+        [
+          "TALLERES MECÁNICOS",
+          "ORGANIZACION"
+        ],
+        [
+          "ARTEIXO SL",
+          "ORGANIZACION"
+        ],
+        [
+          "LOUREIRO",
+          "PERSONA"
+        ],
+        [
+          "CASTIÑEIRAS, ANXO",
+          "PERSONA"
+        ],
+        [
+          "B15539786",
+          "CIF"
+        ],
+        [
+          "74189427Y",
+          "DNI"
+        ],
+        [
+          "Rúa Fonteculler 9, 1º",
+          "DIRECCION"
+        ],
+        [
+          "15174 Culleredo (A Coruña)",
+          "DIRECCION"
+        ],
+        [
+          "Pilar Seoane Varela",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "parcela 112, 15142 Arteixo",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "pdf-extracto-bancario",
+      "style": "pdf",
+      "text": "Extracto de movimientos                                    Página 1 de 2\nTitular: MIHAELA ANDREEA GHEORGHE          Cuenta: ES51 2085 9658 2094\n                                                   3854 1313\nPeriodo: 01/10/2026 - 31/10/2026\n\nFecha    Concepto                                    Importe      Saldo\n02/10    NOMINA CONSTRUCCIONES ZARAGÜELLES SL       1.642,00     2.011,35\n03/10    BIZUM DE CRISTINA LAHOZ MARIN                 25,00     2.036,35\n05/10    RECIBO ALQUILER OCTUBRE - PASCUAL GIMENO    -650,00     1.386,35\n07/10    COMPRA TARJ. 5574 11** **** 6673 MERCADONA   -84,12     1.302,23\n         ZARAGOZA\n11/10    TRANSF. A FAVOR DE GHEORGHE IONUT           -200,00     1.102,23\n         CONCEPTO: pentru mama\n15/10    RECIBO ENDESA ENERGIA                        -61,40     1.040,83\n22/10    BIZUM A ELENA RUSU \"cena\"                    -18,50     1.022,33\n\nOficina 4412 · Plaza de Aragón (Zaragoza)",
+      "pii": [
+        [
+          "MIHAELA ANDREEA GHEORGHE",
+          "PERSONA"
+        ],
+        [
+          "ES51 2085 9658 2094\n                                                   3854 1313",
+          "IBAN"
+        ],
+        [
+          "CONSTRUCCIONES ZARAGÜELLES SL",
+          "ORGANIZACION"
+        ],
+        [
+          "CRISTINA LAHOZ MARIN",
+          "PERSONA"
+        ],
+        [
+          "PASCUAL GIMENO",
+          "PERSONA"
+        ],
+        [
+          "GHEORGHE IONUT",
+          "PERSONA"
+        ],
+        [
+          "ELENA RUSU",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "5574 11** **** 6673",
+          "TARJETA"
+        ]
+      ]
+    },
+    {
+      "id": "formulario-padron-terrassa",
+      "style": "formulario",
+      "text": "AJUNTAMENT DE TERRASSA – Hoja de inscripción padronal\nTipo de movimiento: [X] Alta por cambio de residencia  [ ] Omisión  [ ] Nacimiento\n\nDomicilio: Carrer de la Rasa 57, 2n 3a        CP: 08221\nTeléfono contacto: 671 03 58 92\n\nPersona 1\nNombre: MOHAMED          1er apellido: EL AMRANI      2º apellido: BOUZIANE\nFecha nac.: 03/07/1984   Lugar: Nador (Marruecos)   Sexo: H\nDocumento: [ ] DNI [X] NIE [ ] Pasaporte   Nº: X1730352Q\n\nPersona 2\nNombre: SALMA            1er apellido: OUAHBI         2º apellido: —\nFecha nac.: 19/11/1989   Lugar: Nador (Marruecos)   Sexo: M\nDocumento: [ ] DNI [ ] NIE [X] Pasaporte   Nº: TZ5826614\n\nPersona 3 (menor)\nNombre: YASMINE          1er apellido: EL AMRANI      2º apellido: OUAHBI\nFecha nac.: 22/04/2019   Lugar: Terrassa             Sexo: M\nDocumento: ---\n\nFirma de la persona mayor de edad empadronada:\nMohamed El Amrani            Terrassa, 6 de noviembre de 2026",
+      "pii": [
+        [
+          "Carrer de la Rasa 57, 2n 3a",
+          "DIRECCION"
+        ],
+        [
+          "671 03 58 92",
+          "TELEFONO"
+        ],
+        [
+          "MOHAMED",
+          "PERSONA"
+        ],
+        [
+          "EL AMRANI",
+          "PERSONA"
+        ],
+        [
+          "BOUZIANE",
+          "PERSONA"
+        ],
+        [
+          "03/07/1984",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "X1730352Q",
+          "NIE"
+        ],
+        [
+          "SALMA",
+          "PERSONA"
+        ],
+        [
+          "OUAHBI",
+          "PERSONA"
+        ],
+        [
+          "19/11/1989",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "TZ5826614",
+          "OTRO_ID"
+        ],
+        [
+          "YASMINE",
+          "PERSONA"
+        ],
+        [
+          "22/04/2019",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Mohamed El Amrani",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "08221",
+          "DIRECCION"
+        ],
+        [
+          "Nador (Marruecos)",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "formulario-alta-gimnasio",
+      "style": "formulario",
+      "text": "FICHA DE ALTA – GIMNASIO ATLAS FIT (Getafe)\nNombre y apellidos: andreea-ioana stan\nF. nacimiento: 2-9-2001\nDNI/NIE: Y0854690R\nMóvil: 0034 642 515 309\nE-mail: andreea.stan01@yahoo.es\nDirección: c/ Toledo 48 4ºc, Getafe\nCuota: [ ] Mañanas  [X] Total 34,90€/mes\nDomiciliación bancaria (IBAN): ES72 2100 5993 7805 8075 4812\n¿Lesiones o patologías?: hernia discal L5-S1, me lo dijo la traumatóloga, no puedo hacer peso muerto\nCómo nos conociste: por mi compañera de trabajo, Yolanda\nContacto de emergencia: Florin (pareja) 642 51 77 03\nFirma: A.I. Stan     Fecha: 10/11/26",
+      "pii": [
+        [
+          "andreea-ioana stan",
+          "PERSONA"
+        ],
+        [
+          "2-9-2001",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Y0854690R",
+          "NIE"
+        ],
+        [
+          "0034 642 515 309",
+          "TELEFONO"
+        ],
+        [
+          "andreea.stan01@yahoo.es",
+          "EMAIL"
+        ],
+        [
+          "c/ Toledo 48 4ºc, Getafe",
+          "DIRECCION"
+        ],
+        [
+          "ES72 2100 5993 7805 8075 4812",
+          "IBAN"
+        ],
+        [
+          "Yolanda",
+          "PERSONA"
+        ],
+        [
+          "Florin",
+          "PERSONA"
+        ],
+        [
+          "642 51 77 03",
+          "TELEFONO"
+        ],
+        [
+          "A.I. Stan",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "GIMNASIO ATLAS FIT",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "informe-urgencias-cadera",
+      "style": "clinico",
+      "text": "HOSPITAL UNIVERSITARIO DE CABUEÑES – SERVICIO DE URGENCIAS\nGijón\n\nPaciente: GARCÍA FERNÁNDEZ, MARÍA ELENA        NHC: 1029384\nF. Nac: 11/05/1947 (79 a)                         CIPA: 1100345872\nNSS: 33 25069893 06                               Episodio: URG-26-118274\nFecha ingreso: 09/11/2026 18:44   Procedencia: domicilio, traída por su hija\n\nMotivo de consulta: caída casual en domicilio con dolor en cadera derecha.\n\nAnamnesis: Mujer de 79 años, independiente para ABVD, vive con su hija (Covadonga, tfno 685 30 12 49). Refiere tropiezo con alfombra. No pérdida de conciencia. AP: HTA, DM2, fibrilación auricular anticoagulada con acenocumarol. Alergia a penicilina.\n\nExploración: miembro inferior derecho acortado y en rotación externa. Dolor a la movilización.\n\nPruebas: Rx cadera: fractura subcapital de fémur derecho Garden III. INR 2,8.\n\nJuicio clínico: Fractura subcapital de cadera derecha.\n\nPlan: ingreso a cargo de Traumatología. Revertir anticoagulación. Valoración por Medicina Interna.\n\nMédico responsable: Dr. Iñaki Zubizarreta Goñi – Nº col. 333308712",
+      "pii": [
+        [
+          "GARCÍA FERNÁNDEZ, MARÍA ELENA",
+          "PERSONA"
+        ],
+        [
+          "1029384",
+          "OTRO_ID"
+        ],
+        [
+          "11/05/1947",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "1100345872",
+          "OTRO_ID"
+        ],
+        [
+          "33 25069893 06",
+          "NSS"
+        ],
+        [
+          "Covadonga",
+          "PERSONA"
+        ],
+        [
+          "685 30 12 49",
+          "TELEFONO"
+        ],
+        [
+          "Iñaki Zubizarreta Goñi",
+          "PERSONA"
+        ],
+        [
+          "333308712",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "URG-26-118274",
+          "OTRO_ID"
+        ],
+        [
+          "HOSPITAL UNIVERSITARIO DE CABUEÑES",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "informe-alta-cardiologia-catala",
+      "style": "clinico",
+      "text": "Servei de Cardiologia\nHospital Universitari Arnau de Vilanova – Lleida\n\nINFORME D'ALTA HOSPITALÀRIA\n\nPacient: Josep Maria Solé i Capdevila\nData naixement: 30-01-1958      NHC: 00845521\nCIP: SOCA 0580130 003        DNI: 78036954R\nAdreça: C. Major 14, 25280 Solsona\n\nData ingrés: 02/11/2026     Data alta: 08/11/2026\n\nMotiu d'ingrés: dolor toràcic opressiu de 2 h d'evolució.\nDiagnòstic principal: IAMEST inferior. Killip I.\nProcediments: coronariografia urgent (Dr. Bernat Farré) amb implantació d'stent farmacoactiu a ACD proximal.\n\nEvolució: favorable, sense complicacions. Deambula sense dolor.\n\nTractament a l'alta:\n- AAS 100 mg/24 h\n- Ticagrelor 90 mg/12 h (12 mesos)\n- Atorvastatina 80 mg/24 h\n- Bisoprolol 2,5 mg/24 h\n\nControl: consulta externa de Cardiologia en 4 setmanes. Rehabilitació cardíaca.\nPersona de contacte: Roser Vilalta (esposa) – 973 48 03 16 / 619 774 205\n\nMetgessa responsable: Dra. Núria Bosch Pallarès\nCol. 25/5021",
+      "pii": [
+        [
+          "Josep Maria Solé i Capdevila",
+          "PERSONA"
+        ],
+        [
+          "30-01-1958",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "00845521",
+          "OTRO_ID"
+        ],
+        [
+          "SOCA 0580130 003",
+          "OTRO_ID"
+        ],
+        [
+          "78036954R",
+          "DNI"
+        ],
+        [
+          "C. Major 14, 25280 Solsona",
+          "DIRECCION"
+        ],
+        [
+          "Bernat Farré",
+          "PERSONA"
+        ],
+        [
+          "Roser Vilalta",
+          "PERSONA"
+        ],
+        [
+          "973 48 03 16",
+          "TELEFONO"
+        ],
+        [
+          "619 774 205",
+          "TELEFONO"
+        ],
+        [
+          "Núria Bosch Pallarès",
+          "PERSONA"
+        ],
+        [
+          "25/5021",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "Hospital Universitari Arnau de Vilanova",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "notas-enfermeria-medicina-interna",
+      "style": "clinico",
+      "text": "NOTAS DE ENFERMERÍA – 4ª planta Medicina Interna – Hab. 412-A\nTurno noche 10→11/11\n\nPac. Ramón Iglesias Couto (NHC 2290117), 84a.\n23:10 Pac. agitado, se quita la vía. Avisada MIR de guardia (Dra. Lucía Ferreras). Se pauta haloperidol 2,5 mg sc según orden.\n00:30 Más tranquilo. Duerme.\n03:15 Llama el hijo (Manuel, 616 80 92 44) preguntando por su padre, se le informa que pasa noche tranquila.\n05:40 Glucemia capilar 212. Se administran 4 UI insulina rápida s/pauta.\n06:50 Diuresis 900 cc en bolsa. Se cambia pañal, piel íntegra, sin UPP.\nFirma: Enf. Sabela Otero (n.º mec. 47731)\n\nTurno mañana 11/11\n08:20 El pac. refiere que \"la chica de anoche no me dejaba levantarme\". Desayuna bien.\nFirma: J. Antonio Lema",
+      "pii": [
+        [
+          "Ramón Iglesias Couto",
+          "PERSONA"
+        ],
+        [
+          "2290117",
+          "OTRO_ID"
+        ],
+        [
+          "Lucía Ferreras",
+          "PERSONA"
+        ],
+        [
+          "Manuel",
+          "PERSONA"
+        ],
+        [
+          "616 80 92 44",
+          "TELEFONO"
+        ],
+        [
+          "Sabela Otero",
+          "PERSONA"
+        ],
+        [
+          "J. Antonio Lema",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "47731",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "informe-salud-mental-csm",
+      "style": "clinico",
+      "text": "CENTRO DE SALUD MENTAL DE TETUÁN – Madrid\nInforme de seguimiento (a petición de la paciente, para su médico de atención primaria)\n\nNombre: Yuliana Andrea Pérez Cárdenas\nFecha de nacimiento: 1999/08/14\nNº historia: SM-0087734\nCIPA/TSI: PRCR990814118015\nNUSS: 28 40936117 20\n\nPaciente de 27 años, natural de Bucaramanga (Colombia), en España desde 2019. Trabaja como auxiliar en una residencia. Derivada en marzo por su MAP (Dr. Alberto Nieto) por clínica ansioso-depresiva tras ruptura de pareja y situación de acoso laboral por parte de su supervisora.\n\nEvolución: buena adherencia a sertralina 100 mg. Refiere mejoría del ánimo y del insomnio. Persisten pensamientos rumiativos relacionados con su expareja, Brayan, con quien comparte custodia de su hijo de 4 años, Thiago. Niega ideación autolítica actual. Apoyo social: su hermana Leidy, que vive en Leganés.\n\nPlan: mantener tratamiento. Psicoterapia grupal los jueves. Próxima revisión en 8 semanas.\n\nFdo. Dra. Carmen Sanz Ugarte, psiquiatra. Col. 282867193",
+      "pii": [
+        [
+          "Yuliana Andrea Pérez Cárdenas",
+          "PERSONA"
+        ],
+        [
+          "1999/08/14",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "SM-0087734",
+          "OTRO_ID"
+        ],
+        [
+          "PRCR990814118015",
+          "OTRO_ID"
+        ],
+        [
+          "28 40936117 20",
+          "NSS"
+        ],
+        [
+          "Alberto Nieto",
+          "PERSONA"
+        ],
+        [
+          "Brayan",
+          "PERSONA"
+        ],
+        [
+          "Thiago",
+          "PERSONA"
+        ],
+        [
+          "Leidy",
+          "PERSONA"
+        ],
+        [
+          "Carmen Sanz Ugarte",
+          "PERSONA"
+        ],
+        [
+          "282867193",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "Bucaramanga (Colombia)",
+          "DIRECCION"
+        ],
+        [
+          "Leganés",
+          "DIRECCION"
+        ],
+        [
+          "CENTRO DE SALUD MENTAL DE TETUÁN",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "presupuesto-clinica-dental",
+      "style": "clinico",
+      "text": "CLÍNICA DENTAL ALTAFULLA, S.L.P.  ·  CIF B43381672\nVia Augusta 9, 43893 Altafulla  ·  977 65 08 41\n\nPRESUPUESTO Nº 2026/1187                       Fecha: 04/11/2026\nPaciente: Txema Olabarria Ruiz                 Nº ficha: 3391\nTeléfono: 699 042 318\n\nPieza  Tratamiento                               Importe\n36     Endodoncia molar                          240,00 €\n36     Corona zirconio                           490,00 €\n47     Obturación composite                       65,00 €\n--     Limpieza + fluorización                    50,00 €\n                                         TOTAL:  845,00 €\n\nForma de pago: 3 plazos sin intereses. Domiciliar en: ES98 3058 6165 5399 1980 7997\nOdontóloga: Dra. Meritxell Font (col. 43001276)\nValidez del presupuesto: 3 meses.",
+      "pii": [
+        [
+          "B43381672",
+          "CIF"
+        ],
+        [
+          "Txema Olabarria Ruiz",
+          "PERSONA"
+        ],
+        [
+          "699 042 318",
+          "TELEFONO"
+        ],
+        [
+          "ES98 3058 6165 5399 1980 7997",
+          "IBAN"
+        ],
+        [
+          "Meritxell Font",
+          "PERSONA"
+        ],
+        [
+          "43001276",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "CLÍNICA DENTAL ALTAFULLA, S.L.P.",
+          "ORGANIZACION"
+        ],
+        [
+          "Via Augusta 9, 43893 Altafulla",
+          "DIRECCION"
+        ],
+        [
+          "977 65 08 41",
+          "TELEFONO"
+        ],
+        [
+          "3391",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "demanda-juicio-verbal",
+      "style": "legal",
+      "text": "AL JUZGADO DE PRIMERA INSTANCIA DE MÁLAGA QUE POR TURNO CORRESPONDA\n\nD.ª ROCÍO NAVAS PERAL, Procuradora de los Tribunales, en nombre y representación de D. FRANCISCO JAVIER MORENO LUQUE, mayor de edad, con DNI 49663206-L y domicilio en calle Cuarteles 61, 3.º B, 29002 Málaga, según acredito mediante apoderamiento apud acta, bajo la dirección letrada de D. Álvaro Cid Benítez (ICAMÁLAGA n.º 7744), ante el Juzgado comparezco y, como mejor proceda en Derecho, DIGO:\n\nQue por medio del presente escrito formulo DEMANDA DE JUICIO VERBAL en reclamación de 4.870 euros contra REFORMAS COSTASOL 2020, S.L., con CIF B18589309, con domicilio social en Avenida de Andalucía 22, 18014 Granada, y contra su administrador único D. Iván Salcedo Ortega, con DNI 01689924E, con base en los siguientes\n\nHECHOS\n\nPRIMERO.– El 12 de marzo de 2026 mi mandante contrató con la demandada la reforma integral del baño de su vivienda por un precio de 9.740 euros, abonando el 50 % por adelantado mediante transferencia desde su cuenta ES77 0075 0961 4904 4310 9374 (doc. n.º 2).\n\nSEGUNDO.– La demandada abandonó la obra el 3 de mayo sin terminarla, como reconoce su encargado, Sr. Choukri, en los mensajes de WhatsApp que se aportan como doc. n.º 4.\n\nTERCERO.– Requerida extrajudicialmente mediante burofax de 2 de junio (doc. n.º 5), la demandada no ha devuelto cantidad alguna.",
+      "pii": [
+        [
+          "ROCÍO NAVAS PERAL",
+          "PERSONA"
+        ],
+        [
+          "FRANCISCO JAVIER MORENO LUQUE",
+          "PERSONA"
+        ],
+        [
+          "49663206-L",
+          "DNI"
+        ],
+        [
+          "calle Cuarteles 61, 3.º B, 29002 Málaga",
+          "DIRECCION"
+        ],
+        [
+          "Álvaro Cid Benítez",
+          "PERSONA"
+        ],
+        [
+          "7744",
+          "OTRO_ID"
+        ],
+        [
+          "REFORMAS COSTASOL 2020, S.L.",
+          "ORGANIZACION"
+        ],
+        [
+          "B18589309",
+          "CIF"
+        ],
+        [
+          "Iván Salcedo Ortega",
+          "PERSONA"
+        ],
+        [
+          "01689924E",
+          "DNI"
+        ],
+        [
+          "ES77 0075 0961 4904 4310 9374",
+          "IBAN"
+        ],
+        [
+          "Choukri",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "Avenida de Andalucía 22, 18014 Granada",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "poder-notarial-pleitos",
+      "style": "legal",
+      "text": "NÚMERO MIL DOSCIENTOS TREINTA Y CUATRO.-------------\nPODER GENERAL PARA PLEITOS Y ESPECIAL.--------------\nEn Vigo, mi residencia, a diez de noviembre de dos mil\nveintiséis.-------------------------------------------\nAnte mí, ROBERTO CAAMAÑO DIZ, Notario del Ilustre Cole-\ngio de Galicia.---------------------------------------\n------------------------ COMPARECE: -------------------\nDOÑA MARÍA DO CARME PIÑEIRO LAGO, mayor de edad, viu-\nda, jubilada, vecina de Vigo, con domicilio en Rúa de\nPontevedra número 18, 5º A, y con D.N.I. número 14.890.\n323-P.------------------------------------------------\nInterviene en su propio nombre y derecho.-------------\nTiene, a mi juicio, capacidad legal para otorgar este\npoder, y al efecto, -----------------------------------\n------------------------ OTORGA: ----------------------\nQue confiere poder, tan amplio y bastante como en Dere-\ncho se requiera, a favor de su hijo DON BRAIS ALONSO\nPIÑEIRO, con D.N.I. número 41447052-H, y de los procu-\nradores de los Tribunales DOÑA ICÍAR MOSQUERA RIAL y\nDON TOMÁS FIGUEROA VÁZQUEZ, para que, solidariamente,\nen nombre de la poderdante, puedan: --------------------",
+      "pii": [
+        [
+          "ROBERTO CAAMAÑO DIZ",
+          "PERSONA"
+        ],
+        [
+          "MARÍA DO CARME PIÑEIRO LAGO",
+          "PERSONA"
+        ],
+        [
+          "Rúa de\nPontevedra número 18, 5º A",
+          "DIRECCION"
+        ],
+        [
+          "14.890.\n323-P",
+          "DNI"
+        ],
+        [
+          "BRAIS ALONSO\nPIÑEIRO",
+          "PERSONA"
+        ],
+        [
+          "41447052-H",
+          "DNI"
+        ],
+        [
+          "ICÍAR MOSQUERA RIAL",
+          "PERSONA"
+        ],
+        [
+          "TOMÁS FIGUEROA VÁZQUEZ",
+          "PERSONA"
+        ]
+      ]
+    },
+    {
+      "id": "acta-junta-propietarios",
+      "style": "acta",
+      "text": "ACTA DE LA JUNTA GENERAL ORDINARIA DE LA COMUNIDAD DE PROPIETARIOS\nC/ SAN VICENTE MÁRTIR 207, VALENCIA  ·  CIF H46718250\n\nEn Valencia, siendo las 19:30 h del día 28 de octubre de 2026, en segunda convocatoria, se reúnen en el zaguán del inmueble los propietarios que a continuación se relacionan:\n\n- 1ª pta. – D. Vicent Llorens Soler (presidente)\n- 3ª pta. – Dña. Amparo Ferrer Martí\n- 5ª pta. – D. Liu Wei, representado por su esposa Dña. Zhang Min\n- 8ª pta. – Dña. Ximena Arroyo (inquilina, con delegación de la propietaria)\n- 11ª pta. – D. Salvador Castelló Ribes\n\nActúa como secretario-administrador D. Ernesto Pla Gil, de Administraciones Pla & Torres, colegiado n.º 1563 del CAF Valencia.\n\nORDEN DEL DÍA\n1. Aprobación de cuentas 2025.\n2. Derrama para la reparación de la fachada.\n3. Morosidad.\n\n1. Se aprueban las cuentas por unanimidad de los presentes.\n\n2. Se presentan tres presupuestos. Se aprueba el de menor importe (18.400 € + IVA), a repartir según coeficiente en seis mensualidades a partir de enero.\n\n3. El administrador informa de que el propietario de la 9ª puerta, D. Gonzalo Requena Bayo, adeuda 1.845,20 € correspondientes a cinco trimestres. Se acuerda por unanimidad iniciar reclamación judicial y facultar al presidente para otorgar poder. El teléfono de contacto que consta en la administración (622 09 81 17) ya no está operativo.\n\nSin más asuntos, se levanta la sesión a las 21:05 h.\n\nEl presidente                El secretario",
+      "pii": [
+        [
+          "C/ SAN VICENTE MÁRTIR 207, VALENCIA",
+          "DIRECCION"
+        ],
+        [
+          "H46718250",
+          "CIF"
+        ],
+        [
+          "Vicent Llorens Soler",
+          "PERSONA"
+        ],
+        [
+          "Amparo Ferrer Martí",
+          "PERSONA"
+        ],
+        [
+          "Liu Wei",
+          "PERSONA"
+        ],
+        [
+          "Zhang Min",
+          "PERSONA"
+        ],
+        [
+          "Ximena Arroyo",
+          "PERSONA"
+        ],
+        [
+          "Salvador Castelló Ribes",
+          "PERSONA"
+        ],
+        [
+          "Ernesto Pla Gil",
+          "PERSONA"
+        ],
+        [
+          "Administraciones Pla & Torres",
+          "ORGANIZACION"
+        ],
+        [
+          "Gonzalo Requena Bayo",
+          "PERSONA"
+        ],
+        [
+          "622 09 81 17",
+          "TELEFONO"
+        ]
+      ],
+      "optional": [
+        [
+          "1563",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "sentencia-despido-improcedente",
+      "style": "legal",
+      "text": "JUZGADO DE LO SOCIAL N.º 3 DE BILBAO\nProcedimiento: Despidos 412/2026\nNIG: 4802044420260004127\n\nSENTENCIA N.º 288/2026\n\nEn Bilbao, a 30 de octubre de 2026.\n\nVistos por D.ª Arantxa Elorza Ibarguren, Magistrada-Jueza del Juzgado de lo Social n.º 3 de Bilbao, los presentes autos sobre DESPIDO seguidos a instancia de D. Unai Agirre Larrañaga, asistido por la letrada D.ª Garazi Mendizabal, contra la empresa ITURRI LOGÍSTICA INTEGRAL, S.A. (CIF A13162318), representada por D. Pedro Luis Abad.\n\nANTECEDENTES DE HECHO\n\nPRIMERO.– El actor, con DNI 65586001Y, ha venido prestando servicios para la demandada desde el 14/02/2017 con la categoría de conductor-repartidor y un salario de 2.140 euros brutos mensuales con prorrata de pagas.\n\nSEGUNDO.– El 3 de julio de 2026 la empresa le comunicó su despido disciplinario por una supuesta disminución continuada del rendimiento, basándose en los datos del GPS del vehículo 2271 LMH que tenía asignado.\n\n[...]\n\nFALLO\n\nQue ESTIMANDO la demanda interpuesta por D. Unai Agirre Larrañaga, declaro IMPROCEDENTE el despido y condeno a la empresa a que, a su opción, readmita al trabajador o le abone una indemnización de 20.346,15 euros.",
+      "pii": [
+        [
+          "Arantxa Elorza Ibarguren",
+          "PERSONA"
+        ],
+        [
+          "Unai Agirre Larrañaga",
+          "PERSONA"
+        ],
+        [
+          "Garazi Mendizabal",
+          "PERSONA"
+        ],
+        [
+          "ITURRI LOGÍSTICA INTEGRAL, S.A.",
+          "ORGANIZACION"
+        ],
+        [
+          "A13162318",
+          "CIF"
+        ],
+        [
+          "Pedro Luis Abad",
+          "PERSONA"
+        ],
+        [
+          "65586001Y",
+          "DNI"
+        ],
+        [
+          "2271 LMH",
+          "MATRICULA"
+        ]
+      ],
+      "optional": [
+        [
+          "4802044420260004127",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "diligencia-embargo-hacienda",
+      "style": "administracion",
+      "text": "Agencia Tributaria\nDelegación Especial de Andalucía – Dependencia Regional de Recaudación\n\nDILIGENCIA DE EMBARGO DE CUENTAS\nNº de diligencia: 412600099813X\nObligado al pago: JIMÉNEZ BARRERA, ANTONIA\nNIF: 57544817J\nDomicilio fiscal: CL ANTONIO MACHADO 7 P02 B\n                  41700 DOS HERMANAS (SEVILLA)\n\nEntidad depositaria: BANCO SANTANDER, S.A.\nCuenta embargada: ES5600496366385797098675\nImporte pendiente: 3.412,87 € (principal 2.843,95 € + recargo 568,79 € + costas 0,13 €)\nLiquidación de origen: A4160026506000187 (IRPF 2023)\n\nCon fecha 05/11/2026 se ha procedido a ordenar el embargo de los saldos de la cuenta arriba indicada hasta cubrir el importe pendiente. La entidad depositaria deberá retener el importe y ponerlo a disposición de la Agencia Tributaria en el plazo de veinte días naturales.\n\nCódigo Seguro de Verificación: 6KQ8 PL2N 7XWZ 9R4D",
+      "pii": [
+        [
+          "JIMÉNEZ BARRERA, ANTONIA",
+          "PERSONA"
+        ],
+        [
+          "57544817J",
+          "DNI"
+        ],
+        [
+          "CL ANTONIO MACHADO 7 P02 B\n                  41700 DOS HERMANAS (SEVILLA)",
+          "DIRECCION"
+        ],
+        [
+          "ES5600496366385797098675",
+          "IBAN"
+        ]
+      ],
+      "optional": [
+        [
+          "412600099813X",
+          "OTRO_ID"
+        ],
+        [
+          "A4160026506000187",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "resolucion-alta-medica-inss",
+      "style": "administracion",
+      "text": "INSTITUTO NACIONAL DE LA SEGURIDAD SOCIAL\nDirección Provincial de Murcia\n\nRESOLUCIÓN SOBRE ALTA MÉDICA EN PROCESO DE INCAPACIDAD TEMPORAL\n\nDestinatario: D. JOSÉ ANTONIO MARTÍNEZ ESPINOSA\nDirección: AVDA. DE LA LIBERTAD 23, ESC. 2, 1º C\n30009 MURCIA\nNAF: 30/62271933/72\nDNI: 22905627L\nExpediente: 2026/301/IT/018834\nEmpresa: TRANSPORTES HERMANOS ESPINOSA, S.L. – CCC 30107732954\n\nVista la propuesta del Equipo de Valoración de Incapacidades y de conformidad con lo dispuesto en el artículo 170 del texto refundido de la Ley General de la Seguridad Social, esta Dirección Provincial RESUELVE: declarar el alta médica por mejoría que permite realizar el trabajo habitual con efectos del día 12/11/2026, fecha a partir de la cual se extingue el derecho a la prestación.\n\nContra esta resolución podrá formular reclamación previa ante esta Dirección Provincial en el plazo de 30 días.\n\nLA DIRECTORA PROVINCIAL\nP.D. Firmado electrónicamente",
+      "pii": [
+        [
+          "JOSÉ ANTONIO MARTÍNEZ ESPINOSA",
+          "PERSONA"
+        ],
+        [
+          "AVDA. DE LA LIBERTAD 23, ESC. 2, 1º C\n30009 MURCIA",
+          "DIRECCION"
+        ],
+        [
+          "30/62271933/72",
+          "NSS"
+        ],
+        [
+          "22905627L",
+          "DNI"
+        ],
+        [
+          "2026/301/IT/018834",
+          "OTRO_ID"
+        ],
+        [
+          "TRANSPORTES HERMANOS ESPINOSA, S.L.",
+          "ORGANIZACION"
+        ]
+      ],
+      "optional": [
+        [
+          "30107732954",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "correo-concello-licenza-obra",
+      "style": "correo",
+      "text": "De: rexistro@concello-ames.gal\nPara: estudio.vilar.arquitectura@gmail.com\nAsunto: Requirimento de documentación – Expte. 2026/U022/000418\n\nBo día,\n\nEn relación coa solicitude de licenza de obra menor presentada por Dª Uxía Castro Rial (DNI 45812859X) para a reforma da cociña na vivenda sita en Rúa Ramón de Valenzuela 6, 3º D, Bertamiráns, comunicámoslle que debe achegar no prazo de 10 días:\n\n- Orzamento detallado asinado polo contratista.\n- Xustificante do pago da taxa (ICIO).\n\nPode presentar a documentación na sede electrónica ou no Rexistro Xeral (Praza do Concello 2, Bertamiráns).\n\nPara calquera dúbida pode contactar con Xoán Rial Mouriño, técnico municipal, no 981 88 30 15 ext. 214.\n\nAtentamente,\nRexistro Xeral – Concello de Ames",
+      "pii": [
+        [
+          "estudio.vilar.arquitectura@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "2026/U022/000418",
+          "OTRO_ID"
+        ],
+        [
+          "Uxía Castro Rial",
+          "PERSONA"
+        ],
+        [
+          "45812859X",
+          "DNI"
+        ],
+        [
+          "Rúa Ramón de Valenzuela 6, 3º D, Bertamiráns",
+          "DIRECCION"
+        ],
+        [
+          "Xoán Rial Mouriño",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "rexistro@concello-ames.gal",
+          "EMAIL"
+        ],
+        [
+          "981 88 30 15",
+          "TELEFONO"
+        ]
+      ]
+    },
+    {
+      "id": "solicitud-transferencia-dgt",
+      "style": "formulario",
+      "text": "SOLICITUD DE TRANSFERENCIA DE VEHÍCULO (modelo 01 - DGT)\nJefatura Provincial de Tráfico de: GIPUZKOA\n\nVEHÍCULO\nMatrícula: 8823 HZP          Nº bastidor: VF3LCYHZPKS214577\nMarca: PEUGEOT   Modelo: 308\n\nVENDEDOR / TRANSMITENTE\nApellidos y nombre o razón social: OYARZABAL ETXEBERRIA, IKER\nDNI/NIE/CIF: 65902231D\nDomicilio: Kale Nagusia 12, 2. eskuina, 20800 Zarautz\n\nCOMPRADOR / ADQUIRENTE\nApellidos y nombre o razón social: SILVA DOS SANTOS, RAFAELA\nDNI/NIE/CIF: Z6075363X\nFecha de nacimiento: 07.12.1993\nDomicilio: Calle Easo 41, 4º izq, 20006 Donostia\nTeléfono: 943 45 72 10   Correo: rafaela.silvasantos@hotmail.com\n\nPrecio de la compraventa: 3.900 €     Fecha: 08/11/2026\nFirma vendedor                  Firma comprador",
+      "pii": [
+        [
+          "8823 HZP",
+          "MATRICULA"
+        ],
+        [
+          "VF3LCYHZPKS214577",
+          "OTRO_ID"
+        ],
+        [
+          "OYARZABAL ETXEBERRIA, IKER",
+          "PERSONA"
+        ],
+        [
+          "65902231D",
+          "DNI"
+        ],
+        [
+          "Kale Nagusia 12, 2. eskuina, 20800 Zarautz",
+          "DIRECCION"
+        ],
+        [
+          "SILVA DOS SANTOS, RAFAELA",
+          "PERSONA"
+        ],
+        [
+          "Z6075363X",
+          "NIE"
+        ],
+        [
+          "07.12.1993",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Calle Easo 41, 4º izq, 20006 Donostia",
+          "DIRECCION"
+        ],
+        [
+          "943 45 72 10",
+          "TELEFONO"
+        ],
+        [
+          "rafaela.silvasantos@hotmail.com",
+          "EMAIL"
+        ]
+      ]
+    },
+    {
+      "id": "pdf-nomina-hosteleria",
+      "style": "pdf",
+      "text": "EMPRESA: HOSTELERÍA COSTA BRAVA 2018 SL              TRABAJADOR: KOFI MENSAH ADJEI\nDOMICILIO: Pg. del Mar 31, 17250 Platja d'Aro           NIF: X6406629W\nCIF: B08543399                                          Nº AFIL. S.S.: 29 75419306 18\nCCC: 17 / 1088432 / 51                                   CATEGORÍA: Ayudante de cocina\n                                                         ANTIGÜEDAD: 01/05/2024\nPERIODO: 01 OCT 26 a 31 OCT 26          TOT. DÍAS: 30\n\nCONCEPTO                         CANTIDAD   PRECIO     DEVENGOS   DEDUCCIONES\nSalario base                       30,00     45,12     1.353,60\nPlus transporte                                          78,00\nHoras extra                         6,00     14,50        87,00\nProrrata pagas extra                                     225,60\nContingencias comunes  4,70%                                          81,69\nDesempleo              1,55%                                          26,94\nFormación prof.        0,10%                                           1,74\nMEI                    0,13%                                           2,26\nIRPF                   8,00%                                         139,54\n\nLÍQUIDO A PERCIBIR: 1.492,03 €\nTransferencia a: ES46 0128 3126 2053 9426 2482",
+      "pii": [
+        [
+          "HOSTELERÍA COSTA BRAVA 2018 SL",
+          "ORGANIZACION"
+        ],
+        [
+          "KOFI MENSAH ADJEI",
+          "PERSONA"
+        ],
+        [
+          "X6406629W",
+          "NIE"
+        ],
+        [
+          "B08543399",
+          "CIF"
+        ],
+        [
+          "29 75419306 18",
+          "NSS"
+        ],
+        [
+          "ES46 0128 3126 2053 9426 2482",
+          "IBAN"
+        ]
+      ],
+      "optional": [
+        [
+          "Pg. del Mar 31, 17250 Platja d'Aro",
+          "DIRECCION"
+        ],
+        [
+          "17 / 1088432 / 51",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "carta-despido-objetivo",
+      "style": "laboral",
+      "text": "Barcelona, 4 de noviembre de 2026\n\nSra. Dña. Wang Xiaoling\nCarrer del Consell de Cent 402, 3r 1a\n08009 Barcelona\n\nRef.: Extinción del contrato por causas objetivas\n\nMuy Sra. nuestra:\n\nPor medio de la presente, la empresa NOVATEXTIL DISSENY, S.L. le comunica su decisión de extinguir la relación laboral que la une con esta compañía, al amparo del artículo 52.c) del Estatuto de los Trabajadores, con efectos del día 19 de noviembre de 2026.\n\nLa decisión obedece a causas económicas y productivas: las ventas del departamento de patronaje han caído un 34 % en los tres últimos trimestres respecto al mismo periodo del año anterior, lo que obliga a amortizar su puesto de trabajo.\n\nA tal efecto se pone a su disposición la indemnización de 7.316,40 euros, que se le abonará mediante transferencia a la cuenta en la que percibe habitualmente su nómina.\n\nRogamos firme el duplicado de la presente a los solos efectos de acreditar su recepción. Puede consultar cualquier duda con la responsable de personas, Sra. Clàudia Rius (c.rius@novatextil.cat, ext. 2207).\n\nAtentamente,\n\nEnric Badia Planas\nDirector General\nNOVATEXTIL DISSENY, S.L.",
+      "pii": [
+        [
+          "Wang Xiaoling",
+          "PERSONA"
+        ],
+        [
+          "Carrer del Consell de Cent 402, 3r 1a\n08009 Barcelona",
+          "DIRECCION"
+        ],
+        [
+          "NOVATEXTIL DISSENY, S.L.",
+          "ORGANIZACION"
+        ],
+        [
+          "Clàudia Rius",
+          "PERSONA"
+        ],
+        [
+          "c.rius@novatextil.cat",
+          "EMAIL"
+        ],
+        [
+          "Enric Badia Planas",
+          "PERSONA"
+        ]
+      ]
+    },
+    {
+      "id": "cv-ingeniera-datos",
+      "style": "rrhh",
+      "text": "CHEN JIAHUI (Lucía Chen)\nIngeniera de datos · Valencia\n📞 +34 611 902 337 · ✉ lucia.chen.dev@gmail.com · linkedin.com/in/luciachenjh · github: jiahui-chen\nNacida el 16 de octubre de 1996 · NIE Z6369021G · Carnet B, vehículo propio\n\nEXPERIENCIA\n2023–actualidad  Data Engineer en FINTECH LEVANTE PAY, S.L. (Valencia)\n  · Pipelines en Airflow y dbt; reducción del coste de BigQuery en un 40 %.\n2020–2023        Analista BI en Grupo Hortícola Mediterráneo\n  · Cuadros de mando en Power BI para dirección comercial.\n\nFORMACIÓN\n2014–2019  Grado en Ingeniería Informática – Universitat Politècnica de València\n2019–2020  Máster en Big Data – Universitat de València\n\nIDIOMAS: chino mandarín (nativo), español (nativo), valenciano (C1), inglés (C1)\n\nREFERENCIAS: Marcos Albiol, CTO en FINTECH LEVANTE PAY – 960 11 47 52",
+      "pii": [
+        [
+          "CHEN JIAHUI",
+          "PERSONA"
+        ],
+        [
+          "Lucía Chen",
+          "PERSONA"
+        ],
+        [
+          "+34 611 902 337",
+          "TELEFONO"
+        ],
+        [
+          "lucia.chen.dev@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "linkedin.com/in/luciachenjh",
+          "OTRO_ID"
+        ],
+        [
+          "jiahui-chen",
+          "OTRO_ID"
+        ],
+        [
+          "16 de octubre de 1996",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Z6369021G",
+          "NIE"
+        ],
+        [
+          "FINTECH LEVANTE PAY, S.L.",
+          "ORGANIZACION"
+        ],
+        [
+          "FINTECH LEVANTE PAY",
+          "ORGANIZACION"
+        ],
+        [
+          "Grupo Hortícola Mediterráneo",
+          "ORGANIZACION"
+        ],
+        [
+          "Marcos Albiol",
+          "PERSONA"
+        ],
+        [
+          "960 11 47 52",
+          "TELEFONO"
+        ]
+      ],
+      "optional": [
+        [
+          "Universitat Politècnica de València",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "correo-rrhh-permiso-nacimiento",
+      "style": "correo",
+      "text": "De: Ainhoa Garmendia <ainhoa.garmendia@kaiku-ingenieria.eus>\nPara: rrhh@kaiku-ingenieria.eus\nAsunto: baja nacimiento\n\nhola Nekane,\n\nte escribo desde el movil xq estoy en el hospital, ayer nacio la peque (3,2 kg, todo bien!!). os paso el parte de nacimiento para que tramiteis la baja con la mutua, la niña se llama Ane y nacio el 10/11/2026 a las 4:15 en el hospital de Txagorritxu.\n\nmis datos x si os hacen falta: DNI 59015494-R, num afiliacion 48 68594580 68. el iban para la prestación es ES75 2100 1887 7984 3184 6927 (el de la nomina).\nmi pareja (Mikel Urkiola) tb pedira la suya en su empresa.\n\ncualquier cosa al 655 908 114, aunq igual tardo en contestar jeje\n\nbesos\nAinhoa",
+      "pii": [
+        [
+          "Ainhoa Garmendia",
+          "PERSONA"
+        ],
+        [
+          "ainhoa.garmendia@kaiku-ingenieria.eus",
+          "EMAIL"
+        ],
+        [
+          "Nekane",
+          "PERSONA"
+        ],
+        [
+          "Ane",
+          "PERSONA"
+        ],
+        [
+          "10/11/2026",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "59015494-R",
+          "DNI"
+        ],
+        [
+          "48 68594580 68",
+          "NSS"
+        ],
+        [
+          "ES75 2100 1887 7984 3184 6927",
+          "IBAN"
+        ],
+        [
+          "Mikel Urkiola",
+          "PERSONA"
+        ],
+        [
+          "655 908 114",
+          "TELEFONO"
+        ],
+        [
+          "Ainhoa",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "rrhh@kaiku-ingenieria.eus",
+          "EMAIL"
+        ],
+        [
+          "hospital de Txagorritxu",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "poliza-seguro-hogar",
+      "style": "seguros",
+      "text": "SEGUROS ALBA MUTUA – CONDICIONES PARTICULARES\nPóliza nº: HG-2026-0558127          Efecto: 01/12/2026   Vencimiento: 01/12/2027\nTomador: DIEGO ARMANDO QUISPE MAMANI     NIF: X7724606X\nFecha nacimiento tomador: 25/03/1985\nDomicilio de correspondencia: Avda. Juan Carlos I 88, 7º D,\n                              30008 Murcia\nRiesgo asegurado: el mismo domicilio\nMediador: Correduría Hernández Abellán, S.L. (clave 04417)\nTeléfono del tomador: 868 07 21 90 – 634 551 802\nBeneficiario: el propio tomador / en caso de hipoteca, BANCO SABADELL\nForma de pago: anual – domiciliación ES23 1465 5737 3281 0430 5979\nPrima total anual: 287,44 €\nContinente: 120.000 € · Contenido: 25.000 € · RC: 300.000 €",
+      "pii": [
+        [
+          "HG-2026-0558127",
+          "OTRO_ID"
+        ],
+        [
+          "DIEGO ARMANDO QUISPE MAMANI",
+          "PERSONA"
+        ],
+        [
+          "X7724606X",
+          "NIE"
+        ],
+        [
+          "25/03/1985",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Avda. Juan Carlos I 88, 7º D,\n                              30008 Murcia",
+          "DIRECCION"
+        ],
+        [
+          "Correduría Hernández Abellán, S.L.",
+          "ORGANIZACION"
+        ],
+        [
+          "868 07 21 90",
+          "TELEFONO"
+        ],
+        [
+          "634 551 802",
+          "TELEFONO"
+        ],
+        [
+          "ES23 1465 5737 3281 0430 5979",
+          "IBAN"
+        ]
+      ],
+      "optional": [
+        [
+          "SEGUROS ALBA MUTUA",
+          "ORGANIZACION"
+        ],
+        [
+          "04417",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "parte-amistoso-accidente",
+      "style": "seguros",
+      "text": "DECLARACIÓN AMISTOSA DE ACCIDENTE\n1. Fecha: 07/11/2026  Hora: 08:35   2. Lugar: Rotonda de Avda. de Portugal con c/ Gran Vía, Logroño\nVEHÍCULO A                                  VEHÍCULO B\nTomador: Sáenz de Urturi, Begoña            Tomador: Ndiaye, Mamadou\nDirección: c/ Vara de Rey 33 1ºD            Dirección: Avda. Lobete 70, 4ºA\nLogroño 26002                               Logroño 26004\nTel: 941 22 14 07                           Tel: 602 44 81 39\nMatrícula: 2205 GJR                         Matrícula: LR-6512-T\nAseguradora: Mutua Riojana                  Aseguradora: Seguros Atlántida\nNº póliza: 7718-AU-220934                   Nº póliza: ATL0093345271\nConductor: la misma                         Conductor: Ndiaye, Mamadou\nPermiso de conducir: 74899566C              Permiso de conducir: X8598970Y\n\nCircunstancias: A circulaba por el carril interior de la rotonda; B se incorpora sin ceder el paso y golpea la aleta delantera derecha de A.\nObservaciones B: \"no vi al otro coche, el sol me deslumbraba\"",
+      "pii": [
+        [
+          "Sáenz de Urturi, Begoña",
+          "PERSONA"
+        ],
+        [
+          "Ndiaye, Mamadou",
+          "PERSONA"
+        ],
+        [
+          "c/ Vara de Rey 33 1ºD",
+          "DIRECCION"
+        ],
+        [
+          "Avda. Lobete 70, 4ºA",
+          "DIRECCION"
+        ],
+        [
+          "941 22 14 07",
+          "TELEFONO"
+        ],
+        [
+          "602 44 81 39",
+          "TELEFONO"
+        ],
+        [
+          "2205 GJR",
+          "MATRICULA"
+        ],
+        [
+          "LR-6512-T",
+          "MATRICULA"
+        ],
+        [
+          "7718-AU-220934",
+          "OTRO_ID"
+        ],
+        [
+          "ATL0093345271",
+          "OTRO_ID"
+        ],
+        [
+          "74899566C",
+          "DNI"
+        ],
+        [
+          "X8598970Y",
+          "NIE"
+        ]
+      ],
+      "optional": [
+        [
+          "Logroño 26002",
+          "DIRECCION"
+        ],
+        [
+          "Logroño 26004",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "correo-banco-cargos-fraude",
+      "style": "correo",
+      "text": "Asunto: URGENTE cargos que no he hecho\n\nHola, buenos días\n\nEn la app me salen 3 cargos de AMZN MKTP y de una web de apuestas que yo NO he hecho, de 49,99, 120 y 300 euros. Mi tarjeta es la 4977 9982 5210 9125, caducidad 08/29. Por favor bloqueadla ya y devolvedme el dinero. Ayer recibí un SMS supuestamente vuestro con un enlace y metí los datos, creo que fue eso 😞\n\nMi nombre es Gabriel Ionescu, cliente desde hace años, mi NIE es X3394138M. Tlf 698.330.271\n\nGracias\n\n> El 11/11/2026 a las 10:02, Atención al Cliente escribió:\n> Estimado Sr. Ionescu: hemos procedido al bloqueo preventivo de su tarjeta. Su gestora, Inmaculada Ortuño, se pondrá en contacto con usted para tramitar la reclamación de los cargos. Referencia de la incidencia: FRD-26-4418273.",
+      "pii": [
+        [
+          "4977 9982 5210 9125",
+          "TARJETA"
+        ],
+        [
+          "Gabriel Ionescu",
+          "PERSONA"
+        ],
+        [
+          "Ionescu",
+          "PERSONA"
+        ],
+        [
+          "X3394138M",
+          "NIE"
+        ],
+        [
+          "698.330.271",
+          "TELEFONO"
+        ],
+        [
+          "Inmaculada Ortuño",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "FRD-26-4418273",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "log-nginx-api",
+      "style": "tecnico",
+      "text": "83.47.192.18 - - [11/Nov/2026:09:14:02 +0100] \"POST /api/login HTTP/1.1\" 200 512 \"-\" \"Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X)\" user=rosa.montalban@gmail.com\n83.47.192.18 - - [11/Nov/2026:09:14:05 +0100] \"GET /api/pedidos?cliente=CL-0091823 HTTP/1.1\" 200 3301 \"-\" \"Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X)\"\n2a02:9130:84c1:3f00:d1e4:21a9:6b7f:e02c - - [11/Nov/2026:09:15:40 +0100] \"POST /api/login HTTP/1.1\" 401 88 \"-\" \"okhttp/4.12.0\" user=jcuenca\n2a02:9130:84c1:3f00:d1e4:21a9:6b7f:e02c - - [11/Nov/2026:09:15:44 +0100] \"POST /api/login HTTP/1.1\" 200 512 \"-\" \"okhttp/4.12.0\" user=jcuenca\n127.0.0.1 - - [11/Nov/2026:09:16:00 +0100] \"GET /healthz HTTP/1.1\" 200 2 \"-\" \"kube-probe/1.30\"\n95.124.3.201 - - [11/Nov/2026:09:17:12 +0100] \"GET /api/facturas/2026-000871.pdf?nif=33603694G HTTP/1.1\" 200 48213 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64)\"\n10.0.4.12 - - [11/Nov/2026:09:17:13 +0100] \"GET /metrics HTTP/1.1\" 200 9120 \"-\" \"Prometheus/2.53\"",
+      "pii": [
+        [
+          "83.47.192.18",
+          "IP"
+        ],
+        [
+          "rosa.montalban@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "CL-0091823",
+          "OTRO_ID"
+        ],
+        [
+          "2a02:9130:84c1:3f00:d1e4:21a9:6b7f:e02c",
+          "IP"
+        ],
+        [
+          "jcuenca",
+          "OTRO_ID"
+        ],
+        [
+          "95.124.3.201",
+          "IP"
+        ],
+        [
+          "33603694G",
+          "DNI"
+        ]
+      ],
+      "optional": [
+        [
+          "127.0.0.1",
+          "IP"
+        ],
+        [
+          "10.0.4.12",
+          "IP"
+        ]
+      ]
+    },
+    {
+      "id": "log-json-servicios",
+      "style": "tecnico",
+      "text": "{\"ts\":\"2026-11-10T22:41:07Z\",\"level\":\"WARN\",\"svc\":\"auth\",\"msg\":\"too many failed attempts\",\"user\":\"ibrahim.diallo\",\"src_ip\":\"41.82.115.6\",\"attempts\":5}\n{\"ts\":\"2026-11-10T22:41:09Z\",\"level\":\"INFO\",\"svc\":\"auth\",\"msg\":\"account locked\",\"user\":\"ibrahim.diallo\",\"unlock_at\":\"2026-11-10T23:11:09Z\"}\n{\"ts\":\"2026-11-10T22:58:30Z\",\"level\":\"INFO\",\"svc\":\"mailer\",\"msg\":\"password reset sent\",\"to\":\"ibrahim.diallo@outlook.fr\",\"template\":\"reset_es\"}\n{\"ts\":\"2026-11-10T23:02:15Z\",\"level\":\"ERROR\",\"svc\":\"billing\",\"msg\":\"card declined\",\"customer_id\":\"cus_8Kd2LmQ19xR\",\"last4\":\"2595\",\"holder\":\"MARINA SOTO ALARCÓN\"}\n{\"ts\":\"2026-11-10T23:05:51Z\",\"level\":\"DEBUG\",\"svc\":\"profile\",\"msg\":\"update phone\",\"user\":\"msoto_alarcon\",\"old\":\"+34600118274\",\"new\":\"+34 699 21 30 58\"}",
+      "pii": [
+        [
+          "ibrahim.diallo",
+          "OTRO_ID"
+        ],
+        [
+          "41.82.115.6",
+          "IP"
+        ],
+        [
+          "ibrahim.diallo@outlook.fr",
+          "EMAIL"
+        ],
+        [
+          "cus_8Kd2LmQ19xR",
+          "OTRO_ID"
+        ],
+        [
+          "MARINA SOTO ALARCÓN",
+          "PERSONA"
+        ],
+        [
+          "msoto_alarcon",
+          "OTRO_ID"
+        ],
+        [
+          "+34600118274",
+          "TELEFONO"
+        ],
+        [
+          "+34 699 21 30 58",
+          "TELEFONO"
+        ]
+      ],
+      "optional": [
+        [
+          "2595",
+          "TARJETA"
+        ]
+      ]
+    },
+    {
+      "id": "foro-maternidad-hospital",
+      "style": "foro",
+      "text": "Tema: ¿Alguien ha dado a luz en el Hospital de Fuenlabrada últimamente?\n\nAutor: mamiprimeriza_lucia » 05 Nov 2026, 11:23\nHola chicas!! salgo de cuentas el 2 de diciembre y estoy de los nervios, alguien que haya dado a luz alli hace poco? que tal el trato?\n\nAutor: Bea_y_sus_mellis » 05 Nov 2026, 12:02\nYo di a luz en marzo y genial, la matrona que me toco se llamaba Remedios y fue un amor. Pregunta por ella! El anestesista bastante borde eso si jaja\n\nAutor: mamiprimeriza_lucia » 05 Nov 2026, 12:30\nGracias Bea!! 😊\n\nAutor: Tito_Fuenla » 05 Nov 2026, 14:47\nyo soy el marido de una que dio a luz en agosto, todo bien. Si quieres te paso el contacto de la doula que tuvimos, Yanira, muy buena: 627 381 004\n\nAutor: mamiprimeriza_lucia » 05 Nov 2026, 15:10\nsiii porfa! por privado mejor, mi correo luciagarridoh@hotmail.com",
+      "pii": [
+        [
+          "mamiprimeriza_lucia",
+          "OTRO_ID"
+        ],
+        [
+          "Bea_y_sus_mellis",
+          "OTRO_ID"
+        ],
+        [
+          "Remedios",
+          "PERSONA"
+        ],
+        [
+          "Bea",
+          "PERSONA"
+        ],
+        [
+          "Tito_Fuenla",
+          "OTRO_ID"
+        ],
+        [
+          "Yanira",
+          "PERSONA"
+        ],
+        [
+          "627 381 004",
+          "TELEFONO"
+        ],
+        [
+          "luciagarridoh@hotmail.com",
+          "EMAIL"
+        ]
+      ],
+      "optional": [
+        [
+          "Hospital de Fuenlabrada",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "resena-restaurante-lugo",
+      "style": "resena",
+      "text": "Alberto D. · Local Guide · 37 reseñas\n★☆☆☆☆  hace 2 días\nPésima experiencia. Fuimos 6 personas el sábado a cenar a la Taberna O Lar. El camarero, un tal Brais, nos trató fatal, se le cayó una ración de pulpo encima de mi suegra y ni pidió perdón. Cuando pedimos la hoja de reclamaciones el encargado (Moncho, creo que es el dueño) nos dijo que no tenía. Pagamos 214€ con tarjeta y ni ticket. NO VOLVEREMOS.\n\nRespuesta del propietario · hace 1 día\nSentimos su experiencia, Sr. Domínguez. Revisando las cámaras vemos que la ración se cayó al tropezar uno de sus acompañantes con el camarero. Tenemos hoja de reclamaciones a disposición de cualquier cliente. Ramón Vázquez Novo, gerente.",
+      "pii": [
+        [
+          "Alberto D.",
+          "PERSONA"
+        ],
+        [
+          "Brais",
+          "PERSONA"
+        ],
+        [
+          "Moncho",
+          "PERSONA"
+        ],
+        [
+          "Domínguez",
+          "PERSONA"
+        ],
+        [
+          "Ramón Vázquez Novo",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "Taberna O Lar",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "resena-apartamento-turistico",
+      "style": "resena",
+      "text": "Estancia de 4 noches en el apartamento de Ioana en Benidorm. El piso estaba limpio pero el aire acondicionado no funcionaba y Ioana tardó dos días en mandar a alguien (un técnico muy majo, Fernando). La ubicación genial, en la calle Gerona, al lado de la playa de Levante. Lo peor: nos pidió foto del DNI de todos por WhatsApp a su número personal (+40 745 118 302) y eso no me hizo gracia. 3 estrellas.\n— Thomas & Ingrid, Hamburg",
+      "pii": [
+        [
+          "Ioana",
+          "PERSONA"
+        ],
+        [
+          "Fernando",
+          "PERSONA"
+        ],
+        [
+          "+40 745 118 302",
+          "TELEFONO"
+        ],
+        [
+          "Thomas",
+          "PERSONA"
+        ],
+        [
+          "Ingrid",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "calle Gerona",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "chat-soporte-fibra",
+      "style": "soporte",
+      "text": "Ticket #TK-20261111-0442 · Canal: chat web · Prioridad: Media\n\nCliente (11/11/2026 17:03): hola llevo 3 dias sin internet en casa, la fibra no va. el router tiene la luz LOS en rojo\nAgente Yeray (17:04): Hola, siento las molestias. ¿Me indica el DNI del titular y la dirección de instalación?\nCliente (17:06): 44446178n, calle Pérez Galdós 19 bajo, Telde\nAgente Yeray (17:08): Gracias, Pino. Veo una avería masiva en su zona (código AVM-35-1182), está prevista su resolución para mañana a las 14h.\nCliente (17:09): y me vais a descontar los dias?? pago 45€ al mes\nAgente Yeray (17:10): Se aplicará el descuento automáticamente. Si no se resuelve, le llamamos al 828 01 93 66, el fijo que tiene en el contrato. ¿Correcto?\nCliente (17:10): no ese ya no va xq va por la fibra, llamadme al movil 6 49 30 72 81\nAgente Yeray (17:11): Anotado. Nº de cliente para futuras consultas: 30044812.",
+      "pii": [
+        [
+          "Yeray",
+          "PERSONA"
+        ],
+        [
+          "44446178n",
+          "DNI"
+        ],
+        [
+          "calle Pérez Galdós 19 bajo, Telde",
+          "DIRECCION"
+        ],
+        [
+          "Pino",
+          "PERSONA"
+        ],
+        [
+          "828 01 93 66",
+          "TELEFONO"
+        ],
+        [
+          "6 49 30 72 81",
+          "TELEFONO"
+        ],
+        [
+          "30044812",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "soporte-app-reparto",
+      "style": "soporte",
+      "text": "hola, soy rider de vuestra app y me habeis desactivado la cuenta sin explicacion!! mi usuario es kevin.ochoa.rider y mi ID de repartidor 88123-VLC. llevo 2 años sin ninguna queja. El viernes un cliente (un tal Sr. Belda, pedido de calle Cuba 12) dijo q no le llegó el pedido pero YO SE LO ENTREGUÉ en mano, tengo la foto. Necesito trabajar, tengo familia. Mi telefono es +34 603.918.224 y mi NIE Y2952918B. Kevin Alexander Ochoa (Venezuela)",
+      "pii": [
+        [
+          "kevin.ochoa.rider",
+          "OTRO_ID"
+        ],
+        [
+          "88123-VLC",
+          "OTRO_ID"
+        ],
+        [
+          "Belda",
+          "PERSONA"
+        ],
+        [
+          "calle Cuba 12",
+          "DIRECCION"
+        ],
+        [
+          "+34 603.918.224",
+          "TELEFONO"
+        ],
+        [
+          "Y2952918B",
+          "NIE"
+        ],
+        [
+          "Kevin Alexander Ochoa",
+          "PERSONA"
+        ]
+      ]
+    },
+    {
+      "id": "correo-arraigo-argentina",
+      "style": "correo",
+      "text": "De: Martina Belén Giordano <martu.giordano@gmail.com>\nEnviado: martes, 3 de noviembre de 2026 23:12\nPara: Lucas\nAsunto: RE: papeles para el arraigo\n\nLu, te reenvío lo que me pidió la abogada. Ya tengo el certificado de antecedentes penales apostillado (pasaporte argentino AAF418273) y el empadronamiento. Me falta el contrato de la cuñada de Sole, que me va a hacer la oferta de trabajo en la peluquería (Peluquería Estilo Sole, en Santa Cruz de Tenerife).\n\nMi fecha de nac. para el formulario es 21-ago-1995, nací en Rosario. El DNI argentino es 39.118.427 por si te lo pide.\n\nLa abogada se llama Rebeca Afonso Hernández, su tel es 922 24 86 31. Turno el jueves 12 a las 10.\n\nBesos y gracias por todo!!\nMartu",
+      "pii": [
+        [
+          "Martina Belén Giordano",
+          "PERSONA"
+        ],
+        [
+          "martu.giordano@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "Lucas",
+          "PERSONA"
+        ],
+        [
+          "Lu",
+          "PERSONA"
+        ],
+        [
+          "AAF418273",
+          "OTRO_ID"
+        ],
+        [
+          "Peluquería Estilo Sole",
+          "ORGANIZACION"
+        ],
+        [
+          "Sole",
+          "PERSONA"
+        ],
+        [
+          "21-ago-1995",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "39.118.427",
+          "OTRO_ID"
+        ],
+        [
+          "Rebeca Afonso Hernández",
+          "PERSONA"
+        ],
+        [
+          "922 24 86 31",
+          "TELEFONO"
+        ],
+        [
+          "Martu",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "Rosario",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "correo-ikastola-tutora",
+      "style": "correo",
+      "text": "Kaixo Edurne,\n\nGaur Jon Ander ez da eskolara joango, sukarra du (38,5). Bihar ikusiko dugu.\nPor cierto, el formulario de la excursión a Urdaibai ya lo firmé, se lo di a Maddi en la mochila.\n\nEskerrik asko,\nItsaso Lasa Beristain\nTel: 688 17 22 05\n\n-----\nEdurne Zabala Arrieta\nLehen Hezkuntzako 3. mailako tutorea\nIkastola Laskorain · Tolosa\nedurne.zabala@laskorain.eus",
+      "pii": [
+        [
+          "Edurne",
+          "PERSONA"
+        ],
+        [
+          "Jon Ander",
+          "PERSONA"
+        ],
+        [
+          "Maddi",
+          "PERSONA"
+        ],
+        [
+          "Itsaso Lasa Beristain",
+          "PERSONA"
+        ],
+        [
+          "688 17 22 05",
+          "TELEFONO"
+        ],
+        [
+          "Edurne Zabala Arrieta",
+          "PERSONA"
+        ],
+        [
+          "edurne.zabala@laskorain.eus",
+          "EMAIL"
+        ]
+      ],
+      "optional": [
+        [
+          "Ikastola Laskorain",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "sms-recibidos-varios",
+      "style": "sms",
+      "text": "SMS 10/11 09:12 — DGT: Su vehículo 6097 KTF tiene la ITV caducada desde 04/11/2026. Más info en sede.dgt.gob.es\nSMS 10/11 11:40 — CORREOS: Hola Nicolás, tu envío PK7Y8800213450128003V está en reparto. Hoy entre 12:00 y 14:00.\nSMS 10/11 16:03 — Clínica Fisios Elche: Recordatorio cita Dª Aurora Botella mañana 17:30 con Jaume. Para anular responda NO.\nSMS 10/11 19:55 — +34 611 54 77 30: Hola mama, se me ha roto el movil, este es mi numero nuevo. Puedes hacerme un bizum urgente?\nSMS 11/11 08:01 — BBVA: Codigo 448120 para confirmar operacion de 1.250,00 EUR. Si no la reconoce llame al 900 102 801.",
+      "pii": [
+        [
+          "6097 KTF",
+          "MATRICULA"
+        ],
+        [
+          "Nicolás",
+          "PERSONA"
+        ],
+        [
+          "Aurora Botella",
+          "PERSONA"
+        ],
+        [
+          "Jaume",
+          "PERSONA"
+        ],
+        [
+          "+34 611 54 77 30",
+          "TELEFONO"
+        ]
+      ],
+      "optional": [
+        [
+          "PK7Y8800213450128003V",
+          "OTRO_ID"
+        ],
+        [
+          "Clínica Fisios Elche",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "formulario-bono-alquiler-joven",
+      "style": "formulario",
+      "text": "SOLICITUD BONO ALQUILER JOVEN – Junta de Castilla y León\nExpediente: BAJ/2026/LE/03317\n\nA. DATOS DE LA PERSONA SOLICITANTE\nPrimer apellido: GONZÁLEZ   Segundo apellido: DEL VALLE   Nombre: ROCÍO\nNIF: 32609082G    Fecha de nacimiento: 04/03/1999   Sexo: M\nCorreo electrónico: rociogdv99@gmail.com\nTeléfono: 987 25 63 11 / 651 980 470\n\nB. VIVIENDA ARRENDADA\nDirección: Avda. Padre Isla 52, 6º izda\nMunicipio: León       Código postal: 24002\nReferencia catastral: 9871204TN8197S0018HX\nArrendador: DOMINGO FIDALGO PRIETO   NIF arrendador: 73311077A\nRenta mensual: 480 €\n\nC. DATOS BANCARIOS\nIBAN: ES11 3035 5043 2883 5663 9885\n(La persona solicitante debe ser titular de la cuenta)\n\nD. UNIDAD DE CONVIVENCIA\nNombre: Adrián Llamazares Rey  Relación: pareja  NIE/NIF: 44175801T  F. nac.: 1997-12-02",
+      "pii": [
+        [
+          "BAJ/2026/LE/03317",
+          "OTRO_ID"
+        ],
+        [
+          "GONZÁLEZ",
+          "PERSONA"
+        ],
+        [
+          "DEL VALLE",
+          "PERSONA"
+        ],
+        [
+          "ROCÍO",
+          "PERSONA"
+        ],
+        [
+          "32609082G",
+          "DNI"
+        ],
+        [
+          "04/03/1999",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "rociogdv99@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "987 25 63 11",
+          "TELEFONO"
+        ],
+        [
+          "651 980 470",
+          "TELEFONO"
+        ],
+        [
+          "Avda. Padre Isla 52, 6º izda",
+          "DIRECCION"
+        ],
+        [
+          "DOMINGO FIDALGO PRIETO",
+          "PERSONA"
+        ],
+        [
+          "73311077A",
+          "DNI"
+        ],
+        [
+          "ES11 3035 5043 2883 5663 9885",
+          "IBAN"
+        ],
+        [
+          "Adrián Llamazares Rey",
+          "PERSONA"
+        ],
+        [
+          "44175801T",
+          "DNI"
+        ],
+        [
+          "1997-12-02",
+          "FECHA_NACIMIENTO"
+        ]
+      ],
+      "optional": [
+        [
+          "9871204TN8197S0018HX",
+          "OTRO_ID"
+        ],
+        [
+          "24002",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "whatsapp-familia-herencia",
+      "style": "chat",
+      "text": "[02/11/2026, 21:15] Tía Maite: chicos he hablado con el notario, el de la calle Uría, dice que para la herencia de la abuela necesita los DNI de los 4 nietos\n[02/11/2026, 21:16] Tía Maite: me los mandais por aqui porfa\n[02/11/2026, 21:20] Borja: el mio 11654090J\n[02/11/2026, 21:21] Covi 🌸: 56258533-g\n[02/11/2026, 21:21] Covi 🌸: el de Nacho no lo tengo, esta en Londres, @Nacho Suárez contesta!!\n[02/11/2026, 21:40] Nacho Suárez: perdon estaba en el metro. 14349248 P\n[02/11/2026, 21:42] Tía Maite: y alguien sabe el de la prima Sheila? que no está en el grupo\n[02/11/2026, 21:45] Borja: le escribo yo, su movil es 699 30 14 82 no?\n[02/11/2026, 21:46] Tía Maite: ese es el viejo, el nuevo es 722 610 309\n[02/11/2026, 21:48] Tía Maite: ah y tb piden la fecha de nacimiento de la abuela, era el 3/5/1931 verdad?\n[02/11/2026, 21:50] Covi 🌸: si. oye y la casa de Pola de Siero (la de la abuela, calle Ería del Hospital 3) se vende o q?",
+      "pii": [
+        [
+          "Maite",
+          "PERSONA"
+        ],
+        [
+          "Borja",
+          "PERSONA"
+        ],
+        [
+          "Covi",
+          "PERSONA"
+        ],
+        [
+          "11654090J",
+          "DNI"
+        ],
+        [
+          "56258533-g",
+          "DNI"
+        ],
+        [
+          "Nacho Suárez",
+          "PERSONA"
+        ],
+        [
+          "Nacho",
+          "PERSONA"
+        ],
+        [
+          "14349248 P",
+          "DNI"
+        ],
+        [
+          "Sheila",
+          "PERSONA"
+        ],
+        [
+          "699 30 14 82",
+          "TELEFONO"
+        ],
+        [
+          "722 610 309",
+          "TELEFONO"
+        ],
+        [
+          "3/5/1931",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "calle Ería del Hospital 3",
+          "DIRECCION"
+        ]
+      ],
+      "optional": [
+        [
+          "Pola de Siero",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "transcripcion-reunion-teams",
+      "style": "voz",
+      "text": "Transcripción – Reunión semanal equipo comercial (Teams) – 06/11/2026\n\nRaquel Domènech  0:00\nVale, ¿estamos todos? Falta Hamza, ¿no?\n\nPablo Ortiz Leal  0:04\nHamza me ha dicho que se conecta en cinco, está con el cliente de Alzira.\n\nRaquel Domènech  0:09\nBueno, empezamos. Pablo, cuéntanos lo de Frutas Bernabeu.\n\nPablo Ortiz Leal  0:13\nPues ya han firmado. El contacto es la hija del dueño, Noelia Bernabeu, te paso su móvil luego, es el seis seis cero, doce, cuarenta y ocho, noventa y dos... bueno te lo mando por el chat.\n\nHamza Benali  1:02\nHola, perdón. Ya estoy.\n\nRaquel Domènech  1:05\nHola Hamza. Oye, lo de la furgoneta, ¿la de matrícula 3390 LBC sigue en el taller?\n\nHamza Benali  1:10\nSí, hasta el lunes. Me estoy moviendo con mi coche.\n\nRaquel Domènech  1:14\nVale, apúntate los kilómetros. Mándaselos a Inés de administración.",
+      "pii": [
+        [
+          "Raquel Domènech",
+          "PERSONA"
+        ],
+        [
+          "Hamza",
+          "PERSONA"
+        ],
+        [
+          "Pablo Ortiz Leal",
+          "PERSONA"
+        ],
+        [
+          "Pablo",
+          "PERSONA"
+        ],
+        [
+          "Frutas Bernabeu",
+          "ORGANIZACION"
+        ],
+        [
+          "Noelia Bernabeu",
+          "PERSONA"
+        ],
+        [
+          "seis seis cero, doce, cuarenta y ocho, noventa y dos",
+          "TELEFONO"
+        ],
+        [
+          "Hamza Benali",
+          "PERSONA"
+        ],
+        [
+          "3390 LBC",
+          "MATRICULA"
+        ],
+        [
+          "Inés",
+          "PERSONA"
+        ]
+      ]
+    },
+    {
+      "id": "correo-plaza-garaje",
+      "style": "correo",
+      "text": "Asunto: coche mal aparcado plaza 23\n\nBuenas Sr. Olmedo,\n\nLe escribo otra vez porque el coche blanco matrícula 1145jvn vuelve a estar aparcado en mi plaza (la 23) desde el jueves. Creo que es del inquilino nuevo del 2ºB, un chico joven que se llama Darío. Ya le dejé una nota en el parabrisas.\nTambién le recuerdo que la puerta del garaje sigue sin cerrar bien, y el sábado vi a gente que no es de la comunidad.\n\nLe agradecería que lo gestionara. Un saludo,\nMontserrat Gil Arranz\nPlaza 23 · c/ Alfonso I 17, Zaragoza\nTel. 976 39 22 81",
+      "pii": [
+        [
+          "Olmedo",
+          "PERSONA"
+        ],
+        [
+          "1145jvn",
+          "MATRICULA"
+        ],
+        [
+          "Darío",
+          "PERSONA"
+        ],
+        [
+          "Montserrat Gil Arranz",
+          "PERSONA"
+        ],
+        [
+          "c/ Alfonso I 17, Zaragoza",
+          "DIRECCION"
+        ],
+        [
+          "976 39 22 81",
+          "TELEFONO"
+        ]
+      ]
+    },
+    {
+      "id": "reserva-hotel-rural",
+      "style": "correo",
+      "text": "Reserva confirmada – Hotel Rural Casa Bermeja (Cangas de Onís)\nLocalizador: CBX-77412\n\nHuésped: Shirley Huamán Ccori\nLlegada: 21/11/2026 · Salida: 23/11/2026 · 2 adultos · Hab. doble con vistas\nGarantía: VISA 4331953244508182 cad. 05/28 titular S HUAMAN\nTeléfono: +51 987 654 120 (WhatsApp)\nEmail: shirley.huaman.c@gmail.com\nObservaciones del cliente: llegaremos tarde, sobre las 23h, venimos en coche desde Madrid. Mi esposo Renzo es celíaco, ¿el desayuno tiene opciones sin gluten?",
+      "pii": [
+        [
+          "Shirley Huamán Ccori",
+          "PERSONA"
+        ],
+        [
+          "4331953244508182",
+          "TARJETA"
+        ],
+        [
+          "S HUAMAN",
+          "PERSONA"
+        ],
+        [
+          "+51 987 654 120",
+          "TELEFONO"
+        ],
+        [
+          "shirley.huaman.c@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "Renzo",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "CBX-77412",
+          "OTRO_ID"
+        ],
+        [
+          "Hotel Rural Casa Bermeja",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "telegram-grupo-pisos-compartidos",
+      "style": "chat",
+      "text": "Grupo: Habitaciones Granada estudiantes 🏠\nMustafa Erdem: Busco habitación desde enero cerca de Fuentenueva, soy estudiante Erasmus de Ankara, tranquilo y limpio. máx 300€\nSofía R.: Hola! en mi piso queda una libre, c/ Pedro Antonio de Alarcón 45, 3ºB. 290 gastos incluidos. escríbeme por privado o llama al 958 10 72 64 (fijo del piso)\nMustafa Erdem: Thank you! sorry mi español no es perfecto. Puedo verla el viernes?\nSofía R.: claro! pregunta por mí o por Valentina, la otra compañera\nmoderador_pisosgr: Recordad que está prohibido pedir fianzas por adelantado sin ver el piso. Si alguien os pide pagar por Western Union es estafa. Reportad al usuario @casero_granada_oficial, ya está baneado.",
+      "pii": [
+        [
+          "Mustafa Erdem",
+          "PERSONA"
+        ],
+        [
+          "Sofía R.",
+          "PERSONA"
+        ],
+        [
+          "c/ Pedro Antonio de Alarcón 45, 3ºB",
+          "DIRECCION"
+        ],
+        [
+          "958 10 72 64",
+          "TELEFONO"
+        ],
+        [
+          "Valentina",
+          "PERSONA"
+        ],
+        [
+          "moderador_pisosgr",
+          "OTRO_ID"
+        ],
+        [
+          "casero_granada_oficial",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "formulario-colegiacion-enfermeria",
+      "style": "formulario",
+      "text": "COL·LEGI OFICIAL D'INFERMERES I INFERMERS DE BARCELONA\nSOL·LICITUD D'ALTA / SOLICITUD DE ALTA\n\nNom / Nombre: Ioana Mădălina\nCognoms / Apellidos: Dumitrescu Pop\nData de naixement / Fecha de nacimiento: 12-IV-1994\nNIE: Z6517744D\nTítol / Título: Grado en Enfermería (homologado, Res. 3/2025 Ministerio de Universidades)\nDomicili / Domicilio: Rambla de Badal 141, 5è 2a, 08028 Barcelona\nTelèfon / Teléfono: 674 11 08 92\nCorreu electrònic: ioanamada.d@gmail.com\nCentre de treball / Centro de trabajo: Residència Sant Josep Obrer (Hospitalet)\nDomiciliació quota (IBAN): ES08 0075 7135 4118 4425 2488\n\nNº col·legiada assignat (a omplir pel Col·legi): 08-49217",
+      "pii": [
+        [
+          "Ioana Mădălina",
+          "PERSONA"
+        ],
+        [
+          "Dumitrescu Pop",
+          "PERSONA"
+        ],
+        [
+          "12-IV-1994",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Z6517744D",
+          "NIE"
+        ],
+        [
+          "Rambla de Badal 141, 5è 2a, 08028 Barcelona",
+          "DIRECCION"
+        ],
+        [
+          "674 11 08 92",
+          "TELEFONO"
+        ],
+        [
+          "ioanamada.d@gmail.com",
+          "EMAIL"
+        ],
+        [
+          "ES08 0075 7135 4118 4425 2488",
+          "IBAN"
+        ],
+        [
+          "08-49217",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "Residència Sant Josep Obrer",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "informe-urgencias-pediatria",
+      "style": "clinico",
+      "text": "URGENCIAS PEDIÁTRICAS – Hospital General Universitario de Elche\nPaciente: Iker Ramírez Juárez · 3 años · NHC 7712093 · SIP 15529803\nAcompañado por: madre (Jennifer Juárez Molina, móvil 645 82 19 03)\n\nMC: fiebre de 39,4 ºC de 48 h y rechazo de alimento. Asiste a guardería.\nEF: TEP estable. Faringe hiperémica con exudado. Otoscopia normal. ACP: normal.\nStrep A rápido: positivo.\nJC: faringoamigdalitis estreptocócica.\nTTO: amoxicilina 50 mg/kg/día en 2 dosis, 10 días. Ibuprofeno si fiebre o dolor.\nVolver si dificultad respiratoria, decaimiento o no mejora en 48–72 h.\n\nPediatra: Dra. Lorena Pastor Soler – col. 03/07788",
+      "pii": [
+        [
+          "Iker Ramírez Juárez",
+          "PERSONA"
+        ],
+        [
+          "7712093",
+          "OTRO_ID"
+        ],
+        [
+          "15529803",
+          "OTRO_ID"
+        ],
+        [
+          "Jennifer Juárez Molina",
+          "PERSONA"
+        ],
+        [
+          "645 82 19 03",
+          "TELEFONO"
+        ],
+        [
+          "Lorena Pastor Soler",
+          "PERSONA"
+        ],
+        [
+          "03/07788",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "Hospital General Universitario de Elche",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "correo-proveedor-factura-impagada",
+      "style": "correo",
+      "text": "De: Administración <admin@suministrosnaval-ferrol.es>\nPara: compras@mariscosaroza.com\nCC: Lois Bermúdez\nAsunto: Factura F-2026/0934 pendiente\n\nBuenos días, Sra. Rocamora:\n\nLe recordamos que la factura F-2026/0934 emitida a MARISCOS AROSA DEPURADORA, S.L. (CIF B36209146) por importe de 3.112,40 € venció el pasado 30/09 y sigue pendiente. Le rogamos realice la transferencia a nuestra cuenta ES63 3058 2051 9112 4720 1046 indicando el nº de factura.\n\nSi ya lo ha abonado, por favor envíenos el justificante. Para cualquier aclaración puede llamar a Lois Bermúdez al 981 35 40 77.\n\nUn saludo,\nPatricia Sanmartín\nSuministros Navales Ferrol, S.L.",
+      "pii": [
+        [
+          "compras@mariscosaroza.com",
+          "EMAIL"
+        ],
+        [
+          "Lois Bermúdez",
+          "PERSONA"
+        ],
+        [
+          "Rocamora",
+          "PERSONA"
+        ],
+        [
+          "MARISCOS AROSA DEPURADORA, S.L.",
+          "ORGANIZACION"
+        ],
+        [
+          "B36209146",
+          "CIF"
+        ],
+        [
+          "ES63 3058 2051 9112 4720 1046",
+          "IBAN"
+        ],
+        [
+          "Patricia Sanmartín",
+          "PERSONA"
+        ],
+        [
+          "Suministros Navales Ferrol, S.L.",
+          "ORGANIZACION"
+        ]
+      ],
+      "optional": [
+        [
+          "admin@suministrosnaval-ferrol.es",
+          "EMAIL"
+        ],
+        [
+          "981 35 40 77",
+          "TELEFONO"
+        ]
+      ]
+    },
+    {
+      "id": "foro-coches-electricos",
+      "style": "foro",
+      "text": "Re: ¿Merece la pena el Tesla Model 3 de segunda mano?\nMensaje de: voltio_mañico » mié nov 04, 2026 9:51 pm\n\nYo vendo el mío precisamente, Model 3 Long Range de 2021, 98.000 km, batería al 91 %. Lo tenéis en Coches.net, matrícula 2954 LDF, está en Cuarte de Huerva. Si alguien del foro lo quiere, le hago descuento. Me llamo Joaquín, mi tlf 6 7 6 - 4 4 2 - 0 9 1.\n\nMensaje de: Jorge_Pina » mié nov 04, 2026 10:12 pm\n@voltio_mañico ojo con poner la matrícula y el teléfono así en abierto que luego te clonan las placas jajaja\n\nMensaje de: voltio_mañico » mié nov 04, 2026 10:20 pm\njaja ya, pero si no no lo vendo 🤷",
+      "pii": [
+        [
+          "voltio_mañico",
+          "OTRO_ID"
+        ],
+        [
+          "2954 LDF",
+          "MATRICULA"
+        ],
+        [
+          "Joaquín",
+          "PERSONA"
+        ],
+        [
+          "6 7 6 - 4 4 2 - 0 9 1",
+          "TELEFONO"
+        ],
+        [
+          "Jorge_Pina",
+          "OTRO_ID"
+        ]
+      ],
+      "optional": [
+        [
+          "Cuarte de Huerva",
+          "DIRECCION"
+        ]
+      ]
+    },
+    {
+      "id": "informe-psicologico-forense",
+      "style": "legal",
+      "text": "INFORME PERICIAL PSICOLÓGICO\nJuzgado de Primera Instancia n.º 5 de Familia de Sevilla · Autos 1187/2026 (modificación de medidas)\n\nPerito: Esperanza Lobato Durán, psicóloga colegiada AN-07215.\n\nPersonas evaluadas:\n- Progenitor: Rafael Contreras Bermejo (n. 1981), DNI 36986188A.\n- Progenitora: Daniela Fuentes Arias (n. 1984), NIE X1611943B.\n- Menores: Lucas y Martina Contreras Fuentes, nacidos el 2 de septiembre de 2015.\n\nFuentes de información: entrevistas semiestructuradas (3 con cada progenitor, 2 con los menores), observación de interacción, informe del CEIP Huerta de Santa Marina y entrevista telefónica con la abuela materna, Dña. Consuelo Arias.\n\nConclusiones: ambos progenitores muestran capacidades parentales adecuadas. Los menores expresan deseo de mantener la custodia compartida. No se observan indicadores de manipulación.",
+      "pii": [
+        [
+          "Esperanza Lobato Durán",
+          "PERSONA"
+        ],
+        [
+          "AN-07215",
+          "OTRO_ID"
+        ],
+        [
+          "Rafael Contreras Bermejo",
+          "PERSONA"
+        ],
+        [
+          "36986188A",
+          "DNI"
+        ],
+        [
+          "Daniela Fuentes Arias",
+          "PERSONA"
+        ],
+        [
+          "X1611943B",
+          "NIE"
+        ],
+        [
+          "Lucas",
+          "PERSONA"
+        ],
+        [
+          "Martina Contreras Fuentes",
+          "PERSONA"
+        ],
+        [
+          "2 de septiembre de 2015",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Consuelo Arias",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "1981",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "1984",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "1187/2026",
+          "OTRO_ID"
+        ],
+        [
+          "CEIP Huerta de Santa Marina",
+          "ORGANIZACION"
+        ]
+      ]
+    },
+    {
+      "id": "whatsapp-clases-particulares",
+      "style": "chat",
+      "text": "3/11/26 18:20 - Elena profe mates: Hola! soy Elena, la profe de mates que te recomendó Rosalía. Para la clase de mañana con Sergi me pasas la dirección?\n3/11/26 18:31 - Nuria (mamá Sergi): Hola Elena!! sí, es pasaje Tenor Masini 6, 1º 2ª, en Sants. El timbre no va, llámame al llegar\n3/11/26 18:32 - Nuria (mamá Sergi): Y para pagarte, ¿bizum a este número o te paso a cuenta?\n3/11/26 18:35 - Elena profe mates: Bizum perfecto, al 677 01 26 84 que es otro móvil, este es el del trabajo\n3/11/26 18:36 - Nuria (mamá Sergi): ok 👌 hasta mañana",
+      "pii": [
+        [
+          "Elena",
+          "PERSONA"
+        ],
+        [
+          "Rosalía",
+          "PERSONA"
+        ],
+        [
+          "Sergi",
+          "PERSONA"
+        ],
+        [
+          "Nuria",
+          "PERSONA"
+        ],
+        [
+          "pasaje Tenor Masini 6, 1º 2ª",
+          "DIRECCION"
+        ],
+        [
+          "677 01 26 84",
+          "TELEFONO"
+        ]
+      ]
+    },
+    {
+      "id": "historial-dental-ortodoncia",
+      "style": "clinico",
+      "text": "FICHA ORTODONCIA – Paciente nº 2026-0331\nnombre: Ruth Mbaye Coulibaly          edad: 14\nf.n.: 5/1/2012\ntutor legal: Moussa Mbaye (padre) · NIE Z1877445Y · tlf 611-090-457\ndirección: Avda de Cádiz 18, 2ºD, Jerez de la Frontera\nMotivo: apiñamiento antero-inferior, mordida cruzada lateral izq.\nPlan: brackets metálicos arcada sup. e inf. + disyuntor 6 meses. Duración estimada 24 meses.\nPago: financiado 24 cuotas · tarjeta del padre 5532 9086 3104 4989\nRevisión 1: 03/11/2026 – colocación disyuntor, se explican activaciones a la madre (Aïssatou).",
+      "pii": [
+        [
+          "Ruth Mbaye Coulibaly",
+          "PERSONA"
+        ],
+        [
+          "5/1/2012",
+          "FECHA_NACIMIENTO"
+        ],
+        [
+          "Moussa Mbaye",
+          "PERSONA"
+        ],
+        [
+          "Z1877445Y",
+          "NIE"
+        ],
+        [
+          "611-090-457",
+          "TELEFONO"
+        ],
+        [
+          "Avda de Cádiz 18, 2ºD, Jerez de la Frontera",
+          "DIRECCION"
+        ],
+        [
+          "5532 9086 3104 4989",
+          "TARJETA"
+        ],
+        [
+          "Aïssatou",
+          "PERSONA"
+        ]
+      ],
+      "optional": [
+        [
+          "2026-0331",
+          "OTRO_ID"
+        ]
+      ]
+    },
+    {
+      "id": "aviso-revision-ascensor",
+      "style": "aviso",
+      "text": "AVISO A LOS SEÑORES VECINOS\n\nSe informa de que el próximo lunes, día 16, de 9:00 a 13:00 h, la empresa mantenedora realizará la inspección periódica del ascensor por parte del organismo de control autorizado. Durante ese horario el ascensor permanecerá fuera de servicio.\n\nRogamos a los vecinos del 5º al 8º que tengan en cuenta esta circunstancia. Si alguna persona mayor o con movilidad reducida necesita ayuda, puede comunicarlo al conserje en horario de portería (lunes a viernes de 8 a 14 h).\n\nEn caso de quedar alguien atrapado, use el pulsador de alarma de la cabina o llame al 112.\n\nLa Presidencia de la Comunidad\nPortal 2 – Escalera B",
+      "pii": []
+    },
+    {
+      "id": "receta-pollo-chilindron",
+      "style": "receta",
+      "text": "Pollo al chilindrón (receta de la abuela, de las fiestas de San Lorenzo)\n\nIngredientes para 6:\n- 1 pollo de corral troceado (unos 2,2 kg)\n- 4 pimientos rojos y 1 verde\n- 2 cebollas, 4 dientes de ajo\n- 400 g de tomate triturado\n- 100 g de jamón serrano en taquitos\n- 1 vaso de vino blanco (mejor un Somontano)\n- aceite de oliva, sal, pimienta y una cucharadita de pimentón de la Vera\n\n1. Salpimentar el pollo y dorarlo en la cazuela con aceite bien caliente. Reservar.\n2. En el mismo aceite pochar la cebolla y el ajo a fuego lento 15 minutos. Añadir los pimientos en tiras y el jamón.\n3. Añadir el pimentón, remover 30 segundos y echar el tomate. Dejar 10 minutos.\n4. Volver a meter el pollo, regar con el vino y dejar a fuego suave 40–45 minutos.\n\nTruco: si se hace el día antes, está mucho mejor. Mi madre siempre decía que el chilindrón de Barbastro es el de verdad.",
+      "pii": []
+    },
+    {
+      "id": "guia-renovar-dni",
+      "style": "guia",
+      "text": "Cómo renovar el DNI paso a paso (actualizado 2026)\n\n1. Pide cita previa en la web oficial o llamando al 060. Te pedirán el número de soporte del documento actual (las tres letras y seis números que aparecen en el anverso).\n2. El día de la cita lleva el DNI caducado, una fotografía reciente de 32 x 26 mm con fondo blanco y el justificante de pago de la tasa (12,00 €). Si has cambiado de domicilio, lleva también el certificado de empadronamiento.\n3. En la oficina te tomarán las huellas y te entregarán el nuevo documento en el momento.\n\nRecuerda: la letra del DNI se calcula a partir de los ocho números. En los formularios de ejemplo suele aparecer el número 12345678Z o el 00000000T, que no corresponden a ninguna persona real.\n\n¿Mayores de 70? El DNI será permanente. ¿Menores de 30? Validez de 5 años.",
+      "pii": []
+    },
+    {
+      "id": "nota-prensa-resultados-trimestre",
+      "style": "noticia",
+      "text": "NOTA DE PRENSA\n\nEl grupo cierra el tercer trimestre con un beneficio neto de 12,4 millones de euros\n\nMadrid, 29 de octubre de 2026. El consejero delegado y la directora financiera del grupo han presentado hoy ante analistas los resultados del tercer trimestre, en los que la cifra de negocio alcanza los 318,7 millones de euros, un 6,2 % más que en el mismo periodo del ejercicio anterior.\n\nLa plantilla media se sitúa en 2.304 empleados, tras la apertura de los centros logísticos de Santander y Valladolid. La deuda financiera neta se reduce hasta 41,9 millones y el ratio de endeudamiento queda en 1,3 veces el ebitda.\n\nEl presidente del consejo de administración ha destacado que la compañía mantiene su previsión de crecimiento para el conjunto del año y que propondrá a la junta general de accionistas un dividendo complementario de 0,18 euros por acción.\n\nPara más información: departamento de comunicación.",
+      "pii": []
+    },
+    {
+      "id": "manual-lavadora-errores",
+      "style": "tecnico",
+      "text": "Lavadora de carga frontal – Guía rápida de códigos de error\n\nE10 – No entra agua. Compruebe que el grifo esté abierto y que el filtro de la manguera de entrada no esté obstruido.\nE21 – No desagua. Limpie el filtro de la bomba (tapa inferior derecha). Coloque un recipiente: puede salir hasta 1,5 l de agua.\nE35 – Exceso de espuma. Use detergente de baja espuma y reduzca la dosis.\nE43 – Puerta no bloquea. Cierre la puerta con firmeza hasta oír el clic.\nF01 – Fallo de motor. Desenchufe el aparato 10 minutos. Si persiste, contacte con el servicio técnico oficial.\n\nDatos técnicos: capacidad 9 kg · centrifugado máx. 1.400 rpm · clase energética A · consumo 48 l por ciclo · tensión 220-240 V 50 Hz · protección IPX4.\nEl número de serie (S/N) y el modelo están en la etiqueta del interior de la puerta.",
+      "pii": []
+    },
+    {
+      "id": "orden-dia-pleno-municipal",
+      "style": "administracion",
+      "text": "ORDEN DEL DÍA DEL PLENO ORDINARIO – 26 de noviembre de 2026, 19:00 h, Salón de Plenos\n\n1. Aprobación, si procede, del acta de la sesión anterior.\n2. Dar cuenta de los decretos de Alcaldía del n.º 1.204 al 1.388 de 2026.\n3. Propuesta de la Concejalía de Urbanismo sobre la modificación puntual n.º 7 del PGOU (ámbito calle San Francisco – Plaza Mayor).\n4. Moción del grupo municipal sobre la mejora de la iluminación del parque de la Virgen del Rosario.\n5. Aprobación inicial del presupuesto municipal 2027 (14.882.300 €).\n6. Ruegos y preguntas.\n\nEl alcalde convoca a los señores concejales. La secretaria municipal da fe.\nLas sesiones son públicas y se retransmiten en directo por la web municipal.",
+      "pii": []
+    },
+    {
+      "id": "horario-linea-autobus",
+      "style": "aviso",
+      "text": "LÍNEA 27 · Hospital – Plaza de Castilla\nHorario de invierno (desde el 3 de noviembre)\n\nLaborables: primera salida 6:45 · después cada 12 minutos hasta las 22:30 · última 23:15\nSábados: cada 15 minutos de 7:00 a 23:00\nDomingos y festivos: cada 20 minutos de 8:00 a 22:40\n\nParadas principales: Hospital (puerta 3) · Avda. de América 37 · Cruz del Rayo · Concha Espina · Santiago Bernabéu · Plaza de Castilla\nTiempo estimado de recorrido: 34 minutos.\nTarifa: billete sencillo 1,50 € · bonos y abono transporte válidos.\nPor obras en la calle Príncipe de Vergara, la parada n.º 1184 queda provisionalmente trasladada 50 metros.",
+      "pii": []
+    }
+  ]
+}

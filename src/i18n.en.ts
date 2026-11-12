@@ -156,4 +156,8 @@ export const EN: Record<string, string> = {
   'Hilos': 'Threads',
   'descargado': 'downloaded',
   'sin descargar': 'not downloaded',
+  'Descargar .txt': 'Download .txt',
+  'Descargar el texto anonimizado (.txt)': 'Download the anonymised text (.txt)',
+  'Copiar texto': 'Copy text',
+  'Copiar resultado': 'Copy result',
 };

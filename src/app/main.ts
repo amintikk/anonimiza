@@ -603,10 +603,18 @@ function renderReview(): void {
   const active = st.dets.some((d) => d.on);
   ($('btn-copy') as HTMLButtonElement).disabled = !st.text;
   // The same PDF or DOCX back, only while the text is still exactly the one read from it.
+  // A PDF or DOCX comes back as the same kind of file: that is the main button, and the text ones step back.
   const doc = $('btn-doc');
-  doc.hidden = !(st.source && st.source.src.text === st.text);
+  const file = !!st.source && st.source.src.text === st.text;
+  doc.hidden = !file;
   if (st.source) doc.querySelector('span')!.textContent = st.source.kind === 'pdf' ? t('Descargar PDF') : t('Descargar DOCX');
-  $('btn-copy').classList.toggle('primary', active);
+  const txt = $('btn-download'), cp = $('btn-copy');
+  txt.querySelector('span')!.textContent = file ? '.txt' : t('Descargar .txt');
+  txt.title = t('Descargar el texto anonimizado (.txt)');
+  txt.classList.toggle('ghost', file);
+  cp.querySelector('span')!.textContent = file ? t('Copiar texto') : t('Copiar resultado');
+  cp.classList.toggle('ghost', file);
+  cp.classList.toggle('primary', !file && active);
 }
 
 review.addEventListener('click', (e) => {

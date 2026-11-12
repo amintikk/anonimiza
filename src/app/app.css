@@ -84,40 +84,64 @@ body.app {
   transform: translateX(100%);
 }
 
-/* Engine status */
+/* Engine status: an icon for the engine (GPU or CPU) and a dot for its state, as in Kronos WebGPU. */
 .engine {
   position: relative;
 }
 .engine-btn {
-  gap: 8px;
-  padding: 0 12px;
-  font-size: 13px;
+  position: relative;
+  color: var(--text-2);
+}
+.engine-ico {
+  display: inline-flex;
+}
+.engine-btn .engine-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  box-shadow: 0 0 0 2px var(--bg);
 }
 .engine-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  flex: none;
   background: var(--muted);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--muted) 18%, transparent);
-  transition: background 0.3s;
+  transition: background-color 0.3s var(--ease);
 }
-.engine-dot[data-state='ready'] {
+[data-state='gpu'] > .engine-dot,
+.engine-dot[data-state='gpu'] {
   background: var(--ok);
-  box-shadow: 0 0 0 3px var(--ok-soft);
 }
-.engine-dot[data-state='downloading'],
-.engine-dot[data-state='compiling'] {
-  background: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-  animation: breathe 1.4s var(--ease) infinite;
+[data-state='cpu'] > .engine-dot,
+.engine-dot[data-state='cpu'] {
+  background: #e3a43a;
 }
+[data-state='error'] > .engine-dot,
 .engine-dot[data-state='error'] {
   background: var(--danger);
-  box-shadow: 0 0 0 3px var(--danger-soft);
 }
-@keyframes breathe {
+[data-state='busy'] > .engine-dot,
+.engine-dot[data-state='busy'] {
+  background: var(--accent);
+  animation: blink 1.2s ease-in-out infinite;
+}
+@keyframes blink {
   50% {
-    opacity: 0.35;
+    opacity: 0.25;
+  }
+}
+.pop-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .engine-dot {
+    animation: none !important;
   }
 }
 
@@ -144,7 +168,7 @@ body.app {
 .engine-pop {
   right: 0;
   top: calc(100% + 8px);
-  width: 340px;
+  width: 300px;
   max-width: calc(100vw - 24px);
   padding: 6px;
 }
@@ -887,13 +911,6 @@ body.app {
   }
 }
 @media (max-width: 560px) {
-  .engine-label {
-    display: none;
-  }
-  .engine-btn {
-    width: 38px;
-    padding: 0;
-  }
   .pane-head {
     padding-left: 16px;
   }

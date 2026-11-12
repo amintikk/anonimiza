@@ -100,16 +100,28 @@ const modelCard = $('model-card');
 // ---------------------------------------------------------------------------------------------
 // Engine and model
 
+/** Why the CPU is used, for the engine panel. */
+let cpuReason: 'user' | 'nogpu' | 'nof16' | 'software' | 'fallback' = 'nogpu';
+let gpuLabel = '';
+
 async function pickBackend(): Promise<Backend> {
-  if (settings.backend === 'wasm' || !('gpu' in navigator)) return 'wasm';
+  if (settings.backend === 'wasm') return (cpuReason = 'user'), 'wasm';
+  if (!('gpu' in navigator)) return (cpuReason = 'nogpu'), 'wasm';
   try {
-    const adapter = await navigator.gpu.requestAdapter();
+    // The first request can come back empty while the GPU process is still starting.
+    const adapter = (await navigator.gpu.requestAdapter()) ?? (await new Promise<GPUAdapter | null>((r) => setTimeout(() => r(navigator.gpu.requestAdapter()), 400)));
+    if (!adapter) return (cpuReason = 'nogpu'), 'wasm';
+    const info = adapter.info;
+    gpuLabel = [info?.vendor, info?.architecture].filter(Boolean).join(' ');
+    // A software rasteriser is slower than multi-threaded WebAssembly.
+    if ((info as { isFallbackAdapter?: boolean } | undefined)?.isFallbackAdapter || /swiftshader|llvmpipe|lavapipe|software/i.test(`${gpuLabel} ${info?.description ?? ''}`))
+      return (cpuReason = 'software'), 'wasm';
     // The GPU variant is fp16: without shader-f16 it would not run, so use the CPU one.
-    if (adapter && adapter.features.has('shader-f16')) return 'webgpu';
+    if (!adapter.features.has('shader-f16')) return (cpuReason = 'nof16'), 'wasm';
+    return 'webgpu';
   } catch {
-    /* no usable GPU */
+    return (cpuReason = 'nogpu'), 'wasm';
   }
-  return 'wasm';
 }
 
 const threads = () => Math.max(1, Math.min(8, (navigator.hardwareConcurrency || 4) - 1));
@@ -154,6 +166,7 @@ function loadModel(): Promise<boolean> {
       } else if (st.backend === 'webgpu') {
         // A GPU that announces WebGPU may still fail to build the session: fall back to the CPU.
         st.backend = 'wasm';
+        cpuReason = 'fallback';
         loading = null;
         renderModel();
         return loadModel();
@@ -185,11 +198,12 @@ function engineName(): string {
 }
 
 function renderModel(): void {
-  // Header button
-  const dot = $('engine-dot');
-  dot.dataset.state = st.model;
-  $('engine-label').textContent =
-    st.model === 'ready' ? t('Modelo listo') : st.model === 'downloading' ? `${Math.floor((100 * st.loaded) / Math.max(st.total, 1))} %` : st.model === 'compiling' ? t('Preparando…') : st.model === 'error' ? t('Error del modelo') : t('Solo reglas');
+  // Header button: an icon for the engine and a dot for its state.
+  const gpu = st.backend === 'webgpu';
+  popBtn.dataset.state =
+    st.model === 'error' ? 'error' : st.model === 'downloading' || st.model === 'compiling' || st.analysing ? 'busy' : st.model === 'ready' ? (gpu ? 'gpu' : 'cpu') : 'off';
+  $('engine-ico').replaceChildren(icon(gpu ? 'zap' : 'cpu', 18));
+  popBtn.setAttribute('aria-label', `${t('Motor de análisis')}: ${engineTitle()}`);
   renderEnginePop();
 
   // Side card: only while something needs the user's attention.
@@ -247,11 +261,30 @@ async function startModel(): Promise<void> {
 const pop = $('engine-pop');
 const popBtn = $('engine-btn');
 
+function engineTitle(): string {
+  if (st.model === 'error') return t('Modelo no disponible');
+  if (st.model === 'downloading') return t('Descargando el modelo… {p} %', { p: String(Math.floor((100 * st.loaded) / Math.max(st.total, 1))) });
+  if (st.model === 'compiling') return t('Preparando el modelo…');
+  if (st.model !== 'ready') return t('Solo reglas: falta el modelo');
+  return st.backend === 'webgpu' ? t('Usando la tarjeta gráfica') : t('Usando la CPU');
+}
+
+function engineNote(): string {
+  if (st.model === 'error') return st.modelError;
+  if (st.model !== 'ready' && st.model !== 'downloading' && st.model !== 'compiling') return t('Sin el modelo solo se buscan los datos con formato fijo (DNI, IBAN, teléfonos…).');
+  if (st.backend === 'webgpu') return t('La forma más rápida en este equipo.');
+  return {
+    user: t('Elegido en los ajustes.'),
+    nogpu: t('Este navegador no ofrece WebGPU. Funciona igual, algo más despacio.'),
+    nof16: t('La tarjeta gráfica no admite el formato del modelo (fp16). Funciona igual, algo más despacio.'),
+    software: t('Este equipo solo ofrece WebGPU por software, que sería más lento que la CPU.'),
+    fallback: t('WebGPU dio un error en este equipo y se cambió a la CPU.'),
+  }[cpuReason];
+}
+
 function renderEnginePop(): void {
-  const mf = modelFor(st.backend);
   const sens = settings.sensitivity ?? 'high';
-  const state =
-    st.model === 'ready' ? t('Cargado') : st.model === 'downloading' ? t('Descargando') : st.model === 'compiling' ? t('Preparando') : st.model === 'error' ? t('Error') : t('No descargado');
+  const gpu = st.backend === 'webgpu';
   const seg = h('div', { class: 'switch3', role: 'radiogroup', 'aria-label': t('Sensibilidad') });
   for (const [k, label] of [
     ['high', t('Alta')],
@@ -272,25 +305,24 @@ function renderEnginePop(): void {
   }
   pop.replaceChildren(
     h('div', { class: 'pop-sec' },
-      h('div', { class: 'kv' }, h('span', {}, t('Modelo')), h('b', {}, 'GLiNER multi PII v1')),
-      h('div', { class: 'kv' }, h('span', {}, t('Motor')), h('b', {}, engineName())),
-      h('div', { class: 'kv' }, h('span', {}, t('Variante')), h('b', {}, `${st.backend === 'webgpu' ? 'fp16' : t('int8 (pesos)')} · ${fmtBytes(mf.bytes)}`)),
-      h('div', { class: 'kv' }, h('span', {}, t('Estado')), h('b', {}, state)),
+      h('div', { class: 'pop-title' }, h('span', { class: 'engine-dot', 'data-state': popBtn.dataset.state ?? 'off' }), engineTitle()),
+      h('div', { class: 'kv' }, h('span', {}, t('Motor')), h('b', {}, gpu ? 'WebGPU' : 'WebAssembly')),
+      gpu && gpuLabel ? h('div', { class: 'kv' }, h('span', {}, t('Tarjeta')), h('b', {}, gpuLabel)) : null,
+      !gpu ? h('div', { class: 'kv' }, h('span', {}, t('Hilos')), h('b', {}, String(st.model === 'ready' ? engine.threads : threads()))) : null,
+      h('div', { class: 'kv' }, h('span', {}, t('Modelo')), h('b', {}, `${fmtBytes(downloadSize(st.backend))} · ${st.model === 'ready' || st.model === 'compiling' ? t('descargado') : t('sin descargar')}`)),
       st.modelMs ? h('div', { class: 'kv' }, h('span', {}, t('Último análisis')), h('b', {}, fmtDuration(st.modelMs))) : null,
+      h('p', { class: 'pop-note' }, engineNote()),
     ),
     h('div', { class: 'pop-sec' },
       h('div', { class: 'pop-label' }, t('Sensibilidad del modelo')),
       seg,
       h('p', { class: 'pop-note' }, t('Alta encuentra más nombres y direcciones a cambio de algún falso positivo. Las cifras publicadas se midieron con «Alta».')),
     ),
-    h('div', { class: 'pop-sec' },
-      h('p', { class: 'pop-note strong' }, icon('lock', 15), t('Tu texto no sale de este navegador. La web solo puede conectarse a sí misma y al dominio de los modelos, y lo impone la política de seguridad de la página.')),
-    ),
     h('div', { class: 'pop-actions' },
       st.model !== 'ready' && st.model !== 'downloading' && st.model !== 'compiling'
         ? h('button', { class: 'btn small accent', type: 'button', onclick: () => void startModel() }, icon('download', 16), t('Cargar modelo ({size})', { size: fmtBytes(downloadSize(st.backend)) }))
         : null,
-      h('button', {
+      st.model !== 'ready' ? null : h('button', {
         class: 'btn small ghost', type: 'button',
         onclick: async () => {
           engine.stop();
@@ -309,9 +341,21 @@ function setPop(open: boolean): void {
   pop.classList.toggle('open', open);
   popBtn.setAttribute('aria-expanded', String(open));
 }
+// With a mouse the panel opens on hover, and stays while the pointer is over it.
+let hoverTimer = 0;
+$('engine').addEventListener('pointerenter', (e) => {
+  if (e.pointerType !== 'mouse') return;
+  clearTimeout(hoverTimer);
+  setPop(true);
+});
+$('engine').addEventListener('pointerleave', (e) => {
+  if (e.pointerType !== 'mouse') return;
+  hoverTimer = window.setTimeout(() => setPop(false), 180);
+});
 popBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  setPop(!pop.classList.contains('open'));
+  // With a mouse the hover has already opened it: a click must not close it again.
+  setPop((e as PointerEvent).pointerType === 'mouse' || !pop.classList.contains('open'));
 });
 document.addEventListener('click', (e) => {
   if (!pop.contains(e.target as Node)) setPop(false);
@@ -460,6 +504,7 @@ async function runModel(): Promise<void> {
     if (st.backend === 'webgpu' && token === runToken) {
       // The GPU path cannot be tested on every device: if it fails while running, retry on the CPU.
       st.backend = 'wasm';
+      cpuReason = 'fallback';
       st.model = 'absent';
       engine.stop();
       loading = null;

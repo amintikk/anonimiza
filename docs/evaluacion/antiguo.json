@@ -1,11 +1,11 @@
 {
  "name": "web:gliner-pii-int8w.onnx/base · rules",
- "gold": "tests/data/documentos.json",
+ "gold": "old.json",
  "th": 0.3,
  "rows": {
   "person": {
    "gold": 84,
-   "pred": 85,
+   "pred": 84,
    "tpR": 84,
    "tpRx": 75,
    "tpP": 84,
@@ -59,6 +59,14 @@
    "tpP": 29,
    "tpPx": 29
   },
+  "ref": {
+   "gold": 0,
+   "pred": 5,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 0,
+   "tpPx": 0
+  },
   "card": {
    "gold": 3,
    "pred": 4,
@@ -94,7 +102,7 @@
  },
  "total": {
   "gold": 230,
-  "pred": 243,
+  "pred": 247,
   "tpR": 229,
   "tpRx": 220,
   "tpP": 229,
@@ -104,7 +112,7 @@
   "gold": 3969,
   "covered": 3929,
   "anyCovered": 3929,
-  "pred": 4168,
+  "pred": 4216,
   "predOk": 3929
  },
  "errors": [
@@ -113,6 +121,12 @@
    "type": "missed",
    "kind": "address",
    "text": "Avenida del Puerto 118, 2.º 5.ª, 46023 Valencia"
+  },
+  {
+   "doc": "informe-medico",
+   "type": "extra",
+   "kind": "ref",
+   "text": "4471920"
   },
   {
    "doc": "denuncia",
@@ -153,8 +167,20 @@
   {
    "doc": "parte-accidente",
    "type": "extra",
+   "kind": "ref",
+   "text": "7731-220-48"
+  },
+  {
+   "doc": "parte-accidente",
+   "type": "extra",
    "kind": "address",
    "text": "Calle Nou, Lleida"
+  },
+  {
+   "doc": "pedido-online",
+   "type": "extra",
+   "kind": "ref",
+   "text": "ES-77120"
   },
   {
    "doc": "pedido-online",
@@ -169,10 +195,10 @@
    "text": "AYUNTAMIENTO DE CÁCERES"
   },
   {
-   "doc": "carta-personal",
+   "doc": "expediente-administrativo",
    "type": "extra",
-   "kind": "person",
-   "text": "Mamá"
+   "kind": "ref",
+   "text": "2025/URB/00318"
   },
   {
    "doc": "numeros-que-no-son-datos",
@@ -185,6 +211,12 @@
    "type": "extra",
    "kind": "card",
    "text": "4012 8888 8888 1882"
+  },
+  {
+   "doc": "numeros-que-no-son-datos",
+   "type": "extra",
+   "kind": "ref",
+   "text": "2024/45/7781"
   },
   {
    "doc": "numeros-que-no-son-datos",
@@ -218,7 +250,7 @@
    "id": "informe-medico",
    "gold": 8,
    "tpR": 8,
-   "pred": 8,
+   "pred": 9,
    "tpP": 8
   },
   {
@@ -295,14 +327,14 @@
    "id": "parte-accidente",
    "gold": 8,
    "tpR": 8,
-   "pred": 9,
+   "pred": 10,
    "tpP": 8
   },
   {
    "id": "pedido-online",
    "gold": 4,
    "tpR": 4,
-   "pred": 5,
+   "pred": 6,
    "tpP": 4
   },
   {
@@ -316,7 +348,7 @@
    "id": "expediente-administrativo",
    "gold": 5,
    "tpR": 5,
-   "pred": 6,
+   "pred": 7,
    "tpP": 5
   },
   {
@@ -330,7 +362,7 @@
    "id": "carta-personal",
    "gold": 7,
    "tpR": 7,
-   "pred": 8,
+   "pred": 7,
    "tpP": 7
   },
   {
@@ -344,7 +376,7 @@
    "id": "numeros-que-no-son-datos",
    "gold": 0,
    "tpR": 0,
-   "pred": 4,
+   "pred": 5,
    "tpP": 0
   },
   {

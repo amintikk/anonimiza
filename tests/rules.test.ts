@@ -38,9 +38,28 @@ test('phone groupings and foreign numbers', () => {
 });
 
 test('numbers that only look like data are left alone', () => {
-  const s = 'Pedido 12345678 a domicilio, producto 4012888888881882, importe 699 120 euros, expediente 2024/45/7781, ' +
-    'línea 000 000 000, póliza 7731-220-48, versión 4.12.3, hora 10:42:00, CPU a 2400 MHz, 1080p, en 2025 BBC.';
+  const s = 'Pedido de 3 unidades, producto 4012888888881882, importe 699 120 euros, el contrato de 12 meses, ' +
+    'línea 000 000 000, versión 4.12.3, hora 10:42:00, CPU a 2400 MHz, 1080p, en 2025 BBC, reserva para 4 personas, ' +
+    'pedido del 03/11/2026, el usuario puede cambiar la clave, Ref. 2026.';
   assert.deepEqual(kinds(s), []);
+});
+
+test('other identifiers, by the word that announces them', () => {
+  const s = 'Pedido 12345678 a domicilio, expediente 2024/45/7781, póliza 7731-220-48.\n' +
+    'NHC: 0048213   Nº colegiada 48-1287702   NASS: 14 9096265001 02\n' +
+    'Tarxeta sanitaria: GACS 21011400 9\npasaporte colombiano: AV419027\nRef. incidencia: INC-77821034\n' +
+    'login failed user=jl.moreno ip=10.2.0.4\njordi.p: a mi no\n@lolaB_1979 yo lo tomo';
+  assert.deepEqual(kinds(s), [
+    ['ref', '12345678'], ['ref', '2024/45/7781'], ['ref', '7731-220-48'], ['ref', '0048213'], ['ref', '48-1287702'],
+    ['ref', '14 9096265001 02'], ['ref', 'GACS 21011400 9'], ['ref', 'AV419027'], ['ref', 'INC-77821034'],
+    ['ref', 'jl.moreno'], ['ip', '10.2.0.4'], ['ref', 'jordi.p'], ['ref', '@lolaB_1979'],
+  ]);
+});
+
+test('mobiles in unusual groups; landlines only after a word that says so', () => {
+  assert.deepEqual(kinds('al 6 1 7 0 8 9 2 4 3 eh. Tel.: 6 4 4 - 0 1 9 - 2 3 7. tel 9 5 4 1 2 3 7 8 9. Total 9 5 4 1 2 3 7 8 9.'), [
+    ['phone', '6 1 7 0 8 9 2 4 3'], ['phone', '6 4 4 - 0 1 9 - 2 3 7'], ['phone', '9 5 4 1 2 3 7 8 9'],
+  ]);
 });
 
 test('numbers wrapped onto a new line, as text from PDFs often is', () => {
@@ -74,4 +93,8 @@ test('dates of birth only, not other dates', () => {
   assert.deepEqual(kinds(s), [
     ['birthdate', '14/03/1987'], ['birthdate', '3-5-92'], ['birthdate', '12 de enero de 1979'], ['birthdate', '1990'], ['birthdate', 'March 4, 1985'],
   ]);
+});
+
+test('a person after "Usuaria:" is not a user name', () => {
+  assert.deepEqual(kinds('Usuaria: Josefa Martín Cuesta, 78 años. usuario: jmartinez'), [['ref', 'jmartinez']]);
 });

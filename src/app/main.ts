@@ -23,11 +23,11 @@ import { SAMPLE } from './sample.ts';
 type Family = 'person' | 'org' | 'address' | 'id' | 'money' | 'contact' | 'other';
 const FAMILY: Record<Kind, Family> = {
   person: 'person', org: 'org', address: 'address', dni: 'id', nie: 'id', cif: 'id', nss: 'id',
-  iban: 'money', card: 'money', phone: 'contact', email: 'contact', ip: 'contact', birthdate: 'id', plate: 'id', other: 'other',
+  iban: 'money', card: 'money', phone: 'contact', email: 'contact', ip: 'contact', birthdate: 'id', plate: 'id', ref: 'id', other: 'other',
 };
 const KIND_ICON: Record<Kind, IconName> = {
   person: 'user', org: 'building', address: 'mapPin', dni: 'idCard', nie: 'idCard', cif: 'idCard', nss: 'idCard',
-  iban: 'bank', card: 'card', phone: 'phone', email: 'mail', ip: 'network', birthdate: 'calendar', plate: 'car', other: 'tag',
+  iban: 'bank', card: 'card', phone: 'phone', email: 'mail', ip: 'network', birthdate: 'calendar', plate: 'car', ref: 'hash', other: 'tag',
 };
 const kindLabel = (k: Kind, plural = false): string =>
   ({
@@ -45,10 +45,11 @@ const kindLabel = (k: Kind, plural = false): string =>
     ip: plural ? t('Direcciones IP') : t('Dirección IP'),
     birthdate: plural ? t('Fechas de nacimiento') : t('Fecha de nacimiento'),
     plate: plural ? t('Matrículas') : t('Matrícula'),
+    ref: plural ? t('Otros identificadores') : t('Otro identificador'),
     other: plural ? t('Otros datos') : t('Otro dato'),
   })[k];
 /** Kinds offered when adding by hand. */
-const MANUAL_KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'phone', 'email', 'iban', 'birthdate', 'plate', 'other'];
+const MANUAL_KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'phone', 'email', 'iban', 'birthdate', 'plate', 'ref', 'other'];
 
 /** Why a detection is doubtful (right format, wrong check digit). */
 const doubtNote = (k: Kind): string => (k === 'iban' ? t('Dígitos de control incorrectos: puede estar mal copiado. Compruébalo.') : k === 'card' ? t('No pasa la comprobación de tarjeta: puede estar mal copiada. Compruébalo.') : t('Letra de control incorrecta: puede estar mal copiado. Compruébalo.'));

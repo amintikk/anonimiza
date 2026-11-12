@@ -71,7 +71,7 @@
           <ol class="numbered">
             <li>
               <h3>Detect</h3>
-              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers, number plates) is found with rules, and its check digit is verified; dates of birth, by the words that introduce them (“born on”, “fecha de nacimiento”). Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
+              <p>Data with a fixed format (DNI, NIE, CIF, IBAN, cards, phone numbers, emails, IP addresses, Spanish social security numbers, number plates) is found with rules, and its check digit is verified; dates of birth and other identifiers (medical record, case file, policy, user name), by the words that introduce them (“born on”, “NHC:”, “Nº expediente”). Names, organisations and addresses are found by the GLiNER model, which runs on your device with WebGPU or WebAssembly.</p>
             </li>
             <li>
               <h3>Review and replace</h3>
@@ -105,6 +105,7 @@
                 <tr><td>Emails and IP addresses</td><td>Rule (IPv4 and IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
                 <tr><td>Dates of birth</td><td>Rule: a date right after “born”, “date of birth”, “nacido/a”, “F. nac.”… Other dates are left alone.</td><td><code>[BIRTH_DATE_n]</code></td></tr>
                 <tr><td>Spanish number plates</td><td>Rule (current “4821 KLM” and old “M-1234-AB”)</td><td><code>[PLATE_n]</code></td></tr>
+                <tr><td>Other identifiers (medical record, case file, policy, licence, passport, user name…)</td><td>Rule: a code with digits right after the word that introduces it (“NHC:”, “Nº expediente”, “policy no.”, “user=”), @handles and user names at the start of a line in chats and forums</td><td><code>[IDENTIFIER_n]</code></td></tr>
                 <tr><td>Any other fragment</td><td>You select it</td><td><code>[OTHER_n]</code></td></tr>
               </tbody>
             </table>
@@ -116,7 +117,7 @@
         <div class="wrap">
           <h2>Measured figures</h2>
           <p class="intro">
-            Measured with the same code the site uses, on two sets that were not used to tune it: our own messy set, frozen before measuring, and a public set of Spanish clinical reports (MEDDOCAN).
+            Measured with the same code the site uses: the main figure comes from our own messy set, frozen before measuring and not used to tune it; the second, from public Spanish clinical reports (MEDDOCAN).
             They are published as they came out; the datasets, every single error and the scripts are in the repository.
           </p>
           <!--#cifras-en-->
@@ -130,6 +131,7 @@
           <ul class="limits">
             <li><b>The model makes mistakes.</b> In the tests, the model on its own let one name in twenty slip through (mostly single or shortened repeated names), and sometimes it marked things that are not personal data, such as a court or a town council. On real documents it will fail more often than in the tests.</li>
             <li><b>Context can also identify someone.</b> A job title (“the head teacher of a school in Teruel”), a date, a rare illness or a detail of the story can be enough to know who is being talked about. Those details are not searched for.</li>
+            <li><b>Unlabelled identifiers.</b> Case, record or policy numbers and user names are recognised by the word that introduces them (“NHC:”, “policy no.”, “user=”). Without it, and for forum or chat aliases, they often slip through: in the test, a little over half were found.</li>
             <li><b>Text only.</b> From PDF and DOCX files only the text is extracted: formatting, tables and images are lost. Scanned PDFs have no text and are not OCR’d.</li>
             <li><b>Designed for Spanish.</b> The model is multilingual and the rules work for other SEPA countries, but the figures have only been measured in Spanish. DNI, NIE, CIF and social security numbers are Spanish identifiers.</li>
             <li><b>The table lives in the tab.</b> If you reload or close the page, the markers can no longer be restored. Nothing is saved anywhere, on purpose.</li>

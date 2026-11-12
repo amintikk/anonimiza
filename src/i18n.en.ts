@@ -71,6 +71,8 @@ export const EN: Record<string, string> = {
   'Fecha de nacimiento': 'Date of birth',
   'Matrículas': 'Number plates',
   'Matrícula': 'Number plate',
+  'Otros identificadores': 'Other identifiers',
+  'Otro identificador': 'Other identifier',
   'Resultado': 'Result',
   'Dudoso': 'Doubtful',
   'Dígitos de control incorrectos: puede estar mal copiado. Compruébalo.': 'Wrong check digits: it may have been copied wrongly. Check it.',

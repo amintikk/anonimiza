@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { applyMarkers, assignMarkers, buildDetections, nameParts, restore } from '../src/engine/anonymize.ts';
+import { applyMarkers, assignMarkers, buildDetections, isGeneric, nameParts, restore } from '../src/engine/anonymize.ts';
 import { findRules } from '../src/engine/rules.ts';
 import type { EntitySpan } from '../src/engine/gliner.ts';
 
@@ -94,4 +94,17 @@ test('name parts that are ordinary words keep their capital', () => {
   const dets = buildDetections(text, [], [ent(text, 'Rosa Pilar Ortega', 'person')]);
   const marked = dets.map((d) => text.slice(d.start, d.end));
   assert.deepEqual(marked, ['Rosa Pilar Ortega', 'Rosa', 'ortega']);
+});
+
+test('roles and hospital departments proposed by the model are dropped; named ones stay', () => {
+  for (const v of ['paciente', 'la paciente', 'ARRENDATARIA', 'Mi madre', 'hijo menor de edad']) assert.ok(isGeneric('person', v), v);
+  for (const v of ['Urología', 'Servicio de Oncología', 'Unidad de Cuidados Intensivos', 'Medicina Interna', 'nuestro centro']) assert.ok(isGeneric('org', v), v);
+  for (const v of ['Rosa', 'Paciente Ana López', 'Madre Teresa', 'Doctor Pérez']) assert.ok(!isGeneric('person', v), v);
+  for (const v of ['Servicio de Urología del Hospital Clínic', 'Hospital La Paz', 'Farmacia Pujol', 'Comunidad de Madrid']) assert.ok(!isGeneric('org', v), v);
+});
+
+test('identifiers found by their cue word are also found where they come back alone', () => {
+  const text = 'Mensaje de RosaMotor: user=rosamotor_77 entra.\ngracias rosamotor_77!!';
+  const dets = buildDetections(text, findRules(text), []);
+  assert.deepEqual(dets.map((d) => [d.kind, text.slice(d.start, d.end)]), [['ref', 'rosamotor_77'], ['ref', 'rosamotor_77']]);
 });

@@ -7,15 +7,15 @@ export type Kind = 'person' | 'org' | 'address' | RuleKind | 'other';
 export type Source = 'rule' | 'model' | 'repeat' | 'manual';
 
 /** Display and marker order. */
-export const KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'email', 'ip', 'birthdate', 'plate', 'other'];
+export const KINDS: Kind[] = ['person', 'org', 'address', 'dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'email', 'ip', 'birthdate', 'plate', 'ref', 'other'];
 
 export const MARKER_NAMES: Record<'es' | 'en', Record<Kind, string>> = {
-  es: { person: 'PERSONA', org: 'ORGANIZACION', address: 'DIRECCION', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'NSS', iban: 'IBAN', card: 'TARJETA', phone: 'TELEFONO', email: 'EMAIL', ip: 'IP', birthdate: 'FECHA_NACIMIENTO', plate: 'MATRICULA', other: 'DATO' },
-  en: { person: 'PERSON', org: 'ORGANIZATION', address: 'ADDRESS', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'SSN', iban: 'IBAN', card: 'CARD', phone: 'PHONE', email: 'EMAIL', ip: 'IP', birthdate: 'BIRTH_DATE', plate: 'PLATE', other: 'OTHER' },
+  es: { person: 'PERSONA', org: 'ORGANIZACION', address: 'DIRECCION', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'NSS', iban: 'IBAN', card: 'TARJETA', phone: 'TELEFONO', email: 'EMAIL', ip: 'IP', birthdate: 'FECHA_NACIMIENTO', plate: 'MATRICULA', ref: 'IDENTIFICADOR', other: 'DATO' },
+  en: { person: 'PERSON', org: 'ORGANIZATION', address: 'ADDRESS', dni: 'DNI', nie: 'NIE', cif: 'CIF', nss: 'SSN', iban: 'IBAN', card: 'CARD', phone: 'PHONE', email: 'EMAIL', ip: 'IP', birthdate: 'BIRTH_DATE', plate: 'PLATE', ref: 'IDENTIFIER', other: 'OTHER' },
 };
 
 const FROM_MODEL: Record<ModelLabel, Kind> = { person: 'person', organization: 'org', address: 'address' };
-const STRUCTURED = new Set<Kind>(['dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'ip', 'birthdate', 'plate']);
+const STRUCTURED = new Set<Kind>(['dni', 'nie', 'cif', 'nss', 'iban', 'card', 'phone', 'ip', 'birthdate', 'plate', 'ref']);
 
 export interface Detection {
   id: number;
@@ -103,6 +103,21 @@ export function nameParts(name: string): string[] {
 
 export const isCommonWord = (w: string) => COMMON_WORDS.has(w.toLocaleLowerCase('es'));
 
+/**
+ * Words the model sometimes takes for a person or an organisation although they name nobody in particular:
+ * roles ("la paciente", "el ARRENDADOR", "mi madre") and hospital departments ("Servicio de Urología").
+ * Only the whole span is checked, so "Servicio de Urología del Hospital Clínic" is still an organisation.
+ */
+const ROLE = String.raw`(?:pacientes?|clientes?|agentes?|usuari[oa]s?|titular(?:es)?|interesad[oa]s?|solicitantes?|m[eé]dic[oa]s?|doctor(?:a|es)?|dra?\.?|enfermer[oa]s?|facultativ[oa]s?|arrendador(?:a|es)?|arrendatari[oa]s?|propietari[oa]s?|inquilin[oa]s?|comprador(?:a|es)?|vendedor(?:a|es)?|demandantes?|demandad[oa]s?|denunciantes?|denunciad[oa]s?|acusad[oa]s?|investigad[oa]s?|testigos?|v[ií]ctimas?|menor(?:es)?|trabajador(?:a|es)?|emplead[oa]s?|abogad[oa]s?|letrad[oa]s?|procurador(?:a|es)?|notari[oa]s?|juez(?:a|es)?|fiscal(?:es)?|polic[ií]as?|guardia\s+civil|tutor(?:a|es)?|alumn[oa]s?|profesor(?:a|es)?|soci[oa]s?|presidente?a?|secretari[oa]|vecin[oa]s?|amig[oa]s?|novi[oa]s?|pareja|familia(?:r|res)?|madre|padre|padres|hij[oa]s?|herman[oa]s?|marido|mujer|esposa?o?|abuel[oa]s?|t[ií][oa]s?|prim[oa]s?|chic[oa]s?|niñ[oa]s?|beb[eé]|var[oó]n|hombre|señor(?:a|es)?|sr\.?|sra\.?|mam[aá]|pap[aá]|jef[ea]s?|director(?:a|es)?|gerente|responsable|compañer[oa]s?|edad|comunidad|empresa|parte\s+\p{L}+)`;
+const DEPT = String.raw`(?:(?:servicio|unidad|secci[oó]n|departamento|[aá]rea|planta|consultas?(?:\s+externas)?|hospital\s+de\s+d[ií]a|centro|nuestr[oa]\s+(?:servicio|centro|unidad))(?:\s+de)?\s*)?(?:\p{L}*(?:log[ií]a|iatr[ií]a|cirug[ií]a|terapia|medicina|urgencias|farmacia|obstetricia|anestesia|rehabilitaci[oó]n|radioterapia|uci|cuidados\s+intensivos|terapia\s+intensiva|medicina\s+interna|atenci[oó]n\s+primaria)(?:\s+(?:interna|intensiva|general|digestiva|hospitalaria|familiar|infantil|pedi[aá]trica|vascular|pl[aá]stica|tor[aá]cica|card[ií]aca|nuclear|f[ií]sica|preventiva|cl[ií]nica|maxilofacial))?)?`;
+const GENERIC = new RegExp(String.raw`^(?:(?:el|la|los|las|un|una|mi|mis|su|sus|tu|tus|nuestr[oa]s?|este|esta|dicho|dicha|al|del)\s+)?(?:${ROLE}(?:\s+(?:menor|mayor)(?:\s+de\s+edad)?)?|${DEPT})$`, 'iu');
+
+export function isGeneric(kind: Kind, value: string): boolean {
+  if (kind !== 'person' && kind !== 'org') return false;
+  const v = value.trim().replace(/\s+/g, ' ');
+  return v.length > 0 && GENERIC.test(v) && (kind === 'person' ? !/\p{Lu}\p{Ll}+\s+\p{Lu}/u.test(v) : true);
+}
+
 /** Merge rule matches and model entities, then extend every value to all its occurrences. */
 export function buildDetections(text: string, rules: RuleMatch[], entities: EntitySpan[], manual: { start: number; end: number; kind: Kind }[] = []): Detection[] {
   let id = 0;
@@ -120,11 +135,15 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     let { start, end } = e;
     while (start < end && /[\s.,;:()«»"'“”]/.test(text[start]!)) start++;
     while (end > start && /[\s,;:()«»"'“”]/.test(text[end - 1]!)) end--;
-    add(start, end, FROM_MODEL[e.label], 'model', e.score);
+    const kind = FROM_MODEL[e.label];
+    if (isGeneric(kind, text.slice(start, end))) continue;
+    add(start, end, kind, 'model', e.score);
   }
   for (const d of [...dets]) {
-    if (d.source === 'rule') continue;
     const value = text.slice(d.start, d.end);
+    // Rule matches are found wherever they appear, except identifiers found by the word before them:
+    // a user name or a record number comes back without it ("gracias rosamotor"). Short numbers do not.
+    if (d.source === 'rule' && !(d.kind === 'ref' && (value.replace(/[^\p{L}\p{N}]/gu, '').length >= 5 || /\p{L}/u.test(value)))) continue;
     if (value.trim().length < 2) continue;
     for (const o of occurrences(text, value)) add(o.start, o.end, d.kind, 'repeat');
   }

@@ -3,7 +3,7 @@
 // out. The exceptions are formats specific enough to be a mistyped identifier rather than something else
 // (a DNI or NIE with the wrong letter, an IBAN of the right length): those are reported as doubtful.
 
-export type RuleKind = 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate';
+export type RuleKind = 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate' | 'ref';
 
 export interface RuleMatch {
   start: number;
@@ -141,8 +141,60 @@ const PROVINCES = 'A|AB|AL|AV|B|BA|BI|BU|C|CA|CC|CE|CO|CR|CS|CU|GC|GE|GI|GR|GU|H
 // Other dates are not personal on their own and stay.
 const MONTHS = 'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre|january|february|march|april|may|june|july|august|september|october|november|december|ene|feb|mar|abr|jun|jul|ago|sep|sept|oct|nov|dic|jan|apr|aug|dec';
 const DATE = String.raw`(?:\d{1,2}[\/.\-]\d{1,2}[\/.\-](?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
-const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
-const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\n\d]{0,24}?(?:\n[^\n\d]{0,12})?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
+const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
+const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\n\d]{0,40}?(?:\n[^\n\d]{0,12})?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
+
+/** Case-insensitive letters for a pattern used without the i flag (the code itself must keep its case). */
+const ci = (p: string) =>
+  p.replace(/\\p\{[^}]+\}|\\.|\[[^\]]*\]|[a-zñáéíóúò]/g, (c) =>
+    c.startsWith('[') ? c.slice(0, -1) + c.slice(1, -1).replace(/\\.|[^a-zñáéíóúò]/g, '').toUpperCase() + ']' : c.length > 1 ? c : `[${c}${c.toUpperCase()}]`,
+  );
+// Other identifiers (case, medical record, policy, membership, passport, user name…) have no format of
+// their own: they are recognised by the word that announces them ("NHC:", "Nº expediente", "póliza nº",
+// "user=") followed by a code with at least one digit. A word that only means "number" is not enough.
+const REF_CUE = String.raw`(?:n\.?\s?h\.?\s?c|historia(?:l)?(?:\s+cl[ií]nica)?|h\.\s?cl[ií]nica|cipa?|nass|nuhsa|tis|tarjeta|tarxeta|targeta|afiliaci[oó]n|afiliad[oa]|episodio|epis\.|colegiad[oa]|col\.|col|expediente|expedient|exp(?:te)?\.|atestado|diligencias|procedimiento|autos|p[oó]liza|p[oò]lissa|contrato|siniestro|referencia|ref\.|incidencia|pedido|localizador|reserva|cliente|abonado|socio|soci|pasaporte|passaport|passport|carn[eé]t?|licencia|microchip|chip|empleado|trabajador|matr[ií]cula\s+escolar|id|mrn|patient\s+id)`;
+const REF_BEFORE = new RegExp(String.raw`${B}${ci(REF_CUE)}(?![\p{L}])[^\n]{0,14}$`, 'u');
+const REF_NUM = String.raw`(?:n\.?\s?[º°o]\.?|n[uú]m(?:ero)?\.?|number|no\.|#)`;
+const REF_TOKEN = String.raw`[\p{L}\p{N}]+(?:[.\-\/_][\p{L}\p{N}]+)*`;
+const REF_RE = new RegExp(
+  String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])(?:[^\S\n]+(?:de|del|\p{Ll}{3,14})){0,2}?` +
+    String.raw`([^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?)` +
+    String.raw`((?:(?=[\p{L}\p{N}.\-\/_]*\d)${REF_TOKEN}|[A-Z]{2,5}(?= [A-Z\d]))(?: (?:\d[\p{L}\p{N}]*(?:[.\-\/_][\p{L}\p{N}]+)*|[A-Z]{2,5}(?= [A-Z\d])))*)${E}`,
+  'gud',
+);
+// User names after "user=", "usuario:", "@": no digit needed, but they must look like a handle.
+const USER_RE = /(?<![\p{L}\p{N}])(?:user(?:name)?|usuari[oa]?|login|alias|nick)(?:\s*[:=]\s*|\s+)([\p{L}\p{N}][\p{L}\p{N}._\-]*[\p{L}\p{N}])(?![\p{L}\p{N}@])/giud;
+const MENTION_RE = /(?<![\p{L}\p{N}._%+\-@])@([\p{L}\p{N}_][\p{L}\p{N}_.]*[\p{L}\p{N}_])(?![\p{L}\p{N}@])/gud;
+// A handle at the start of a line, in chats and forums: "jordi.p: …", "lolaB_1979 escribió:".
+const SPEAKER_RE = /^[^\S\n]*([\p{L}\p{N}]+(?:[._][\p{L}\p{N}]+)+|[\p{L}]+\d+|\p{Ll}+\p{Lu}[\p{L}\p{N}]*)(?=:\s|\s+escribi[óo]:?|\s+wrote:?)/gmud;
+
+const DATE_ONLY = new RegExp(String.raw`^${DATE}$`, 'iu');
+
+/** EAN-13 / EAN-8 barcodes: product references, not a person's. */
+function validEan(v: string): boolean {
+  if (!/^(?:\d{8}|\d{13})$/.test(v)) return false;
+  const d = [...v].map(Number);
+  const sum = d.slice(0, -1).reverse().reduce((a, x, i) => a + x * (i % 2 ? 1 : 3), 0);
+  return (10 - (sum % 10)) % 10 === d.at(-1);
+}
+
+function refValue(cue: string, cueSep: string, v: string): boolean {
+  if (!/\d/.test(v) || DATE_ONLY.test(v) || validEan(v)) return false;
+  // A product, model or article reference names a thing, not a person.
+  if (/producto|art[ií]culo|modelo|pieza|product|item/i.test(cue)) return false;
+  // A bare 13-digit number after "Ref." is a barcode even when its check digit is off.
+  if (/^ref/i.test(cue.trim()) && /^\d{13}$/.test(v)) return false;
+  const alnum = v.replace(/[^\p{L}\p{N}]/gu, '');
+  // A bare number right after the word ("pedido 2000 unidades") needs a separator or more digits.
+  if (!/[:=#º°]|n[uú]m|number|no\./i.test(cueSep) && alnum.length < 5 && !/\p{L}/u.test(alnum)) return false;
+  return alnum.length >= 2;
+}
+
+/** User names need something that makes them a handle, not a word: a digit, a dot, an underscore, camelCase, or "=" / ":" before a lower-case word. */
+// "Usuaria: Josefa Martín" is a person, not a user name: a plain word must be all lower case.
+const handleLike = (sep: string, v: string) => /[\d._]/.test(v) || /\p{Ll}\p{Lu}/u.test(v) || (/[:=]/.test(sep) && v.length >= 3 && /^\p{Ll}+$/u.test(v));
+
+const PHONE_CUE = /(?:tel[eé]?f?|tlf|tfno|m[oó]vil|fijo|llam|n[uú]mero|whatsapp|phone|cel)[^\n\d]{0,14}$/i;
 
 // Order matters: earlier rules win when two matches overlap (an IBAN contains digits that look like a phone).
 const RULES: Rule[] = [
@@ -162,8 +214,12 @@ const RULES: Rule[] = [
   // Spanish numbers: optional +34 / 0034, then 9 digits starting with 6, 7, 8 or 9, written whole or in the usual
   // groups (3-3-3, 3-2-2-2, 2-3-2-2). Other groupings are usually policy, order or case numbers.
   { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?(?:[6789]\d{8}|\(?[6789]\d{2}\)?[ .\-\n]\d{3}[ .\-\n]\d{3}|\(?[6789]\d{2}\)?[ .\-\n]\d{2}[ .\-\n]\d{2}[ .\-\n]\d{2}|[6789]\d[ .\-\n]\d{3}[ .\-\n]\d{2}[ .\-\n]\d{2})${NE}`) },
+  // Mobiles split in unusual groups ("631 77 8 90 21", "6 1 7 0 8 9 2 4 3", "644 - 019 - 237"): nine digits
+  // starting with 6 or 7 are a phone however they are written. Landlines (8, 9) only after a word that says so.
+  { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[67](?:(?:[ .]|[^\S\n]?-[^\S\n]?)?\d){8}${NE}`), reject: (t, s) => REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
+  { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[89](?:(?:[ .]|[^\S\n]?-[^\S\n]?)?\d){8}${NE}`), reject: (t, s) => !PHONE_CUE.test(t.slice(Math.max(0, s - 30), s)) },
   // Other countries, only with an explicit international prefix.
-  { kind: 'phone', re: re(String.raw`(?<![\p{L}\p{N}+])(?:\+|00)(?!34)[1-9]\d{0,2}(?:[ .\-]?\(?\d\)?){6,13}${NE}`) },
+  { kind: 'phone', re: re(String.raw`(?<![\p{L}\p{N}+])(?:\+|00)(?!34)[1-9]\d{0,2}(?:[ .\-]?\(?\d\)?){6,13}${NE}`), reject: (t, s) => !t.startsWith('+', s) && REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
 ];
 
 /**
@@ -221,5 +277,17 @@ export function findRules(text: string): RuleMatch[] {
       out.push(doubtful ? { start, end, kind: rule.kind, doubtful } : { start, end, kind: rule.kind });
     }
   }
+  const take = (start: number, end: number) => {
+    if (end <= start || taken.subarray(start, end).some((x) => x)) return;
+    taken.fill(1, start, end);
+    out.push({ start, end, kind: 'ref' });
+  };
+  for (const m of text.matchAll(REF_RE)) if (refValue(m[0].slice(0, m.indices![1]![0] - m.index), m[1]!, m[2]!)) take(...m.indices![2]!);
+  for (const m of text.matchAll(USER_RE)) {
+    const sep = text.slice(m.index, m.indices![1]![0]);
+    if (handleLike(sep, m[1]!) && !/^(?:de|del|la|el|que|con|para|y|o)$/i.test(m[1]!)) take(...m.indices![1]!);
+  }
+  for (const m of text.matchAll(MENTION_RE)) take(m.index, m.indices![1]![1]);
+  for (const m of text.matchAll(SPEAKER_RE)) take(...m.indices![1]!);
   return out.sort((a, b) => a.start - b.start);
 }

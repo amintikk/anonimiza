@@ -1,0 +1,1555 @@
+{
+ "name": "web:gliner-pii-int8w.onnx/base · rules",
+ "gold": "third.json",
+ "th": 0.3,
+ "rows": {
+  "person": {
+   "gold": 232,
+   "pred": 245,
+   "tpR": 218,
+   "tpRx": 153,
+   "tpP": 211,
+   "tpPx": 153
+  },
+  "address": {
+   "gold": 31,
+   "pred": 47,
+   "tpR": 30,
+   "tpRx": 24,
+   "tpP": 29,
+   "tpPx": 24
+  },
+  "iban": {
+   "gold": 12,
+   "pred": 11,
+   "tpR": 11,
+   "tpRx": 11,
+   "tpP": 11,
+   "tpPx": 11
+  },
+  "id": {
+   "gold": 50,
+   "pred": 48,
+   "tpR": 46,
+   "tpRx": 46,
+   "tpP": 46,
+   "tpPx": 46
+  },
+  "otherid": {
+   "gold": 60,
+   "pred": 0,
+   "tpR": 32,
+   "tpRx": 29,
+   "tpP": 0,
+   "tpPx": 0
+  },
+  "phone": {
+   "gold": 48,
+   "pred": 46,
+   "tpR": 45,
+   "tpRx": 43,
+   "tpP": 45,
+   "tpPx": 43
+  },
+  "email": {
+   "gold": 18,
+   "pred": 18,
+   "tpR": 18,
+   "tpRx": 18,
+   "tpP": 18,
+   "tpPx": 18
+  },
+  "org": {
+   "gold": 18,
+   "pred": 68,
+   "tpR": 17,
+   "tpRx": 16,
+   "tpP": 17,
+   "tpPx": 16
+  },
+  "ref": {
+   "gold": 0,
+   "pred": 33,
+   "tpR": 0,
+   "tpRx": 0,
+   "tpP": 32,
+   "tpPx": 29
+  },
+  "plate": {
+   "gold": 9,
+   "pred": 8,
+   "tpR": 8,
+   "tpRx": 8,
+   "tpP": 8,
+   "tpPx": 8
+  },
+  "ip": {
+   "gold": 8,
+   "pred": 8,
+   "tpR": 8,
+   "tpRx": 8,
+   "tpP": 8,
+   "tpPx": 8
+  },
+  "birthdate": {
+   "gold": 19,
+   "pred": 15,
+   "tpR": 15,
+   "tpRx": 15,
+   "tpP": 15,
+   "tpPx": 15
+  },
+  "card": {
+   "gold": 3,
+   "pred": 3,
+   "tpR": 3,
+   "tpRx": 3,
+   "tpP": 3,
+   "tpPx": 3
+  }
+ },
+ "total": {
+  "gold": 508,
+  "pred": 550,
+  "tpR": 451,
+  "tpRx": 374,
+  "tpP": 443,
+  "tpPx": 374
+ },
+ "chars": {
+  "gold": 6982,
+  "covered": 6129,
+  "anyCovered": 6359,
+  "pred": 8072,
+  "predOk": 6359
+ },
+ "errors": [
+  {
+   "doc": "correo-reclamacion-factura-luz",
+   "type": "extra",
+   "kind": "org",
+   "text": "contrato de suministro eléctrico"
+  },
+  {
+   "doc": "whatsapp-futbol-alevin",
+   "type": "missed",
+   "kind": "person",
+   "text": "Pol",
+   "as": "org"
+  },
+  {
+   "doc": "whatsapp-futbol-alevin",
+   "type": "missed",
+   "kind": "person",
+   "text": "Arnau"
+  },
+  {
+   "doc": "whatsapp-futbol-alevin",
+   "type": "extra",
+   "kind": "org",
+   "text": "Can Rull"
+  },
+  {
+   "doc": "whatsapp-futbol-alevin",
+   "type": "extra",
+   "kind": "org",
+   "text": "Pol"
+  },
+  {
+   "doc": "telegram-venta-moto",
+   "type": "extra",
+   "kind": "org",
+   "text": "wallapop"
+  },
+  {
+   "doc": "telegram-venta-moto",
+   "type": "extra",
+   "kind": "org",
+   "text": "DGT"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ana.ferreiro",
+   "as": "person"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "xabi.lz"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ana.ferreiro",
+   "as": "person"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "xabi.lz"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ana.ferreiro",
+   "as": "person"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "person",
+   "text": "Rocío"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "xabi.lz"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "extra",
+   "kind": "person",
+   "text": "**ana.ferreiro"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "extra",
+   "kind": "person",
+   "text": "**ana.ferreiro"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "extra",
+   "kind": "person",
+   "text": "**ana.ferreiro"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "missed",
+   "kind": "id",
+   "text": "cero tres cero tres cuatro tres tres tres ene"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "missed",
+   "kind": "id",
+   "text": "Cero tres cero tres cuatro tres tres tres ene"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "catorce de febrero del sesenta y uno"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "missed",
+   "kind": "phone",
+   "text": "seis cero nueve, treinta y uno, cuarenta y cuatro, diecisiete"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "extra",
+   "kind": "org",
+   "text": "Banca telefónica"
+  },
+  {
+   "doc": "transcripcion-llamada-banco",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Larios"
+  },
+  {
+   "doc": "nota-voz-vecina",
+   "type": "missed",
+   "kind": "phone",
+   "text": "seiscientos cincuenta y dos ochenta y ocho diecinueve cero cuatro"
+  },
+  {
+   "doc": "nota-voz-vecina",
+   "type": "extra",
+   "kind": "org",
+   "text": "compañía del gas"
+  },
+  {
+   "doc": "pdf-certificado-retenciones",
+   "type": "missed",
+   "kind": "org",
+   "text": "ARTEIXO SL",
+   "as": "person"
+  },
+  {
+   "doc": "pdf-certificado-retenciones",
+   "type": "extra",
+   "kind": "address",
+   "text": "Polígono de Sabón"
+  },
+  {
+   "doc": "pdf-certificado-retenciones",
+   "type": "extra",
+   "kind": "person",
+   "text": "Arteixo"
+  },
+  {
+   "doc": "pdf-extracto-bancario",
+   "type": "missed",
+   "kind": "iban",
+   "text": "ES51 2085 9658 2094\n                                                   3854 1313"
+  },
+  {
+   "doc": "pdf-extracto-bancario",
+   "type": "extra",
+   "kind": "org",
+   "text": "ENDESA ENERGIA"
+  },
+  {
+   "doc": "pdf-extracto-bancario",
+   "type": "extra",
+   "kind": "address",
+   "text": "Oficina 4412 · Plaza de Aragón (Zaragoza"
+  },
+  {
+   "doc": "formulario-padron-terrassa",
+   "type": "missed",
+   "kind": "person",
+   "text": "BOUZIANE"
+  },
+  {
+   "doc": "formulario-padron-terrassa",
+   "type": "missed",
+   "kind": "person",
+   "text": "OUAHBI"
+  },
+  {
+   "doc": "formulario-padron-terrassa",
+   "type": "missed",
+   "kind": "person",
+   "text": "OUAHBI"
+  },
+  {
+   "doc": "formulario-padron-terrassa",
+   "type": "extra",
+   "kind": "org",
+   "text": "AJUNTAMENT DE TERRASSA"
+  },
+  {
+   "doc": "informe-urgencias-cadera",
+   "type": "missed",
+   "kind": "person",
+   "text": "Covadonga",
+   "as": "address"
+  },
+  {
+   "doc": "informe-urgencias-cadera",
+   "type": "extra",
+   "kind": "address",
+   "text": "domicilio"
+  },
+  {
+   "doc": "informe-urgencias-cadera",
+   "type": "extra",
+   "kind": "address",
+   "text": "domicilio"
+  },
+  {
+   "doc": "informe-urgencias-cadera",
+   "type": "extra",
+   "kind": "address",
+   "text": "Covadonga"
+  },
+  {
+   "doc": "informe-alta-cardiologia-catala",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "30-01-1958"
+  },
+  {
+   "doc": "notas-enfermeria-medicina-interna",
+   "type": "extra",
+   "kind": "org",
+   "text": "Medicina Interna – Hab. 412-A"
+  },
+  {
+   "doc": "informe-salud-mental-csm",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "PRCR990814118015"
+  },
+  {
+   "doc": "demanda-juicio-verbal",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "7744"
+  },
+  {
+   "doc": "demanda-juicio-verbal",
+   "type": "extra",
+   "kind": "org",
+   "text": "JUZGADO DE PRIMERA INSTANCIA DE MÁLAGA"
+  },
+  {
+   "doc": "poder-notarial-pleitos",
+   "type": "missed",
+   "kind": "id",
+   "text": "14.890.\n323-P"
+  },
+  {
+   "doc": "poder-notarial-pleitos",
+   "type": "extra",
+   "kind": "org",
+   "text": "PODER GENERAL PARA PLEITOS Y ESPECIAL"
+  },
+  {
+   "doc": "poder-notarial-pleitos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Ilustre Cole-\ngio de Galicia"
+  },
+  {
+   "doc": "poder-notarial-pleitos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Tribunales"
+  },
+  {
+   "doc": "acta-junta-propietarios",
+   "type": "extra",
+   "kind": "org",
+   "text": "COMUNIDAD DE PROPIETARIOS"
+  },
+  {
+   "doc": "acta-junta-propietarios",
+   "type": "extra",
+   "kind": "org",
+   "text": "CAF Valencia"
+  },
+  {
+   "doc": "acta-junta-propietarios",
+   "type": "extra",
+   "kind": "address",
+   "text": "9ª puerta"
+  },
+  {
+   "doc": "acta-junta-propietarios",
+   "type": "extra",
+   "kind": "org",
+   "text": "administración"
+  },
+  {
+   "doc": "sentencia-despido-improcedente",
+   "type": "extra",
+   "kind": "org",
+   "text": "JUZGADO DE LO SOCIAL N.º 3 DE BILBAO"
+  },
+  {
+   "doc": "sentencia-despido-improcedente",
+   "type": "extra",
+   "kind": "org",
+   "text": "Juzgado de lo Social n.º 3 de Bilbao"
+  },
+  {
+   "doc": "diligencia-embargo-hacienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "Agencia Tributaria\nDelegación Especial de Andalucía – Dependencia Regional de Recaudación"
+  },
+  {
+   "doc": "diligencia-embargo-hacienda",
+   "type": "extra",
+   "kind": "org",
+   "text": "BANCO SANTANDER, S.A."
+  },
+  {
+   "doc": "resolucion-alta-medica-inss",
+   "type": "missed",
+   "kind": "address",
+   "text": "AVDA. DE LA LIBERTAD 23, ESC. 2, 1º C\n30009 MURCIA"
+  },
+  {
+   "doc": "resolucion-alta-medica-inss",
+   "type": "extra",
+   "kind": "org",
+   "text": "INSTITUTO NACIONAL DE LA SEGURIDAD SOCIAL"
+  },
+  {
+   "doc": "resolucion-alta-medica-inss",
+   "type": "extra",
+   "kind": "org",
+   "text": "Dirección Provincial de Murcia"
+  },
+  {
+   "doc": "resolucion-alta-medica-inss",
+   "type": "extra",
+   "kind": "org",
+   "text": "Equipo de Valoración de Incapacidades"
+  },
+  {
+   "doc": "correo-concello-licenza-obra",
+   "type": "extra",
+   "kind": "address",
+   "text": "Praza do Concello 2, Bertamiráns"
+  },
+  {
+   "doc": "correo-concello-licenza-obra",
+   "type": "extra",
+   "kind": "org",
+   "text": "Rexistro Xeral – Concello de Ames"
+  },
+  {
+   "doc": "solicitud-transferencia-dgt",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "VF3LCYHZPKS214577"
+  },
+  {
+   "doc": "solicitud-transferencia-dgt",
+   "type": "extra",
+   "kind": "org",
+   "text": "GIPUZKOA\n\nVEHÍCULO"
+  },
+  {
+   "doc": "pdf-nomina-hosteleria",
+   "type": "missed",
+   "kind": "id",
+   "text": "29 75419306 18"
+  },
+  {
+   "doc": "carta-despido-objetivo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Sra"
+  },
+  {
+   "doc": "carta-despido-objetivo",
+   "type": "extra",
+   "kind": "person",
+   "text": "Sra"
+  },
+  {
+   "doc": "cv-ingeniera-datos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "linkedin.com/in/luciachenjh"
+  },
+  {
+   "doc": "cv-ingeniera-datos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "jiahui-chen",
+   "as": "person"
+  },
+  {
+   "doc": "cv-ingeniera-datos",
+   "type": "extra",
+   "kind": "person",
+   "text": "jiahui"
+  },
+  {
+   "doc": "cv-ingeniera-datos",
+   "type": "extra",
+   "kind": "person",
+   "text": "chen"
+  },
+  {
+   "doc": "cv-ingeniera-datos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Universitat de València"
+  },
+  {
+   "doc": "correo-rrhh-permiso-nacimiento",
+   "type": "extra",
+   "kind": "org",
+   "text": "mutua"
+  },
+  {
+   "doc": "poliza-seguro-hogar",
+   "type": "extra",
+   "kind": "org",
+   "text": "BANCO SABADELL"
+  },
+  {
+   "doc": "parte-amistoso-accidente",
+   "type": "missed",
+   "kind": "plate",
+   "text": "LR-6512-T"
+  },
+  {
+   "doc": "parte-amistoso-accidente",
+   "type": "extra",
+   "kind": "org",
+   "text": "Mutua Riojana"
+  },
+  {
+   "doc": "parte-amistoso-accidente",
+   "type": "extra",
+   "kind": "org",
+   "text": "Seguros Atlántida"
+  },
+  {
+   "doc": "correo-banco-cargos-fraude",
+   "type": "extra",
+   "kind": "org",
+   "text": "web de apuestas"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ibrahim.diallo",
+   "as": "person"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "ibrahim.diallo",
+   "as": "person"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "cus_8Kd2LmQ19xR"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "msoto_alarcon"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "extra",
+   "kind": "person",
+   "text": "ibrahim.diallo"
+  },
+  {
+   "doc": "log-json-servicios",
+   "type": "extra",
+   "kind": "person",
+   "text": "ibrahim.diallo"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "mamiprimeriza_lucia",
+   "as": "person"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "Bea_y_sus_mellis",
+   "as": "person"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "mamiprimeriza_lucia",
+   "as": "person"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "person",
+   "text": "Bea"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "Tito_Fuenla",
+   "as": "person"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "mamiprimeriza_lucia",
+   "as": "person"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "extra",
+   "kind": "person",
+   "text": "mamiprimeriza_lucia"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "extra",
+   "kind": "person",
+   "text": "Bea_y_sus_mellis"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "extra",
+   "kind": "person",
+   "text": "mamiprimeriza_lucia"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "extra",
+   "kind": "person",
+   "text": "Tito_Fuenla"
+  },
+  {
+   "doc": "foro-maternidad-hospital",
+   "type": "extra",
+   "kind": "person",
+   "text": "mamiprimeriza_lucia"
+  },
+  {
+   "doc": "resena-restaurante-lugo",
+   "type": "extra",
+   "kind": "person",
+   "text": "mi suegra"
+  },
+  {
+   "doc": "chat-soporte-fibra",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "30044812"
+  },
+  {
+   "doc": "soporte-app-reparto",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "kevin.ochoa.rider",
+   "as": "person"
+  },
+  {
+   "doc": "soporte-app-reparto",
+   "type": "extra",
+   "kind": "org",
+   "text": "vuestra app"
+  },
+  {
+   "doc": "soporte-app-reparto",
+   "type": "extra",
+   "kind": "person",
+   "text": "kevin"
+  },
+  {
+   "doc": "soporte-app-reparto",
+   "type": "extra",
+   "kind": "person",
+   "text": "ochoa"
+  },
+  {
+   "doc": "correo-arraigo-argentina",
+   "type": "missed",
+   "kind": "person",
+   "text": "Lu"
+  },
+  {
+   "doc": "correo-arraigo-argentina",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "21-ago-1995"
+  },
+  {
+   "doc": "correo-arraigo-argentina",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "39.118.427"
+  },
+  {
+   "doc": "correo-arraigo-argentina",
+   "type": "missed",
+   "kind": "person",
+   "text": "Martu"
+  },
+  {
+   "doc": "correo-arraigo-argentina",
+   "type": "extra",
+   "kind": "address",
+   "text": "Santa Cruz de Tenerife"
+  },
+  {
+   "doc": "sms-recibidos-varios",
+   "type": "extra",
+   "kind": "org",
+   "text": "DGT"
+  },
+  {
+   "doc": "sms-recibidos-varios",
+   "type": "extra",
+   "kind": "address",
+   "text": "sede.dgt.gob.es"
+  },
+  {
+   "doc": "sms-recibidos-varios",
+   "type": "extra",
+   "kind": "org",
+   "text": "BBVA"
+  },
+  {
+   "doc": "sms-recibidos-varios",
+   "type": "extra",
+   "kind": "phone",
+   "text": "900 102 801"
+  },
+  {
+   "doc": "formulario-bono-alquiler-joven",
+   "type": "missed",
+   "kind": "person",
+   "text": "GONZÁLEZ"
+  },
+  {
+   "doc": "formulario-bono-alquiler-joven",
+   "type": "missed",
+   "kind": "person",
+   "text": "DEL VALLE"
+  },
+  {
+   "doc": "formulario-bono-alquiler-joven",
+   "type": "extra",
+   "kind": "org",
+   "text": "Junta de Castilla y León"
+  },
+  {
+   "doc": "whatsapp-familia-herencia",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Uría"
+  },
+  {
+   "doc": "whatsapp-familia-herencia",
+   "type": "extra",
+   "kind": "ref",
+   "text": "@Nacho"
+  },
+  {
+   "doc": "transcripcion-reunion-teams",
+   "type": "missed",
+   "kind": "phone",
+   "text": "seis seis cero, doce, cuarenta y ocho, noventa y dos"
+  },
+  {
+   "doc": "correo-plaza-garaje",
+   "type": "extra",
+   "kind": "address",
+   "text": "2ºB"
+  },
+  {
+   "doc": "reserva-hotel-rural",
+   "type": "missed",
+   "kind": "person",
+   "text": "S HUAMAN"
+  },
+  {
+   "doc": "telegram-grupo-pisos-compartidos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Habitaciones Granada estudiantes"
+  },
+  {
+   "doc": "formulario-colegiacion-enfermeria",
+   "type": "missed",
+   "kind": "birthdate",
+   "text": "12-IV-1994"
+  },
+  {
+   "doc": "formulario-colegiacion-enfermeria",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "08-49217"
+  },
+  {
+   "doc": "formulario-colegiacion-enfermeria",
+   "type": "extra",
+   "kind": "org",
+   "text": "Ministerio de Universidades"
+  },
+  {
+   "doc": "informe-urgencias-pediatria",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "15529803"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "voltio_mañico",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "Jorge_Pina",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "missed",
+   "kind": "otherid",
+   "text": "voltio_mañico",
+   "as": "person"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "extra",
+   "kind": "person",
+   "text": "voltio_mañico"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "extra",
+   "kind": "org",
+   "text": "Coches.net"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "extra",
+   "kind": "person",
+   "text": "Jorge_Pina"
+  },
+  {
+   "doc": "foro-coches-electricos",
+   "type": "extra",
+   "kind": "person",
+   "text": "voltio_mañico"
+  },
+  {
+   "doc": "informe-psicologico-forense",
+   "type": "extra",
+   "kind": "org",
+   "text": "Juzgado de Primera Instancia n.º 5 de Familia de Sevilla"
+  },
+  {
+   "doc": "informe-psicologico-forense",
+   "type": "extra",
+   "kind": "person",
+   "text": "Fuentes"
+  },
+  {
+   "doc": "historial-dental-ortodoncia",
+   "type": "missed",
+   "kind": "person",
+   "text": "Aïssatou"
+  },
+  {
+   "doc": "aviso-revision-ascensor",
+   "type": "extra",
+   "kind": "org",
+   "text": "empresa mantenedora"
+  },
+  {
+   "doc": "aviso-revision-ascensor",
+   "type": "extra",
+   "kind": "org",
+   "text": "organismo de control autorizado"
+  },
+  {
+   "doc": "aviso-revision-ascensor",
+   "type": "extra",
+   "kind": "address",
+   "text": "5º al 8º"
+  },
+  {
+   "doc": "aviso-revision-ascensor",
+   "type": "extra",
+   "kind": "person",
+   "text": "persona mayor"
+  },
+  {
+   "doc": "aviso-revision-ascensor",
+   "type": "extra",
+   "kind": "address",
+   "text": "Portal 2 – Escalera B"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "org",
+   "text": "web oficial"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "address",
+   "text": "domicilio"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "org",
+   "text": "oficina"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "id",
+   "text": "12345678Z"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "id",
+   "text": "00000000T"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "person",
+   "text": "Mayores de 70"
+  },
+  {
+   "doc": "guia-renovar-dni",
+   "type": "extra",
+   "kind": "person",
+   "text": "Menores de 30"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "org",
+   "text": "El grupo"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "person",
+   "text": "consejero delegado"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "person",
+   "text": "directora financiera"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "org",
+   "text": "grupo"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "person",
+   "text": "financiera"
+  },
+  {
+   "doc": "nota-prensa-resultados-trimestre",
+   "type": "extra",
+   "kind": "person",
+   "text": "El presidente del consejo de administración"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "org",
+   "text": "Alcaldía"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "org",
+   "text": "Concejalía de Urbanismo"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle San Francisco – Plaza Mayor"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "org",
+   "text": "grupo municipal"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "person",
+   "text": "municipal"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "person",
+   "text": "alcalde"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "person",
+   "text": "secretaria municipal"
+  },
+  {
+   "doc": "orden-dia-pleno-municipal",
+   "type": "extra",
+   "kind": "person",
+   "text": "municipal"
+  },
+  {
+   "doc": "horario-linea-autobus",
+   "type": "extra",
+   "kind": "org",
+   "text": "Hospital"
+  },
+  {
+   "doc": "horario-linea-autobus",
+   "type": "extra",
+   "kind": "org",
+   "text": "Hospital"
+  },
+  {
+   "doc": "horario-linea-autobus",
+   "type": "extra",
+   "kind": "address",
+   "text": "Avda. de América 37"
+  },
+  {
+   "doc": "horario-linea-autobus",
+   "type": "extra",
+   "kind": "person",
+   "text": "Concha Espina"
+  },
+  {
+   "doc": "horario-linea-autobus",
+   "type": "extra",
+   "kind": "address",
+   "text": "calle Príncipe de Vergara"
+  }
+ ],
+ "perDoc": [
+  {
+   "id": "correo-reclamacion-factura-luz",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "whatsapp-futbol-alevin",
+   "gold": 16,
+   "tpR": 14,
+   "pred": 16,
+   "tpP": 14
+  },
+  {
+   "id": "telegram-venta-moto",
+   "gold": 12,
+   "tpR": 12,
+   "pred": 14,
+   "tpP": 12
+  },
+  {
+   "id": "slack-incidencia-login",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 12,
+   "tpP": 9
+  },
+  {
+   "id": "transcripcion-llamada-banco",
+   "gold": 8,
+   "tpR": 4,
+   "pred": 6,
+   "tpP": 4
+  },
+  {
+   "id": "nota-voz-vecina",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "pdf-certificado-retenciones",
+   "gold": 9,
+   "tpR": 8,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "pdf-extracto-bancario",
+   "gold": 7,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "formulario-padron-terrassa",
+   "gold": 15,
+   "tpR": 12,
+   "pred": 14,
+   "tpP": 13
+  },
+  {
+   "id": "formulario-alta-gimnasio",
+   "gold": 11,
+   "tpR": 11,
+   "pred": 11,
+   "tpP": 11
+  },
+  {
+   "id": "informe-urgencias-cadera",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 11,
+   "tpP": 8
+  },
+  {
+   "id": "informe-alta-cardiologia-catala",
+   "gold": 9,
+   "tpR": 8,
+   "pred": 11,
+   "tpP": 11
+  },
+  {
+   "id": "notas-enfermeria-medicina-interna",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "informe-salud-mental-csm",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "presupuesto-clinica-dental",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "demanda-juicio-verbal",
+   "gold": 11,
+   "tpR": 11,
+   "pred": 12,
+   "tpP": 11
+  },
+  {
+   "id": "poder-notarial-pleitos",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 10,
+   "tpP": 7
+  },
+  {
+   "id": "acta-junta-propietarios",
+   "gold": 12,
+   "tpR": 12,
+   "pred": 16,
+   "tpP": 12
+  },
+  {
+   "id": "sentencia-despido-improcedente",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 11,
+   "tpP": 9
+  },
+  {
+   "id": "diligencia-embargo-hacienda",
+   "gold": 4,
+   "tpR": 4,
+   "pred": 6,
+   "tpP": 4
+  },
+  {
+   "id": "resolucion-alta-medica-inss",
+   "gold": 5,
+   "tpR": 4,
+   "pred": 8,
+   "tpP": 5
+  },
+  {
+   "id": "correo-concello-licenza-obra",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 8,
+   "tpP": 6
+  },
+  {
+   "id": "solicitud-transferencia-dgt",
+   "gold": 10,
+   "tpR": 10,
+   "pred": 11,
+   "tpP": 10
+  },
+  {
+   "id": "pdf-nomina-hosteleria",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 5,
+   "tpP": 5
+  },
+  {
+   "id": "carta-despido-objetivo",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 7
+  },
+  {
+   "id": "cv-ingeniera-datos",
+   "gold": 11,
+   "tpR": 11,
+   "pred": 13,
+   "tpP": 10
+  },
+  {
+   "id": "correo-rrhh-permiso-nacimiento",
+   "gold": 11,
+   "tpR": 11,
+   "pred": 12,
+   "tpP": 11
+  },
+  {
+   "id": "poliza-seguro-hogar",
+   "gold": 8,
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "parte-amistoso-accidente",
+   "gold": 11,
+   "tpR": 10,
+   "pred": 14,
+   "tpP": 12
+  },
+  {
+   "id": "correo-banco-cargos-fraude",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "log-nginx-api",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 10,
+   "tpP": 10
+  },
+  {
+   "id": "log-json-servicios",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 7,
+   "tpP": 5
+  },
+  {
+   "id": "foro-maternidad-hospital",
+   "gold": 5,
+   "tpR": 4,
+   "pred": 9,
+   "tpP": 4
+  },
+  {
+   "id": "resena-restaurante-lugo",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 6,
+   "tpP": 5
+  },
+  {
+   "id": "resena-apartamento-turistico",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 5,
+   "tpP": 5
+  },
+  {
+   "id": "chat-soporte-fibra",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "soporte-app-reparto",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 9,
+   "tpP": 6
+  },
+  {
+   "id": "correo-arraigo-argentina",
+   "gold": 10,
+   "tpR": 7,
+   "pred": 9,
+   "tpP": 8
+  },
+  {
+   "id": "correo-ikastola-tutora",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "sms-recibidos-varios",
+   "gold": 5,
+   "tpR": 5,
+   "pred": 9,
+   "tpP": 5
+  },
+  {
+   "id": "formulario-bono-alquiler-joven",
+   "gold": 15,
+   "tpR": 13,
+   "pred": 15,
+   "tpP": 14
+  },
+  {
+   "id": "whatsapp-familia-herencia",
+   "gold": 21,
+   "tpR": 21,
+   "pred": 23,
+   "tpP": 21
+  },
+  {
+   "id": "transcripcion-reunion-teams",
+   "gold": 17,
+   "tpR": 16,
+   "pred": 16,
+   "tpP": 16
+  },
+  {
+   "id": "correo-plaza-garaje",
+   "gold": 6,
+   "tpR": 6,
+   "pred": 7,
+   "tpP": 6
+  },
+  {
+   "id": "reserva-hotel-rural",
+   "gold": 6,
+   "tpR": 5,
+   "pred": 5,
+   "tpP": 5
+  },
+  {
+   "id": "telegram-grupo-pisos-compartidos",
+   "gold": 7,
+   "tpR": 7,
+   "pred": 10,
+   "tpP": 9
+  },
+  {
+   "id": "formulario-colegiacion-enfermeria",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 8,
+   "tpP": 7
+  },
+  {
+   "id": "informe-urgencias-pediatria",
+   "gold": 4,
+   "tpR": 4,
+   "pred": 6,
+   "tpP": 6
+  },
+  {
+   "id": "correo-proveedor-factura-impagada",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 9,
+   "tpP": 9
+  },
+  {
+   "id": "foro-coches-electricos",
+   "gold": 3,
+   "tpR": 3,
+   "pred": 8,
+   "tpP": 4
+  },
+  {
+   "id": "informe-psicologico-forense",
+   "gold": 9,
+   "tpR": 9,
+   "pred": 11,
+   "tpP": 9
+  },
+  {
+   "id": "whatsapp-clases-particulares",
+   "gold": 14,
+   "tpR": 14,
+   "pred": 11,
+   "tpP": 11
+  },
+  {
+   "id": "historial-dental-ortodoncia",
+   "gold": 8,
+   "tpR": 7,
+   "pred": 7,
+   "tpP": 7
+  },
+  {
+   "id": "aviso-revision-ascensor",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 5,
+   "tpP": 0
+  },
+  {
+   "id": "receta-pollo-chilindron",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 0,
+   "tpP": 0
+  },
+  {
+   "id": "guia-renovar-dni",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 7,
+   "tpP": 0
+  },
+  {
+   "id": "nota-prensa-resultados-trimestre",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 6,
+   "tpP": 0
+  },
+  {
+   "id": "manual-lavadora-errores",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 0,
+   "tpP": 0
+  },
+  {
+   "id": "orden-dia-pleno-municipal",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 8,
+   "tpP": 0
+  },
+  {
+   "id": "horario-linea-autobus",
+   "gold": 0,
+   "tpR": 0,
+   "pred": 5,
+   "tpP": 0
+  }
+ ],
+ "seconds": 140.5,
+ "words": 12399,
+ "docs": 60
+}

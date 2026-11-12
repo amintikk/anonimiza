@@ -71,7 +71,7 @@
           <ol class="numbered">
             <li>
               <h3>Detecta</h3>
-              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social, matrículas) se buscan con reglas y se comprueba su dígito de control; las fechas de nacimiento, por las palabras que las anuncian («nacida el», «F. nac.»). Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
+              <p>Los datos con formato fijo (DNI, NIE, CIF, IBAN, tarjetas, teléfonos, correos, IP, n.º de la Seguridad Social, matrículas) se buscan con reglas y se comprueba su dígito de control; las fechas de nacimiento y otros identificadores (n.º de historia, expediente, póliza, usuario), por las palabras que los anuncian («nacida el», «NHC:», «Nº expediente»). Nombres, organizaciones y direcciones los encuentra el modelo GLiNER, ejecutado en tu equipo con WebGPU o WebAssembly.</p>
             </li>
             <li>
               <h3>Revisa y sustituye</h3>
@@ -105,6 +105,7 @@
                 <tr><td>Correos y direcciones IP</td><td>Regla (IPv4 e IPv6)</td><td><code>[EMAIL_n]</code> <code>[IP_n]</code></td></tr>
                 <tr><td>Fechas de nacimiento</td><td>Regla: una fecha justo después de «nacido/a», «fecha de nacimiento», «F. nac.»… Otras fechas no se tocan.</td><td><code>[FECHA_NACIMIENTO_n]</code></td></tr>
                 <tr><td>Matrículas españolas</td><td>Regla (actuales «4821 KLM» y antiguas «M-1234-AB»)</td><td><code>[MATRICULA_n]</code></td></tr>
+                <tr><td>Otros identificadores (n.º de historia, expediente, póliza, colegiado, pasaporte, usuario…)</td><td>Regla: un código con cifras justo después de la palabra que lo anuncia («NHC:», «Nº expediente», «póliza nº», «user=»), alias con @ y nombres de usuario al principio de línea en chats y foros</td><td><code>[IDENTIFICADOR_n]</code></td></tr>
                 <tr><td>Cualquier otro fragmento</td><td>Lo seleccionas tú</td><td><code>[DATO_n]</code></td></tr>
               </tbody>
             </table>
@@ -116,7 +117,7 @@
         <div class="wrap">
           <h2>Cifras medidas</h2>
           <p class="intro">
-            Medidas con el mismo código que usa la web sobre dos conjuntos que no se usaron para ajustarla: uno propio, sucio y congelado antes de medir, y uno público de historias clínicas (MEDDOCAN).
+            Medidas con el mismo código que usa la web: la cifra principal sale de un conjunto propio, sucio, congelado antes de medir y que no se usó para ajustarla; la segunda, de historias clínicas públicas (MEDDOCAN).
             Se publican tal cual salen; los conjuntos, los errores uno a uno y los scripts están en el repositorio.
           </p>
           <!--#cifras-->
@@ -130,6 +131,7 @@
           <ul class="limits">
             <li><b>El modelo se equivoca.</b> En las pruebas, el modelo por sí solo dejaba escapar uno de cada veinte nombres (sobre todo nombres sueltos o repetidos de forma abreviada) y a veces marca cosas que no son datos personales, como un juzgado o un ayuntamiento. En documentos reales fallará más que en las pruebas.</li>
             <li><b>El contexto también identifica.</b> Un cargo («la directora del colegio de Teruel»), una fecha, una enfermedad rara o un detalle de la historia pueden bastar para saber de quién se habla. Esos datos no se buscan.</li>
+            <li><b>Identificadores sin etiqueta.</b> Los números de expediente, historia o póliza y los nombres de usuario se reconocen por la palabra que los anuncia («NHC:», «póliza nº», «user=»). Sin ella, y en alias de foro o chat, se escapan a menudo: en la prueba se encontró algo más de la mitad.</li>
             <li><b>Solo texto.</b> Del PDF y del DOCX se extrae el texto: se pierden el formato, las tablas y las imágenes. Los PDF escaneados no tienen texto y no se hace OCR.</li>
             <li><b>Pensado para español.</b> El modelo es multilingüe y las reglas sirven para otros países de la zona SEPA, pero las cifras solo se han medido en español. DNI, NIE, CIF y NSS son identificadores españoles.</li>
             <li><b>La tabla vive en la pestaña.</b> Si recargas o cierras la página, ya no se pueden restaurar los marcadores. No se guarda en ningún sitio, a propósito.</li>

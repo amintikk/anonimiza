@@ -22,7 +22,9 @@ const mode = opt('--mode') ?? 'rules';
 const extra = args.includes('--extra');
 
 const RULE_KIND: Record<string, K> = { dni: 'id', nie: 'id', cif: 'id', nss: 'id' };
-const compatible = (a: K, b: K) => a === b || (a === 'id' && b === 'otherid') || (a === 'otherid' && b === 'id');
+// Identifiers are one family: a DNI found by the "other identifier" rule, or an identifier annotated as DNI, still counts.
+const ID_FAMILY = new Set(['id', 'otherid', 'ref']);
+const compatible = (a: K, b: K) => a === b || (ID_FAMILY.has(a) && ID_FAMILY.has(b));
 const ov = (a: { start: number; end: number }, b: { start: number; end: number }) => a.start < b.end && b.start < a.end;
 const LABEL: Record<K, 'person' | 'organization' | 'address'> = { person: 'person', org: 'organization', address: 'address' };
 
@@ -106,7 +108,7 @@ if (args.includes('--sweep')) {
 } else {
   const th = Number(opt('--th') ?? 0.3);
   const s = score(th, true);
-  const order = ['person', 'org', 'address', 'id', 'iban', 'card', 'phone', 'email', 'ip', 'birthdate', 'plate', 'otherid'];
+  const order = ['person', 'org', 'address', 'id', 'iban', 'card', 'phone', 'email', 'ip', 'birthdate', 'plate', 'otherid', 'ref'];
   console.log(`${name} · umbral ${th} · ${goldPath}`);
   console.log('| Tipo | Reales | Marcados | Cobertura | Cob. exacta | Precisión | Prec. exacta |');
   console.log('|---|---:|---:|---:|---:|---:|---:|');
@@ -119,5 +121,5 @@ if (args.includes('--sweep')) {
   console.log(`caracteres sensibles tapados (cualquier tipo): ${f(pct(s.chars.anyCovered, s.chars.gold))} % · con su tipo: ${f(pct(s.chars.covered, s.chars.gold))} % · tapados que eran sensibles: ${f(pct(s.chars.predOk, s.chars.pred))} %`);
   if (args.includes('--errors')) for (const e of s.errors) console.log(`  ${e.type === 'missed' ? 'SE ESCAPA' : 'DE MÁS   '} ${e.kind.padEnd(9)}${e.as ? `(marcado como ${e.as}) ` : ''}${e.doc}: ${JSON.stringify(e.text)}`);
   const out = opt('--json');
-  if (out) writeFileSync(out, JSON.stringify({ name, gold: goldPath, th, rows: Object.fromEntries(s.rows), total: s.total, chars: s.chars, errors: s.errors, perDoc: s.perDoc, seconds: pred.seconds, words: pred.words }, null, 1));
+  if (out) writeFileSync(out, JSON.stringify({ name, gold: goldPath, th, rows: Object.fromEntries(s.rows), total: s.total, chars: s.chars, errors: s.errors, perDoc: s.perDoc, seconds: pred.seconds, words: pred.words, docs: gold.docs.length }, null, 1));
 }

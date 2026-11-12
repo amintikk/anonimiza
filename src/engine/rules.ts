@@ -128,9 +128,14 @@ const E = String.raw`(?![\p{L}\p{N}])`;
 const NB = String.raw`(?<![\p{L}\p{N}]|\d[ .\-/])`;
 const NE = String.raw`(?![\p{L}\p{N}]|[ .\-/]\d)`;
 const re = (s: string, flags = 'giu') => new RegExp(s, flags);
+// A separator inside a number, or a line break where a PDF or a table cell wrapped it ("670-071-⏎788", "B-⏎52.783.370").
+const S = String.raw`(?:[ .\-]\n?|\n)`;
+const SID = String.raw`(?:[ \-]\n?|\n)`;
 
 /** A wrong DNI/NIE letter is a typo only if the letter is attached ("48213907K", "48213907-K") or a capital. */
 const idTypo = (s: string) => !/\s[a-z]$/.test(s);
+/** "… 83639138 y domicilio": a lower-case letter after a space, followed by more words, is the conjunction, not a DNI letter. */
+const conjunction = (t: string, _s: number, e: number) => /\s[a-zñ]$/.test(t.slice(e - 2, e)) && /^[^\S\n]+\p{L}/u.test(t.slice(e, e + 3));
 
 // Spanish number plates. Current format: 4 digits + 3 consonants (no vowels, Ñ or Q). Lower case is
 // accepted only without a space ("4821klm"), and units or currencies that fit the pattern are not plates.
@@ -152,22 +157,25 @@ const ci = (p: string) =>
 // Other identifiers (case, medical record, policy, membership, passport, user name…) have no format of
 // their own: they are recognised by the word that announces them ("NHC:", "Nº expediente", "póliza nº",
 // "user=") followed by a code with at least one digit. A word that only means "number" is not enough.
-const REF_CUE = String.raw`(?:n\.?\s?h\.?\s?c|historia(?:l)?(?:\s+cl[ií]nica)?|h\.\s?cl[ií]nica|cipa?|nass|nuhsa|tis|tarjeta|tarxeta|targeta|afiliaci[oó]n|afiliad[oa]|episodio|epis\.|colegiad[oa]|col\.|col|expediente|expedient|exp(?:te)?\.|atestado|diligencias|procedimiento|autos|p[oó]liza|p[oò]lissa|contrato|siniestro|referencia|ref\.|incidencia|pedido|localizador|reserva|cliente|abonado|socio|soci|pasaporte|passaport|passport|carn[eé]t?|licencia|microchip|chip|empleado|trabajador|matr[ií]cula\s+escolar|id|mrn|patient\s+id)`;
+const REF_CUE = String.raw`(?:n\.?\s?h\.?\s?c|historia(?:l)?(?:\s+cl[ií]nica)?|h\.\s?cl[ií]nica|cipa?|nass|nuhsa|tis|tarjeta|tarxeta|targeta|afiliaci[oó]n|afiliad[oa]|episodio|epis\.|colegiad[oa]|col\.|col|expediente|expedient|exp(?:te)?\.|atestado|diligencias|procedimiento|autos|p[oó]liza|p[oò]lissa|contrato|siniestro|referencia|ref\.|incidencia|pedido|localizador|reserva|cliente|abonado|socio|soci|pasaporte|passaport|passport|carn[eé]t?|placa|t\.?i\.?p\.?|sip|licencia|microchip|chip|empleado|trabajador|matr[ií]cula\s+escolar|id|mrn|patient\s+id)`;
 const REF_BEFORE = new RegExp(String.raw`${B}${ci(REF_CUE)}(?![\p{L}])[^\n]{0,14}$`, 'u');
 const REF_NUM = String.raw`(?:n\.?\s?[º°o]\.?|n[uú]m(?:ero)?\.?|number|no\.|#)`;
 const REF_TOKEN = String.raw`[\p{L}\p{N}]+(?:[.\-\/_][\p{L}\p{N}]+)*`;
 const REF_RE = new RegExp(
-  String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])(?:[^\S\n]+(?:de|del|\p{Ll}{3,14})){0,2}?` +
-    String.raw`(\.?[^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?)` +
+  String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])((?:(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)(?:de|del|la|las|los|el|su|\p{Ll}{3,20}|\p{Lu}{2,5})){0,4}?)` +
+    String.raw`(\.?[^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?(?:\n[^\S\n]*)?)` +
     String.raw`((?:(?=[\p{L}\p{N}.\-\/_]*\d)${REF_TOKEN}|[A-Z]{2,5}(?= [A-Z\d]))(?: (?:\d[\p{L}\p{N}]*(?:[.\-\/_][\p{L}\p{N}]+)*|[A-Z]{2,5}(?= [A-Z\d])))*)${E}`,
   'gud',
 );
 // User names after "user=", "usuario:", "@": no digit needed, but they must look like a handle.
-const USER_RE = /(?<![\p{L}\p{N}])(?:user(?:name)?|usuari[oa]?|login|alias|nick)(?:\s*[:=]\s*|\s+)([\p{L}\p{N}][\p{L}\p{N}._\-]*[\p{L}\p{N}])(?![\p{L}\p{N}@])/giud;
+const USER_RE = /(?<![\p{L}\p{N}])(?:user(?:name)?|usuari[oa]?|login|alias|nick)(\s*[:=]\s*|\s+)([\p{L}\p{N}][\p{L}\p{N}._\-]*[\p{L}\p{N}])(?![\p{L}\p{N}@])/giud;
+// The same after a longer label that ends in a colon: "Usuario de VPN asignado a la jefa de proyecto: lbenitez.ext".
+const USER_LONG_RE = /(?<![\p{L}\p{N}])(?:user(?:name)?|usuari[oa]?|login|alias|nick)([^\S\n][^\n:=]{1,50}[:=][^\S\n]*)([\p{L}\p{N}][\p{L}\p{N}._\-]*[\p{L}\p{N}])(?![\p{L}\p{N}@])/giud;
 const MENTION_RE = /(?<![\p{L}\p{N}._%+\-@])@([\p{L}\p{N}_][\p{L}\p{N}_.]*[\p{L}\p{N}_])(?![\p{L}\p{N}@])/gud;
 // A handle at the start of a line, in chats and forums: "jordi.p: …", "lolaB_1979 escribió:".
 const SPEAKER_RE = /^[^\S\n]*([\p{L}\p{N}]+(?:[._][\p{L}\p{N}]+)+|[\p{L}]+\d+|\p{Ll}+\p{Lu}[\p{L}\p{N}]*)(?=:\s|\s+escribi[óo]:?|\s+wrote:?)/gmud;
 
+const LIST_MORE = /^(?:[^\S\n]*,|[^\S\n]+(?:y|e|o|and))[^\S\n]+(\p{N}[\p{L}\p{N}.\-\/]*)(?![\p{L}\p{N}])/u;
 const DATE_ONLY = new RegExp(String.raw`^${DATE}$`, 'iu');
 
 /** EAN-13 / EAN-8 barcodes: product references, not a person's. */
@@ -178,15 +186,21 @@ function validEan(v: string): boolean {
   return (10 - (sum % 10)) % 10 === d.at(-1);
 }
 
-function refValue(cue: string, cueSep: string, v: string): boolean {
+function refValue(cue: string, between: string, cueSep: string, v: string): boolean {
   if (!/\d/.test(v) || DATE_ONLY.test(v) || validEan(v)) return false;
+  const marked = /[:=#º°]|n[uú]m|number|no\./i.test(cueSep);
+  // More than two words between the cue and the value ("póliza de responsabilidad civil profesional nº …",
+  // "Referencia de la devolución: …") only with a colon or a "nº" right before the value.
+  if (between.trim().split(/\s+/).filter(Boolean).length > 2 && !marked) return false;
   // A product, model or article reference names a thing, not a person.
   if (/producto|art[ií]culo|modelo|pieza|product|item/i.test(cue)) return false;
   // A bare 13-digit number after "Ref." is a barcode even when its check digit is off.
   if (/^ref/i.test(cue.trim()) && /^\d{13}$/.test(v)) return false;
   const alnum = v.replace(/[^\p{L}\p{N}]/gu, '');
   // A bare number right after the word ("pedido 2000 unidades") needs a separator or more digits.
-  if (!/[:=#º°]|n[uú]m|number|no\./i.test(cueSep) && alnum.length < 5 && !/\p{L}/u.test(alnum)) return false;
+  // Badge, membership and professional numbers are short but still a person's: «carné profesional 4417».
+  const badge = /carn|col|placa|t\.?i\.?p|pasaport|passport/i.test(cue) && /^\d{4}$/.test(alnum) && !/^(?:19|20)\d\d$/.test(alnum);
+  if (!marked && !badge && alnum.length < 5 && !/\p{L}/u.test(alnum)) return false;
   return alnum.length >= 2;
 }
 
@@ -201,7 +215,7 @@ const PHONE_CUE = /(?:tel[eé]?f?|tlf|tfno|m[oó]vil|fijo|llam|n[uú]mero|whatsa
 // to the model.
 const STREET = String.raw`(?:calle|c\/|avda\.|avenida|av\.|plaza|pza\.|pl\.|paseo|p[ºo°]\.?|ronda|r[uú]a|carrer|carretera|ctra\.|camino|traves[ií]a|glorieta|urbanizaci[oó]n|urb\.|pasaje|v[ií]a|pol[ií]gono|cuesta|bulevar|rambla|passeig|avinguda|pla[cç]a|kalea|etorbidea)`;
 const TOWN = String.raw`\p{Lu}[\p{L}'’\-]+(?:[^\S\n]+(?:(?:de|del|la|las|los|el|d'|i|y|e)[^\S\n]+)?\p{Lu}[\p{L}'’\-]+)*(?:[^\S\n]*\([\p{L} ]+\))?`;
-const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])[^\n]{0,60}?(?<!\d)\d{5}[^\S\n]+${TOWN}`, 'gu');
+const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])(?:[^\n]|\n(?!\n)){0,60}?(?<!\d)\d{5}(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)${TOWN}`, 'gu');
 
 /** True when one of these words comes shortly before position `st` on the same line ("CIF de la empresa: …"). */
 const announced = (cue: string) => {
@@ -212,30 +226,34 @@ const announced = (cue: string) => {
 // most likely mistyped, and leaving it visible is the worse mistake. It is shown as doubtful.
 const CIF_CUE = announced(String.raw`c\.?\s?i\.?\s?f|n\.?\s?i\.?\s?f`);
 const NSS_CUE = announced(String.raw`n\.?\s?s\.?\s?s|nuss|naf|seguridad\s+social|seg\.\s?social|afiliaci[oó]n|s\.\s?s\.?`);
+const DNI_CUE = announced(String.raw`d\.?\s?n\.?\s?i|n\.?\s?i\.?\s?f|documento(?:\s+nacional)?(?:\s+de\s+identidad)?`);
 const CARD_CUE = announced(String.raw`tarjeta|targeta|tarxeta|card|visa|mastercard|amex`);
 
 // Order matters: earlier rules win when two matches overlap (an IBAN contains digits that look like a phone).
 const RULES: Rule[] = [
   { kind: 'email', re: re(String.raw`${B}[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}\-]+(?:\.[\p{L}\p{N}\-]+)*\.\p{L}{2,}${E}`) },
   // An IBAN of the right length for its country with a wrong check is a mistyped account, not a code.
-  { kind: 'iban', re: re(String.raw`${B}[A-Z]{2}\d{2}(?:[ \-\n]?[A-Z0-9]){10,30}`), valid: validIban, doubtful: (s) => /^[A-Z]{2}\d{2}/.test(s) },
+  { kind: 'iban', re: re(String.raw`${B}[A-Z]{2}\d{2}(?:${SID}?[A-Z0-9]){10,30}`), valid: validIban, doubtful: (s) => /^[A-Z]{2}\d{2}/.test(s) },
   // A card number written in four groups of four with a wrong Luhn digit is still most likely a card.
-  { kind: 'card', re: re(String.raw`${NB}(?:\d[ \-\n]?){12,18}\d${NE}`), valid: (s) => cardPrefix(s) && luhn(s), doubtful: (s, t, st) => (cardPrefix(s) && /^\d{4}([ \-])\d{4}\1\d{4}\1\d{4}$/.test(s)) || (CARD_CUE(t, st) && /^\d{13,19}$/.test(s.replace(/\D/g, ''))) },
-  { kind: 'nie', re: re(String.raw`${B}[XYZ][ \-]?\d{7}[ \-\n]?[A-Z]${E}`), valid: validNie, doubtful: idTypo },
-  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}[ \-\n]?[A-Z]${E}`), valid: validDni, doubtful: idTypo },
+  { kind: 'card', re: re(String.raw`${NB}(?:\d${SID}?){12,18}\d${NE}`), valid: (s) => cardPrefix(s) && luhn(s), doubtful: (s, t, st) => (cardPrefix(s) && /^\d{4}([ \-])\d{4}\1\d{4}\1\d{4}$/.test(s)) || (CARD_CUE(t, st) && /^\d{13,19}$/.test(s.replace(/\D/g, ''))) },
   // A CIF with a wrong control character is still reported, as doubtful, when the word "CIF" or "NIF" announces it.
-  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW][ \-]?\d{2}\.?\d{3}\.?\d{2}[ \-]?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => CIF_CUE(t, st) },
-  { kind: 'nss', re: re(String.raw`${NB}\d{2}[ /\-\n]?\d{8}[ /\-\n]?\d{2}${NE}`), valid: validNss, doubtful: (_s, t, st) => NSS_CUE(t, st) },
-  { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:[ \-\n]?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
+  // Before DNI: in "B-83639138 y" the digits and the next word would also make a valid DNI.
+  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW]${SID}?\d{2}\.?\d{3}\.?\d{2}${SID}?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => CIF_CUE(t, st) },
+  { kind: 'nie', re: re(String.raw`${B}[XYZ]${SID}?\d{7}${SID}?[A-Z]${E}`), valid: validNie, doubtful: idTypo, reject: conjunction },
+  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}${SID}?[A-Z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
+  // A DNI without its letter, when the word says so ("DNI 12.345.678").
+  { kind: 'dni', re: re(String.raw`${NB}\d{2}\.?\d{3}\.?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
+  { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:[ /\-]\n?|\n)?\d{8}(?:[ /\-]\n?|\n)?\d{2}${NE}`), valid: validNss, doubtful: (_s, t, st) => NSS_CUE(t, st) },
+  { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:${SID}?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
   { kind: 'plate', re: re(String.raw`${B}(?:${PROVINCES})[ \-]?\d{4}[ \-]?[A-Z]{1,2}${E}`, 'gu'), reject: (t, s) => /\d[ .\-\/]?$/.test(t.slice(Math.max(0, s - 2), s)) },
   { kind: 'ip', re: re(String.raw`${B}(?:\d{1,3}\.){3}\d{1,3}${E}`), valid: validIpv4 },
   { kind: 'ip', re: re(String.raw`(?<![\p{L}\p{N}:])(?:[0-9a-f]{0,4}:){2,7}[0-9a-f]{0,4}(?![\p{L}\p{N}:])`), valid: validIpv6 },
   // Spanish numbers: optional +34 / 0034, then 9 digits starting with 6, 7, 8 or 9, written whole or in the usual
   // groups (3-3-3, 3-2-2-2, 2-3-2-2). Other groupings are usually policy, order or case numbers.
-  { kind: 'phone', re: re(String.raw`${NB}(?:\(?(?:\+|00)34\)?[ .\-]?)?(?:[6789]\d{8}|\(?[6789]\d{2}\)?[ .\-\n]\d{3}[ .\-\n]\d{3}|\(?[6789]\d{2}\)?[ .\-\n]\d{2}[ .\-\n]\d{2}[ .\-\n]\d{2}|\(?[6789]\d\)?[ .\-\n]\d{3}[ .\-\n]\d{2}[ .\-\n]\d{2})${NE}`) },
+  { kind: 'phone', re: re(String.raw`${NB}(?:\(?(?:\+|00)34\)?[ .\-]?)?(?:[6789]\d{8}|\(?[6789]\d{2}\)?${S}\d{3}${S}\d{3}|\(?[6789]\d{2}\)?${S}\d{2}${S}\d{2}${S}\d{2}|\(?[6789]\d\)?${S}\d{3}${S}\d{2}${S}\d{2})${NE}`) },
   // Mobiles split in unusual groups ("631 77 8 90 21", "6 1 7 0 8 9 2 4 3", "644 - 019 - 237"): nine digits
   // starting with 6 or 7 are a phone however they are written. Landlines (8, 9) only after a word that says so.
-  { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[67](?:(?:[ .]|[^\S\n]?-[^\S\n]?)?\d){8}${NE}`), reject: (t, s) => REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
+  { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[67](?:(?:[ .]|[^\S\n]?-[^\S\n]?|-\n)?\d){8}${NE}`), reject: (t, s) => REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
   { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[89](?:(?:[ .]|[^\S\n]?-[^\S\n]?)?\d){8}${NE}`), reject: (t, s) => !PHONE_CUE.test(t.slice(Math.max(0, s - 30), s)) },
   // Other countries, only with an explicit international prefix.
   { kind: 'phone', re: re(String.raw`(?<![\p{L}\p{N}+])(?:\+|00)(?!34)[1-9]\d{0,2}(?:[ .\-]?\(?\d\)?){6,13}${NE}`), reject: (t, s) => !t.startsWith('+', s) && REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
@@ -304,10 +322,25 @@ export function findRules(input: string): RuleMatch[] {
     out.push({ start, end, kind });
   };
   for (const m of text.matchAll(ADDRESS_RE)) take(m.index, m.index + m[0].length, 'address');
-  for (const m of text.matchAll(REF_RE)) if (refValue(m[0].slice(0, m.indices![1]![0] - m.index), m[1]!, m[2]!)) take(...m.indices![2]!);
-  for (const m of text.matchAll(USER_RE)) {
-    const sep = text.slice(m.index, m.indices![1]![0]);
-    if (handleLike(sep, m[1]!) && !/^(?:de|del|la|el|que|con|para|y|o)$/i.test(m[1]!)) take(...m.indices![1]!);
+  for (const m of text.matchAll(REF_RE)) {
+    if (!refValue(m[0].slice(0, m.indices![1]![0] - m.index), m[1]!, m[2]!, m[3]!)) continue;
+    let end = m.indices![3]![1];
+    take(...m.indices![3]!);
+    // A list of them: «carné profesional 4417 y 5208».
+    const len = m[3]!.replace(/[^\p{L}\p{N}]/gu, '').length;
+    for (let n; (n = LIST_MORE.exec(text.slice(end, end + 40))); ) {
+      const v = n[1]!;
+      if (Math.abs(v.replace(/[^\p{L}\p{N}]/gu, '').length - len) > 2) break;
+      const s = end + n[0].length - v.length;
+      take(s, s + v.length);
+      end = s + v.length;
+    }
+  }
+  for (const m of [...text.matchAll(USER_RE), ...text.matchAll(USER_LONG_RE)]) {
+    const sep = m[1]!, v = m[2]!;
+    // After a long label only something that is clearly a handle (digit, dot, underscore, camelCase).
+    const ok = /[^\s:=]/.test(sep) && sep.length > 3 ? /[\d._]/.test(v) || /\p{Ll}\p{Lu}/u.test(v) : handleLike(sep, v);
+    if (ok && !/^(?:de|del|la|el|que|con|para|y|o)$/i.test(v)) take(...m.indices![2]!);
   }
   for (const m of text.matchAll(MENTION_RE)) take(m.index, m.indices![1]![1]);
   for (const m of text.matchAll(SPEAKER_RE)) take(...m.indices![1]!);

@@ -1,6 +1,6 @@
 {
  "name": "web:gliner-pii-int8w.onnx/base · rules",
- "gold": "third.json",
+ "gold": "/home/ubuntu/scratch/anonimiza-eval/third.json",
  "th": 0.3,
  "rows": {
   "person": {
@@ -15,9 +15,9 @@
    "gold": 31,
    "pred": 47,
    "tpR": 30,
-   "tpRx": 24,
+   "tpRx": 22,
    "tpP": 29,
-   "tpPx": 24
+   "tpPx": 22
   },
   "iban": {
    "gold": 12,
@@ -29,17 +29,17 @@
   },
   "id": {
    "gold": 50,
-   "pred": 49,
+   "pred": 50,
    "tpR": 47,
    "tpRx": 47,
-   "tpP": 47,
-   "tpPx": 47
+   "tpP": 48,
+   "tpPx": 48
   },
   "otherid": {
    "gold": 60,
    "pred": 0,
-   "tpR": 32,
-   "tpRx": 29,
+   "tpR": 35,
+   "tpRx": 32,
    "tpP": 0,
    "tpPx": 0
   },
@@ -69,11 +69,11 @@
   },
   "ref": {
    "gold": 0,
-   "pred": 33,
+   "pred": 36,
    "tpR": 0,
    "tpRx": 0,
-   "tpP": 32,
-   "tpPx": 29
+   "tpP": 34,
+   "tpPx": 31
   },
   "plate": {
    "gold": 9,
@@ -110,18 +110,18 @@
  },
  "total": {
   "gold": 508,
-  "pred": 551,
-  "tpR": 453,
-  "tpRx": 376,
-  "tpP": 445,
-  "tpPx": 376
+  "pred": 555,
+  "tpR": 456,
+  "tpRx": 377,
+  "tpP": 448,
+  "tpPx": 377
  },
  "chars": {
   "gold": 6982,
-  "covered": 6152,
-  "anyCovered": 6382,
-  "pred": 8086,
-  "predOk": 6382
+  "covered": 6204,
+  "anyCovered": 6434,
+  "pred": 8198,
+  "predOk": 6434
  },
  "errors": [
   {
@@ -221,6 +221,12 @@
   {
    "doc": "slack-incidencia-login",
    "type": "extra",
+   "kind": "ref",
+   "text": "47"
+  },
+  {
+   "doc": "slack-incidencia-login",
+   "type": "extra",
    "kind": "person",
    "text": "**ana.ferreiro"
   },
@@ -284,6 +290,12 @@
    "kind": "org",
    "text": "ARTEIXO SL",
    "as": "person"
+  },
+  {
+   "doc": "pdf-certificado-retenciones",
+   "type": "missed",
+   "kind": "address",
+   "text": "15174 Culleredo (A Coruña)"
   },
   {
    "doc": "pdf-certificado-retenciones",
@@ -465,12 +477,6 @@
    "type": "extra",
    "kind": "org",
    "text": "BANCO SANTANDER, S.A."
-  },
-  {
-   "doc": "resolucion-alta-medica-inss",
-   "type": "missed",
-   "kind": "address",
-   "text": "AVDA. DE LA LIBERTAD 23, ESC. 2, 1º C\n30009 MURCIA"
   },
   {
    "doc": "resolucion-alta-medica-inss",
@@ -709,12 +715,6 @@
    "text": "mi suegra"
   },
   {
-   "doc": "chat-soporte-fibra",
-   "type": "missed",
-   "kind": "otherid",
-   "text": "30044812"
-  },
-  {
    "doc": "soporte-app-reparto",
    "type": "missed",
    "kind": "otherid",
@@ -744,12 +744,6 @@
    "type": "missed",
    "kind": "person",
    "text": "Lu"
-  },
-  {
-   "doc": "correo-arraigo-argentina",
-   "type": "missed",
-   "kind": "otherid",
-   "text": "39.118.427"
   },
   {
    "doc": "correo-arraigo-argentina",
@@ -858,12 +852,6 @@
    "type": "extra",
    "kind": "org",
    "text": "Ministerio de Universidades"
-  },
-  {
-   "doc": "informe-urgencias-pediatria",
-   "type": "missed",
-   "kind": "otherid",
-   "text": "15529803"
   },
   {
    "doc": "foro-coches-electricos",
@@ -1135,7 +1123,7 @@
    "id": "slack-incidencia-login",
    "gold": 7,
    "tpR": 6,
-   "pred": 12,
+   "pred": 13,
    "tpP": 9
   },
   {
@@ -1155,7 +1143,7 @@
   {
    "id": "pdf-certificado-retenciones",
    "gold": 9,
-   "tpR": 8,
+   "tpR": 7,
    "pred": 8,
    "tpP": 6
   },
@@ -1253,9 +1241,9 @@
   {
    "id": "resolucion-alta-medica-inss",
    "gold": 5,
-   "tpR": 4,
-   "pred": 8,
-   "tpP": 5
+   "tpR": 5,
+   "pred": 9,
+   "tpP": 6
   },
   {
    "id": "correo-concello-licenza-obra",
@@ -1310,8 +1298,8 @@
    "id": "parte-amistoso-accidente",
    "gold": 11,
    "tpR": 10,
-   "pred": 14,
-   "tpP": 12
+   "pred": 13,
+   "tpP": 11
   },
   {
    "id": "correo-banco-cargos-fraude",
@@ -1359,8 +1347,8 @@
    "id": "chat-soporte-fibra",
    "gold": 9,
    "tpR": 9,
-   "pred": 9,
-   "tpP": 9
+   "pred": 10,
+   "tpP": 10
   },
   {
    "id": "soporte-app-reparto",
@@ -1373,8 +1361,8 @@
    "id": "correo-arraigo-argentina",
    "gold": 10,
    "tpR": 8,
-   "pred": 10,
-   "tpP": 9
+   "pred": 11,
+   "tpP": 10
   },
   {
    "id": "correo-ikastola-tutora",
@@ -1443,8 +1431,8 @@
    "id": "informe-urgencias-pediatria",
    "gold": 4,
    "tpR": 4,
-   "pred": 6,
-   "tpP": 6
+   "pred": 7,
+   "tpP": 7
   },
   {
    "id": "correo-proveedor-factura-impagada",
@@ -1531,7 +1519,7 @@
    "tpP": 0
   }
  ],
- "seconds": 140.5,
+ "seconds": 271,
  "words": 12399,
  "docs": 60
 }

@@ -1,6 +1,6 @@
 {
  "name": "web:gliner-pii-int8w.onnx/base · rules",
- "gold": "old.json",
+ "gold": "/home/ubuntu/scratch/anonimiza-eval/antiguo.json",
  "th": 0.3,
  "rows": {
   "person": {
@@ -430,7 +430,7 @@
    "tpP": 7
   }
  ],
- "seconds": 121,
+ "seconds": 51.9,
  "words": 3980,
  "docs": 29
 }

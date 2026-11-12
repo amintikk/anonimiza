@@ -1,7 +1,8 @@
 import '@fontsource-variable/inter';
 import '../styles/tokens.css';
 import './app.css';
-import { ACCEPT, extractText } from '../docs/extract.ts';
+import { ACCEPT, extractFile } from '../docs/extract.ts';
+import { redactPdf, type PdfSource } from '../docs/pdf.ts';
 import { CancelError, Engine } from '../engine/client.ts';
 import { applyMarkers, assignMarkers, buildDetections, dotEndsSentence, KINDS, restore, type Assignment, type Detection, type Kind } from '../engine/anonymize.ts';
 import type { EntitySpan } from '../engine/gliner.ts';
@@ -66,6 +67,7 @@ const engine = new Engine();
 const st = {
   text: '',
   fileName: '',
+  pdf: null as PdfSource | null, // the PDF the text came from, to write it back anonymised
   rules: [] as RuleMatch[],
   entities: null as EntitySpan[] | null,
   manual: [] as { start: number; end: number; kind: Kind }[],
@@ -335,6 +337,7 @@ input.addEventListener('keydown', (e) => {
 $('btn-sample').addEventListener('click', () => {
   input.value = SAMPLE[lang];
   st.fileName = '';
+  st.pdf = null;
   setFileName();
   updateCount();
   void detectAll();
@@ -348,7 +351,9 @@ function setFileName(): void {
 
 async function openFile(file: File): Promise<void> {
   try {
-    input.value = await extractText(file);
+    const got = await extractFile(file);
+    input.value = got.text;
+    st.pdf = got.pdf ?? null;
     st.fileName = file.name;
     setFileName();
     updateCount();
@@ -550,6 +555,8 @@ function renderReview(): void {
   review.replaceChildren(frag);
   const active = st.dets.some((d) => d.on);
   ($('btn-copy') as HTMLButtonElement).disabled = !st.text;
+  // The same PDF back, only while the text is still exactly the one read from it.
+  $('btn-pdf').hidden = !(st.pdf && st.pdf.text === st.text);
   $('btn-copy').classList.toggle('primary', active);
 }
 
@@ -755,6 +762,27 @@ $('btn-copy').addEventListener('click', async () => {
   else toast(t('No se pudo copiar. Usa «Descargar».'), 'error');
 });
 $('btn-download').addEventListener('click', () => download(outName(t('anonimizado')), anonymised()));
+
+let pdfBusy = false;
+$('btn-pdf').addEventListener('click', async () => {
+  const src = st.pdf;
+  if (!src || src.text !== st.text || pdfBusy) return;
+  pdfBusy = true;
+  const btn = $('btn-pdf') as HTMLButtonElement;
+  btn.disabled = true;
+  try {
+    const covers = st.dets.filter((d) => d.on).map((d) => ({ start: d.start, end: d.end, label: st.assign.byId.get(d.id) ?? '' }));
+    const bytes = await redactPdf(src, covers, (n, total) => toast(t('Generando el PDF: página {n} de {total}…', { n: String(n), total: String(total) })));
+    const name = `${st.fileName.replace(/\.[^.]+$/, '') || t('documento')}-${t('anonimizado')}.pdf`;
+    download(name, bytes, 'application/pdf');
+    toast(t('PDF descargado. Revísalo antes de compartirlo: las imágenes que contenga (firmas, fotos, sellos) no se tapan.'));
+  } catch (e) {
+    toast(`${t('No se pudo generar el PDF.')} ${e instanceof Error ? e.message : ''}`, 'error');
+  } finally {
+    pdfBusy = false;
+    btn.disabled = false;
+  }
+});
 
 // ---------------------------------------------------------------------------------------------
 // Restore

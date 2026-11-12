@@ -95,6 +95,10 @@ export const EN: Record<string, string> = {
   // Output and restore (main.ts; the file-name parts are used in downloads)
   'texto': 'text',
   'anonimizado': 'anonymised',
+  'documento': 'document',
+  'Generando el PDF: página {n} de {total}…': 'Writing the PDF: page {n} of {total}…',
+  'PDF descargado. Revísalo antes de compartirlo: las imágenes que contenga (firmas, fotos, sellos) no se tapan.': 'PDF downloaded. Check it before sharing it: images in it (signatures, photos, stamps) are not covered.',
+  'No se pudo generar el PDF.': 'The PDF could not be written.',
   'restaurado': 'restored',
   'Copiado. Revísalo antes de compartirlo.': 'Copied. Check it before sharing it.',
   'No se pudo copiar. Usa «Descargar».': 'Could not copy. Use “Download”.',

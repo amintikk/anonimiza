@@ -108,3 +108,25 @@ test('full postal addresses with a postal code', () => {
   assert.deepEqual(kinds('Avda. de la Constitución 45, 1º izq., 46009 València\nMóvil'), [['address', 'Avda. de la Constitución 45, 1º izq., 46009 València']]);
   assert.deepEqual(kinds('vive en la calle Mayor, cerca de la plaza'), []);
 });
+
+// From a 9-page PDF test file (see tools/expediente_prueba.py): what PDF extraction and table cells do to the data.
+test('data split by PDF line wraps and longer labels', () => {
+  const v = (s: string) => findRules(s).map((m) => s.slice(m.start, m.end));
+  // The CIF wins over the DNI hidden in it, and the conjunction after it is not a DNI letter.
+  assert.deepEqual(kinds('con C.I.F. B-83639138 y domicilio social'), [['cif', 'B-83639138']]);
+  assert.deepEqual(kinds('con CIF B-\n52.783.370, con domicilio'), [['cif', 'B-\n52.783.370']]);
+  assert.deepEqual(v('Teléfono\n670-071-\n788\ncorreo'), ['670-071-\n788']);
+  assert.deepEqual(kinds('22.731.761-\nX\n'), [['dni', '22.731.761-\nX']]);
+  assert.deepEqual(kinds('con DNI 12.345.678 y domicilio'), [['dni', '12.345.678']]);
+  assert.deepEqual(findRules('con DNI 12.345.678 y domicilio')[0]!.doubtful, true);
+  assert.deepEqual(kinds('domicilio social en Avenida del Puerto, 214, 3.º B, 46023\nValencia, inscrita'), [['address', 'Avenida del Puerto, 214, 3.º B, 46023\nValencia']]);
+  assert.deepEqual(v('póliza de responsabilidad\ncivil profesional nº RC-2024-0087731 con'), ['RC-2024-0087731']);
+  assert.deepEqual(v('Referencia de la devolución: DEV-0193374.'), ['DEV-0193374']);
+  assert.deepEqual(v('cita en su tarjeta SIP\n1840273659). Ante'), ['1840273659']);
+  assert.deepEqual(v('Col. nº\n46/0812233'), ['46/0812233']);
+  assert.deepEqual(v('los agentes con carné profesional 4417 y 5208, de servicio'), ['4417', '5208']);
+  assert.deepEqual(v('Usuario de VPN asignado a la jefa de proyecto: lbenitez.ext.'), ['lbenitez.ext']);
+  // Still left alone.
+  assert.deepEqual(v('el carné de conducir desde 2015 y la póliza de hogar renovada'), []);
+  assert.deepEqual(v('Usuario de la aplicación: ninguno'), []);
+});

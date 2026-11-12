@@ -146,6 +146,34 @@ function extendPerson(text: string, start: number, end: number, others: { start:
 const MONTH_OR_DAY = /^(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|lunes|martes|miércoles|jueves|viernes|sábado|domingo)$/iu;
 
 /** Merge rule matches and model entities, then extend every value to all its occurrences. */
+const fold = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+// Two to four capitalised words, the way a name is written in a table cell or a signature ("Ahmed Benali").
+const NAME_RUN = /(?<![\p{L}\p{N}])\p{Lu}[\p{Ll}'’]+(?:[^\S\n]*\n?[^\S\n]*(?:(?:de|del|la|y|i)[^\S\n]+)?\p{Lu}[\p{Ll}'’\-]+){1,3}(?![\p{L}\p{N}])/gu;
+
+/**
+ * An address often spells out its owner's name: "abenali@…" next to "Ahmed Benali", "lucia.benitez@…" next to
+ * "Lucía Benítez". A run of capitalised words close to the address is a person when the user part contains its
+ * last word (four letters or more) and its first word or that word's initial.
+ */
+function namesFromEmails(text: string, dets: Detection[]): { start: number; end: number }[] {
+  const out: { start: number; end: number }[] = [];
+  for (const d of dets) {
+    if (d.kind !== 'email') continue;
+    const user = fold(text.slice(d.start, d.end).split('@')[0]!).replace(/[^a-z]/g, '');
+    if (user.length < 5) continue;
+    const from = Math.max(0, d.start - 300), to = Math.min(text.length, d.end + 300);
+    for (const m of text.slice(from, to).matchAll(NAME_RUN)) {
+      const words = m[0].split(/\s+/).map(fold).filter((w) => !/^(?:de|del|la|y|i)$/.test(w)).map((w) => w.replace(/[^a-z]/g, ''));
+      const first = words[0]!;
+      const rest = words.slice(1).filter((w) => w.length >= 4);
+      if (!rest.some((w) => user.includes(w))) continue;
+      if (!(user.startsWith(first[0]!) || user.includes(first))) continue;
+      out.push({ start: from + m.index, end: from + m.index + m[0].length });
+    }
+  }
+  return out;
+}
+
 export function buildDetections(text: string, rules: RuleMatch[], entities: EntitySpan[], manual: { start: number; end: number; kind: Kind }[] = []): Detection[] {
   let id = 0;
   const dets: Detection[] = [];
@@ -167,6 +195,7 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     if (kind === 'person') end = extendPerson(text, start, end, entities.filter((o) => o !== e));
     add(start, end, kind, 'model', e.score);
   }
+  for (const n of namesFromEmails(text, dets)) add(n.start, n.end, 'person', 'rule');
   for (const d of [...dets]) {
     const value = text.slice(d.start, d.end);
     // Rule matches are found wherever they appear, except identifiers found by the word before them:

@@ -1,15 +1,15 @@
 {
  "name": "web:gliner-pii-int8w.onnx/base · rules",
- "gold": "new.json",
+ "gold": "/home/ubuntu/scratch/anonimiza-eval/nuevo.json",
  "th": 0.3,
  "rows": {
   "person": {
    "gold": 262,
    "pred": 288,
    "tpR": 248,
-   "tpRx": 205,
+   "tpRx": 206,
    "tpP": 248,
-   "tpPx": 205
+   "tpPx": 206
   },
   "address": {
    "gold": 23,
@@ -45,11 +45,11 @@
   },
   "id": {
    "gold": 55,
-   "pred": 53,
-   "tpR": 53,
-   "tpRx": 53,
-   "tpP": 53,
-   "tpPx": 53
+   "pred": 54,
+   "tpR": 54,
+   "tpRx": 54,
+   "tpP": 54,
+   "tpPx": 54
   },
   "birthdate": {
    "gold": 23,
@@ -77,7 +77,7 @@
   },
   "ref": {
    "gold": 0,
-   "pred": 48,
+   "pred": 49,
    "tpR": 0,
    "tpRx": 0,
    "tpP": 45,
@@ -110,18 +110,18 @@
  },
  "total": {
   "gold": 556,
-  "pred": 626,
-  "tpR": 513,
-  "tpRx": 463,
-  "tpP": 513,
-  "tpPx": 463
+  "pred": 628,
+  "tpR": 514,
+  "tpRx": 465,
+  "tpP": 514,
+  "tpPx": 465
  },
  "chars": {
   "gold": 7399,
-  "covered": 6756,
-  "anyCovered": 7031,
-  "pred": 8517,
-  "predOk": 7031
+  "covered": 6765,
+  "anyCovered": 7040,
+  "pred": 8529,
+  "predOk": 7040
  },
  "errors": [
   {
@@ -462,6 +462,12 @@
   {
    "doc": "correo-poliza-seguro-coche",
    "type": "extra",
+   "kind": "ref",
+   "text": "AV-PLUS-24"
+  },
+  {
+   "doc": "correo-poliza-seguro-coche",
+   "type": "extra",
    "kind": "phone",
    "text": "900 10 20 30"
   },
@@ -795,12 +801,6 @@
    "type": "missed",
    "kind": "address",
    "text": "calle de Llovera nú-\nmero 19, 3º 1ª, 43201 Reus"
-  },
-  {
-   "doc": "pdf-escritura-compraventa",
-   "type": "missed",
-   "kind": "id",
-   "text": "39.871.402-\nM"
   },
   {
    "doc": "pdf-escritura-compraventa",
@@ -1211,7 +1211,7 @@
    "id": "correo-poliza-seguro-coche",
    "gold": 9,
    "tpR": 9,
-   "pred": 13,
+   "pred": 14,
    "tpP": 12
   },
   {
@@ -1378,9 +1378,9 @@
   {
    "id": "pdf-escritura-compraventa",
    "gold": 28,
-   "tpR": 26,
-   "pred": 29,
-   "tpP": 26
+   "tpR": 27,
+   "pred": 30,
+   "tpP": 27
   },
   {
    "id": "foro-vecinos-estafa-largo",
@@ -1411,7 +1411,7 @@
    "tpP": 11
   }
  ],
- "seconds": 361.8,
+ "seconds": 253.3,
  "words": 15813,
  "docs": 47
 }

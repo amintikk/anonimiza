@@ -32,7 +32,7 @@ export function fmtDuration(ms: number): string {
   return s < 60 ? `${s.toLocaleString(locale, { maximumFractionDigits: 1 })} s` : `${Math.floor(s / 60)} min ${Math.round(s % 60)} s`;
 }
 
-export function download(name: string, data: string, type = 'text/plain;charset=utf-8'): void {
+export function download(name: string, data: string | Uint8Array<ArrayBuffer>, type = 'text/plain;charset=utf-8'): void {
   const url = URL.createObjectURL(new Blob([data], { type }));
   const a = h('a', { href: url, download: name });
   document.body.append(a);

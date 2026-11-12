@@ -1,10 +1,10 @@
-web:gliner-pii-int8w.onnx/base · rules · umbral 0.3 · /home/ubuntu/scratch/anonimiza-compare/data/third.json
+web:gliner-pii-int8w.onnx/base · rules · umbral 0.3 · /home/ubuntu/scratch/anonimiza-eval/third.json
 | Tipo | Reales | Marcados | Cobertura | Cob. exacta | Precisión | Prec. exacta |
 |---|---:|---:|---:|---:|---:|---:|
 | person | 232 | 244 | 94.0 | 65.9 | 86.5 | 62.7 |
 | org | 18 | 68 | 94.4 | 88.9 | 25.0 | 23.5 |
-| address | 31 | 47 | 96.8 | 77.4 | 61.7 | 51.1 |
-| id | 50 | 49 | 94.0 | 94.0 | 95.9 | 95.9 |
+| address | 31 | 47 | 96.8 | 71.0 | 61.7 | 46.8 |
+| id | 50 | 50 | 94.0 | 94.0 | 96.0 | 96.0 |
 | iban | 12 | 11 | 91.7 | 91.7 | 100.0 | 100.0 |
 | card | 3 | 3 | 100.0 | 100.0 | 100.0 | 100.0 |
 | phone | 48 | 46 | 93.8 | 89.6 | 97.8 | 93.5 |
@@ -12,10 +12,10 @@ web:gliner-pii-int8w.onnx/base · rules · umbral 0.3 · /home/ubuntu/scratch/an
 | ip | 8 | 8 | 100.0 | 100.0 | 100.0 | 100.0 |
 | birthdate | 19 | 16 | 84.2 | 84.2 | 100.0 | 100.0 |
 | plate | 9 | 8 | 88.9 | 88.9 | 100.0 | 100.0 |
-| otherid | 60 | 0 | 53.3 | 48.3 | — | — |
-| ref | 0 | 33 | — | — | 97.0 | 87.9 |
-| **Total** | 508 | 551 | 89.2 | 74.0 | 80.8 | 68.2 |
-caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · tapados que eran sensibles: 78.9 %
+| otherid | 60 | 0 | 58.3 | 53.3 | — | — |
+| ref | 0 | 36 | — | — | 94.4 | 86.1 |
+| **Total** | 508 | 555 | 89.8 | 74.2 | 80.7 | 67.9 |
+caracteres sensibles tapados (cualquier tipo): 92.2 % · con su tipo: 88.9 % · tapados que eran sensibles: 78.5 %
   DE MÁS    org      correo-reclamacion-factura-luz: "contrato de suministro eléctrico"
   SE ESCAPA person   (marcado como org) whatsapp-futbol-alevin: "Pol"
   SE ESCAPA person   whatsapp-futbol-alevin: "Arnau"
@@ -31,6 +31,7 @@ caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · 
   SE ESCAPA person   slack-incidencia-login: "Rocío"
   SE ESCAPA otherid  slack-incidencia-login: "xabi.lz"
   DE MÁS    person   slack-incidencia-login: "**ana.ferreiro"
+  DE MÁS    ref      slack-incidencia-login: "47"
   DE MÁS    person   slack-incidencia-login: "**ana.ferreiro"
   DE MÁS    person   slack-incidencia-login: "**ana.ferreiro"
   SE ESCAPA id       transcripcion-llamada-banco: "cero tres cero tres cuatro tres tres tres ene"
@@ -42,6 +43,7 @@ caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · 
   SE ESCAPA phone    nota-voz-vecina: "seiscientos cincuenta y dos ochenta y ocho diecinueve cero cuatro"
   DE MÁS    org      nota-voz-vecina: "compañía del gas"
   SE ESCAPA org      (marcado como person) pdf-certificado-retenciones: "ARTEIXO SL"
+  SE ESCAPA address  pdf-certificado-retenciones: "15174 Culleredo (A Coruña)"
   DE MÁS    address  pdf-certificado-retenciones: "Polígono de Sabón"
   DE MÁS    person   pdf-certificado-retenciones: "Arteixo"
   SE ESCAPA iban     pdf-extracto-bancario: "ES51 2085 9658 2094\n                                                   3854 1313"
@@ -72,7 +74,6 @@ caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · 
   DE MÁS    org      sentencia-despido-improcedente: "Juzgado de lo Social n.º 3 de Bilbao"
   DE MÁS    org      diligencia-embargo-hacienda: "Agencia Tributaria\nDelegación Especial de Andalucía – Dependencia Regional de Recaudación"
   DE MÁS    org      diligencia-embargo-hacienda: "BANCO SANTANDER, S.A."
-  SE ESCAPA address  resolucion-alta-medica-inss: "AVDA. DE LA LIBERTAD 23, ESC. 2, 1º C\n30009 MURCIA"
   DE MÁS    org      resolucion-alta-medica-inss: "INSTITUTO NACIONAL DE LA SEGURIDAD SOCIAL"
   DE MÁS    org      resolucion-alta-medica-inss: "Dirección Provincial de Murcia"
   DE MÁS    org      resolucion-alta-medica-inss: "Equipo de Valoración de Incapacidades"
@@ -111,13 +112,11 @@ caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · 
   DE MÁS    person   foro-maternidad-hospital: "Tito_Fuenla"
   DE MÁS    person   foro-maternidad-hospital: "mamiprimeriza_lucia"
   DE MÁS    person   resena-restaurante-lugo: "mi suegra"
-  SE ESCAPA otherid  chat-soporte-fibra: "30044812"
   SE ESCAPA otherid  (marcado como person) soporte-app-reparto: "kevin.ochoa.rider"
   DE MÁS    org      soporte-app-reparto: "vuestra app"
   DE MÁS    person   soporte-app-reparto: "kevin"
   DE MÁS    person   soporte-app-reparto: "ochoa"
   SE ESCAPA person   correo-arraigo-argentina: "Lu"
-  SE ESCAPA otherid  correo-arraigo-argentina: "39.118.427"
   SE ESCAPA person   correo-arraigo-argentina: "Martu"
   DE MÁS    address  correo-arraigo-argentina: "Santa Cruz de Tenerife"
   DE MÁS    org      sms-recibidos-varios: "DGT"
@@ -136,7 +135,6 @@ caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · 
   SE ESCAPA birthdateformulario-colegiacion-enfermeria: "12-IV-1994"
   SE ESCAPA otherid  formulario-colegiacion-enfermeria: "08-49217"
   DE MÁS    org      formulario-colegiacion-enfermeria: "Ministerio de Universidades"
-  SE ESCAPA otherid  informe-urgencias-pediatria: "15529803"
   SE ESCAPA otherid  (marcado como person) foro-coches-electricos: "voltio_mañico"
   SE ESCAPA otherid  (marcado como person) foro-coches-electricos: "Jorge_Pina"
   SE ESCAPA otherid  (marcado como person) foro-coches-electricos: "voltio_mañico"

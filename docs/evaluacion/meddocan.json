@@ -1,11 +1,11 @@
 {
  "name": "web:gliner-pii-int8w.onnx/base · rules",
- "gold": "meddocan150.json",
+ "gold": "/home/ubuntu/scratch/anonimiza-eval/med150.json",
  "th": 0.3,
  "rows": {
   "person": {
    "gold": 601,
-   "pred": 641,
+   "pred": 644,
    "tpR": 601,
    "tpRx": 499,
    "tpP": 606,
@@ -70,7 +70,7 @@
  },
  "total": {
   "gold": 1576,
-  "pred": 1665,
+  "pred": 1668,
   "tpR": 1524,
   "tpRx": 1322,
   "tpP": 1526,
@@ -80,7 +80,7 @@
   "gold": 24121,
   "covered": 23094,
   "anyCovered": 23228,
-  "pred": 26081,
+  "pred": 26106,
   "predOk": 23228
  },
  "errors": [
@@ -646,8 +646,26 @@
   {
    "doc": "S1134-80462006000600005-1",
    "type": "extra",
+   "kind": "person",
+   "text": "unidad"
+  },
+  {
+   "doc": "S1134-80462006000600005-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "dolor"
+  },
+  {
+   "doc": "S1134-80462006000600005-1",
+   "type": "extra",
    "kind": "org",
    "text": "Anestesiología y Reanimación"
+  },
+  {
+   "doc": "S1134-80462006000600005-1",
+   "type": "extra",
+   "kind": "person",
+   "text": "Unidad del Dolor"
   },
   {
    "doc": "S1134-80462008000200008-1",
@@ -1893,7 +1911,7 @@
    "id": "S1134-80462006000600005-1",
    "gold": 9,
    "tpR": 9,
-   "pred": 13,
+   "pred": 16,
    "tpP": 11
   },
   {
@@ -2289,7 +2307,7 @@
    "tpP": 10
   }
  ],
- "seconds": 1541,
+ "seconds": 1353.5,
  "words": 96104,
  "docs": 150
 }

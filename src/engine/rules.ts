@@ -140,8 +140,8 @@ const PROVINCES = 'A|AB|AL|AV|B|BA|BI|BU|C|CA|CC|CE|CO|CR|CS|CU|GC|GE|GI|GR|GU|H
 // Dates of birth: a date shortly after a word that says so ("nacida el", "fecha de nacimiento:", "F. nac.").
 // Other dates are not personal on their own and stay.
 const MONTHS = 'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre|january|february|march|april|may|june|july|august|september|october|november|december|ene|feb|mar|abr|jun|jul|ago|sep|sept|oct|nov|dic|jan|apr|aug|dec';
-const DATE = String.raw`(?:\d{1,2}[\/.\-]\d{1,2}[\/.\-](?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
-const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
+const DATE = String.raw`(?:\d{1,2}[\/.\-](?:${MONTHS})\.?[\/.\-](?:\d{4}|\d{2})|\d{1,2}[\/.\-]\d{1,2}[\/.\-](?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
+const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\s?\/\s?nac(?:\.|imiento)?|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
 const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\n\d]{0,40}?(?:\n[^\n\d]{0,12})?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
 
 /** Case-insensitive letters for a pattern used without the i flag (the code itself must keep its case). */
@@ -158,7 +158,7 @@ const REF_NUM = String.raw`(?:n\.?\s?[º°o]\.?|n[uú]m(?:ero)?\.?|number|no\.|#
 const REF_TOKEN = String.raw`[\p{L}\p{N}]+(?:[.\-\/_][\p{L}\p{N}]+)*`;
 const REF_RE = new RegExp(
   String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])(?:[^\S\n]+(?:de|del|\p{Ll}{3,14})){0,2}?` +
-    String.raw`([^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?)` +
+    String.raw`(\.?[^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?)` +
     String.raw`((?:(?=[\p{L}\p{N}.\-\/_]*\d)${REF_TOKEN}|[A-Z]{2,5}(?= [A-Z\d]))(?: (?:\d[\p{L}\p{N}]*(?:[.\-\/_][\p{L}\p{N}]+)*|[A-Z]{2,5}(?= [A-Z\d])))*)${E}`,
   'gud',
 );
@@ -203,25 +203,36 @@ const STREET = String.raw`(?:calle|c\/|avda\.|avenida|av\.|plaza|pza\.|pl\.|pase
 const TOWN = String.raw`\p{Lu}[\p{L}'’\-]+(?:[^\S\n]+(?:(?:de|del|la|las|los|el|d'|i|y|e)[^\S\n]+)?\p{Lu}[\p{L}'’\-]+)*(?:[^\S\n]*\([\p{L} ]+\))?`;
 const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])[^\n]{0,60}?(?<!\d)\d{5}[^\S\n]+${TOWN}`, 'gu');
 
+/** True when one of these words comes shortly before position `st` on the same line ("CIF de la empresa: …"). */
+const announced = (cue: string) => {
+  const r = new RegExp(String.raw`(?<![\p{L}])(?:${cue})(?![\p{L}])[^\n\d]{0,25}$`, 'iu');
+  return (t: string, st: number) => r.test(t.slice(Math.max(0, st - 45), st));
+};
+// With the word that announces it, a value of the right shape is hidden even when its check digit fails: it is
+// most likely mistyped, and leaving it visible is the worse mistake. It is shown as doubtful.
+const CIF_CUE = announced(String.raw`c\.?\s?i\.?\s?f|n\.?\s?i\.?\s?f`);
+const NSS_CUE = announced(String.raw`n\.?\s?s\.?\s?s|nuss|naf|seguridad\s+social|seg\.\s?social|afiliaci[oó]n|s\.\s?s\.?`);
+const CARD_CUE = announced(String.raw`tarjeta|targeta|tarxeta|card|visa|mastercard|amex`);
+
 // Order matters: earlier rules win when two matches overlap (an IBAN contains digits that look like a phone).
 const RULES: Rule[] = [
   { kind: 'email', re: re(String.raw`${B}[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}\-]+(?:\.[\p{L}\p{N}\-]+)*\.\p{L}{2,}${E}`) },
   // An IBAN of the right length for its country with a wrong check is a mistyped account, not a code.
   { kind: 'iban', re: re(String.raw`${B}[A-Z]{2}\d{2}(?:[ \-\n]?[A-Z0-9]){10,30}`), valid: validIban, doubtful: (s) => /^[A-Z]{2}\d{2}/.test(s) },
   // A card number written in four groups of four with a wrong Luhn digit is still most likely a card.
-  { kind: 'card', re: re(String.raw`${NB}(?:\d[ \-\n]?){12,18}\d${NE}`), valid: (s) => cardPrefix(s) && luhn(s), doubtful: (s) => cardPrefix(s) && /^\d{4}([ \-])\d{4}\1\d{4}\1\d{4}$/.test(s) },
-  { kind: 'nie', re: re(String.raw`${B}[XYZ][ \-]?\d{7}[ \-]?[A-Z]${E}`), valid: validNie, doubtful: idTypo },
-  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}[ \-]?[A-Z]${E}`), valid: validDni, doubtful: idTypo },
+  { kind: 'card', re: re(String.raw`${NB}(?:\d[ \-\n]?){12,18}\d${NE}`), valid: (s) => cardPrefix(s) && luhn(s), doubtful: (s, t, st) => (cardPrefix(s) && /^\d{4}([ \-])\d{4}\1\d{4}\1\d{4}$/.test(s)) || (CARD_CUE(t, st) && /^\d{13,19}$/.test(s.replace(/\D/g, ''))) },
+  { kind: 'nie', re: re(String.raw`${B}[XYZ][ \-]?\d{7}[ \-\n]?[A-Z]${E}`), valid: validNie, doubtful: idTypo },
+  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}[ \-\n]?[A-Z]${E}`), valid: validDni, doubtful: idTypo },
   // A CIF with a wrong control character is still reported, as doubtful, when the word "CIF" or "NIF" announces it.
-  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW][ \-]?\d{7}[ \-]?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => /\b(?:C\.?I\.?F|N\.?I\.?F)\.?(?:\s*(?:n\.?\s?º|núm\.?))?[\s:.\-]*$/i.test(t.slice(Math.max(0, st - 16), st)) },
-  { kind: 'nss', re: re(String.raw`${NB}\d{2}[ /\-]?\d{8}[ /\-]?\d{2}${NE}`), valid: validNss },
-  { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:[ \-]?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
+  { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW][ \-]?\d{2}\.?\d{3}\.?\d{2}[ \-]?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => CIF_CUE(t, st) },
+  { kind: 'nss', re: re(String.raw`${NB}\d{2}[ /\-\n]?\d{8}[ /\-\n]?\d{2}${NE}`), valid: validNss, doubtful: (_s, t, st) => NSS_CUE(t, st) },
+  { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:[ \-\n]?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
   { kind: 'plate', re: re(String.raw`${B}(?:${PROVINCES})[ \-]?\d{4}[ \-]?[A-Z]{1,2}${E}`, 'gu'), reject: (t, s) => /\d[ .\-\/]?$/.test(t.slice(Math.max(0, s - 2), s)) },
   { kind: 'ip', re: re(String.raw`${B}(?:\d{1,3}\.){3}\d{1,3}${E}`), valid: validIpv4 },
   { kind: 'ip', re: re(String.raw`(?<![\p{L}\p{N}:])(?:[0-9a-f]{0,4}:){2,7}[0-9a-f]{0,4}(?![\p{L}\p{N}:])`), valid: validIpv6 },
   // Spanish numbers: optional +34 / 0034, then 9 digits starting with 6, 7, 8 or 9, written whole or in the usual
   // groups (3-3-3, 3-2-2-2, 2-3-2-2). Other groupings are usually policy, order or case numbers.
-  { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?(?:[6789]\d{8}|\(?[6789]\d{2}\)?[ .\-\n]\d{3}[ .\-\n]\d{3}|\(?[6789]\d{2}\)?[ .\-\n]\d{2}[ .\-\n]\d{2}[ .\-\n]\d{2}|[6789]\d[ .\-\n]\d{3}[ .\-\n]\d{2}[ .\-\n]\d{2})${NE}`) },
+  { kind: 'phone', re: re(String.raw`${NB}(?:\(?(?:\+|00)34\)?[ .\-]?)?(?:[6789]\d{8}|\(?[6789]\d{2}\)?[ .\-\n]\d{3}[ .\-\n]\d{3}|\(?[6789]\d{2}\)?[ .\-\n]\d{2}[ .\-\n]\d{2}[ .\-\n]\d{2}|\(?[6789]\d\)?[ .\-\n]\d{3}[ .\-\n]\d{2}[ .\-\n]\d{2})${NE}`) },
   // Mobiles split in unusual groups ("631 77 8 90 21", "6 1 7 0 8 9 2 4 3", "644 - 019 - 237"): nine digits
   // starting with 6 or 7 are a phone however they are written. Landlines (8, 9) only after a word that says so.
   { kind: 'phone', re: re(String.raw`${NB}(?:(?:\+|00)34[ .\-]?)?[67](?:(?:[ .]|[^\S\n]?-[^\S\n]?)?\d){8}${NE}`), reject: (t, s) => REF_BEFORE.test(t.slice(Math.max(0, s - 30), s)) },
@@ -252,7 +263,9 @@ function trimIban(text: string, start: number, end: number): number | null {
 
 const cardPrefix = (s: string) => /^(?:4|5[1-5]|2[2-7]|3[47]|6)/.test(s.replace(/\D/g, ''));
 
-export function findRules(text: string): RuleMatch[] {
+export function findRules(input: string): RuleMatch[] {
+  // Non-breaking and thin spaces (Word, PDF) count as spaces; one code unit each, so positions do not move.
+  const text = input.replace(/[\u00a0\u2007\u2009\u200a\u202f]/g, ' ');
   const taken = new Uint8Array(text.length);
   const out: RuleMatch[] = [];
   // Dates of birth first: "14/03/1987" must not be read as anything else.

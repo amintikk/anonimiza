@@ -79,9 +79,9 @@
  "chars": {
   "gold": 24121,
   "covered": 23094,
-  "anyCovered": 23219,
-  "pred": 26071,
-  "predOk": 23219
+  "anyCovered": 23228,
+  "pred": 26081,
+  "predOk": 23228
  },
  "errors": [
   {
@@ -604,7 +604,8 @@
    "doc": "S1134-80462005000300004-1",
    "type": "missed",
    "kind": "org",
-   "text": "Fundación para la Investigación y la Asistencia de la Enfermedad Renal"
+   "text": "Fundación para la Investigación y la Asistencia de la Enfermedad Renal",
+   "as": "person"
   },
   {
    "doc": "S1134-80462005000300004-1",

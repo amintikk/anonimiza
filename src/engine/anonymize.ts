@@ -108,7 +108,7 @@ export const isCommonWord = (w: string) => COMMON_WORDS.has(w.toLocaleLowerCase(
  * roles ("la paciente", "el ARRENDADOR", "mi madre") and hospital departments ("Servicio de Urología").
  * Only the whole span is checked, so "Servicio de Urología del Hospital Clínic" is still an organisation.
  */
-const ROLE = String.raw`(?:partes|parte\s+(?:contratante|vendedora|compradora|arrendadora|arrendataria|demandante|demandada)|contratantes?|firmantes?|comparecientes?|otorgantes?|proveedor(?:a|es)?|prestador(?:a|es)?|contratista|adjudicatari[oa]|licenciante|licenciatari[oa]|franquiciador(?:a)?|franquiciad[oa]|mandante|mandatari[oa]|cedente|cesionari[oa]|fiador(?:a)?|avalista|deudor(?:a|es)?|acreedor(?:a|es)?|prestamista|prestatari[oa]|tomador(?:a)?|asegurad[oa]|beneficiari[oa]s?|pacientes?|clientes?|agentes?|usuari[oa]s?|titular(?:es)?|interesad[oa]s?|solicitantes?|m[eé]dic[oa]s?|doctor(?:a|es)?|dra?\.?|enfermer[oa]s?|facultativ[oa]s?|arrendador(?:a|es)?|arrendatari[oa]s?|propietari[oa]s?|inquilin[oa]s?|comprador(?:a|es)?|vendedor(?:a|es)?|demandantes?|demandad[oa]s?|denunciantes?|denunciad[oa]s?|acusad[oa]s?|investigad[oa]s?|testigos?|v[ií]ctimas?|menor(?:es)?|trabajador(?:a|es)?|emplead[oa]s?|abogad[oa]s?|letrad[oa]s?|procurador(?:a|es)?|notari[oa]s?|juez(?:a|es)?|fiscal(?:es)?|polic[ií]as?|guardia\s+civil|tutor(?:a|es)?|alumn[oa]s?|profesor(?:a|es)?|soci[oa]s?|presidente?a?|secretari[oa]|vecin[oa]s?|amig[oa]s?|novi[oa]s?|pareja|familia(?:r|res)?|madre|padre|padres|hij[oa]s?|herman[oa]s?|marido|mujer|esposa?o?|abuel[oa]s?|t[ií][oa]s?|prim[oa]s?|chic[oa]s?|niñ[oa]s?|beb[eé]|var[oó]n|hombre|señor(?:a|es)?|sr\.?|sra\.?|mam[aá]|pap[aá]|jef[ea]s?|director(?:a|es)?|gerente|responsable|compañer[oa]s?|edad|comunidad|empresa|parte\s+\p{L}+)`;
+const ROLE = String.raw`(?:partes|magistrad[oa]s?|jueza?|ceo|cto|cfo|coo|director(?:a)?\s+general|consejer[oa]\s+delegad[oa]|administrador(?:a)?|gerente|parte\s+(?:contratante|vendedora|compradora|arrendadora|arrendataria|demandante|demandada)|contratantes?|firmantes?|comparecientes?|otorgantes?|proveedor(?:a|es)?|prestador(?:a|es)?|contratista|adjudicatari[oa]|licenciante|licenciatari[oa]|franquiciador(?:a)?|franquiciad[oa]|mandante|mandatari[oa]|cedente|cesionari[oa]|fiador(?:a)?|avalista|deudor(?:a|es)?|acreedor(?:a|es)?|prestamista|prestatari[oa]|tomador(?:a)?|asegurad[oa]|beneficiari[oa]s?|pacientes?|clientes?|agentes?|usuari[oa]s?|titular(?:es)?|interesad[oa]s?|solicitantes?|m[eé]dic[oa]s?|doctor(?:a|es)?|dra?\.?|enfermer[oa]s?|facultativ[oa]s?|arrendador(?:a|es)?|arrendatari[oa]s?|propietari[oa]s?|inquilin[oa]s?|comprador(?:a|es)?|vendedor(?:a|es)?|demandantes?|demandad[oa]s?|denunciantes?|denunciad[oa]s?|acusad[oa]s?|investigad[oa]s?|testigos?|v[ií]ctimas?|menor(?:es)?|trabajador(?:a|es)?|emplead[oa]s?|abogad[oa]s?|letrad[oa]s?|procurador(?:a|es)?|notari[oa]s?|juez(?:a|es)?|fiscal(?:es)?|polic[ií]as?|guardia\s+civil|tutor(?:a|es)?|alumn[oa]s?|profesor(?:a|es)?|soci[oa]s?|presidente?a?|secretari[oa]|vecin[oa]s?|amig[oa]s?|novi[oa]s?|pareja|familia(?:r|res)?|madre|padre|padres|hij[oa]s?|herman[oa]s?|marido|mujer|esposa?o?|abuel[oa]s?|t[ií][oa]s?|prim[oa]s?|chic[oa]s?|niñ[oa]s?|beb[eé]|var[oó]n|hombre|señor(?:a|es)?|sr\.?|sra\.?|mam[aá]|pap[aá]|jef[ea]s?|director(?:a|es)?|gerente|responsable|compañer[oa]s?|edad|comunidad|empresa|parte\s+\p{L}+)`;
 const DEPT = String.raw`(?:(?:servicio|unidad|secci[oó]n|departamento|[aá]rea|planta|consultas?(?:\s+externas)?|hospital\s+de\s+d[ií]a|centro|nuestr[oa]\s+(?:servicio|centro|unidad))(?:\s+de)?\s*)?(?:\p{L}*(?:log[ií]a|iatr[ií]a|cirug[ií]a|terapia|medicina|urgencias|farmacia|obstetricia|anestesia|rehabilitaci[oó]n|radioterapia|uci|cuidados\s+intensivos|terapia\s+intensiva|medicina\s+interna|atenci[oó]n\s+primaria)(?:\s+(?:interna|intensiva|general|digestiva|hospitalaria|familiar|infantil|pedi[aá]trica|vascular|pl[aá]stica|tor[aá]cica|card[ií]aca|nuclear|f[ií]sica|preventiva|cl[ií]nica|maxilofacial))?)?`;
 const GENERIC = new RegExp(String.raw`^(?:(?:el|la|los|las|un|una|mi|mis|su|sus|tu|tus|nuestr[oa]s?|este|esta|estas|estos|dicho|dicha|dichas|dichos|al|del|ambas|ambos|cada|otra|otro|las\s+dos|ambas\s+dos)\s+)?(?:${ROLE}(?:\s+(?:menor|mayor)(?:\s+de\s+edad)?)?|${DEPT})$`, 'iu');
 
@@ -117,6 +117,33 @@ export function isGeneric(kind: Kind, value: string): boolean {
   const v = value.trim().replace(/\s+/g, ' ');
   return v.length > 0 && GENERIC.test(v) && (kind === 'person' ? !/\p{Lu}\p{Ll}+\s+\p{Lu}/u.test(v) : true);
 }
+
+/**
+ * The model often stops short of the whole name: "LÓPEZ GARCÍA, María" (it takes the surnames and leaves the
+ * given name after the comma) or "Luz Dary Ospina RÍOS" in a table (it leaves the last surname). A person is
+ * extended over ", Name" or over one more capitalised word when what follows is a clear end (tab, line break,
+ * comma, semicolon or the end of the text; after ", Name" also a colon or a full stop). A word followed by a colon
+ * is usually a field label ("NºCol:", "Teléfono:"). Hiding one word too many is the safer mistake.
+ */
+const TITLE_WORD = String.raw`\p{Lu}\p{Ll}[\p{Ll}'’\-]*`;
+const UPPER_WORD = String.raw`\p{Lu}{2}[\p{Lu}'’\-]*`;
+const AFTER_SURNAMES = new RegExp(String.raw`^,[^\S\n]?(${TITLE_WORD}(?: ${TITLE_WORD})?)(?=[^\S\n]*(?:[\t\n,;:.)]|$)| \p{Ll})`, 'u');
+const LAST_SURNAME = (upper: boolean) => new RegExp(String.raw`^[ \t](${upper ? UPPER_WORD : TITLE_WORD})(?=[^\S\n]*(?:[\t\n,;)]|$))`, 'u');
+
+/** End of a person extended as above, without running into another entity the model found. */
+function extendPerson(text: string, start: number, end: number, others: { start: number; end: number }[]): number {
+  const upper = !/\p{Ll}/u.test(text.slice(start, end));
+  for (const re of [AFTER_SURNAMES, LAST_SURNAME(upper)]) {
+    const m = re.exec(text.slice(end, end + 60));
+    if (!m) continue;
+    const next = { start: end, end: end + m[0].length };
+    if (m[1]!.split(/[\s\-]+/).some((w) => isGeneric('person', w) || MONTH_OR_DAY.test(w))) continue;
+    if (others.some((o) => o.start < next.end && next.start < o.end)) continue;
+    end = next.end;
+  }
+  return end;
+}
+const MONTH_OR_DAY = /^(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|lunes|martes|miércoles|jueves|viernes|sábado|domingo)$/iu;
 
 /** Merge rule matches and model entities, then extend every value to all its occurrences. */
 export function buildDetections(text: string, rules: RuleMatch[], entities: EntitySpan[], manual: { start: number; end: number; kind: Kind }[] = []): Detection[] {
@@ -137,6 +164,7 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     while (end > start && /[\s,;:()«»"'“”]/.test(text[end - 1]!)) end--;
     const kind = FROM_MODEL[e.label];
     if (isGeneric(kind, text.slice(start, end))) continue;
+    if (kind === 'person') end = extendPerson(text, start, end, entities.filter((o) => o !== e));
     add(start, end, kind, 'model', e.score);
   }
   for (const d of [...dets]) {

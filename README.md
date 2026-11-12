@@ -37,18 +37,26 @@ El int8 publicado cuantiza dinámicamente las activaciones de todas las MatMul; 
 
 Velocidad orientativa: un documento de 187 palabras tarda unos 5–6 s con WebAssembly y 4 hilos en un servidor ARM de 4 núcleos compartidos. La velocidad con WebGPU no se ha medido (ese servidor no tiene GPU).
 
+## Variantes
+
+Cada tipo de dato se puede escribir de muchas maneras. `tests/variantes.ts` genera más de 1100: separadores (espacio, guion, punto, barra, ninguno), mayúsculas y minúsculas, espacios duros de Word/PDF, un salto de línea dentro del dato, etiquetas en castellano, catalán, gallego, euskera e inglés, distintos contextos (frase, tabla, paréntesis, final de línea) y datos mal copiados con su etiqueta delante. Todas tienen que detectarse, y una lista de trampas (importes, horas, fechas normales, códigos de producto, leyes, ISBN) no debe marcarse; lo comprueba `tests/variantes.test.ts`.
+
+Criterio: **ante la duda, sustituir y avisar**. Con la palabra que lo anuncia («DNI», «CIF», «IBAN», «tarjeta», «NSS»…), un valor con la forma correcta se sustituye aunque falle su dígito de control, y se marca como dudoso para que lo compruebes.
+
+Lo que depende del modelo (nombres y direcciones) se prueba con `node tools/variantes_modelo.ts <carpeta-modelos>`: 10 nombres de distintos orígenes en 9 formas («APELLIDOS, Nombre», inicial, tratamiento, minúsculas, sin tildes…) y 6 contextos, y 14 direcciones en 3 contextos. Resultado actual: 581 de 582 sin fugas; la que queda es un nombre completo en minúsculas como etiqueta de chat («nahia etxeberria uriarte:»), donde el modelo no ve el segundo apellido.
+
 ## Cifras medidas
 
 Con el mismo código que la web (modelo int8w, umbral 0,3). «Cobertura» cuenta como acierto que lo marcado se solape con el dato del mismo tipo; «exacta» exige los mismos límites. Las cifras incluyen los «otros identificadores» (expediente, historia clínica, póliza, usuario…).
 
 | Conjunto | Datos | Cobertura | Cobertura exacta | Precisión | Caracteres sensibles tapados |
 |---|---:|---:|---:|---:|---:|
-| `tests/data/documentos-tercero.json`: 60 documentos sucios, congelados antes de medir y **no usados para ajustar** | 508 | **88,8 %** | 73,6 % | **80,5 %** | 91,1 % |
+| `tests/data/documentos-tercero.json`: 60 documentos sucios, congelados antes de medir y **no usados para ajustar** | 508 | **89,2 %** | 74,0 % | **80,8 %** | 91,4 % |
 | MEDDOCAN (público, historias clínicas): 150 historias del test no miradas al escribir las reglas | 1576 | 96,7 % | 83,9 % | 91,7 % | 96,3 % |
 | `tests/data/documentos-nuevo.json`: 47 documentos sucios, usados para ajustar | 556 | 92,3 % | 83,3 % | 81,9 % | 95,0 % |
 | `tests/data/documentos.json`: 29 documentos limpios con los que se desarrolló | 230 | 100,0 % | 95,7 % | 92,7 % | 99,3 % |
 
-La cifra honesta es la del tercer conjunto. Las reglas de otros identificadores, teléfonos en agrupaciones raras y papeles («la paciente», «Servicio de Urología») se escribieron viendo los fallos del conjunto nuevo y de otras 100 historias de MEDDOCAN; las 150 de la tabla comparten plantilla con esas («NHC:», «NºCol:»), así que su fila de otros identificadores (97,9 %) es optimista: en el tercer conjunto es del 53,3 %. Frente a la versión anterior, en el tercer conjunto la cobertura pasó del 82,1 % al 88,8 % y la precisión del 74,8 % al 80,5 % (diferencia de precisión, IC 95 % +2,6 a +9,9 puntos por remuestreo de documentos). Lo que más se escapa ahora: alias de chat y foro sin palabra delante, identificadores sin etiqueta y nombres que son palabras comunes en minúscula. Tablas por tipo en la web y en `docs/evaluacion/`; los errores del tercer conjunto, uno por uno, en `docs/evaluacion/errores-tercero.txt`.
+La cifra honesta es la del tercer conjunto. Las reglas de otros identificadores, teléfonos en agrupaciones raras y papeles («la paciente», «Servicio de Urología») se escribieron viendo los fallos del conjunto nuevo y de otras 100 historias de MEDDOCAN; las 150 de la tabla comparten plantilla con esas («NHC:», «NºCol:»), así que su fila de otros identificadores (97,9 %) es optimista: en el tercer conjunto es del 53,3 %. Frente a la versión anterior, en el tercer conjunto la cobertura pasó del 82,1 % al 89,2 % y la precisión del 74,8 % al 80,8 % (con la primera tanda de cambios, 88,8 % y 80,5 %; diferencia de precisión, IC 95 % +2,6 a +9,9 puntos por remuestreo de documentos). Los cambios posteriores salieron de variantes generadas y de casos reales, no de los fallos de este conjunto. Lo que más se escapa ahora: alias de chat y foro sin palabra delante, identificadores sin etiqueta y nombres que son palabras comunes en minúscula. Tablas por tipo en la web y en `docs/evaluacion/`; los errores del tercer conjunto, uno por uno, en `docs/evaluacion/errores-tercero.txt`.
 
 Comparación con GLiNER2-PII (`fastino/gliner2-privacy-filter-PII-multi`), con método, intervalos de confianza y viabilidad en el navegador: [docs/comparacion-gliner2.md](docs/comparacion-gliner2.md). Resumen: con las reglas no mejora en el conjunto nuevo y cubre 10 puntos menos en MEDDOCAN.
 

@@ -5,7 +5,7 @@
  "rows": {
   "person": {
    "gold": 232,
-   "pred": 245,
+   "pred": 244,
    "tpR": 218,
    "tpRx": 153,
    "tpP": 211,
@@ -29,11 +29,11 @@
   },
   "id": {
    "gold": 50,
-   "pred": 48,
-   "tpR": 46,
-   "tpRx": 46,
-   "tpP": 46,
-   "tpPx": 46
+   "pred": 49,
+   "tpR": 47,
+   "tpRx": 47,
+   "tpP": 47,
+   "tpPx": 47
   },
   "otherid": {
    "gold": 60,
@@ -93,11 +93,11 @@
   },
   "birthdate": {
    "gold": 19,
-   "pred": 15,
-   "tpR": 15,
-   "tpRx": 15,
-   "tpP": 15,
-   "tpPx": 15
+   "pred": 16,
+   "tpR": 16,
+   "tpRx": 16,
+   "tpP": 16,
+   "tpPx": 16
   },
   "card": {
    "gold": 3,
@@ -110,18 +110,18 @@
  },
  "total": {
   "gold": 508,
-  "pred": 550,
-  "tpR": 451,
-  "tpRx": 374,
-  "tpP": 443,
-  "tpPx": 374
+  "pred": 551,
+  "tpR": 453,
+  "tpRx": 376,
+  "tpP": 445,
+  "tpPx": 376
  },
  "chars": {
   "gold": 6982,
-  "covered": 6129,
-  "anyCovered": 6359,
-  "pred": 8072,
-  "predOk": 6359
+  "covered": 6152,
+  "anyCovered": 6382,
+  "pred": 8086,
+  "predOk": 6382
  },
  "errors": [
   {
@@ -515,12 +515,6 @@
    "text": "GIPUZKOA\n\nVEHÍCULO"
   },
   {
-   "doc": "pdf-nomina-hosteleria",
-   "type": "missed",
-   "kind": "id",
-   "text": "29 75419306 18"
-  },
-  {
    "doc": "carta-despido-objetivo",
    "type": "extra",
    "kind": "person",
@@ -750,12 +744,6 @@
    "type": "missed",
    "kind": "person",
    "text": "Lu"
-  },
-  {
-   "doc": "correo-arraigo-argentina",
-   "type": "missed",
-   "kind": "birthdate",
-   "text": "21-ago-1995"
   },
   {
    "doc": "correo-arraigo-argentina",
@@ -1017,12 +1005,6 @@
    "type": "extra",
    "kind": "org",
    "text": "El grupo"
-  },
-  {
-   "doc": "nota-prensa-resultados-trimestre",
-   "type": "extra",
-   "kind": "person",
-   "text": "consejero delegado"
   },
   {
    "doc": "nota-prensa-resultados-trimestre",
@@ -1292,9 +1274,9 @@
   {
    "id": "pdf-nomina-hosteleria",
    "gold": 6,
-   "tpR": 5,
-   "pred": 5,
-   "tpP": 5
+   "tpR": 6,
+   "pred": 6,
+   "tpP": 6
   },
   {
    "id": "carta-despido-objetivo",
@@ -1390,9 +1372,9 @@
   {
    "id": "correo-arraigo-argentina",
    "gold": 10,
-   "tpR": 7,
-   "pred": 9,
-   "tpP": 8
+   "tpR": 8,
+   "pred": 10,
+   "tpP": 9
   },
   {
    "id": "correo-ikastola-tutora",
@@ -1524,7 +1506,7 @@
    "id": "nota-prensa-resultados-trimestre",
    "gold": 0,
    "tpR": 0,
-   "pred": 6,
+   "pred": 5,
    "tpP": 0
   },
   {

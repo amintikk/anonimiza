@@ -1,21 +1,21 @@
 web:gliner-pii-int8w.onnx/base · rules · umbral 0.3 · /home/ubuntu/scratch/anonimiza-compare/data/third.json
 | Tipo | Reales | Marcados | Cobertura | Cob. exacta | Precisión | Prec. exacta |
 |---|---:|---:|---:|---:|---:|---:|
-| person | 232 | 245 | 94.0 | 65.9 | 86.1 | 62.4 |
+| person | 232 | 244 | 94.0 | 65.9 | 86.5 | 62.7 |
 | org | 18 | 68 | 94.4 | 88.9 | 25.0 | 23.5 |
 | address | 31 | 47 | 96.8 | 77.4 | 61.7 | 51.1 |
-| id | 50 | 48 | 92.0 | 92.0 | 95.8 | 95.8 |
+| id | 50 | 49 | 94.0 | 94.0 | 95.9 | 95.9 |
 | iban | 12 | 11 | 91.7 | 91.7 | 100.0 | 100.0 |
 | card | 3 | 3 | 100.0 | 100.0 | 100.0 | 100.0 |
 | phone | 48 | 46 | 93.8 | 89.6 | 97.8 | 93.5 |
 | email | 18 | 18 | 100.0 | 100.0 | 100.0 | 100.0 |
 | ip | 8 | 8 | 100.0 | 100.0 | 100.0 | 100.0 |
-| birthdate | 19 | 15 | 78.9 | 78.9 | 100.0 | 100.0 |
+| birthdate | 19 | 16 | 84.2 | 84.2 | 100.0 | 100.0 |
 | plate | 9 | 8 | 88.9 | 88.9 | 100.0 | 100.0 |
 | otherid | 60 | 0 | 53.3 | 48.3 | — | — |
 | ref | 0 | 33 | — | — | 97.0 | 87.9 |
-| **Total** | 508 | 550 | 88.8 | 73.6 | 80.5 | 68.0 |
-caracteres sensibles tapados (cualquier tipo): 91.1 % · con su tipo: 87.8 % · tapados que eran sensibles: 78.8 %
+| **Total** | 508 | 551 | 89.2 | 74.0 | 80.8 | 68.2 |
+caracteres sensibles tapados (cualquier tipo): 91.4 % · con su tipo: 88.1 % · tapados que eran sensibles: 78.9 %
   DE MÁS    org      correo-reclamacion-factura-luz: "contrato de suministro eléctrico"
   SE ESCAPA person   (marcado como org) whatsapp-futbol-alevin: "Pol"
   SE ESCAPA person   whatsapp-futbol-alevin: "Arnau"
@@ -80,7 +80,6 @@ caracteres sensibles tapados (cualquier tipo): 91.1 % · con su tipo: 87.8 % · 
   DE MÁS    org      correo-concello-licenza-obra: "Rexistro Xeral – Concello de Ames"
   SE ESCAPA otherid  solicitud-transferencia-dgt: "VF3LCYHZPKS214577"
   DE MÁS    org      solicitud-transferencia-dgt: "GIPUZKOA\n\nVEHÍCULO"
-  SE ESCAPA id       pdf-nomina-hosteleria: "29 75419306 18"
   DE MÁS    person   carta-despido-objetivo: "Sra"
   DE MÁS    person   carta-despido-objetivo: "Sra"
   SE ESCAPA otherid  cv-ingeniera-datos: "linkedin.com/in/luciachenjh"
@@ -118,7 +117,6 @@ caracteres sensibles tapados (cualquier tipo): 91.1 % · con su tipo: 87.8 % · 
   DE MÁS    person   soporte-app-reparto: "kevin"
   DE MÁS    person   soporte-app-reparto: "ochoa"
   SE ESCAPA person   correo-arraigo-argentina: "Lu"
-  SE ESCAPA birthdatecorreo-arraigo-argentina: "21-ago-1995"
   SE ESCAPA otherid  correo-arraigo-argentina: "39.118.427"
   SE ESCAPA person   correo-arraigo-argentina: "Martu"
   DE MÁS    address  correo-arraigo-argentina: "Santa Cruz de Tenerife"
@@ -162,7 +160,6 @@ caracteres sensibles tapados (cualquier tipo): 91.1 % · con su tipo: 87.8 % · 
   DE MÁS    person   guia-renovar-dni: "Mayores de 70"
   DE MÁS    person   guia-renovar-dni: "Menores de 30"
   DE MÁS    org      nota-prensa-resultados-trimestre: "El grupo"
-  DE MÁS    person   nota-prensa-resultados-trimestre: "consejero delegado"
   DE MÁS    person   nota-prensa-resultados-trimestre: "directora financiera"
   DE MÁS    org      nota-prensa-resultados-trimestre: "grupo"
   DE MÁS    person   nota-prensa-resultados-trimestre: "financiera"

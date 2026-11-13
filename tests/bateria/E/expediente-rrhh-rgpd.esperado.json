@@ -1,0 +1,101 @@
+{
+  "documento": "expediente-rrhh-rgpd.txt",
+  "nota": "Dossier de alta de empleado con datos de salud, bancarios y de contacto. Texto en el orden en que lo extrae un PDF.",
+  "datos": [
+    {
+      "texto": "Alejandro Martínez Soler",
+      "tipo": "person"
+    },
+    {
+      "texto": "Alejandro Martínez",
+      "tipo": "person"
+    },
+    {
+      "texto": "Laura Gómez Puig",
+      "tipo": "person"
+    },
+    {
+      "texto": "Carlos Martínez Rovira",
+      "tipo": "person"
+    },
+    {
+      "texto": "Elena Vidal Castelló",
+      "tipo": "person"
+    },
+    {
+      "texto": "47892315-K",
+      "tipo": "dni"
+    },
+    {
+      "texto": "22 / 03 / 1988",
+      "tipo": "birthdate"
+    },
+    {
+      "texto": "Tarragona (España)",
+      "tipo": "other",
+      "nota": "lugar de nacimiento"
+    },
+    {
+      "texto": "43 / 10894567 / 29",
+      "tipo": "nss"
+    },
+    {
+      "texto": "Calle de Sant Joan, número 34, Escalera B, Piso 4º, Puerta 2ª",
+      "tipo": "address"
+    },
+    {
+      "texto": "+34 645 89 12 34",
+      "tipo": "phone"
+    },
+    {
+      "texto": "+34 977 31 45 80",
+      "tipo": "phone"
+    },
+    {
+      "texto": "+34 622 44 78\n90",
+      "tipo": "phone"
+    },
+    {
+      "texto": "+34 619 33 51\n02",
+      "tipo": "phone"
+    },
+    {
+      "texto": "alejandro.martinez.soler88@ejemplo.es",
+      "tipo": "email"
+    },
+    {
+      "texto": "a.martinez@tsmediterraneo.es",
+      "tipo": "email"
+    },
+    {
+      "texto": "ES76 2100 0418 4502 0005 1332",
+      "tipo": "iban"
+    },
+    {
+      "texto": "Casado/a",
+      "tipo": "other",
+      "nota": "estado civil"
+    },
+    {
+      "texto": "A Positivo (A+)",
+      "tipo": "other",
+      "nota": "grupo sanguíneo"
+    },
+    {
+      "texto": "Penicilina y derivados",
+      "tipo": "other",
+      "nota": "alergia"
+    },
+    {
+      "texto": "Frutos secos (nueces)",
+      "tipo": "other",
+      "nota": "alergia"
+    },
+    {
+      "texto": "43-998120",
+      "tipo": "ref",
+      "nota": "póliza de la mutua"
+    }
+  ],
+  "falsos_positivos": []
+}

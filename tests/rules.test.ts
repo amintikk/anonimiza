@@ -140,3 +140,31 @@ test('invisible characters inside an identifier and digits of other scripts are 
   assert.ok(phone, 'phone written with Arabic-Indic digits is found');
   assert.equal(text.slice(phone.start, phone.end), '+34 ٦١٢٣٤٥٦٧٨');
 });
+
+test('NSS and dates written with spaces around the separators', () => {
+  assert.deepEqual(kinds('Nº Afiliación Seg. Social 43 / 10894567 / 29'), [['nss', '43 / 10894567 / 29']]);
+  assert.deepEqual(kinds('Fecha de Nacimiento: 22 / 03 / 1988 (38 años)'), [['birthdate', '22 / 03 / 1988']]);
+  assert.deepEqual(kinds('Fecha de Caducidad DNI 18 / 09 / 2031'), []);
+});
+
+test('years of birth in a list after the birth cue', () => {
+  assert.deepEqual(kinds('2 (Nacidos en 2018\ny 2021)'), [['birthdate', '2018'], ['birthdate', '2021']]);
+});
+
+test('a street address without its postal code, with stair, floor and door', () => {
+  const s = 'Dirección Postal Principal: Calle de Sant Joan, número 34, Escalera B, Piso 4º, Puerta 2ª. Código Postal 43201';
+  assert.deepEqual(kinds(s), [['address', 'Calle de Sant Joan, número 34, Escalera B, Piso 4º, Puerta 2ª']]);
+  assert.deepEqual(kinds('Pza. de las Nubes 6, 15008 A Coruña. Tel'), [['address', 'Pza. de las Nubes 6, 15008 A Coruña']]);
+});
+
+test('sensitive values in labelled fields: health, birthplace, marital status', () => {
+  assert.deepEqual(kinds('Grupo Sanguíneo y RH\n\nA Positivo (A+)'), [['other', 'A Positivo (A+)']]);
+  assert.deepEqual(kinds('Alergias Medicamentosas   Penicilina y derivados'), [['other', 'Penicilina y derivados']]);
+  assert.deepEqual(kinds('Lugar de Nacimiento\n\nTarragona (España)'), [['other', 'Tarragona (España)']]);
+  assert.deepEqual(kinds('Estado Civil: Casado/a'), [['other', 'Casado/a']]);
+});
+
+test('a DNI glued to a capitalised name is still a DNI; a lower-case word or a digit is part of the code', () => {
+  assert.deepEqual(kinds('Pegados: 12345678ZJuan.'), [['dni', '12345678Z']]);
+  assert.deepEqual(kinds('nombre 12345678Zabc'), []);
+});

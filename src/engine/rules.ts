@@ -3,7 +3,7 @@
 // out. The exceptions are formats specific enough to be a mistyped identifier rather than something else
 // (a DNI or NIE with the wrong letter, an IBAN of the right length): those are reported as doubtful.
 
-export type RuleKind = 'address' | 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate' | 'ref';
+export type RuleKind = 'address' | 'email' | 'iban' | 'card' | 'dni' | 'nie' | 'cif' | 'nss' | 'phone' | 'ip' | 'birthdate' | 'plate' | 'ref' | 'other';
 
 export interface RuleMatch {
   start: number;
@@ -131,9 +131,13 @@ const re = (s: string, flags = 'giu') => new RegExp(s, flags);
 // A separator inside a number, or a line break where a PDF or a table cell wrapped it ("670-071-⏎788", "B-⏎52.783.370").
 const S = String.raw`(?:[ .\-]\n?|\n)`;
 const SID = String.raw`(?:[ \-]\n?|\n)`;
+// Groups joined by a separator with or without spaces around it: "43 / 10894567 / 29", "22 / 03 / 1988", "12-03-1988".
+const SEP_LOOSE = String.raw`(?:[^\S\n]*[ /\-][^\S\n]*\n?|\n)`;
 
 /** A wrong DNI/NIE letter is a typo only if the letter is attached ("48213907K", "48213907-K") or a capital. */
 const idTypo = (s: string) => !/\s[a-z]$/.test(s);
+/** A letter or digit right after an identifier: a capitalised word ("ZJuan") is a name stuck to it, anything else is part of the code. */
+const glued = (t: string, e: number) => /\p{N}/u.test(t[e] ?? '') || (/\p{L}/u.test(t[e] ?? '') && !/^\p{Lu}\p{Ll}/u.test(t.slice(e, e + 2)));
 /** "… 83639138 y domicilio": a lower-case letter after a space, followed by more words, is the conjunction, not a DNI letter. */
 const conjunction = (t: string, _s: number, e: number) => /\s[a-zñ]$/.test(t.slice(e - 2, e)) && /^[^\S\n]+\p{L}/u.test(t.slice(e, e + 3));
 
@@ -145,9 +149,11 @@ const PROVINCES = 'A|AB|AL|AV|B|BA|BI|BU|C|CA|CC|CE|CO|CR|CS|CU|GC|GE|GI|GR|GU|H
 // Dates of birth: a date shortly after a word that says so ("nacida el", "fecha de nacimiento:", "F. nac.").
 // Other dates are not personal on their own and stay.
 const MONTHS = 'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre|january|february|march|april|may|june|july|august|september|october|november|december|ene|feb|mar|abr|jun|jul|ago|sep|sept|oct|nov|dic|jan|apr|aug|dec';
-const DATE = String.raw`(?:\d{1,2}[\/.\-](?:${MONTHS})\.?[\/.\-](?:\d{4}|\d{2})|\d{1,2}[\/.\-]\d{1,2}[\/.\-](?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
+const DATE = String.raw`(?:\d{1,2}[\/.\-](?:${MONTHS})\.?[\/.\-](?:\d{4}|\d{2})|\d{1,2}[^\S\n]?[\/.\-][^\S\n]?\d{1,2}[^\S\n]?[\/.\-][^\S\n]?(?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
 const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\s?\/\s?nac(?:\.|imiento)?|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
-const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\n\d]{0,40}?(?:\n[^\n\d]{0,12})?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
+// Between the cue and the date there may be a line break or a table cell (the label and its value are often
+// extracted as separate lines, a table row apart): anything without a digit, up to 120 characters.
+const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\d]{0,120}?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
 
 /** Case-insensitive letters for a pattern used without the i flag (the code itself must keep its case). */
 const ci = (p: string) =>
@@ -162,7 +168,7 @@ const REF_BEFORE = new RegExp(String.raw`${B}${ci(REF_CUE)}(?![\p{L}])[^\n]{0,14
 const REF_NUM = String.raw`(?:n\.?\s?[º°o]\.?|n[uú]m(?:ero)?\.?|number|no\.|#)`;
 const REF_TOKEN = String.raw`[\p{L}\p{N}]+(?:[.\-\/_][\p{L}\p{N}]+)*`;
 const REF_RE = new RegExp(
-  String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])((?:(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)(?:de|del|la|las|los|el|su|\p{Ll}{3,20}|\p{Lu}{2,5})){0,4}?)` +
+  String.raw`${B}(?:${ci(REF_NUM)}\s*(?:de\s+)?)?${ci(REF_CUE)}(?![\p{L}])((?:(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)(?:de|del|la|las|los|el|su|\p{Ll}{3,20}|\p{Lu}\p{Ll}{2,20}|\p{Lu}{2,5})){0,4}?)` +
     String.raw`(\.?[^\S\n]*(?:[:=#]|(?:con\s+)?${ci(REF_NUM)})?[^\S\n]*(?:[:=#][^\S\n]*)?(?:\n[^\S\n]*)?)` +
     String.raw`((?:(?=[\p{L}\p{N}.\-\/_]*\d)${REF_TOKEN}|[A-Z]{2,5}(?= [A-Z\d]))(?: (?:\d[\p{L}\p{N}]*(?:[.\-\/_][\p{L}\p{N}]+)*|[A-Z]{2,5}(?= [A-Z\d])))*)${E}`,
   'gud',
@@ -214,8 +220,24 @@ const PHONE_CUE = /(?:tel[eé]?f?|tlf|tfno|m[oó]vil|fijo|llam|n[uú]mero|whatsa
 // code with its town ("Calle de Alcalá, 120, 4.ª planta, 28009 Madrid"). Without the postal code they are left
 // to the model.
 const STREET = String.raw`(?:calle|c\/|avda\.|avenida|av\.|plaza|pza\.|pl\.|paseo|p[ºo°]\.?|ronda|r[uú]a|carrer|carretera|ctra\.|camino|traves[ií]a|glorieta|urbanizaci[oó]n|urb\.|pasaje|v[ií]a|pol[ií]gono|cuesta|bulevar|rambla|passeig|avinguda|pla[cç]a|kalea|etorbidea)`;
-const TOWN = String.raw`\p{Lu}[\p{L}'’\-]+(?:[^\S\n]+(?:(?:de|del|la|las|los|el|d'|i|y|e)[^\S\n]+)?\p{Lu}[\p{L}'’\-]+)*(?:[^\S\n]*\([\p{L} ]+\))?`;
+const TOWN = String.raw`\p{Lu}[\p{L}'’\-]*(?:[^\S\n]+(?:(?:de|del|la|las|los|el|d'|i|y|e)[^\S\n]+)?\p{Lu}[\p{L}'’\-]+)*(?:[^\S\n]*\([\p{L} ]+\))?`;
 const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])(?:[^\n]|\n(?!\n)){0,60}?(?<!\d)\d{5}(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)${TOWN}`, 'gu');
+// Without the postal code, in a form or a card: street type, name, number, and the floor, stair and door after it
+// ("Calle de Sant Joan, número 34, Escalera B, Piso 4º, Puerta 2ª"). The street type and a number are required.
+const UNIT = String.raw`(?:esc(?:alera)?\.?|piso|planta|pta?\.?|puerta|portal|bloque|bl(?:oq)?\.?|letra|kil[oó]metro|km\.?)`;
+const ADDRESS_NUM_RE = new RegExp(
+  String.raw`${B}${STREET}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n(?:[º°.]|[uú]m(?:ero|\.)?)?[^\S\n]*)?\d{1,4}(?![\d])` +
+    String.raw`(?:,?[^\S\n]*${UNIT}[^\S\n]*[\p{L}\p{N}º°ª]{1,4}(?![\p{L}\p{N}]))*`,
+  'giu',
+);
+// Written in a field of its own, after "Sensible" cues with a value that runs to the end of the cell or line.
+const SENSITIVE_CUE = String.raw`(?:grupo\s+sangu[ií]neo(?:\s+y\s+rh)?|tipo\s+de\s+sangre|alergias?(?:\s+(?:medicamentosas?|alimentarias?))?(?:\s*\/\s*otras?)?|intolerancias?|diagn[oó]stico|patolog[ií]a|enfermedades?|discapacidad|medicaci[oó]n|medicamentos?|tratamiento\s+m[eé]dico|baja\s+m[eé]dica|reconocimiento\s+m[eé]dico(?:\s+inicial|\s+peri[oó]dico)?|historial\s+m[eé]dico|antecedentes\s+m[eé]dicos|embarazo|lugar\s+de\s+nacimiento|estado\s+civil|religi[oó]n|orientaci[oó]n\s+sexual|afiliaci[oó]n\s+sindical|ideolog[ií]a|origen\s+[ée]tnico|nacionalidad)`;
+const SENSITIVE_RE = new RegExp(
+  String.raw`${B}${SENSITIVE_CUE}(?![\p{L}])[^\S\n]*[:\-–=]?\s{0,30}?([\p{L}\p{N}(«"'¿][^\n]{0,60}?)(?=\s{2,}|\n|$)`,
+  'giud',
+);
+// Years after a birth cue: "Nacidos en 2019 y 2021".
+const BIRTH_YEAR_TAIL = /^\s{0,120}(?:,|y|e|and|o)\s+((?:19|20)\d{2})(?!\d)/;
 
 /** True when one of these words comes shortly before position `st` on the same line ("CIF de la empresa: …"). */
 const announced = (cue: string) => {
@@ -240,12 +262,13 @@ const RULES: Rule[] = [
   // Before DNI: in "B-83639138 y" the digits and the next word would also make a valid DNI.
   { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW]${SID}?\d{2}\.?\d{3}\.?\d{2}${SID}?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => CIF_CUE(t, st) },
   { kind: 'nie', re: re(String.raw`${B}[XYZ]${SID}?\d{7}${SID}?[A-Z]${E}`), valid: validNie, doubtful: idTypo, reject: conjunction },
-  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}${SID}?[A-Z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
+  // The letter may run straight into a capitalised name ("12345678ZJuan"), but not into a digit or a lower-case word.
+  { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}${SID}?[A-Z]`), valid: validDni, doubtful: idTypo, reject: (t, s, e) => glued(t, e) || conjunction(t, s, e) },
   // Written with spaces between the groups ("53 464 097 E"): only with the right letter, so amounts do not match.
   { kind: 'dni', re: re(String.raw`${B}\d{2} \d{3} \d{3}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
   // A DNI without its letter, when the word says so ("DNI 12.345.678").
   { kind: 'dni', re: re(String.raw`${NB}\d{2}(?:\.|[ \n])?\d{3}(?:\.|[ \n])?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
-  { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:[ /\-]\n?|\n)?\d{8}(?:[ /\-]\n?|\n)?\d{2}${NE}`), valid: validNss, doubtful: (_s, t, st) => NSS_CUE(t, st) },
+  { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:${SEP_LOOSE})?\d{8}(?:${SEP_LOOSE})?\d{2}${NE}`), valid: validNss, doubtful: (s, t, st) => NSS_CUE(t, st) || /\D/.test(s) },
   { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:${SID}?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
   { kind: 'plate', re: re(String.raw`${B}(?:${PROVINCES})[ \-]?\d{4}[ \-]?[A-Z]{1,2}${E}`, 'gu'), reject: (t, s) => /\d[ .\-\/]?$/.test(t.slice(Math.max(0, s - 2), s)) },
   { kind: 'ip', re: re(String.raw`${B}(?:\d{1,3}\.){3}\d{1,3}${E}`), valid: validIpv4 },
@@ -337,6 +360,15 @@ function scanRules(text: string): RuleMatch[] {
     if (taken.subarray(start, end).some((x) => x)) continue;
     taken.fill(1, start, end);
     out.push({ start, end, kind: 'birthdate' });
+    // "Nacidos en 2019 y 2021": each year that follows the same list is also a year of birth.
+    let pos = end;
+    for (let t; (t = BIRTH_YEAR_TAIL.exec(text.slice(pos, pos + 30))); ) {
+      const s = pos + t[0].length - t[1]!.length;
+      if (taken.subarray(s, s + 4).some((x) => x)) break;
+      taken.fill(1, s, s + 4);
+      out.push({ start: s, end: s + 4, kind: 'birthdate' });
+      pos = s + 4;
+    }
   }
   for (const rule of RULES) {
     rule.re.lastIndex = 0;
@@ -365,7 +397,25 @@ function scanRules(text: string): RuleMatch[] {
     taken.fill(1, start, end);
     out.push({ start, end, kind });
   };
+  // Like take(), but a value split by identifiers already found keeps those and takes the free parts.
+  const takeFree = (start: number, end: number, kind: RuleKind) => {
+    for (let i = start; i < end; ) {
+      if (taken[i]) {
+        i++;
+        continue;
+      }
+      let j = i;
+      while (j < end && !taken[j]) j++;
+      if (j - i >= 2) {
+        taken.fill(1, i, j);
+        out.push({ start: i, end: j, kind });
+      }
+      i = j;
+    }
+  };
+  for (const m of text.matchAll(SENSITIVE_RE)) takeFree(...m.indices![1]!, 'other');
   for (const m of text.matchAll(ADDRESS_RE)) take(m.index, m.index + m[0].length, 'address');
+  for (const m of text.matchAll(ADDRESS_NUM_RE)) take(m.index, m.index + m[0].length, 'address');
   for (const m of text.matchAll(REF_RE)) {
     if (!refValue(m[0].slice(0, m.indices![1]![0] - m.index), m[1]!, m[2]!, m[3]!)) continue;
     let end = m.indices![3]![1];

@@ -7,8 +7,8 @@ import { readPage, type OcrLine, type Runner, type RgbImage } from './pipeline.t
 
 type Ort = typeof import('onnxruntime-web/wasm');
 export type OcrRequest =
-  | { type: 'load'; id: number }
-  | { type: 'page'; id: number; width: number; height: number; rgba: Uint8ClampedArray<ArrayBuffer> };
+  | { type: 'load'; id: number; threads: number }
+  | { type: 'page'; id: number; threads: number; width: number; height: number; rgba: Uint8ClampedArray<ArrayBuffer> };
 export type OcrResponse =
   | { type: 'download'; id: number; file: string; loaded: number; total: number; cached: boolean }
   | { type: 'lines'; id: number; lines: OcrLine[] }
@@ -33,7 +33,7 @@ async function runner(ort: Ort, bytes: Uint8Array): Promise<Runner> {
   };
 }
 
-function load(id: number): Promise<Engine> {
+function load(id: number, threads: number): Promise<Engine> {
   engine ??= (async () => {
     const progress = (file: string, total: number) => (loaded: number, cached: boolean) => post({ type: 'download', id, file, loaded, total, cached });
     const dict = JSON.parse(new TextDecoder().decode(await fetchFile(MODEL_FILES.ocrDict, progress(MODEL_FILES.ocrDict.file, MODEL_FILES.ocrDict.bytes))));
@@ -41,7 +41,8 @@ function load(id: number): Promise<Engine> {
     const rec = await fetchFile(MODEL_FILES.ocrRec, progress(MODEL_FILES.ocrRec.file, MODEL_FILES.ocrRec.bytes));
     const ort = (await import('onnxruntime-web/wasm')) as Ort;
     ort.env.wasm.wasmPaths = new URL('/ort/', ctx.location.origin).href;
-    ort.env.wasm.numThreads = ctx.crossOriginIsolated ? Math.max(1, Math.min(8, navigator.hardwareConcurrency || 4)) : 1;
+    // The pool gives each worker its share of the cores (see OcrClient); without cross-origin isolation, one thread.
+    ort.env.wasm.numThreads = ctx.crossOriginIsolated ? Math.max(1, Math.min(8, threads)) : 1;
     ort.env.logLevel = 'error';
     return { det: await runner(ort, det), rec: await runner(ort, rec), dict };
   })();
@@ -53,7 +54,7 @@ let queue: Promise<void> = Promise.resolve();
 
 async function handle(m: OcrRequest): Promise<void> {
   try {
-    const e = await load(m.id);
+    const e = await load(m.id, m.threads);
     if (m.type === 'load') {
       post({ type: 'lines', id: m.id, lines: [] });
       return;

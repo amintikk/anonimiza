@@ -332,6 +332,8 @@ export function imagesToPdf(pages: PageImage[]): Uint8Array<ArrayBuffer> {
 
 /** What the OCR reader needs from the client, so this file does not depend on the worker. */
 export interface OcrReader {
+  /** Pages the reader can work on at the same time. */
+  readonly parallel?: number;
   read(page: { width: number; height: number; rgba: Uint8ClampedArray<ArrayBuffer> }, onBytes?: (file: string, loaded: number, total: number, cached: boolean) => void): Promise<{ text: string; score: number; box: { x: number; y: number }[]; line: number }[]>;
 }
 
@@ -351,9 +353,34 @@ export async function ocrPdf(bytes: Uint8Array, ocr: OcrReader, onEvent?: (e: Oc
     itemOf.push(it);
     offOf.push(off);
   };
+  // Pages are drawn one after another, and up to `inFlight` of them are read by the OCR at the same time. Their lines
+  // are added in page order, so the result does not depend on which page finishes first.
+  const inFlight = Math.max(1, Math.min(3, ocr.parallel ?? 1));
+  type Job = { p: number; height: number; read: ReturnType<OcrReader['read']> };
+  const commit = async (job: Job, done: number) => {
+    const lines = await job.read;
+    onEvent?.({ stage: 'page', page: Math.min(doc.numPages, done + 1), pages: doc.numPages });
+    if (job.p > 1) (push('\n', -1, -1), push('\n', -1, -1));
+    let prevLine = -1;
+    for (const line of lines) {
+      // Boxes of one visual line are joined with a space; a new line starts a new line of text.
+      if (prevLine !== -1) (line.line === prevLine ? push(' ', -1, -1) : push('\n', -1, -1));
+      prevLine = line.line;
+      // Corners in image pixels at SCALE per point, with y pointing down; PDF space has y pointing up.
+      const [tl, tr, , bl] = line.box as [{ x: number; y: number }, { x: number; y: number }, unknown, { x: number; y: number }];
+      const fh = Math.max(1, Math.hypot(bl.x - tl.x, bl.y - tl.y) / SCALE);
+      const width = Math.hypot(tr.x - tl.x, tr.y - tl.y) / SCALE;
+      const str = line.text.normalize('NFC');
+      const idx = items.length;
+      items.push({ page: job.p, str, transform: [fh, 0, 0, fh, bl.x / SCALE, job.height - bl.y / SCALE], width, ascent: 0.8, descent: -0.2, family: 'sans-serif', vertical: false });
+      for (let i = 0; i < str.length; i++) push(str[i]!, idx, i);
+    }
+  };
+  const jobs: Job[] = [];
+  let done = 0;
   try {
+    onEvent?.({ stage: 'page', page: 1, pages: doc.numPages });
     for (let p = 1; p <= doc.numPages; p++) {
-      onEvent?.({ stage: 'page', page: p, pages: doc.numPages });
       const page = await doc.getPage(p);
       const base = page.getViewport({ scale: 1 });
       const vp = page.getViewport({ scale: SCALE });
@@ -365,25 +392,14 @@ export async function ocrPdf(bytes: Uint8Array, ocr: OcrReader, onEvent?: (e: Oc
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       await page.render({ canvas, canvasContext: ctx, viewport: vp }).promise;
       const rgba = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-      const lines = await ocr.read({ width: canvas.width, height: canvas.height, rgba }, (file, loaded, total, cached) => onEvent?.({ stage: 'download', file, loaded, total, cached }));
+      const read = ocr.read({ width: canvas.width, height: canvas.height, rgba }, (file, loaded, total, cached) => onEvent?.({ stage: 'download', file, loaded, total, cached }));
+      read.catch(() => {}); // a failure is raised when the page is committed, in order
       canvas.width = canvas.height = 0;
       page.cleanup();
-      if (p > 1) (push('\n', -1, -1), push('\n', -1, -1));
-      let prevLine = -1;
-      for (const line of lines) {
-        // Boxes of one visual line are joined with a space; a new line starts a new line of text.
-        if (prevLine !== -1) (line.line === prevLine ? push(' ', -1, -1) : push('\n', -1, -1));
-        prevLine = line.line;
-        // Corners in image pixels at SCALE per point, with y pointing down; PDF space has y pointing up.
-        const [tl, tr, , bl] = line.box as [{ x: number; y: number }, { x: number; y: number }, unknown, { x: number; y: number }];
-        const fh = Math.max(1, Math.hypot(bl.x - tl.x, bl.y - tl.y) / SCALE);
-        const width = Math.hypot(tr.x - tl.x, tr.y - tl.y) / SCALE;
-        const str = line.text.normalize('NFC');
-        const idx = items.length;
-        items.push({ page: p, str, transform: [fh, 0, 0, fh, bl.x / SCALE, base.height - bl.y / SCALE], width, ascent: 0.8, descent: -0.2, family: 'sans-serif', vertical: false });
-        for (let i = 0; i < str.length; i++) push(str[i]!, idx, i);
-      }
+      jobs.push({ p, height: base.height, read });
+      while (jobs.length >= inFlight) await commit(jobs.shift()!, done++);
     }
+    while (jobs.length) await commit(jobs.shift()!, done++);
   } finally {
     await destroy();
   }

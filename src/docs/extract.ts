@@ -5,6 +5,7 @@ import { ocrPdf, readPdf, type OcrEvent, type PdfSource } from './pdf.ts';
 import { OcrClient } from '../ocr/client.ts';
 import { DocxError, readDocx, type DocxSource } from './docx.ts';
 import { PdfError } from './pdf.ts';
+import { ocrPoolShape } from '../ocr/client.ts';
 export { wordXmlText } from './docx.ts';
 
 export const ACCEPT = '.pdf,.docx,.txt,.md,.csv,.json,.log,.eml,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/*';
@@ -19,7 +20,8 @@ export interface Extracted {
   ocr?: boolean;
 }
 
-const ocr = new OcrClient();
+const pool = ocrPoolShape();
+const ocr = new OcrClient(pool.size, pool.threads);
 
 /** pdf.js reports its failures in English and by name: say what is wrong with the file, in the app's language. */
 function pdfProblem(e: unknown): unknown {

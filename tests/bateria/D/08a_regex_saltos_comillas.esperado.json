@@ -1,0 +1,29 @@
+{
+  "documento": "08a_regex_saltos_comillas.txt",
+  "propiedad_probada": "Paréntesis sin cerrar, metacaracteres literales, barras invertidas, comillas tipográficas y saltos CRLF/CR.",
+  "datos": [
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido dentro de bloque con caracteres que suelen romper expresiones regulares."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono después de un retorno de carro aislado."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": ".*",
+      "motivo": "Metacaracteres escritos literalmente; no debe expandirse a todo el documento."
+    },
+    {
+      "texto": "C:\\usuarios\\ana\\docs",
+      "motivo": "Ruta de archivo: las barras invertidas no deben actuar como escapes."
+    }
+  ],
+  "resultado_esperado": "Los caracteres especiales se tratan como texto; detecta los datos y conserva exactamente CRLF y CR durante la restauración."
+}

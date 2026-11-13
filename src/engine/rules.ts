@@ -241,8 +241,10 @@ const RULES: Rule[] = [
   { kind: 'cif', re: re(String.raw`${B}[ABCDEFGHJNPQRSUVW]${SID}?\d{2}\.?\d{3}\.?\d{2}${SID}?[0-9A-J]${E}`), valid: validCif, doubtful: (_s, t, st) => CIF_CUE(t, st) },
   { kind: 'nie', re: re(String.raw`${B}[XYZ]${SID}?\d{7}${SID}?[A-Z]${E}`), valid: validNie, doubtful: idTypo, reject: conjunction },
   { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}${SID}?[A-Z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
+  // Written with spaces between the groups ("53 464 097 E"): only with the right letter, so amounts do not match.
+  { kind: 'dni', re: re(String.raw`${B}\d{2} \d{3} \d{3}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
   // A DNI without its letter, when the word says so ("DNI 12.345.678").
-  { kind: 'dni', re: re(String.raw`${NB}\d{2}\.?\d{3}\.?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
+  { kind: 'dni', re: re(String.raw`${NB}\d{2}(?:\.|[ \n])?\d{3}(?:\.|[ \n])?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
   { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:[ /\-]\n?|\n)?\d{8}(?:[ /\-]\n?|\n)?\d{2}${NE}`), valid: validNss, doubtful: (_s, t, st) => NSS_CUE(t, st) },
   { kind: 'plate', re: re(String.raw`${NB}\d{4}(?:${SID}?[BCDFGHJKLMNPRSTVWXYZ]{3}|[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}|-[bcdfghjklmnprstvwxyz]{3})${E}`, 'gu'), valid: (s) => !NOT_PLATE.has(s.slice(-3).toUpperCase()) },
   { kind: 'plate', re: re(String.raw`${B}(?:${PROVINCES})[ \-]?\d{4}[ \-]?[A-Z]{1,2}${E}`, 'gu'), reject: (t, s) => /\d[ .\-\/]?$/.test(t.slice(Math.max(0, s - 2), s)) },
@@ -281,9 +283,51 @@ function trimIban(text: string, start: number, end: number): number | null {
 
 const cardPrefix = (s: string) => /^(?:4|5[1-5]|2[2-7]|3[47]|6)/.test(s.replace(/\D/g, ''));
 
+const INVISIBLE = /[\u200b\u200c\u200d\u2060\ufeff\u00ad]/;
+const NON_ASCII_SPACE = /[\u00a0\u2007\u2009\u200a\u202f]/;
+const isDigit = (cp: number) => /\p{Nd}/u.test(String.fromCodePoint(cp));
+
+/** Value of a decimal digit of any script: Arabic-Indic, Devanagari, mathematical\u2026 (their blocks are runs of ten). */
+function digitValue(ch: string): number {
+  const cp = ch.codePointAt(0)!;
+  let start = cp;
+  while (isDigit(start - 1)) start--;
+  return (cp - start) % 10;
+}
+
+/**
+ * The text the rules read. Invisible characters (zero-width spaces, soft hyphens, BOM) that copy-and-paste
+ * leaves inside an identifier are dropped, non-breaking spaces become spaces and digits of any script become
+ * ASCII. Each folded position maps back to the source text, so the matches point at the text the user sees.
+ */
+function fold(input: string): { text: string; from: Int32Array; to: Int32Array } {
+  const out: string[] = [];
+  const from: number[] = [];
+  const to: number[] = [];
+  let at = 0;
+  for (const ch of input) {
+    const s = at;
+    at += ch.length;
+    if (INVISIBLE.test(ch)) continue;
+    let f = ch;
+    if (NON_ASCII_SPACE.test(ch)) f = ' ';
+    else if (ch.charCodeAt(0) > 127 && isDigit(ch.codePointAt(0)!)) f = String(digitValue(ch));
+    for (let k = 0; k < f.length; k++) {
+      out.push(f[k]!);
+      from.push(s);
+      to.push(at);
+    }
+  }
+  return { text: out.join(''), from: Int32Array.from(from), to: Int32Array.from(to) };
+}
+
 export function findRules(input: string): RuleMatch[] {
-  // Non-breaking and thin spaces (Word, PDF) count as spaces; one code unit each, so positions do not move.
-  const text = input.replace(/[\u00a0\u2007\u2009\u200a\u202f]/g, ' ');
+  const folded = fold(input);
+  const found = scanRules(folded.text);
+  return found.map((m) => ({ ...m, start: folded.from[m.start]!, end: folded.to[m.end - 1]! }));
+}
+
+function scanRules(text: string): RuleMatch[] {
   const taken = new Uint8Array(text.length);
   const out: RuleMatch[] = [];
   // Dates of birth first: "14/03/1987" must not be read as anything else.

@@ -1,0 +1,28 @@
+{
+  "documento": "10_informe_extenso_48_paginas.docx",
+  "tipo": "informe extenso para rendimiento",
+  "datos": [
+    {
+      "texto": "Laura Pereira Souto",
+      "tipo": "PERSONA",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": ""
+    },
+    {
+      "texto": "99887766M",
+      "tipo": "DNI",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": ""
+    },
+    {
+      "texto": "+34 644 777 888",
+      "tipo": "TELEFONO",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

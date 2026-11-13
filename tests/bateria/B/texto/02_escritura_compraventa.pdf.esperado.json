@@ -1,0 +1,71 @@
+{
+  "documento": "02_escritura_compraventa.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Mateo Ruiz Calvo",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "51827364P",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "Inés Serrano Gil",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "X4827163T",
+      "tipo": "NIE",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "Av. del Parque 81, 2.º A, 50008 Zaragoza",
+      "tipo": "DIRECCION",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "B76543218",
+      "tipo": "CIF",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES7921000813610123456789",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

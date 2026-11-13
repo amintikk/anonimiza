@@ -1,0 +1,14 @@
+{
+  "documento": "03e_arabe_dni.txt",
+  "propiedad_probada": "DNI ASCII incrustado en prosa árabe.",
+  "datos": [
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "Identificador español válido rodeado por texto RTL."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Detecta el DNI sin corromper ni reordenar el texto bidireccional."
+}

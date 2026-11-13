@@ -1,0 +1,44 @@
+{
+  "documento": "08_identificadores_partidos.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Darío Campos Rey",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "73184926",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Identificador partido en dos líneas del PDF."
+    },
+    {
+      "texto": "ES9121000418450200051332",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "IBAN segmentado entre dos líneas, con separadores visuales."
+    },
+    {
+      "texto": "d.campos@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

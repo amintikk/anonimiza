@@ -1,0 +1,53 @@
+{
+  "documento": "05_ambiguedades_persona_empresa.txt",
+  "propiedad_probada": "Ambigüedad entre persona, apellido común, topónimo, razón social y correo que no identifica al titular.",
+  "datos": [
+    {
+      "texto": "Rosa Vega",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Nombre completo; «Vega» aparece por separado como apellido común."
+    },
+    {
+      "texto": "Calle Pedro de Valdivia, 14, 28009 Madrid",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "nota": "Pedro forma parte del nombre de la vía, no debe marcarse como persona dentro de la dirección."
+    },
+    {
+      "texto": "Pérez y Asociados S.L.",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "nota": "Razón social con apariencia de nombre y apellido; no clasificar como persona."
+    },
+    {
+      "texto": "administracion@perez-asociados.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Correo genérico de empresa; detectar solo el correo, no inferir una persona."
+    },
+    {
+      "texto": "Ana López",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Titular que firma el documento."
+    },
+    {
+      "texto": "juan.garcia@empresa.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Correo personal cuyo nombre aparente no coincide con Ana López; no atribuir a Ana el nombre Juan García."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "Vega",
+      "motivo": "Apellido aislado en una lista; evitar marcar ocurrencias comunes fuera de un contexto claro de persona."
+    },
+    {
+      "texto": "Pedro",
+      "motivo": "Nombre propio integrado en una dirección; no marcar como persona."
+    }
+  ],
+  "resultado_esperado": "Marca la razón social como organización si se reconoce, mantiene la dirección como una entidad y no deduce la identidad del dueño a partir de un correo discordante."
+}

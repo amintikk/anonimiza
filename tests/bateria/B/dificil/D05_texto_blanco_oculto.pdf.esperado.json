@@ -1,0 +1,35 @@
+{
+  "documento": "D05_texto_blanco_oculto.pdf",
+  "paginas": 1,
+  "tipo": "dificil",
+  "datos": [
+    {
+      "texto": "Sergio Alba Nieto",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "oculto",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Texto blanco sobre blanco; seleccionable y extraíble."
+    },
+    {
+      "texto": "48172639Q",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "oculto",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Texto blanco sobre blanco; seleccionable y extraíble."
+    },
+    {
+      "texto": "sergio.alba@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "oculto",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Texto blanco sobre blanco; seleccionable y extraíble."
+    }
+  ],
+  "falsos_positivos": []
+}

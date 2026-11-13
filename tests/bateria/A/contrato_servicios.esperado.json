@@ -1,0 +1,81 @@
+{
+  "documento": "contrato_servicios.txt",
+  "datos": [
+    {
+      "texto": "Rosa Mar Pilar",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "62041853C",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "C/ Olmo Azul, 17, 28041 Madrid",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "+34 699 120 334",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "turno.7@unidad.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "INC-77821034",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES2139431486086661697230",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "X9513358Y",
+      "tipo": "NIE",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "NIE X/Y/Z inventado y válido."
+    },
+    {
+      "texto": "B14650667",
+      "tipo": "CIF",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "CIF sintético con control válido."
+    },
+    {
+      "texto": "298513137727",
+      "tipo": "NSS",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "NSS sintético con mod 97 válido."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "La rosa de los vientos",
+      "motivo": "Expresión común."
+    }
+  ]
+}

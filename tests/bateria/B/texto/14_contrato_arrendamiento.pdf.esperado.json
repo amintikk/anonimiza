@@ -1,0 +1,80 @@
+{
+  "documento": "14_contrato_arrendamiento.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Carmen Ríos Valera",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "16593827C",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "Joel Martín Sanz",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "Y2184736F",
+      "tipo": "NIE",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "C/ San Pedro 18, 2.º D, 41001 Sevilla",
+      "tipo": "DIRECCION",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES6621000498761234567818",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "joel.martin@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "+34 622 304 119",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

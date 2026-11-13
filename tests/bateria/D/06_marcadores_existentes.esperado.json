@@ -1,0 +1,26 @@
+{
+  "documento": "06_marcadores_existentes.txt",
+  "propiedad_probada": "Colisión entre marcadores literales preexistentes y el marcador que debe asignarse a un dato real.",
+  "datos": [
+    {
+      "texto": "[PERSONA_1]",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Texto literal que ya parece un marcador; no debe registrarse como valor de restauración."
+    },
+    {
+      "texto": "[DNI_1]",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "Texto literal preexistente."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI real, válido; idealmente usa [DNI_2] para no colisionar con [DNI_1] literal."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Los marcadores escritos a mano permanecen literales y el dato real usa un marcador libre; restaurar no altera ni confunde ambos."
+}

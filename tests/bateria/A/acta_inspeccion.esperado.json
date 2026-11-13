@@ -1,0 +1,75 @@
+{
+  "documento": "acta_inspeccion.txt",
+  "datos": [
+    {
+      "texto": "Lúa de los Ríos",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "38174625F",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Avda. de la Bruma 39, 33012 Oviedo",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "juridico_rio@bufete.invalid",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "RC-2025-0037612",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES4621001234000098765432",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "B-83639138",
+      "tipo": "CIF",
+      "debe_detectarse": true,
+      "dudoso": true,
+      "nota": "Control incorrecto anunciado; dudoso."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "12.345,67",
+      "motivo": "Importe."
+    },
+    {
+      "texto": "03/11/2026",
+      "motivo": "Fecha, no teléfono."
+    },
+    {
+      "texto": "91427536",
+      "motivo": "Código numérico sin etiqueta personal."
+    }
+  ]
+}

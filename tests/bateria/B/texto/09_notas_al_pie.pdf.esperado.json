@@ -1,0 +1,53 @@
+{
+  "documento": "09_notas_al_pie.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Mónica Gil Paredes",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "25871469H",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "C/ Luna 31, 5.º, 15003 A Coruña",
+      "tipo": "DIRECCION",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES6621000498761234567800",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "+34 981 204 561",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato personal en nota al pie, separado del texto principal."
+    }
+  ],
+  "falsos_positivos": []
+}

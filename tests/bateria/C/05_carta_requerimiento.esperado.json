@@ -1,0 +1,117 @@
+{
+  "documento": "05_carta_requerimiento.docx",
+  "tipo": "carta con hipervínculo mailto e imagen con alt text",
+  "datos": [
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en la cabecera."
+    },
+    {
+      "texto": "45678901C",
+      "tipo": "DNI",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en la cabecera."
+    },
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en el pie."
+    },
+    {
+      "texto": "45678901C",
+      "tipo": "DNI",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en el pie."
+    },
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "Celda combinada; el dato se repite en otra parte del documento."
+    },
+    {
+      "texto": "45678901C",
+      "tipo": "DNI",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "DNI en celda y también partido en runs con negrita parcial."
+    },
+    {
+      "texto": "45678901C",
+      "tipo": "DNI",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "El DNI está partido en varios w:r y la mitad está en negrita."
+    },
+    {
+      "texto": "Ana Ruiz\nGil",
+      "tipo": "PERSONA",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Nombre con w:br dentro del texto."
+    },
+    {
+      "texto": "+34 981 234 567",
+      "tipo": "TELEFONO",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Separado de la etiqueta mediante w:tab."
+    },
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "Resultado visible de MERGEFIELD."
+    },
+    {
+      "texto": "secretaria@example.com",
+      "tipo": "EMAIL",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "El valor de HYPERLINK está en el código de campo y en su resultado visible."
+    },
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "imagen_alt",
+      "debe_limpiarse": true,
+      "nota": "Eliminar la repetición del nombre en descr/title."
+    },
+    {
+      "texto": "xoan.paz@example.com",
+      "tipo": "EMAIL",
+      "ubicacion": "hyperlink",
+      "debe_limpiarse": true,
+      "nota": "Limpiar la relación externa mailto y el texto enlazado."
+    },
+    {
+      "texto": "Xoán Paz Loureiro",
+      "tipo": "PERSONA",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en cabecera."
+    },
+    {
+      "texto": "45678901C",
+      "tipo": "DNI",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en pie."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "Expediente ficticio",
+      "motivo": "Texto genérico sin identificador personal."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "documento": "11_imagen_embebida_sello.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Elena Vidal Moreno",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "19384756R",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "FIRMA: ELENA VIDAL",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "imagen",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Texto solo en una imagen incrustada; el lector PDF documenta que no inspecciona imágenes."
+    },
+    {
+      "texto": "19384756R",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "imagen",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Repetido solo dentro del sello raster; no esperable desde extracción de texto."
+    }
+  ],
+  "falsos_positivos": []
+}

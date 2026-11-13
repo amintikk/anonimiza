@@ -1,0 +1,2 @@
+Solicitud (paréntesis sin cerrar; expresión .* literal y ruta C:\usuarios\ana\docs. «Texto citado»; comillas “curvas”.
+DNI: 12345678ZTeléfono: 612345678Fin de la comunicación.)

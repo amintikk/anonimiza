@@ -1,0 +1,26 @@
+{
+  "documento": "02a_documento_1MiB.txt",
+  "propiedad_probada": "Rendimiento y consistencia en texto de 1 MiB con datos cada 500 caracteres.",
+  "datos": [
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido repetido con frecuencia; todas las apariciones deben compartir marcador."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono móvil repetido en todos los bloques."
+    },
+    {
+      "texto": "ana.lopez0@ejemplo.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Primer correo de la serie; todos los correos individuales deben detectarse."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Procesa 1 MiB sin bloquearse ni truncar; detecta los datos distribuidos y restaura el texto original completo."
+}

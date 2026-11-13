@@ -4,6 +4,7 @@ import { t } from '../i18n.ts';
 import { ocrPdf, readPdf, type OcrEvent, type PdfSource } from './pdf.ts';
 import { OcrClient } from '../ocr/client.ts';
 import { DocxError, readDocx, type DocxSource } from './docx.ts';
+import { PdfError } from './pdf.ts';
 export { wordXmlText } from './docx.ts';
 
 export const ACCEPT = '.pdf,.docx,.txt,.md,.csv,.json,.log,.eml,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/*';
@@ -20,15 +21,30 @@ export interface Extracted {
 
 const ocr = new OcrClient();
 
+/** pdf.js reports its failures in English and by name: say what is wrong with the file, in the app's language. */
+function pdfProblem(e: unknown): unknown {
+  const name = (e as { name?: string } | null)?.name ?? '';
+  const msg = String((e as Error | null)?.message ?? e);
+  if (name === 'PasswordException') return new Error(t('El PDF está protegido con contraseña. Quítala antes de anonimizarlo.'));
+  if (e instanceof PdfError) return new Error(t('El PDF no tiene páginas.'));
+  if (name === 'InvalidPDFException' || name === 'MissingPDFException' || /invalid pdf|corrupt|structure/i.test(msg))
+    return new Error(t('El PDF está dañado o no es un PDF válido.'));
+  return e;
+}
+
 export async function extractFile(file: File, onOcr?: (e: OcrEvent) => void): Promise<Extracted> {
   if (file.size > MAX_BYTES) throw new Error(t('El archivo pesa más de 50 MB.'));
   const name = file.name.toLowerCase();
   if (name.endsWith('.pdf') || file.type === 'application/pdf') {
     const bytes = new Uint8Array(await file.arrayBuffer());
-    const pdf = await readPdf(bytes);
+    const pdf = await readPdf(bytes).catch((e) => {
+      throw pdfProblem(e);
+    });
     if (pdf.text.replace(/\s/g, '')) return { text: pdf.text, pdf };
     // Scanned or re-printed as images: nothing can be copied, so the pages are read with OCR.
-    const read = await ocrPdf(bytes, ocr, onOcr);
+    const read = await ocrPdf(bytes, ocr, onOcr).catch((e) => {
+      throw pdfProblem(e);
+    });
     if (!read.text.replace(/\s/g, '')) throw new Error(t('El OCR no encontró texto en este PDF.'));
     return { text: read.text, pdf: read, ocr: true };
   }

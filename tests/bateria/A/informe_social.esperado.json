@@ -1,0 +1,69 @@
+{
+  "documento": "informe_social.txt",
+  "datos": [
+    {
+      "texto": "MATEO RUIZ DE ALDA",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "57382041P",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Pza. de las Nubes 6, 15008 A Coruña",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "644-019-237",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "archivo+prueba@administracion.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "46/0812233",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES4621001234000098765432",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "33012A004001230000QZ",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia catastral inventada."
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Matrícula española ficticia."
+    }
+  ],
+  "falsos_positivos": []
+}

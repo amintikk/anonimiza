@@ -1,0 +1,25 @@
+{
+  "documento": "07_dni_formato_y_expediente.txt",
+  "propiedad_probada": "Equivalencia por formato del mismo DNI y exclusión de una referencia numérica parecida.",
+  "datos": [
+    {
+      "texto": "12.345.678-Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "Primera escritura del DNI válido."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "Mismo DNI sin puntos ni guion; debe compartir marcador con la forma anterior."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "12345678/2024",
+      "motivo": "Número de expediente con año; no es DNI aunque su prefijo sean ocho cifras."
+    }
+  ],
+  "resultado_esperado": "Ambas grafías del DNI usan el mismo marcador y el expediente no se confunde con otro DNI."
+}

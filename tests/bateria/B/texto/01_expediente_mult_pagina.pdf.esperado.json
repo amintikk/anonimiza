@@ -1,0 +1,85 @@
+{
+  "documento": "01_expediente_mult_pagina.pdf",
+  "paginas": 3,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Elena Vidal Moreno",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cabecera",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Repetido en varias páginas."
+    },
+    {
+      "texto": "19384756R",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "C/ Olmo 17, 3.º B, 28014 Madrid",
+      "tipo": "DIRECCION",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "elena.vidal@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "tabla",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "+34 612 345 789",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES9121000418450200051332",
+      "tipo": "IBAN",
+      "pagina": 2,
+      "ubicacion": "tabla",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "Lucía Fernández Ríos",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "pie",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato personal solo en el pie, repetido en todas las páginas."
+    },
+    {
+      "texto": "48276135M",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "pie",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato personal solo en el pie, repetido en todas las páginas."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "2024/01842",
+      "motivo": "Referencia de expediente, no DNI."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "documento": "06_informe_rehabilitacion.docx",
+  "tipo": "informe con control de cambios e imagen alternativa",
+  "datos": [
+    {
+      "texto": "Brais Varela Lamas",
+      "tipo": "PERSONA",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en la cabecera."
+    },
+    {
+      "texto": "56789012D",
+      "tipo": "DNI",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en la cabecera."
+    },
+    {
+      "texto": "Brais Varela Lamas",
+      "tipo": "PERSONA",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en el pie."
+    },
+    {
+      "texto": "56789012D",
+      "tipo": "DNI",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en el pie."
+    },
+    {
+      "texto": "Brais Varela Lamas",
+      "tipo": "PERSONA",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "Celda combinada; el dato se repite en otra parte del documento."
+    },
+    {
+      "texto": "56789012D",
+      "tipo": "DNI",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "DNI en celda y también partido en runs con negrita parcial."
+    },
+    {
+      "texto": "56789012D",
+      "tipo": "DNI",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "El DNI está partido en varios w:r y la mitad está en negrita."
+    },
+    {
+      "texto": "Ana Ruiz\nGil",
+      "tipo": "PERSONA",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Nombre con w:br dentro del texto."
+    },
+    {
+      "texto": "+34 981 234 567",
+      "tipo": "TELEFONO",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Separado de la etiqueta mediante w:tab."
+    },
+    {
+      "texto": "Brais Varela Lamas",
+      "tipo": "PERSONA",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "Resultado visible de MERGEFIELD."
+    },
+    {
+      "texto": "secretaria@example.com",
+      "tipo": "EMAIL",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "El valor de HYPERLINK está en el código de campo y en su resultado visible."
+    },
+    {
+      "texto": "Ana Ruiz Gil",
+      "tipo": "PERSONA",
+      "ubicacion": "control_cambios_insertado",
+      "debe_limpiarse": true,
+      "nota": "Vaciar autor del w:ins."
+    },
+    {
+      "texto": "Brais Varela Lamas",
+      "tipo": "PERSONA",
+      "ubicacion": "control_cambios_insertado",
+      "debe_limpiarse": true,
+      "nota": "Conservar el texto insertado y anonimizarlo."
+    },
+    {
+      "texto": "56789012D",
+      "tipo": "DNI",
+      "ubicacion": "control_cambios_eliminado",
+      "debe_limpiarse": true,
+      "nota": "Eliminar texto DNI retenido por track changes."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "Expediente ficticio",
+      "motivo": "Texto genérico sin identificador personal."
+    }
+  ]
+}

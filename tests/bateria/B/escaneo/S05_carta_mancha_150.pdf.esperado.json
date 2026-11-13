@@ -1,0 +1,58 @@
+{
+  "documento": "S05_carta_mancha_150.pdf",
+  "paginas": 1,
+  "tipo": "escaneo",
+  "datos": [
+    {
+      "texto": "Vega Prieto Luna",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "29184736E",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "OCR en página escaneada."
+    },
+    {
+      "texto": "+34 971 203 548",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "v.prieto@example.net",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES3521000456780200051332",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "IBAN con espacios entre grupos en la imagen."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "FORMULARIO",
+      "motivo": "Rótulo genérico, no dato personal."
+    }
+  ]
+}

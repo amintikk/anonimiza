@@ -1,0 +1,69 @@
+{
+  "documento": "correo_reenviado.txt",
+  "datos": [
+    {
+      "texto": "Rosa Mar Pilar",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "71530264B",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Pza. de las Nubes 6, 15008 A Coruña",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "turno.7@unidad.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "EXP-AR-2026-009184",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES6536220763124866948781",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "Mar",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ambiguo frente al sustantivo común."
+    },
+    {
+      "texto": "Pilar",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ambiguo también usado como sustantivo."
+    }
+  ],
+  "falsos_positivos": []
+}

@@ -1,0 +1,103 @@
+{
+  "documento": "08_dictamen_pericial.docx",
+  "tipo": "dictamen con segundo comentario y segunda miniatura",
+  "datos": [
+    {
+      "texto": "Noa Iglesias Freire",
+      "tipo": "PERSONA",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en la cabecera."
+    },
+    {
+      "texto": "78901234F",
+      "tipo": "DNI",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en la cabecera."
+    },
+    {
+      "texto": "Noa Iglesias Freire",
+      "tipo": "PERSONA",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en el pie."
+    },
+    {
+      "texto": "78901234F",
+      "tipo": "DNI",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en el pie."
+    },
+    {
+      "texto": "Noa Iglesias Freire",
+      "tipo": "PERSONA",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "Celda combinada; el dato se repite en otra parte del documento."
+    },
+    {
+      "texto": "78901234F",
+      "tipo": "DNI",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "DNI en celda y también partido en runs con negrita parcial."
+    },
+    {
+      "texto": "78901234F",
+      "tipo": "DNI",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "El DNI está partido en varios w:r y la mitad está en negrita."
+    },
+    {
+      "texto": "Ana Ruiz\nGil",
+      "tipo": "PERSONA",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Nombre con w:br dentro del texto."
+    },
+    {
+      "texto": "+34 981 234 567",
+      "tipo": "TELEFONO",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Separado de la etiqueta mediante w:tab."
+    },
+    {
+      "texto": "Noa Iglesias Freire",
+      "tipo": "PERSONA",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "Resultado visible de MERGEFIELD."
+    },
+    {
+      "texto": "secretaria@example.com",
+      "tipo": "EMAIL",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "El valor de HYPERLINK está en el código de campo y en su resultado visible."
+    },
+    {
+      "texto": "Xurxo Méndez",
+      "tipo": "PERSONA",
+      "ubicacion": "comentario",
+      "debe_limpiarse": true,
+      "nota": "El autor del comentario debe quedar vacío."
+    },
+    {
+      "texto": "+34 633 555 666",
+      "tipo": "TELEFONO",
+      "ubicacion": "comentario",
+      "debe_limpiarse": true,
+      "nota": "El teléfono del cuerpo del comentario debe limpiarse."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "Expediente ficticio",
+      "motivo": "Texto genérico sin identificador personal."
+    }
+  ]
+}

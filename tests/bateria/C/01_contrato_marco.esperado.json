@@ -1,0 +1,138 @@
+{
+  "documento": "01_contrato_marco.docx",
+  "tipo": "contrato con partes complejas, notas y metadatos",
+  "datos": [
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en la cabecera."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "ubicacion": "cabecera",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en la cabecera."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "Nombre que aparece en el pie."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "ubicacion": "pie",
+      "debe_limpiarse": true,
+      "nota": "DNI que aparece en el pie."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "Celda combinada; el dato se repite en otra parte del documento."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "ubicacion": "tabla",
+      "debe_limpiarse": true,
+      "nota": "DNI en celda y también partido en runs con negrita parcial."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "El DNI está partido en varios w:r y la mitad está en negrita."
+    },
+    {
+      "texto": "Ana Ruiz\nGil",
+      "tipo": "PERSONA",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Nombre con w:br dentro del texto."
+    },
+    {
+      "texto": "+34 981 234 567",
+      "tipo": "TELEFONO",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": "Separado de la etiqueta mediante w:tab."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "Resultado visible de MERGEFIELD."
+    },
+    {
+      "texto": "secretaria@example.com",
+      "tipo": "EMAIL",
+      "ubicacion": "campo",
+      "debe_limpiarse": true,
+      "nota": "El valor de HYPERLINK está en el código de campo y en su resultado visible."
+    },
+    {
+      "texto": "Rúa do Vilar 19, 2.º B, 15705 Santiago de Compostela",
+      "tipo": "DIRECCION",
+      "ubicacion": "cuerpo",
+      "debe_limpiarse": true,
+      "nota": ""
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "cuadro",
+      "debe_limpiarse": true,
+      "nota": "Nombre dentro de cuadro de texto VML."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "nota",
+      "debe_limpiarse": true,
+      "nota": "Nota al pie y nota final; texto de ambas debe sustituirse."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "metadatos",
+      "debe_limpiarse": true,
+      "nota": "creator y lastModifiedBy deben quedar vacíos."
+    },
+    {
+      "texto": "Bufete Rivera & Asociados",
+      "tipo": "OTRO",
+      "ubicacion": "metadatos",
+      "debe_limpiarse": true,
+      "nota": "Company debe quedar vacío."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "ubicacion": "custom",
+      "debe_limpiarse": true,
+      "nota": "El valor de Expediente debe anonimizarse en custom.xml."
+    },
+    {
+      "texto": "Lucía Fernández Varela",
+      "tipo": "PERSONA",
+      "ubicacion": "miniatura",
+      "debe_limpiarse": true,
+      "nota": "Eliminar docProps/thumbnail.jpeg y su relación; la miniatura muestra el dato."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "Expediente ficticio",
+      "motivo": "Texto genérico sin identificador personal."
+    }
+  ]
+}

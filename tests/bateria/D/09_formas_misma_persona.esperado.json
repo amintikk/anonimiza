@@ -1,0 +1,44 @@
+{
+  "documento": "09_formas_misma_persona.txt",
+  "propiedad_probada": "Coherencia de identidad entre nombre, inversión de orden, inicial, tratamiento, forma extensa y correo asociado.",
+  "datos": [
+    {
+      "texto": "Juan García",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Forma nombre + apellido."
+    },
+    {
+      "texto": "GARCÍA, Juan",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Apellidos en mayúsculas e inversión de orden."
+    },
+    {
+      "texto": "J. García",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Inicial y apellido; debería enlazarse si el contexto permite hacerlo con seguridad."
+    },
+    {
+      "texto": "Sr. García",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Tratamiento más apellido."
+    },
+    {
+      "texto": "García Pérez, Juan Antonio",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Forma extensa con dos apellidos y nombre compuesto; comprobar si comparte identidad o se mantiene aparte si es ambiguo."
+    },
+    {
+      "texto": "juan.garcia@despacho.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Correo; puede apoyar la asociación con Juan García, pero no debe cambiar el original restaurado."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Las formas que son inequívocamente de Juan García comparten marcador; las abreviaturas se vinculan con cautela y la restauración recupera cada fragmento exacto."
+}

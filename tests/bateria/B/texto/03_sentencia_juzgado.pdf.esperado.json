@@ -1,0 +1,44 @@
+{
+  "documento": "03_sentencia_juzgado.pdf",
+  "paginas": 2,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Adrián López Castaño",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "23918475S",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "B12876543",
+      "tipo": "CIF",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "C/ Mayor 6, 1.º, 33003 Oviedo",
+      "tipo": "DIRECCION",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

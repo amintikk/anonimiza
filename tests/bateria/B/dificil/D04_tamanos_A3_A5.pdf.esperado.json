@@ -1,0 +1,35 @@
+{
+  "documento": "D04_tamanos_A3_A5.pdf",
+  "paginas": 2,
+  "tipo": "dificil",
+  "datos": [
+    {
+      "texto": "Eva Luna Rey",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "30918472C",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES6621000498761234567891",
+      "tipo": "IBAN",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": []
+}

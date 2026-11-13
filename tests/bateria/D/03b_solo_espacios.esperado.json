@@ -1,0 +1,7 @@
+{
+  "documento": "03b_solo_espacios.txt",
+  "propiedad_probada": "Entrada compuesta solo por espacios, tabulador, salto y NBSP.",
+  "datos": [],
+  "falsos_positivos": [],
+  "resultado_esperado": "No inventa entidades y conserva o normaliza solo según el contrato de extracción; no falla."
+}

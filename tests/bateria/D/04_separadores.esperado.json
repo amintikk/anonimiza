@@ -1,0 +1,55 @@
+{
+  "documento": "04_separadores.txt",
+  "propiedad_probada": "Delimitadores en la misma fila: punto y coma, coma, barra, barra vertical, tabulador y datos concatenados.",
+  "datos": [
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido con etiqueta."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Número móvil separado por coma."
+    },
+    {
+      "texto": "ana.lopez@ejemplo.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Correo separado por barra."
+    },
+    {
+      "texto": "X1234567M",
+      "tipo": "NIE",
+      "debe_detectarse": true,
+      "nota": "NIE válido junto a barra vertical."
+    },
+    {
+      "texto": "EXP-2024-AB",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "nota": "Referencia contextual de expediente."
+    },
+    {
+      "texto": "B12345674",
+      "tipo": "CIF",
+      "debe_detectarse": true,
+      "nota": "CIF válido tras tabulador."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": false,
+      "nota": "En la concatenación no debe extraer el DNI como subcadena de «12345678ZJuan»."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "12345678ZJuan",
+      "motivo": "Código concatenado con letras; no debe cortarse y tratarse como DNI."
+    }
+  ],
+  "resultado_esperado": "Detecta entidades delimitadas y evita extraer un identificador como subcadena de un token alfanumérico pegado."
+}

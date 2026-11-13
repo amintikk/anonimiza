@@ -121,6 +121,9 @@ export const EN: Record<string, string> = {
   'El PDF no contiene texto seleccionable (puede ser una imagen escaneada). Esta herramienta no hace OCR.':
     'The PDF contains no selectable text (it may be a scanned image). This tool does not do OCR.',
   'No se pudo abrir el DOCX: el archivo está dañado o no es un documento de Word.': 'The DOCX could not be opened: the file is damaged or is not a Word document.',
+  'El PDF está protegido con contraseña. Quítala antes de anonimizarlo.': 'The PDF is password-protected. Remove the password before anonymising it.',
+  'El PDF está dañado o no es un PDF válido.': 'The PDF is damaged or is not a valid PDF.',
+  'El PDF no tiene páginas.': 'The PDF has no pages.',
 
   // Engine and model store (engine/client.ts, engine/store.ts, engine/worker.ts)
   'No se pudo iniciar el motor de inferencia': 'The inference engine could not be started',

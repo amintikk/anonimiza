@@ -1,0 +1,14 @@
+{
+  "documento": "03g_emoji_telefono.txt",
+  "propiedad_probada": "Teléfono con emojis intercalados entre cada dígito.",
+  "datos": [
+    {
+      "texto": "6📞1📞2📞3📞4📞5📞6📞7📞8📞9",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono español con separadores emoji intercalados; la secuencia normalizada debe reconocerse."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "No se rompe por los emojis; detecta el número completo o lo señala como no reconocido sin marcar fragmentos engañosos."
+}

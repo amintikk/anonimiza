@@ -1,0 +1,32 @@
+{
+  "documento": "02b_linea_50KiB.txt",
+  "propiedad_probada": "Procesamiento de 50 KiB en una sola línea sin saltos.",
+  "datos": [
+    {
+      "texto": "Ana Lopez",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Nombre presente en una sola línea extensa."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido seguido de puntuación."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono móvil."
+    },
+    {
+      "texto": "ana.lopez@ejemplo.es",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "nota": "Correo repetido."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Procesa toda la línea sin cortar el final ni requerir saltos; las apariciones repetidas reciben el mismo marcador."
+}

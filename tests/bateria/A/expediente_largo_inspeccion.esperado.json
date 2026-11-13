@@ -1,0 +1,82 @@
+{
+  "documento": "expediente_largo_inspeccion.txt",
+  "datos": [
+    {
+      "texto": "Saúl Urrutia Ñíguez",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "57382041P",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Avda. de la Bruma 39, 33012 Oviedo",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "+34 699 120 334",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "archivo+prueba@administracion.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "46/0812233",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES4621001234000098765432",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "33012A004001230000QZ",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia catastral inventada."
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Matrícula española ficticia."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "8.765,43",
+      "motivo": "Importe."
+    },
+    {
+      "texto": "12/03/2026",
+      "motivo": "Fecha."
+    },
+    {
+      "texto": "48213907",
+      "motivo": "Folio."
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "documento": "nota_interior.txt",
+  "datos": [
+    {
+      "texto": "Saúl Urrutia Ñíguez",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "57382041P",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "C/ Olmo Azul, 17, 28041 Madrid",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "6 17 08 92 43",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "archivo+prueba@administracion.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "46/0812233",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES4621001234000098765432",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "33012A004001230000QZ",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia catastral inventada."
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Matrícula española ficticia."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "La rosa de los vientos",
+      "motivo": "Expresión común."
+    }
+  ]
+}

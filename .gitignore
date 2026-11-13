@@ -5,3 +5,5 @@ public/pdfjs/
 *.onnx
 __pycache__/
 .env
+bateria-resultados/
+bateria-e2e-salida/

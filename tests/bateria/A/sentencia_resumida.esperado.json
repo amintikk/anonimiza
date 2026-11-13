@@ -1,0 +1,76 @@
+{
+  "documento": "sentencia_resumida.txt",
+  "datos": [
+    {
+      "texto": "MATEO RUIZ DE ALDA",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "71530264B",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Avda. del Nublado 204, 3.º A, 46018 València",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "+34 699 120 334",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "archivo+prueba@administracion.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "EXP-AR-2026-009184",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES6536220763124866948781",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "33012A004001230000QZ",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia catastral inventada."
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Matrícula española ficticia."
+    },
+    {
+      "texto": "Mar",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ambiguo frente al sustantivo común."
+    }
+  ],
+  "falsos_positivos": []
+}

@@ -1,0 +1,26 @@
+{
+  "documento": "D06_anotacion_comentario.pdf",
+  "paginas": 1,
+  "tipo": "dificil",
+  "datos": [
+    {
+      "texto": "52619483P",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "anotacion",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato en el contenido de una anotación/comentario PDF."
+    },
+    {
+      "texto": "marta.lopez@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "anotacion",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato en el contenido de una anotación/comentario PDF."
+    }
+  ],
+  "falsos_positivos": []
+}

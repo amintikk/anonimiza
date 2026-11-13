@@ -40,8 +40,16 @@ async function open(bytes: Uint8Array): Promise<{ doc: PDFDocumentProxy; destroy
     standardFontDataUrl: '/pdfjs/standard_fonts/',
     useSystemFonts: false,
   });
-  return { doc: await task.promise, destroy: () => task.destroy(), pdfjs };
+  const doc = await task.promise;
+  if (!doc.numPages) {
+    await task.destroy();
+    throw new PdfError('empty');
+  }
+  return { doc, destroy: () => task.destroy(), pdfjs };
 }
+
+/** A PDF that opens but cannot be read as pages (no pages at all). */
+export class PdfError extends Error {}
 
 /** The text of a PDF, line by line, and where each character is. */
 export async function readPdf(bytes: Uint8Array): Promise<PdfSource> {

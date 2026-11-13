@@ -1,0 +1,499 @@
+{
+  "documento": "S08_lote_9pag_200.pdf",
+  "paginas": 9,
+  "tipo": "escaneo",
+  "datos": [
+    {
+      "texto": "Pau Ríos Mateo",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "17382946R",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1981",
+      "tipo": "OTRO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 682 314 801",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "pau.rios@example.com",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1121000418450200051301",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Clara Benet Soler",
+      "tipo": "PERSONA",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "38472619T",
+      "tipo": "DNI",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1982",
+      "tipo": "OTRO",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 692 314 802",
+      "tipo": "TELEFONO",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "clara.benet@example.es",
+      "tipo": "EMAIL",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1221000418450200051302",
+      "tipo": "IBAN",
+      "pagina": 2,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Marina Roldán Gil",
+      "tipo": "PERSONA",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "40918273F",
+      "tipo": "DNI",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1983",
+      "tipo": "OTRO",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 602 314 803",
+      "tipo": "TELEFONO",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "m.roldan@example.es",
+      "tipo": "EMAIL",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1321000418450200051303",
+      "tipo": "IBAN",
+      "pagina": 3,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Óscar Pons Vidal",
+      "tipo": "PERSONA",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "23847196M",
+      "tipo": "DNI",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1984",
+      "tipo": "OTRO",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 612 314 804",
+      "tipo": "TELEFONO",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "o.pons@example.org",
+      "tipo": "EMAIL",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1421000418450200051304",
+      "tipo": "IBAN",
+      "pagina": 4,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Leire Acosta Navas",
+      "tipo": "PERSONA",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "51829374D",
+      "tipo": "DNI",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1985",
+      "tipo": "OTRO",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 622 314 805",
+      "tipo": "TELEFONO",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "leire.acosta@example.net",
+      "tipo": "EMAIL",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1521000418450200051305",
+      "tipo": "IBAN",
+      "pagina": 5,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Tomás Vidal Roca",
+      "tipo": "PERSONA",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "18746392Q",
+      "tipo": "DNI",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1986",
+      "tipo": "OTRO",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 632 314 806",
+      "tipo": "TELEFONO",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "t.vidal@example.com",
+      "tipo": "EMAIL",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1621000418450200051306",
+      "tipo": "IBAN",
+      "pagina": 6,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Aroa Serra León",
+      "tipo": "PERSONA",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "32718465K",
+      "tipo": "DNI",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1987",
+      "tipo": "OTRO",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 642 314 807",
+      "tipo": "TELEFONO",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "aroa.serra@example.es",
+      "tipo": "EMAIL",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1721000418450200051307",
+      "tipo": "IBAN",
+      "pagina": 7,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Nicolás Gil Moya",
+      "tipo": "PERSONA",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "46271938S",
+      "tipo": "DNI",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1988",
+      "tipo": "OTRO",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 652 314 808",
+      "tipo": "TELEFONO",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "n.gil@example.org",
+      "tipo": "EMAIL",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1821000418450200051308",
+      "tipo": "IBAN",
+      "pagina": 8,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    },
+    {
+      "texto": "Elsa Calvo Rius",
+      "tipo": "PERSONA",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "OCR en página de lote."
+    },
+    {
+      "texto": "29184736B",
+      "tipo": "DNI",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Impreso pequeño en muestra de nueve páginas."
+    },
+    {
+      "texto": "01/01/1989",
+      "tipo": "OTRO",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha manuscrita tipografiada; salida OCR debe conservar forma."
+    },
+    {
+      "texto": "+34 662 314 809",
+      "tipo": "TELEFONO",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "elsa.calvo@example.net",
+      "tipo": "EMAIL",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "ES1921000418450200051309",
+      "tipo": "IBAN",
+      "pagina": 9,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Espacios de impresión entre grupos."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "FORMULARIO",
+      "motivo": "Rótulo genérico, no dato personal."
+    }
+  ]
+}

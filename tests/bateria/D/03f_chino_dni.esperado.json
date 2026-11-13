@@ -1,0 +1,14 @@
+{
+  "documento": "03f_chino_dni.txt",
+  "propiedad_probada": "DNI ASCII incrustado en prosa china.",
+  "datos": [
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "Identificador español válido rodeado por texto CJK."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Detecta el DNI y conserva intacto el texto chino."
+}

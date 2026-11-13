@@ -1,0 +1,5 @@
+HISTORIAL MÉDICO FICTICIO
+Caso clínico completamente ficticio para probar detección.
+
+Interesado/a: Aldara de la Fuente. DNI 38174625F; domicilio Calle del Bronce, 81, 41019 Sevilla. Teléfono +34 699 120 334; correo ines.delvalle@ejemplo.invalid. Expediente RC-2025-0037612. Cuenta ES4621001234000098765432.
+Importe 12.345,67 euros; fecha 03/11/2026; código de lote 91427536.

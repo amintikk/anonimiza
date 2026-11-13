@@ -1,0 +1,7 @@
+{
+  "documento": "03a_vacio.txt",
+  "propiedad_probada": "Entrada vacía.",
+  "datos": [],
+  "falsos_positivos": [],
+  "resultado_esperado": "Acepta la cadena vacía y devuelve una salida vacía restaurable, sin error."
+}

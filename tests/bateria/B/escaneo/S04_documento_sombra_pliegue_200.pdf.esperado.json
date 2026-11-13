@@ -1,0 +1,49 @@
+{
+  "documento": "S04_documento_sombra_pliegue_200.pdf",
+  "paginas": 1,
+  "tipo": "escaneo",
+  "datos": [
+    {
+      "texto": "41829376W",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "OCR en página escaneada."
+    },
+    {
+      "texto": "Raúl Nieto Campos",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "28/8493027615",
+      "tipo": "NSS",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "19/06/2024",
+      "tipo": "OTRO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha impresa en la imagen escaneada."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "FORMULARIO",
+      "motivo": "Rótulo genérico, no dato personal."
+    }
+  ]
+}

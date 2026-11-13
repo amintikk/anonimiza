@@ -1,0 +1,53 @@
+{
+  "documento": "12_imagen_embebida_firma.pdf",
+  "paginas": 1,
+  "tipo": "texto",
+  "datos": [
+    {
+      "texto": "Inés Serrano Gil",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "X4827163T",
+      "tipo": "NIE",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "RECIBÍ: 14/06/2024",
+      "tipo": "OTRO",
+      "pagina": 1,
+      "ubicacion": "imagen",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Texto dentro de foto incrustada; sin texto PDF seleccionable."
+    },
+    {
+      "texto": "ES7921000813610123456789",
+      "tipo": "IBAN",
+      "pagina": 1,
+      "ubicacion": "imagen",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "IBAN aparece solo en la fotografía rasterizada."
+    },
+    {
+      "texto": "Inés S. Gil",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "imagen",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Firma manuscrita simulada como imagen."
+    }
+  ],
+  "falsos_positivos": []
+}

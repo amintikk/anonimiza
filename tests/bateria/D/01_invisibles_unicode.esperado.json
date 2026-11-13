@@ -1,0 +1,44 @@
+{
+  "documento": "01_invisibles_unicode.txt",
+  "propiedad_probada": "Tolerancia a U+200B, U+00AD, NBSP, U+202F, NFD y dígitos arábigo-índicos.",
+  "datos": [
+    {
+      "texto": "1234​5678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido con U+200B insertado; se espera detección sin borrar el carácter al restaurar."
+    },
+    {
+      "texto": "Calle de Alcá­la, 120, 28009 Madrid",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "nota": "Dirección con guion blando dentro del topónimo."
+    },
+    {
+      "texto": "Ana María López",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "NBSP entre nombre y segundo nombre."
+    },
+    {
+      "texto": "José Álvarez",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Nombre con acentos en forma NFD; debe coincidir con la forma NFC."
+    },
+    {
+      "texto": "ES91 2100 0418 4502 0005 1332",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "nota": "IBAN español válido con espacios estrechos U+202F."
+    },
+    {
+      "texto": "+34 ٦١٢٣٤٥٦٧٨",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono escrito solo con dígitos arábigo-índicos, sin dígitos ASCII mezclados."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Detecta los datos personales pese a los caracteres invisibles y variantes Unicode; la restauración conserva exactamente la grafía original."
+}

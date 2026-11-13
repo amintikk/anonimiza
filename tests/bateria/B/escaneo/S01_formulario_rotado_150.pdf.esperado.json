@@ -1,0 +1,67 @@
+{
+  "documento": "S01_formulario_rotado_150.pdf",
+  "paginas": 1,
+  "tipo": "escaneo",
+  "datos": [
+    {
+      "texto": "Nora Salcedo Vega",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "53817426A",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "OCR en página escaneada."
+    },
+    {
+      "texto": "17/03/2024",
+      "tipo": "OTRO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": "Fecha impresa en la imagen escaneada."
+    },
+    {
+      "texto": "+34 633 204 817",
+      "tipo": "TELEFONO",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    },
+    {
+      "texto": "nora.salcedo@example.es",
+      "tipo": "EMAIL",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "media",
+      "nota": ""
+    },
+    {
+      "texto": "C/ Prado 8, 1.º, 09004 Burgos",
+      "tipo": "DIRECCION",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": ""
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "FORMULARIO",
+      "motivo": "Rótulo genérico, no dato personal."
+    }
+  ]
+}

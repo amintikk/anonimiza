@@ -1,0 +1,26 @@
+{
+  "documento": "08b_utf16le_bom.txt",
+  "propiedad_probada": "Lectura de archivo .txt UTF-16LE con BOM.",
+  "datos": [
+    {
+      "texto": "Juan García",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "nota": "Nombre de persona en archivo UTF-16LE."
+    },
+    {
+      "texto": "12345678Z",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "nota": "DNI válido en archivo UTF-16LE."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "nota": "Teléfono en archivo UTF-16LE."
+    }
+  ],
+  "falsos_positivos": [],
+  "resultado_esperado": "Interpreta el BOM y decodifica UTF-16LE sin introducir U+FFFD ni desordenar caracteres; luego permite restaurar."
+}

@@ -1,0 +1,26 @@
+{
+  "documento": "D02_danado_truncado.pdf",
+  "paginas": 1,
+  "tipo": "dificil",
+  "datos": [
+    {
+      "texto": "Mario Roca",
+      "tipo": "PERSONA",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato está en el prefijo válido; archivo truncado antes del cierre."
+    },
+    {
+      "texto": "47382916N",
+      "tipo": "DNI",
+      "pagina": 1,
+      "ubicacion": "cuerpo",
+      "debe_detectarse": true,
+      "dificultad": "alta",
+      "nota": "Dato está en el prefijo válido; archivo truncado antes del cierre."
+    }
+  ],
+  "falsos_positivos": []
+}

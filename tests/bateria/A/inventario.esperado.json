@@ -1,0 +1,72 @@
+{
+  "documento": "inventario.txt",
+  "datos": [
+    {
+      "texto": "D.ª Elba Vázquez Pardo",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "38174625F",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "C/ Olmo Azul, 17, 28041 Madrid",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "+34 622.81.90.47",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "ines.delvalle@ejemplo.invalid",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "RC-2025-0037612",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES4621001234000098765432",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "12.345,67",
+      "motivo": "Importe."
+    },
+    {
+      "texto": "03/11/2026",
+      "motivo": "Fecha, no teléfono."
+    },
+    {
+      "texto": "91427536",
+      "motivo": "Código numérico sin etiqueta personal."
+    },
+    {
+      "texto": "La rosa de los vientos",
+      "motivo": "Expresión común."
+    }
+  ]
+}

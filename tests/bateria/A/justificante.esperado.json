@@ -1,0 +1,90 @@
+{
+  "documento": "justificante.txt",
+  "datos": [
+    {
+      "texto": "Saúl Urrutia Ñíguez",
+      "tipo": "PERSONA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Nombre ficticio con partículas, tildes o palabras comunes."
+    },
+    {
+      "texto": "62041853C",
+      "tipo": "DNI",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "DNI sintético y control válido."
+    },
+    {
+      "texto": "Avda. del Nublado 204, 3.º A, 46018 València",
+      "tipo": "DIRECCION",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dirección con abreviatura y código postal."
+    },
+    {
+      "texto": "612345678",
+      "tipo": "TELEFONO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Teléfono español con formato variable."
+    },
+    {
+      "texto": "archivo+prueba@administracion.test",
+      "tipo": "EMAIL",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Dominio reservado para pruebas."
+    },
+    {
+      "texto": "INC-77821034",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia administrativa sintética."
+    },
+    {
+      "texto": "ES2139431486086661697230",
+      "tipo": "IBAN",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "IBAN español válido por módulo 97."
+    },
+    {
+      "texto": "X9513358Y",
+      "tipo": "NIE",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "NIE X/Y/Z inventado y válido."
+    },
+    {
+      "texto": "B14650667",
+      "tipo": "CIF",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "CIF sintético con control válido."
+    },
+    {
+      "texto": "298513137727",
+      "tipo": "NSS",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "NSS sintético con mod 97 válido."
+    },
+    {
+      "texto": "33012A004001230000QZ",
+      "tipo": "REFERENCIA",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Referencia catastral inventada."
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "OTRO",
+      "debe_detectarse": true,
+      "dudoso": false,
+      "nota": "Matrícula española ficticia."
+    }
+  ],
+  "falsos_positivos": []
+}

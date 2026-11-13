@@ -1,0 +1,5 @@
+FACTURA SIMPLIFICADA
+Se emite factura por servicios descritos en el anexo.
+
+Interesado/a: D.ª Elba Vázquez Pardo. DNI 91427536Y; domicilio Avda. de la Bruma 39, 33012 Oviedo. Teléfono 0034 954 123 789; correo ines.delvalle@ejemplo.invalid. Expediente CAT-41-0082-XY. Cuenta ES6536220763124866948781.
+Importe 12.345,67 euros; fecha 03/11/2026; código de lote 91427536.

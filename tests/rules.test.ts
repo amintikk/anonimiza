@@ -130,3 +130,13 @@ test('data split by PDF line wraps and longer labels', () => {
   assert.deepEqual(v('el carné de conducir desde 2015 y la póliza de hogar renovada'), []);
   assert.deepEqual(v('Usuario de la aplicación: ninguno'), []);
 });
+
+test('invisible characters inside an identifier and digits of other scripts are read, and positions point at the original text', () => {
+  const text = 'DNI del solicitante: 1234​5678Z. Teléfono: +34 ٦١٢٣٤٥٦٧٨. Calle Alcá­la 120.';
+  const dni = findRules(text).find((r) => r.kind === 'dni');
+  assert.ok(dni, 'DNI with a zero-width space is found');
+  assert.equal(text.slice(dni.start, dni.end), '1234​5678Z');
+  const phone = findRules(text).find((r) => r.kind === 'phone');
+  assert.ok(phone, 'phone written with Arabic-Indic digits is found');
+  assert.equal(text.slice(phone.start, phone.end), '+34 ٦١٢٣٤٥٦٧٨');
+});

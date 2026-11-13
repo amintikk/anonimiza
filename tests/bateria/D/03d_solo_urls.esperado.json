@@ -1,0 +1,12 @@
+{
+  "documento": "03d_solo_urls.txt",
+  "propiedad_probada": "URLs sin datos personales explícitos.",
+  "datos": [],
+  "falsos_positivos": [
+    {
+      "texto": "12345678",
+      "motivo": "Segmento numérico de URL sin etiqueta que lo identifique como DNI o referencia personal."
+    }
+  ],
+  "resultado_esperado": "Conserva las URLs y evita marcar dominios o segmentos numéricos por sí solos."
+}

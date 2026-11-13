@@ -276,8 +276,9 @@ const RULES: Rule[] = [
   { kind: 'nie', re: re(String.raw`${B}[XYZ]${SID}?\d{7}${SID}?[A-Z]${E}`), valid: validNie, doubtful: idTypo, reject: conjunction },
   // The letter may run straight into a capitalised name ("12345678ZJuan"), but not into a digit or a lower-case word.
   { kind: 'dni', re: re(String.raw`${B}\d{2}\.?\d{3}\.?\d{3}${SID}?[A-Z]`), valid: validDni, doubtful: idTypo, reject: (t, s, e) => glued(t, e) || conjunction(t, s, e) },
-  // Written with spaces between the groups ("53 464 097 E"): only with the right letter, so amounts do not match.
-  { kind: 'dni', re: re(String.raw`${B}\d{2} \d{3} \d{3}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: idTypo, reject: conjunction },
+  // Written with spaces between the groups ("53 464 097 E"): with the right letter, or flagged as doubtful with a wrong one
+  // ("11 223 344 z"), so that the number is still hidden. A lower-case word after a space is a conjunction, not a letter.
+  { kind: 'dni', re: re(String.raw`${B}\d{2} \d{3} \d{3}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: () => true, reject: conjunction },
   // A DNI without its letter, when the word says so ("DNI 12.345.678").
   { kind: 'dni', re: re(String.raw`${NB}\d{2}(?:\.|[ \n])?\d{3}(?:\.|[ \n])?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
   { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:${SEP_LOOSE})?\d{8}(?:${SEP_LOOSE})?\d{2}${NE}`), valid: validNss, doubtful: (s, t, st) => NSS_CUE(t, st) || /\D/.test(s) },

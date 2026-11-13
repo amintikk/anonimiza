@@ -2,6 +2,7 @@
 // contexts (with and without the word that announces it, in a sentence, a table, parentheses, at the end of
 // a line). Used by tests/variantes.test.ts and by `node tests/variantes.ts` to list what is not detected.
 import { findRules, type RuleKind } from '../src/engine/rules.ts';
+import { NEGATIVOS_RGPD, positivesRgpd } from './variantes_rgpd.ts';
 
 export interface Case { family: string; kind: RuleKind; value: string; text: string }
 
@@ -90,6 +91,7 @@ export function positives(): Case[] {
     ...product('plate', 'plate', plateForms, ['matrícula', 'Matrícula:']),
     ...birthCues.flatMap((c) => dateForms.map((d) => ({ family: 'birthdate', kind: 'birthdate' as RuleKind, value: d, text: `Paciente: ${c} ${d}, en Lleida.` }))),
     ...refCases.map(([t, v]) => ({ family: 'ref', kind: 'ref' as RuleKind, value: v, text: `Datos: ${t}. Fin.` })),
+    ...positivesRgpd(),
   ];
 }
 
@@ -109,7 +111,7 @@ export function check(): { misses: Case[]; total: number; falsePositives: string
     const start = c.text.indexOf(c.value);
     return !ms.some((m) => (m.kind === c.kind || (c.family === 'ref' && m.kind === 'ref')) && m.start <= start && m.end >= start + c.value.length);
   });
-  const falsePositives = NEGATIVES.flatMap((t) => findRules(t).map((m) => `${m.kind}:${t.slice(m.start, m.end)} ← ${t}`));
+  const falsePositives = [...NEGATIVES, ...NEGATIVOS_RGPD].flatMap((t) => findRules(t).map((m) => `${m.kind}:${t.slice(m.start, m.end)} ← ${t}`));
   return { misses, total: cases.length, falsePositives };
 }
 

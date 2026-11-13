@@ -132,7 +132,7 @@ const re = (s: string, flags = 'giu') => new RegExp(s, flags);
 const S = String.raw`(?:[ .\-]\n?|\n)`;
 const SID = String.raw`(?:[ \-]\n?|\n)`;
 // Groups joined by a separator with or without spaces around it: "43 / 10894567 / 29", "22 / 03 / 1988", "12-03-1988".
-const SEP_LOOSE = String.raw`(?:[^\S\n]*[ /\-][^\S\n]*\n?|\n)`;
+const SEP_LOOSE = String.raw`(?:[^\S\n]*[ ./\-][^\S\n]*\n?|\n)`;
 
 /** A wrong DNI/NIE letter is a typo only if the letter is attached ("48213907K", "48213907-K") or a capital. */
 const idTypo = (s: string) => !/\s[a-z]$/.test(s);
@@ -224,16 +224,28 @@ const TOWN = String.raw`\p{Lu}[\p{L}'’\-]*(?:[^\S\n]+(?:(?:de|del|la|las|los|e
 const ADDRESS_RE = new RegExp(String.raw`${B}${ci(STREET)}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n[º°.]?[^\S\n]*)?\d{1,4}(?![\d])(?:[^\n]|\n(?!\n)){0,60}?(?<!\d)\d{5}(?:[^\S\n]+|[^\S\n]*\n[^\S\n]*)${TOWN}`, 'gu');
 // Without the postal code, in a form or a card: street type, name, number, and the floor, stair and door after it
 // ("Calle de Sant Joan, número 34, Escalera B, Piso 4º, Puerta 2ª"). The street type and a number are required.
-const UNIT = String.raw`(?:esc(?:alera)?\.?|piso|planta|pta?\.?|puerta|portal|bloque|bl(?:oq)?\.?|letra|kil[oó]metro|km\.?)`;
+const UNIT = ci(String.raw`(?:esc(?:alera)?\.?|piso|planta|pta?\.?|puerta|portal|bloque|bl(?:oq)?\.?|letra|kil[oó]metro|km\.?)`);
+// Floor written as "3.º A", "2.º izq.", "1ª planta", or "bajo" (capitals included).
+const FLOOR = String.raw`(?:,?[^\S\n]*\d{1,2}\s?\.?\s?[ºª°](?:[^\S\n]*(?:\p{L}{1,4}\.?|[Pp]lanta|[Pp]iso))?|,?[^\S\n]*(?:[Bb]ajo|[Ee]ntresuelo|[ÁáAa]tico)(?!\p{L}))`;
+// The street name starts with a capital, a digit, or a preposition before one ("de Sant Joan", "de la Font").
+// Written without the i flag, so that "el martes" in running text, in lower case, is not a street.
+// At most four words in all, so that a sentence ("calle Mayor el sábado a las 5") is not taken for a street.
+const VIA_NAME = String.raw`(?:(?:(?:${ci('de|del|la|las|los|el')})[^\S\n]+|(?:${ci("d['’]")}))*(?:\p{Lu}|\d)[^\s,;\n]*(?:[^\S\n]+[^\s,;\n\d]+){0,3})`;
 const ADDRESS_NUM_RE = new RegExp(
-  String.raw`${B}${STREET}[^\S\n]+[^\n,;]{2,60}?,?[^\S\n]*(?:n(?:[º°.]|[uú]m(?:ero|\.)?)?[^\S\n]*)?\d{1,4}(?![\d])` +
-    String.raw`(?:,?[^\S\n]*${UNIT}[^\S\n]*[\p{L}\p{N}º°ª]{1,4}(?![\p{L}\p{N}]))*`,
-  'giu',
+  String.raw`${B}${ci(STREET)}[^\S\n]+${VIA_NAME},?[^\S\n]*(?:n(?:[º°.]|[uú]m(?:ero|\.)?)?[^\S\n]*)?\d{1,4}(?![\d])` +
+    String.raw`(?:,?[^\S\n]*${UNIT}[^\S\n]*[\p{L}\p{N}º°ª]{1,4}(?![\p{L}\p{N}])|${FLOOR})*`,
+  'gu',
 );
 // Written in a field of its own, after "Sensible" cues with a value that runs to the end of the cell or line.
 const SENSITIVE_CUE = String.raw`(?:grupo\s+sangu[ií]neo(?:\s+y\s+rh)?|tipo\s+de\s+sangre|alergias?(?:\s+(?:medicamentosas?|alimentarias?))?(?:\s*\/\s*otras?)?|intolerancias?|diagn[oó]stico|patolog[ií]a|enfermedades?|discapacidad|medicaci[oó]n|medicamentos?|tratamiento\s+m[eé]dico|baja\s+m[eé]dica|reconocimiento\s+m[eé]dico(?:\s+inicial|\s+peri[oó]dico)?|historial\s+m[eé]dico|antecedentes\s+m[eé]dicos|embarazo|lugar\s+de\s+nacimiento|estado\s+civil|religi[oó]n|orientaci[oó]n\s+sexual|afiliaci[oó]n\s+sindical|ideolog[ií]a|origen\s+[ée]tnico|nacionalidad)`;
+// A word that qualifies the label ("Medicación habitual", "Ideología política") before its value.
+const SENS_QUALIFIER = String.raw`(?:[^\S\n]+(?:habitual|actual|previa|cr[oó]nic[oa]s?|pol[ií]tica|sindical|[eé]tnic[oa]|m[eé]dic[oa]s?|inicial|peri[oó]dic[oa]|en\s+curso))?`;
+// The value follows the label after a colon, an equals sign or a dash, or after a line break or two spaces (a
+// table cell). A value after one plain space is a sentence ("el grupo sanguíneo no aparece…"), not a field.
+// A single plain space is accepted only between a capitalised label and a capitalised or numeric value, as two
+// cells of a form read in sequence ("Estado Civil Casado/a"); in lower case it is a sentence (checked in scanRules).
 const SENSITIVE_RE = new RegExp(
-  String.raw`${B}${SENSITIVE_CUE}(?![\p{L}])[^\S\n]*[:\-–=]?\s{0,30}?([\p{L}\p{N}(«"'¿][^\n]{0,60}?)(?=\s{2,}|\n|$)`,
+  String.raw`${B}(${SENSITIVE_CUE}${SENS_QUALIFIER})(?![\p{L}])(\s*[:=\-–]\s*|\s{2,}|\s*\n\s*|\s)([\p{L}\p{N}(«"'¿][^\n]{0,120}?(?:\n[\p{L}\p{N}(«"'¿][^\n]{0,40}?)?)(?=\s{2,}|\n|$|\s(?=${SENSITIVE_CUE}(?![\p{L}])))`,
   'giud',
 );
 // Years after a birth cue: "Nacidos en 2019 y 2021".
@@ -306,7 +318,8 @@ function trimIban(text: string, start: number, end: number): number | null {
 
 const cardPrefix = (s: string) => /^(?:4|5[1-5]|2[2-7]|3[47]|6)/.test(s.replace(/\D/g, ''));
 
-const INVISIBLE = /[\u200b\u200c\u200d\u2060\ufeff\u00ad]/;
+const INVISIBLE = /[\u200b\u200c\u200d\u2060\ufeff\u00ad\ufe0f]/;
+const EMOJI = /\p{Extended_Pictographic}/u;
 const NON_ASCII_SPACE = /[\u00a0\u2007\u2009\u200a\u202f]/;
 const isDigit = (cp: number) => /\p{Nd}/u.test(String.fromCodePoint(cp));
 
@@ -328,10 +341,14 @@ function fold(input: string): { text: string; from: Int32Array; to: Int32Array }
   const from: number[] = [];
   const to: number[] = [];
   let at = 0;
-  for (const ch of input) {
+  const chars = [...input];
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i]!;
     const s = at;
     at += ch.length;
     if (INVISIBLE.test(ch)) continue;
+    // A pictograph between two digits is a separator someone typed ("6📞1📞2…"): it does not break the number.
+    if (EMOJI.test(ch) && /\p{Nd}/u.test(out.at(-1) ?? '') && /\p{Nd}/u.test(chars[i + 1] ?? '')) continue;
     let f = ch;
     if (NON_ASCII_SPACE.test(ch)) f = ' ';
     else if (ch.charCodeAt(0) > 127 && isDigit(ch.codePointAt(0)!)) f = String(digitValue(ch));
@@ -413,7 +430,11 @@ function scanRules(text: string): RuleMatch[] {
       i = j;
     }
   };
-  for (const m of text.matchAll(SENSITIVE_RE)) takeFree(...m.indices![1]!, 'other');
+  for (const m of text.matchAll(SENSITIVE_RE)) {
+    const [lab, sep, val] = [m.indices![1]!, m.indices![2]!, m.indices![3]!];
+    if (/^[^\S\n]$/.test(text.slice(...sep)) && !(/^\p{Lu}/u.test(text.slice(...lab)) && /^[\p{Lu}\p{N}(«"'¿]/u.test(text.slice(...val)))) continue;
+    takeFree(...val, 'other');
+  }
   for (const m of text.matchAll(ADDRESS_RE)) take(m.index, m.index + m[0].length, 'address');
   for (const m of text.matchAll(ADDRESS_NUM_RE)) take(m.index, m.index + m[0].length, 'address');
   for (const m of text.matchAll(REF_RE)) {

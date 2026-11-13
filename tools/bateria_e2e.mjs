@@ -105,7 +105,9 @@ async function leerEnApp(browser, file, timeoutMs = 900_000) {
   }
 }
 
-const browser = await chromium.launch({ ...(EXE ? { executablePath: EXE } : {}), args: ['--no-sandbox'] });
+// CHROME_ARGS: flags extra separados por espacios (p. ej. --disable-webgpu para que la app use el modelo WASM en local).
+const EXTRA = (process.env.CHROME_ARGS ?? '').split(/\s+/).filter(Boolean);
+const browser = await chromium.launch({ ...(EXE ? { executablePath: EXE } : {}), args: ['--no-sandbox', ...EXTRA] });
 const resultados = [];
 for (const d of docs) {
   const ext = extname(d.file).toLowerCase();

@@ -168,3 +168,10 @@ test('a DNI glued to a capitalised name is still a DNI; a lower-case word or a d
   assert.deepEqual(kinds('Pegados: 12345678ZJuan.'), [['dni', '12345678Z']]);
   assert.deepEqual(kinds('nombre 12345678Zabc'), []);
 });
+
+test('dates of birth after "nací el" or "n. el", and a DNI read in groups of four', () => {
+  assert.deepEqual(kinds('Nací el 14/03/1987 en Lleida.'), [['birthdate', '14/03/1987']]);
+  assert.deepEqual(kinds('n. el 14-03-1987'), [['birthdate', '14-03-1987']]);
+  assert.deepEqual(kinds('Mi DNI es 1234 5678 Z.'), [['dni', '1234 5678 Z']]);
+  assert.deepEqual(kinds('Entre 1234 5678 y 2020.'), []);
+});

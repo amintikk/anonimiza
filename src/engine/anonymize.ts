@@ -34,14 +34,30 @@ const overlaps = (a: { start: number; end: number }, b: { start: number; end: nu
 /** The value a detection stands for: case, spacing and separators do not create a new marker. */
 export function valueKey(kind: Kind, value: string): string {
   if (STRUCTURED.has(kind)) return value.replace(/[^0-9A-Za-z:]/g, '').toUpperCase().replace(/^(?:\+|00)?34(?=[6789]\d{8}$)/, '');
-  return value.normalize('NFC').toLocaleLowerCase('es').replace(/\s+/g, ' ').trim();
+  // Accents do not make another value: "María José" and "Maria Jose" are the same person (ñ stays ñ).
+  return stripAccents(value).toLocaleLowerCase('es').replace(/\s+/g, ' ').trim();
 }
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+/** Removes accents but keeps ñ/Ñ and ç/Ç, which are letters of their own. */
+export function stripAccents(s: string): string {
+  const d = s.normalize('NFD');
+  return d.replace(/\p{M}/gu, (m, off: number) => ((m === '\u0303' && /[nN]/.test(d[off - 1]!)) || (m === '\u0327' && /[cC]/.test(d[off - 1]!)) ? m : '')).normalize('NFC');
+}
+
+const ACCENTED: Record<string, string> = { a: 'aáàâä', e: 'eéèêë', i: 'iíìîï', o: 'oóòôö', u: 'uúùûü' };
+/** A pattern that finds a word with or without its accents ("Lucía" also finds "Lucia" and "LUCIA"). */
+function accentPattern(escaped: string): string {
+  return stripAccents(escaped).replace(/[aeiou]/gi, (v) => {
+    const set = ACCENTED[v.toLowerCase()]!;
+    return `[${v === v.toLowerCase() ? set : set.toUpperCase()}]`;
+  });
+}
+
 /** Every other place where a value appears as whole words (the model can miss a repetition). */
 function occurrences(text: string, value: string, flags = 'i'): { start: number; end: number }[] {
-  const body = escapeRe(value.trim()).replace(/\s+/g, '\\s+');
+  const body = accentPattern(escapeRe(value.trim())).replace(/\s+/g, '\\s+');
   if (!body) return [];
   const re = new RegExp(`(?<![\\p{L}\\p{N}_])${body}(?![\\p{L}\\p{N}_])`, `g${flags}u`);
   return [...text.matchAll(re)].map((m) => ({ start: m.index, end: m.index + m[0].length }));
@@ -190,6 +206,9 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     let { start, end } = e;
     while (start < end && /[\s.,;:()«»"'“”]/.test(text[start]!)) start++;
     while (end > start && /[\s,;:()«»"'“”]/.test(text[end - 1]!)) end--;
+    // "Badalona (Barcelona)": keep the closing bracket of a bracket opened inside the value, or it is left loose.
+    const inside = text.slice(start, end);
+    if (text[end] === ')' && (inside.match(/\(/g)?.length ?? 0) > (inside.match(/\)/g)?.length ?? 0)) end++;
     const kind = FROM_MODEL[e.label];
     if (isGeneric(kind, text.slice(start, end))) continue;
     if (kind === 'person') end = extendPerson(text, start, end, entities.filter((o) => o !== e));
@@ -203,6 +222,21 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     if (d.source === 'rule' && !(d.kind === 'ref' && (value.replace(/[^\p{L}\p{N}]/gu, '').length >= 5 || /\p{L}/u.test(value)))) continue;
     if (value.trim().length < 2) continue;
     for (const o of occurrences(text, value)) add(o.start, o.end, d.kind, 'repeat');
+  }
+  // User names built on a first name or surname of someone in the text: "pedro_92", "lucia.benitez87".
+  for (const d of [...dets]) {
+    if (d.kind !== 'person' || d.source === 'repeat') continue;
+    for (const v of nameParts(text.slice(d.start, d.end))) {
+      if (v.includes(' ') || v.length < 4 || isCommonWord(v)) continue;
+      const body = accentPattern(escapeRe(v));
+      const re = new RegExp(`(?<![\\p{L}\\p{N}_.@-])[\\p{L}\\p{N}]*(?:${body})[\\p{L}\\p{N}._-]*(?![\\p{L}\\p{N}_@-])`, 'giu');
+      for (const m of text.matchAll(re)) {
+        const handle = m[0].replace(/[._-]+$/, '');
+        // Only something that looks like a user name: letters joined to digits, _ or a dot. Plain words are left to the repeats above.
+        if (!/[\d_]|\p{L}\.\p{L}/u.test(handle)) continue;
+        add(m.index, m.index + handle.length, 'person', 'repeat');
+      }
+    }
   }
   // People are often mentioned again by part of their name, even in lower case: "Javier Molina Ortega" →
   // "Javier Molina", "Sr. Molina", "javier". Parts that are ordinary words keep their capital.
@@ -246,6 +280,9 @@ export function assignMarkers(text: string, dets: Detection[], lang: 'es' | 'en'
   }
 
   const counters = new Map<Kind, number>();
+  // A marker already written in the original ("[PERSONA_1]" in a template) must not be restored as somebody's name:
+  // its number is skipped, so restoring leaves it as it was.
+  const literal = new Set([...text.matchAll(/\[\s*(\p{L}+(?:[ _]\p{L}+)*)[ _-]?(\d+)\s*\]/gu)].map((m) => `${m[1]!.toUpperCase().replace(/ /g, '_')}_${m[2]}`));
   const markerOfKey = new Map<string, string>();
   const byId = new Map<number, string>();
   const table = new Map<string, string>();
@@ -255,7 +292,8 @@ export function assignMarkers(text: string, dets: Detection[], lang: 'es' | 'en'
     if (d.kind === 'person') k = canonical.get(k) ?? k;
     let marker = markerOfKey.get(k);
     if (!marker) {
-      const n = (counters.get(d.kind) ?? 0) + 1;
+      let n = (counters.get(d.kind) ?? 0) + 1;
+      while (literal.has(`${names[d.kind]}_${n}`)) n++;
       counters.set(d.kind, n);
       marker = `[${names[d.kind]}_${n}]`;
       markerOfKey.set(k, marker);
@@ -280,7 +318,8 @@ function containsRun(hay: string[], needle: string[]): boolean {
 export function dotEndsSentence(text: string, d: { end: number }): boolean {
   if (text[d.end - 1] !== '.' || text[d.end - 2] === '.') return false;
   const after = text.slice(d.end, d.end + 3);
-  return after === '' || /^\s*(?:\n|$)|^ +["«(]?\p{Lu}/u.test(after);
+  // "S.L. (CIF …)": a bracket opens an aside, not a new sentence.
+  return after === '' || /^\s*(?:\n|$)|^ +["«]?\p{Lu}/u.test(after);
 }
 
 /** Replace every active detection by its marker. */

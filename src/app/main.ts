@@ -137,13 +137,15 @@ function loadModel(): Promise<boolean> {
       void navigator.storage?.persist?.().catch(() => false);
       await engine.start(st.backend, threads());
       st.model = (await isCached(modelFor(st.backend))) ? 'compiling' : 'downloading';
+      // The download progress matters more than "analysing" while it lasts.
+      if (st.model === 'downloading') st.analysing = null;
       renderModel();
       await engine.load({
         download: (_file, loaded, total, cached) => {
           if (total < 1e8) return; // the tokenizer: too small to show
           st.loaded = loaded;
           st.total = total;
-          if (st.model !== 'downloading' && !cached) st.model = 'downloading';
+          if (st.model !== 'downloading' && !cached) (st.model = 'downloading'), (st.analysing = null);
           renderModelThrottled();
         },
         progress: (stage) => {
@@ -498,9 +500,16 @@ async function detectAll(): Promise<void> {
   st.view = 'orig';
   setMode('review');
   rebuild();
+  // Feedback at once: reading the model from the browser cache can take a few seconds before the analysis starts.
+  if (st.model !== 'downloading') {
+    st.analysing = { done: 0, total: 0 };
+    renderModel();
+  }
   if (st.model === 'ready' || st.model === 'compiling' || st.model === 'downloading' || (await loadingFromCache())) {
     if (await loadModel()) await runModel();
+    else (st.analysing = null), renderModel();
   } else {
+    st.analysing = null;
     renderModel();
   }
 }

@@ -109,3 +109,35 @@ test('identifiers found by their cue word are also found where they come back al
   const dets = buildDetections(text, findRules(text), []);
   assert.deepEqual(dets.map((d) => [d.kind, text.slice(d.start, d.end)]), [['ref', 'rosamotor_77'], ['ref', 'rosamotor_77']]);
 });
+
+const anon = (text: string, ents: EntitySpan[]) => {
+  const dets = buildDetections(text, findRules(text), ents);
+  const a = assignMarkers(text, dets, 'es');
+  return { a, out: applyMarkers(text, dets, a.byId) };
+};
+
+test('the same person written with and without accents gets one marker', () => {
+  const text = 'María José Pérez firmó. Después Maria Jose Perez y MARÍA JOSÉ PÉREZ volvieron. Lucía vino; Lucia también.';
+  const { out } = anon(text, [ent(text, 'María José Pérez', 'person'), ent(text, 'Maria Jose Perez', 'person'), ent(text, 'Lucía', 'person')]);
+  assert.equal(out, '[PERSONA_1] firmó. Después [PERSONA_1] y [PERSONA_1] volvieron. [PERSONA_2] vino; [PERSONA_2] también.');
+});
+
+test('user names built on a first name or surname are hidden too', () => {
+  const text = 'Hablé con Pedro García Ruiz. Luego pedro me escribió; es pedro_92 en discord y pgarcia.ruiz en X.';
+  const { out } = anon(text, [ent(text, 'Pedro García Ruiz', 'person')]);
+  assert.equal(out, 'Hablé con [PERSONA_1]. Luego [PERSONA_1] me escribió; es [PERSONA_2] en discord y [PERSONA_3] en X.');
+});
+
+test('brackets and full stops around a value are not left loose', () => {
+  let text = 'Vive en Badalona (Barcelona) desde 2010.';
+  assert.equal(anon(text, [ent(text, 'Badalona (Barcelona', 'address')]).out, 'Vive en [DIRECCION_1] desde 2010.');
+  text = 'Contrato con Seguros Levante S.L. (CIF B12345674) firmado.';
+  assert.equal(anon(text, [ent(text, 'Seguros Levante S.L.', 'organization')]).out, 'Contrato con [ORGANIZACION_1] (CIF [CIF_1]) firmado.');
+});
+
+test('a marker already written in the original is not restored as somebody', () => {
+  const text = 'Plantilla: [PERSONA_1] es el cliente. Firmado: Ana Gómez Ruiz.';
+  const { a, out } = anon(text, [ent(text, 'Ana Gómez Ruiz', 'person')]);
+  assert.equal(out, 'Plantilla: [PERSONA_1] es el cliente. Firmado: [PERSONA_2].');
+  assert.equal(restore(out, a.table).text, text);
+});

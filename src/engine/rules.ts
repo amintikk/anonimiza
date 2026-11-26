@@ -150,7 +150,7 @@ const PROVINCES = 'A|AB|AL|AV|B|BA|BI|BU|C|CA|CC|CE|CO|CR|CS|CU|GC|GE|GI|GR|GU|H
 // Other dates are not personal on their own and stay.
 const MONTHS = 'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre|january|february|march|april|may|june|july|august|september|october|november|december|ene|feb|mar|abr|jun|jul|ago|sep|sept|oct|nov|dic|jan|apr|aug|dec';
 const DATE = String.raw`(?:\d{1,2}[\/.\-](?:${MONTHS})\.?[\/.\-](?:\d{4}|\d{2})|\d{1,2}[^\S\n]?[\/.\-][^\S\n]?\d{1,2}[^\S\n]?[\/.\-][^\S\n]?(?:\d{4}|\d{2})|\d{4}[\/.\-]\d{1,2}[\/.\-]\d{1,2}|\d{1,2}(?:\s+de)?\s+(?:${MONTHS})\.?(?:\s+(?:de|del)\s+|\s+|,\s*)\d{4}|(?:${MONTHS})\.?\s+\d{1,2},?\s+\d{4})`;
-const BIRTH_CUE = String.raw`(?:nacid[oa]s?|naci[óo]|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\s?\/\s?nac(?:\.|imiento)?|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
+const BIRTH_CUE = String.raw`(?:nacid[oa]s?|nac(?:i[óo]?|í)|n\.(?=\s*el\s)|nacimiento|nacemento|f(?:echa|ec)?\.?\s*(?:de\s+)?nac(?:\.|imiento)?|nac\.|f\s?\/\s?nac(?:\.|imiento)?|f\.\s*n\.|born|date\s+of\s+birth|d\.?o\.?b\.?|data\s+de\s+naixement|nascut|nascuda|jaiotze\s+data)`;
 // Between the cue and the date there may be a line break or a table cell (the label and its value are often
 // extracted as separate lines, a table row apart): anything without a digit, up to 120 characters.
 const BIRTH_RE = new RegExp(String.raw`${B}${BIRTH_CUE}(?![\p{L}])[^\d]{0,120}?(${DATE}|(?<=\b(?:en|in)\s+(?:el\s+año\s+)?)\d{4})${E}`, 'giud');
@@ -279,6 +279,10 @@ const RULES: Rule[] = [
   // Written with spaces between the groups ("53 464 097 E"): with the right letter, or flagged as doubtful with a wrong one
   // ("11 223 344 z"), so that the number is still hidden. A lower-case word after a space is a conjunction, not a letter.
   { kind: 'dni', re: re(String.raw`${B}\d{2} \d{3} \d{3}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: () => true, reject: conjunction },
+  // Grouped in fours, the way it is read aloud: "1234 5678 Z".
+  { kind: 'dni', re: re(String.raw`${B}\d{4} \d{4}${SID}?[A-Za-z]${E}`), valid: validDni, doubtful: () => true,
+    // A lower-case letter after a space is only a DNI letter when it is the right one ("1234 5678 y 2020" is not).
+    reject: (t, s, e) => conjunction(t, s, e) || (/\s[a-z]$/.test(t.slice(e - 2, e)) && !validDni(t.slice(s, e))) },
   // A DNI without its letter, when the word says so ("DNI 12.345.678").
   { kind: 'dni', re: re(String.raw`${NB}\d{2}(?:\.|[ \n])?\d{3}(?:\.|[ \n])?\d{3}${NE}`), valid: () => false, doubtful: (_s, t, st) => DNI_CUE(t, st) },
   { kind: 'nss', re: re(String.raw`${NB}\d{2}(?:${SEP_LOOSE})?\d{8}(?:${SEP_LOOSE})?\d{2}${NE}`), valid: validNss, doubtful: (s, t, st) => NSS_CUE(t, st) || /\D/.test(s) },

@@ -74,7 +74,19 @@ export async function fetchFile(f: FileMeta, onBytes: (loaded: number, cached: b
     }
     await cache!.delete(key);
   }
-  const buf = await download(f, (n) => onBytes(n, false));
+  // A dropped connection ("Failed to fetch", a download cut short) is retried twice before giving up.
+  let buf!: Uint8Array<ArrayBuffer>;
+  for (let attempt = 1; ; attempt++) {
+    try {
+      buf = await download(f, (n) => onBytes(n, false));
+      break;
+    } catch (e) {
+      const network = e instanceof TypeError || (e instanceof Error && /incompleta|incomplete|network|fetch|\((?:5\d\d|0)\)/i.test(e.message));
+      if (!network || attempt >= 3) throw e;
+      onBytes(0, false);
+      await new Promise((r) => setTimeout(r, 1500 * attempt));
+    }
+  }
   try {
     await cache?.put(key, new Response(buf, { headers: { 'content-type': 'application/octet-stream', 'content-length': String(f.bytes) } }));
   } catch {

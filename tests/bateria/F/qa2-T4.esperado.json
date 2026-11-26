@@ -1,0 +1,35 @@
+{
+  "documento": "qa2-T4.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Chat con alias y datos técnicos",
+  "datos": [
+    {
+      "texto": "mariajose_87",
+      "tipo": "person"
+    },
+    {
+      "texto": "+34 600 111 222",
+      "tipo": "phone"
+    },
+    {
+      "texto": "@lucia_m",
+      "tipo": "person"
+    },
+    {
+      "texto": "Lucia Mandarina",
+      "tipo": "person"
+    },
+    {
+      "texto": "192.168.1.34",
+      "tipo": "ip"
+    },
+    {
+      "texto": "4821 KLM",
+      "tipo": "plate"
+    },
+    {
+      "texto": "4838 8164 9717 6957",
+      "tipo": "card"
+    }
+  ],
+  "falsos_positivos": []
+}

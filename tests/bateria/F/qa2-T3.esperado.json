@@ -1,0 +1,40 @@
+{
+  "documento": "qa2-T3.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Email informal entre amigos",
+  "datos": [
+    {
+      "texto": "Carlos",
+      "tipo": "person"
+    },
+    {
+      "texto": "Pedro García Ruiz",
+      "tipo": "person"
+    },
+    {
+      "texto": "622 333 444",
+      "tipo": "phone"
+    },
+    {
+      "texto": "pedro_92",
+      "tipo": "person"
+    },
+    {
+      "texto": "carlos.empresa@gmail.com",
+      "tipo": "email"
+    },
+    {
+      "texto": "av. Diagonal 210",
+      "tipo": "address"
+    },
+    {
+      "texto": "Marta",
+      "tipo": "person"
+    }
+  ],
+  "falsos_positivos": [
+    {
+      "texto": "restaurante",
+      "motivo": "informe externo: marcado como organización"
+    }
+  ]
+}

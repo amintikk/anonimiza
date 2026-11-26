@@ -1,0 +1,55 @@
+{
+  "documento": "qa2-T6.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Estrés: formatos raros y cortes difíciles",
+  "datos": [
+    {
+      "texto": "EXP-2024/118",
+      "tipo": "ref"
+    },
+    {
+      "texto": "Badalona (Barcelona)",
+      "tipo": "address"
+    },
+    {
+      "texto": "Seguros Levante S.L.",
+      "tipo": "org"
+    },
+    {
+      "texto": "A89665535",
+      "tipo": "cif"
+    },
+    {
+      "texto": "Maria Jose Perez",
+      "tipo": "person"
+    },
+    {
+      "texto": "X2359369Y",
+      "tipo": "nie"
+    },
+    {
+      "texto": "PCD517306",
+      "tipo": "ref"
+    },
+    {
+      "texto": "7371 0533 H",
+      "tipo": "dni"
+    },
+    {
+      "texto": "85.52.10.9",
+      "tipo": "ip"
+    },
+    {
+      "texto": "EXPEDIENTES@SEGLEVANTE.ES",
+      "tipo": "email"
+    },
+    {
+      "texto": "902 11 22 33",
+      "tipo": "phone"
+    },
+    {
+      "texto": "Juan-Antonio Ribas i Vidal",
+      "tipo": "person"
+    }
+  ],
+  "falsos_positivos": []
+}

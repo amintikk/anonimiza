@@ -1,0 +1,55 @@
+{
+  "documento": "qa2-T1.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Contrato laboral (registro formal)",
+  "datos": [
+    {
+      "texto": "Fontanería Mediterránea S.L.",
+      "tipo": "org"
+    },
+    {
+      "texto": "B53416533",
+      "tipo": "cif"
+    },
+    {
+      "texto": "Rafael Orts Sanz",
+      "tipo": "person"
+    },
+    {
+      "texto": "Avenida del Puerto 88",
+      "tipo": "address"
+    },
+    {
+      "texto": "María José Pérez Llorens",
+      "tipo": "person"
+    },
+    {
+      "texto": "73710533H",
+      "tipo": "dni"
+    },
+    {
+      "texto": "14 de marzo de 1987",
+      "tipo": "birthdate"
+    },
+    {
+      "texto": "Calle Mayor 14",
+      "tipo": "address"
+    },
+    {
+      "texto": "+34 612 44 55 66",
+      "tipo": "phone"
+    },
+    {
+      "texto": "mjose.perez@correofalso.com",
+      "tipo": "email"
+    },
+    {
+      "texto": "ES18 9315 9648 5406 4027 5222",
+      "tipo": "iban"
+    },
+    {
+      "texto": "32 20062068 16",
+      "tipo": "nss"
+    }
+  ],
+  "falsos_positivos": []
+}

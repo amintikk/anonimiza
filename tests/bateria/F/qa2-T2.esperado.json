@@ -1,0 +1,51 @@
+{
+  "documento": "qa2-T2.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Informe médico (historia clínica)",
+  "datos": [
+    {
+      "texto": "Andrés Martín Soler",
+      "tipo": "person"
+    },
+    {
+      "texto": "02/11/1990",
+      "tipo": "birthdate"
+    },
+    {
+      "texto": "HC-4478102",
+      "tipo": "ref"
+    },
+    {
+      "texto": "41 00223344 55",
+      "tipo": "ref"
+    },
+    {
+      "texto": "Carrer de Balmes 112",
+      "tipo": "address"
+    },
+    {
+      "texto": "Irene Martín Soler",
+      "tipo": "person"
+    },
+    {
+      "texto": "655 210 987",
+      "tipo": "phone"
+    },
+    {
+      "texto": "Lucía Ferrer Ribes",
+      "tipo": "person"
+    },
+    {
+      "texto": "080845123",
+      "tipo": "ref"
+    },
+    {
+      "texto": "andres.martin@saludficticia.es",
+      "tipo": "email"
+    },
+    {
+      "texto": "933 456 789",
+      "tipo": "phone"
+    }
+  ],
+  "falsos_positivos": []
+}

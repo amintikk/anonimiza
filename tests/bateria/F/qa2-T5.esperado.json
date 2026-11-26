@@ -1,0 +1,15 @@
+{
+  "documento": "qa2-T5.txt",
+  "nota": "Informe externo de precisión (26-11-2026): Control: texto sin datos personales",
+  "datos": [],
+  "falsos_positivos": [
+    {
+      "texto": "Benidorm",
+      "motivo": "informe externo: marcado como organización"
+    },
+    {
+      "texto": "proyecto",
+      "motivo": "informe externo: marcado como organización"
+    }
+  ]
+}

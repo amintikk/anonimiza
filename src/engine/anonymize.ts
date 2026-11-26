@@ -211,6 +211,9 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
     if (text[end] === ')' && (inside.match(/\(/g)?.length ?? 0) > (inside.match(/\)/g)?.length ?? 0)) end++;
     const kind = FROM_MODEL[e.label];
     if (isGeneric(kind, text.slice(start, end))) continue;
+    // An organisation is a name: a span all in lower case ("restaurante", "el proyecto") is an ordinary word.
+    // Only in scripts with capitals: Arabic or Chinese have none, so there the model keeps the last word.
+    if (kind === 'org' && /\p{Ll}/u.test(text.slice(start, end)) && !/[\p{Lu}\p{Lo}\p{N}]/u.test(text.slice(start, end))) continue;
     if (kind === 'person') end = extendPerson(text, start, end, entities.filter((o) => o !== e));
     add(start, end, kind, 'model', e.score);
   }
@@ -242,9 +245,15 @@ export function buildDetections(text: string, rules: RuleMatch[], entities: Enti
   // "Javier Molina", "Sr. Molina", "javier". Parts that are ordinary words keep their capital.
   for (const d of [...dets]) {
     if (d.kind !== 'person' || d.source === 'repeat') continue;
+    const initial = text.slice(d.start, d.end).trim()[0]!;
     for (const v of nameParts(text.slice(d.start, d.end))) {
       const exact = !v.includes(' ') && isCommonWord(v);
-      for (const o of occurrences(text, v, exact ? '' : 'i')) add(o.start, o.end, 'person', 'repeat');
+      for (const o of occurrences(text, v, exact ? '' : 'i')) {
+        // "T. Vidal" for "Tomás Vidal Ferran": the initial of the first name goes with the surname.
+        const before = /(?<![\p{L}\p{N}])(\p{Lu})\.[^\S\n]?$/u.exec(text.slice(Math.max(0, o.start - 4), o.start));
+        const start = before && before[1] === initial && !text.slice(d.start, d.end).startsWith(v) ? o.start - before[0].length : o.start;
+        add(start, o.end, 'person', 'repeat');
+      }
     }
   }
   return dets.sort((a, b) => a.start - b.start);
@@ -307,7 +316,9 @@ export function assignMarkers(text: string, dets: Detection[], lang: 'es' | 'en'
 }
 
 function containsRun(hay: string[], needle: string[]): boolean {
-  for (let i = 0; i + needle.length <= hay.length; i++) if (needle.every((w, j) => hay[i + j] === w)) return true;
+  // An initial ("t.") stands for any word that starts with it ("tomás").
+  const same = (h: string, w: string) => h === w || (/^\p{L}\.$/u.test(w) && h.startsWith(w[0]!));
+  for (let i = 0; i + needle.length <= hay.length; i++) if (needle.every((w, j) => same(hay[i + j]!, w))) return true;
   return false;
 }
 

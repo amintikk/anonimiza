@@ -1,0 +1,10 @@
+INFORME DE ALTA MÉDICA
+
+Paciente: Andrés Martín Soler
+Fecha de nacimiento: 02/11/1990
+Nº de historia clínica: HC-4478102
+SIP: 41 00223344 55
+
+El paciente Andrés Martín Soler, de 35 años, residente en Carrer de Balmes 112, 3º1ª, 08008 Barcelona, ingresó el día 12 por cuadro de lumbalgia mecánica. Contacto de urgencias: su hermana, Irene Martín Soler, teléfono 655 210 987.
+
+Medicación prescrita por la doctora Lucía Ferrer Ribes (nº colegiada 080845123). Próxima revisión en consulta externa. Correo de la paciente de referencia: andres.martin@saludficticia.es. Teléfono de consultas: 933 456 789.

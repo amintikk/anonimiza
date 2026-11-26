@@ -141,3 +141,10 @@ test('a marker already written in the original is not restored as somebody', () 
   assert.equal(out, 'Plantilla: [PERSONA_1] es el cliente. Firmado: [PERSONA_2].');
   assert.equal(restore(out, a.table).text, text);
 });
+
+test('an initial goes with the surname, and lower-case words are not organisations', () => {
+  let text = 'Arrendador: Tomás Vidal Ferran. Contrato T. Vidal — ref. ARR-2693';
+  assert.equal(anon(text, [ent(text, 'Tomás Vidal Ferran', 'person')]).out, 'Arrendador: [PERSONA_1]. Contrato [PERSONA_1] — ref. [IDENTIFICADOR_1]');
+  text = 'La reserva del restaurante es el 8877. El proyecto analizó 148 capas.';
+  assert.equal(anon(text, [ent(text, 'restaurante', 'organization'), ent(text, 'proyecto', 'organization')]).out, text);
+});
